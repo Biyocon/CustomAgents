@@ -1,0 +1,213 @@
+﻿3. partsprojektkoordinator
+Administrativ trafikal regelsagsbehandle
+Administrerende direktør
+Aftaleansvarlig
+Anlægschef
+Assisterende fagkoordinator, SAP
+Assisterende Teknisk Systemansvarlig
+Assisterende Trafikleder
+ATC-La specialist
+Auditplanlægger
+Beredskabsansvarlig
+Beredskabskoordinator
+Brofoged
+Bro-inspektør
+Brovagt
+Business Change Manager - UDGÅET
+Byggechef
+Byggeleder, Infrastrukturprojekter
+Byggeleder, Vedligeholdelse
+Bygningsvedligeholdelsesleder
+CAD-koordinator
+Censor
+Change Manager
+Commissioning Lead
+Commissioning Manager
+Configuration Manager, Programme Level
+Configuration Manager, Project Level
+Contract Manager, Project Level
+CSM myndighedskoordinator - UDGÅET
+CSM-projekterings Lead
+CSM-projekteringsleder
+Data Manager
+Data-koordinator
+Dataassistent
+Defect Manager, Project Level
+Den trafikale vagthavende i Trafikstyrin
+Depotleder, S-bane​
+Design & Development Manager
+Design Authority
+Direktør
+Disponeringsleder
+Document Manager, Programme Level
+Document Manager, Project Level
+Dokumentationsmedarbejder
+Dokumentejer_udgået
+Dokumentvedligeholder i Trafik
+Drifts- og Vedligeholdelseskoordinator S
+Driftsansvarlig Person DAP
+Driftssupport i Driftscenter Danmark
+Driftssupport i Trafikstyring S-bane
+ECM Administrativ medarbejder, stab
+ECM F3 Analysering af data
+ECM F3 Planlægning og administration
+ECM F3 Teamleder
+ECM F4 Maskinrep. - Småmaskinværksted
+ECM F4 Maskinrep. med hydraulik-speciale
+ECM F4 Maskinrep. tovejskøretøj, entrep.
+ECM F4 Maskinrep. tovejskøretøj, lastbil
+ECM F4 Maskinreparatør
+ECM F4 Maskinreparatør - rangering
+ECM F4 Maskinreparatør med EEU speciale
+ECM F4 Produktionsleder
+ECM F4 Sektionschef
+ECM Fagansvarlig, Rullende Materiel
+ECM Ledelsessupp.kvalitetskoordinator
+ECM Maskinreparatør (MK)
+ECM NDT-Basis
+ECM Projektkoordinator (PK) Materielstr.
+ECM Sammenføjning - Svejsning
+ECM Teamleder for staben
+ECM Teknisk Supervisor Projekthåndtering
+Ejer af Tracé
+ELM Tool Manager (DTC)
+El-sikkerhedskoordinator
+Enterprise Architect
+Erstatningssagsbehandler
+ESC Test Facility Manager
+ESC Test Manager, Programme Level
+ESC Test Manager, Project Level
+Fagansvarlig sik. udd. infrastruktur
+Fagansvarlig sik. udd. Trafikal fagl.
+Fagansvarlig, Infrastruktur
+Fagkoordinator, SAP
+Faglig kvalitetssikrer, Tekniske regler
+Fagligt Ansvarlig (KLS-A)
+Faglærer færdselssikkerhed
+Fagtilsyn
+Farligt gods koordinator
+Fejlretningskoordinator (FKO)
+Geografisk arealansvarlig sagsbehandler
+Geografisk fagspecialist
+GIS-assistent
+GIS-specialist
+Godkender af entreprenører
+Godkender af Funktionsbeskrivelser
+Godkender af organisationsændringer
+Ibrugtagningsansvarlig
+IKT Leder
+Implementeringskoordinator for Lovkrav
+Incident Manager
+Informationssikkerhedsspecialist OT
+Infrastrukturkoordinator
+Installation Manager in DTC
+Interface Manager, Project Level
+IT Consultant (DTC)
+IT Consultant, JTL
+Jernbanesikkerhedsspecialist OT
+KA-Koordinator
+K-kompetenceejer
+Koblingsleder
+Kompetenceassistent
+Kompetenceplanlægger
+Kontraktbyggeleder
+Kontraktholder
+Koordinator Ledelsessystem
+Kørelærer Infrastruktur
+Køreplanlægger
+Landsdækkende tilsynsspecialist
+La-Sagsbehandler i Driftscenter Danmark
+Lead Auditor
+Lead Reviewer
+Ledelsens repræsentant
+Leder af systemansvar
+Ledningskoordinator
+Local SharePoint Administrator
+Lods, Infrastruktur
+Lokalplanlægger
+Lokomotivfører (LKF)
+Materielkoordinator
+Medarbejder, farligt gods
+Netværksleder
+Norm Administrator
+Områdechef
+Planlægger ROMAN S-bane
+Principal Test Manager (DTC)
+Problem Manager
+Process Manager
+Produktionsansvarlig
+Produktionsansvarlig, Farligt gods
+Produktionskoordinator (PKO)
+Produktionsleder_udgået
+Programme Contract Manager
+Projekteringsleder
+Projekteringsleder, Sikring
+Projektleder for forretningsprojekter
+Projektleder for infrastrukturprojekter
+Projektportefølje ansvarlig
+Prøvekørselskoordinator
+Regelprojektleder
+Risikoejer
+S&I koordinator
+S&I Lead
+S&I Manager CSM og Interoperabilitet
+Sagsbehandler - ITOT Screening 1
+Sagsbehandler helbredsgodkendelser
+Sektionschef
+Senior CSM-projekteringsleder
+Senior S&I koordinator
+Senior S&I Koordinator (Kvalitetssikrer)
+Service Architect
+Service Level Agreement Manager
+Service Manager – Service Operation
+Signalkommissionsassistent
+Signalteknisk Validator
+Sikkerhedsbyggeleder
+Sikkerhedskoordinator
+Sikkerhedskoordinator i projekter
+Sikkerhedsspecialist
+Site Test Manager
+Solution Architect
+SROR kompetencer, Sikkerhed
+Stationsbestyrer
+Styregruppeformand
+Svejseansvarlig
+System Integration Architect
+System Interface Manager
+Systemadministrator for Infrastruktur
+Teamleder
+Technical Architect
+Tekniker (fagarbejdslederholdleder) fag
+Teknisk Dokumentationskoordinator
+Teknisk Projektejer
+Teknisk Supervisor Sikkerhed
+Teknisk Systemansvar Trafik og Teknik
+Teknisk systemansvarlig
+Test Manager
+Test Manager in DTC
+Test Manager, Project Level
+Tester in DTC
+Tilsynsførende kørelærer
+Tjenestefordeler Trafikstyring
+TMS Systemadministrator
+Togleder S-bane
+Tool Supporter (DTC)
+Trafikal driftsansvarlig
+Trafikal planlægger infrastruktur S-bane
+Trafikal regelansvarlig
+Trafikal regelsagsbehandler
+Trafikleder Fjern
+Trafikleder S-bane
+Training Developer
+Training Safety Manager
+Transition Manager
+Udlejningsdisponent
+Undersøgelsesleder
+Undersøgelsesvagt
+Underviser
+V&V Manager, Programme Level
+Vagthavende trafikleder
+Vagtleder
+Vedligeholdelsesbehovsansvarlig (VBA)
+Økonomikoordinator
+Økonomisupporter
