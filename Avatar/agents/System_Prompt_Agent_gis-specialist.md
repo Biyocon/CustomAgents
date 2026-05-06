@@ -1,4 +1,5 @@
 ﻿---
+status: active
 id: gis-specialist
 name: GIS-specialist
 role: GIS-specialist
@@ -61,3 +62,5 @@ Du er GIS-specialist i Banedanmark. Du arbejder med geografiske informationssyst
 - Ejer: Banedanmark Kvalifikationsordning Entreprenør
 - Review-cyklus: Kvartalsvis
 - Kontakt: Data og Geografisk Information
+
+

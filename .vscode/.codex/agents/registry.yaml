@@ -213,15 +213,15 @@ agents:
     accent: emerald
     status: active
     skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-fagpakkestruktur", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "bbtr-kvalitet-dod", "bdk-legal-mapping", "bdk-styregruppearbejde", "bdk-portefoljekontor-governance", "bdk-projektindstilling-og-finansiering", "bdk-risk-profile", "grill-with-docs"]
-    capabilities: ["strategisk engineering-ledelse", "sourcing- og procurement-strategi", "contract management framework", "interface management model", "governance og beslutningsopl?g"]
+    capabilities: ["strategisk engineering-ledelse", "sourcing- og procurement-strategi", "contract management framework", "interface management model", "governance og beslutningsoplæg"]
   - id: hassan-dahir
     name: Hassan Dahir
     role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
-    category: Teknik og udf?relse
+    category: Teknik og udførelse
     accent: orange
     status: active
     skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-tvaerfaglig-koordinering", "bbtr-fagpakkestruktur", "bbtr-leverance-mapping", "bbtr-dokumentstyring", "bbtr-risiko-myndighed", "bbtr-kvalitet-dod", "bbtr-csm-tsi-compliance", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bdk-trafikale-regler-anvendelse", "bdk-projektrapportering-frister", "bdk-styregruppearbejde", "bdk-forbedringsloop"]
-    capabilities: ["fagprojektledelse", "fagtilsyn og kvalitetskontrol", "byggeledelse og udf?relse", "afl?bsteknik og kloak", "product ownership BaneByg", "interface management", "tv?rfaglig koordinering"]
+    capabilities: ["fagprojektledelse", "fagtilsyn og kvalitetskontrol", "byggeledelse og udførelse", "afløbsteknik og kloak", "product ownership BaneByg", "interface management", "tværfaglig koordinering"]
   - id: interface-manager-project-level
     name: Interface Manager
     role: Interface Manager, Project Level
@@ -484,10 +484,10 @@ skills:
 
 # Categories
 categories:
-  - id: anl-g-bane
+  - id: anlaeg-bane
     name: Anlæg og bane
     agents: ["said-anlaegsingenioer", "hassan-anlaegsingenioer"]
-  - id: anl-g-forsyning
+  - id: anlaeg-forsyning
     name: Anlæg og forsyning
     agents: ["hamsa-afloebsingenioer"]
   - id: borger-interessent-gdpr
@@ -505,7 +505,7 @@ categories:
   - id: dokumentation-kvalitet
     name: Dokumentation og kvalitet
     agents: ["document-manager-project-level"]
-  - id: drift-h-ndelser
+  - id: drift-haendelser
     name: Drift og hændelser
     agents: ["incident-manager"]
   - id: finans-analyse
@@ -514,19 +514,19 @@ categories:
   - id: forhandling-talent
     name: Forhandling og talent
     agents: ["bojang-fodboldagent", "bodjo-fodboldagent"]
-  - id: karriere-r-dgivning
+  - id: karriere-raadgivning
     name: Karriere og rådgivning
     agents: ["ali-jobraadgiver"]
   - id: kontrakt-compliance
     name: Kontrakt og compliance
     agents: ["contract-manager-project-level"]
+  - id: laering-formidling
+    name: Læring og formidling
+    agents: ["siamak-folkeskolelaerer"]
   - id: ledelse-governance
     name: Ledelse og governance
     agents: ["ahmad-el-wali"]
-  - id: l-ring-formidling
-    name: Læring og formidling
-    agents: ["siamak-folkeskolelaerer"]
-  - id: p-dagogik-trivsel
+  - id: paedagogik-trivsel
     name: Pædagogik og trivsel
     agents: ["bamse-paedagog"]
   - id: produkt-prioritering
@@ -538,7 +538,7 @@ categories:
   - id: projektledelse-fagpakker
     name: Projektledelse og fagpakker
     agents: ["hassan-fagprojektleder"]
-  - id: projektledelse-gr-nseflader
+  - id: projektledelse-graenseflader
     name: Projektledelse og grænseflader
     agents: ["interface-manager-project-level"]
   - id: salg-positionering
@@ -559,9 +559,12 @@ categories:
   - id: teknik-konfiguration
     name: Teknik og konfiguration
     agents: ["configuration-manager-project-level"]
+  - id: teknik-udfoerelse
+    name: Teknik og udførelse
+    agents: ["the-game-elektriker"]
   - id: teknik-udf-relse
     name: Teknik og udførelse
-    agents: ["the-game-elektriker", "hassan-dahir"]
+    agents: ["hassan-dahir"]
   - id: test-verifikation
     name: Test og verifikation
     agents: ["test-manager-project-level"]

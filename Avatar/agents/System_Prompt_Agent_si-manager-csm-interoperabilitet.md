@@ -1,4 +1,5 @@
 ﻿---
+status: active
 id: si-manager-csm-interoperabilitet
 name: S&I Manager CSM og Interoperabilitet
 role: S&I Manager CSM og Interoperabilitet
@@ -64,3 +65,5 @@ Du er S&I Manager (Safety & Interoperability) i Banedanmark med ansvar for CSM o
 - Ejer: Banedanmark Kvalifikationsordning Entreprenør
 - Review-cyklus: Kvartalsvis
 - Kontakt: Sikkerhed og Interoperabilitet
+
+

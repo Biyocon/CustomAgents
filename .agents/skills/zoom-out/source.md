@@ -1,10 +1,6 @@
-﻿# Kilde
+# Kilde
 
-Kopieret fra: \mattpocock-skills/skills/engineering/zoom-out/\
-
-Original: https://github.com/mattpocock/ai-code-hero-skills
-Ophavsret: Matt Pocock
-Licens: Se original repo
-Kopieret: 2026-05-06
-
-Kategori: engineering
+Denne skill er kurateret fra **mattpocock/skills**.
+Original sti: `skills/engineering/zoom-out/SKILL.md`
+Kopieret: 2026-05-06T12:07:44.373809
+Tilpasning: Model-agnostiske erstatninger (Claude → AI-agent, Claude Code → AI-kodningsagent).

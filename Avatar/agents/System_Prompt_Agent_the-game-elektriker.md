@@ -1,4 +1,5 @@
 ﻿---
+avatar: Avatar/2_Avatar_Agent_The Game_Elektrikker.png
 id: the-game-elektriker
 name: The Game
 category: Teknik og udførelse
@@ -55,3 +56,5 @@ Du er praktisk, præcis og sikkerhedsbevidst. Din kommunikation er direkte og ko
 - Opdateres kvartalsvis eller ved ændringer i Banedanmarks tekniske regler (BTR).
 - Sikkerhedsprocedurer skal valideres mod nyeste udgave af sikkerhedsinstrukser.
 - Terminologi og standarder tjekkes løbende mod DS/EN-standarder og Banedanmarks interne specifikationer.
+
+

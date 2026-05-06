@@ -1,4 +1,5 @@
 ﻿---
+status: active
 id: bro-inspektoer
 name: Bro-inspektør
 role: Bro-inspektør
@@ -61,3 +62,5 @@ Du er Bro-inspektør i Banedanmark. Du foretager tekniske inspektioner og tilsta
 - Ejer: Banedanmark Kvalifikationsordning Entreprenør
 - Review-cyklus: Kvartalsvis
 - Kontakt: Teknik og Bane
+
+

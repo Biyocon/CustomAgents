@@ -83,7 +83,7 @@ foreach ($agent in $roster) {
 
     # 2. Tjek at .md profil har status: active
     $content = $mdProfiles[$expectedFile]
-    if ($content -match "^status:\s*(\S+)") {
+    if ($content -match "(?m)^status:\s*(\S+)") {
         $mdStatus = $Matches[1].Trim()
         if ($mdStatus -ne "active") {
             Add-Finding "WARN" "Profil status er '$mdStatus', forventet 'active'" $agent.id
@@ -94,9 +94,9 @@ foreach ($agent in $roster) {
 
     # 3. Tjek skills konsistens
     $rosterSkills = @($agent.skills | Sort-Object)
-    if ($content -match "(?ms)^skills:\s*\r?\n((?:\s*-\s*\S+\s*\r?\n)+)") {
+    if ($content -match "(?ms)^skills:\s*\r?\n((?:\s*-\s+\S+\s*\r?\n)+)") {
         $mdSkillsBlock = $Matches[1]
-        $mdSkills = @([regex]::Matches($mdSkillsBlock, "-\s*(\S+)") | ForEach-Object { $_.Groups[1].Value } | Sort-Object)
+        $mdSkills = @([regex]::Matches($mdSkillsBlock, "-\s+(\S+)") | ForEach-Object { $_.Groups[1].Value } | Sort-Object)
         $skillDiff = Compare-Object $rosterSkills $mdSkills -PassThru
         if ($skillDiff) {
             $onlyRoster = $skillDiff | Where-Object { $rosterSkills -contains $_ }
@@ -113,7 +113,7 @@ foreach ($agent in $roster) {
     }
 
     # 4. Tjek avatar path konsistens
-    if ($content -match "^avatar:\s*(.+)$") {
+    if ($content -match "(?m)^avatar:\s*(.+)$") {
         $mdAvatar = $Matches[1].Trim()
         $rosterAvatar = $agent.avatar
         # Sammenlign filnavn, ikke fuld path
@@ -127,7 +127,7 @@ foreach ($agent in $roster) {
     }
 
     # 5. Tjek id match
-    if ($content -match "^id:\s*(.+)$") {
+    if ($content -match "(?m)^id:\s*(.+)$") {
         $mdId = $Matches[1].Trim()
         if ($mdId -ne $agent.id) {
             Add-Finding "ERROR" "ID mismatch: roster='$($agent.id)' vs md='$mdId'" $agent.id
@@ -162,9 +162,9 @@ if (Test-Path $baneDir) {
 
 # --- Output ---
 
-$errCount  = ($findings | Where-Object Severity -in @("ERROR","CRITICAL")).Count
-$warnCount = ($findings | Where-Object Severity -eq "WARN").Count
-$infoCount = ($findings | Where-Object Severity -eq "INFO").Count
+$errCount  = @($findings | Where-Object Severity -in @("ERROR","CRITICAL")).Count
+$warnCount = @($findings | Where-Object Severity -eq "WARN").Count
+$infoCount = @($findings | Where-Object Severity -eq "INFO").Count
 
 Write-Color "" "White"
 Write-Color "--- Resultat ---" "Cyan"

@@ -1,4 +1,5 @@
 ﻿---
+status: active
 id: incident-manager
 name: Incident Manager
 role: Incident Manager
@@ -61,3 +62,5 @@ Du er Incident Manager i Banedanmark. Du håndterer hændelser, sikkerhedsbriste
 - Ejer: Banedanmark Kvalifikationsordning Entreprenør
 - Review-cyklus: Kvartalsvis
 - Kontakt: Drift og sikkerhed
+
+

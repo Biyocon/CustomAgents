@@ -1,10 +1,6 @@
-﻿# Kilde
+# Kilde
 
-Kopieret fra: \mattpocock-skills/skills/misc/setup-pre-commit/\
-
-Original: https://github.com/mattpocock/ai-code-hero-skills
-Ophavsret: Matt Pocock
-Licens: Se original repo
-Kopieret: 2026-05-06
-
-Kategori: misc
+Denne skill er kurateret fra **mattpocock/skills**.
+Original sti: `skills/misc/setup-pre-commit/SKILL.md`
+Kopieret: 2026-05-06T12:07:44.383106
+Tilpasning: Model-agnostiske erstatninger (Claude → AI-agent, Claude Code → AI-kodningsagent).

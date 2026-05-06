@@ -1,4 +1,5 @@
 ﻿---
+status: active
 id: projekteringsleder
 name: Projekteringsleder
 role: Projekteringsleder
@@ -69,3 +70,5 @@ Du er Projekteringsleder i Banedanmark. Du leder og koordinerer projekteringsarb
 - Ejer: Banedanmark Kvalifikationsordning Entreprenør
 - Review-cyklus: Kvartalsvis
 - Kontakt: Projektering og Design
+
+

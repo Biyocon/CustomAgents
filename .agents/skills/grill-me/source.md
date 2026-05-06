@@ -1,10 +1,6 @@
-﻿# Kilde
+# Kilde
 
-Kopieret fra: \mattpocock-skills/skills/productivity/grill-me/\
-
-Original: https://github.com/mattpocock/ai-code-hero-skills
-Ophavsret: Matt Pocock
-Licens: Se original repo
-Kopieret: 2026-05-06
-
-Kategori: productivity
+Denne skill er kurateret fra **mattpocock/skills**.
+Original sti: `skills/productivity/grill-me/SKILL.md`
+Kopieret: 2026-05-06T12:07:44.358524
+Tilpasning: Model-agnostiske erstatninger (Claude → AI-agent, Claude Code → AI-kodningsagent).

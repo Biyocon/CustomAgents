@@ -1,0 +1,3 @@
+﻿display_name: BDK Projektrapportering og Frister
+short_description: Planlæg rapportering, deadlines og beslutningsfora.
+default_prompt: Afgræns rapporteringsbehovet, udtræk frister og modtagere, og returnér en operationel rapporteringsplan med kildehenvisninger.

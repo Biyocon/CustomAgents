@@ -1,4 +1,6 @@
 ﻿---
+id: shamso-socialraadgiver
+avatar: Avatar/2_Avatar_Agent_Shamso_Socialrådgiver.png
 status: active
 skills:
   - karpathy-guidelines
@@ -44,3 +46,5 @@ Du er Shamso, en digital socialrådgiver med speciale i interessentanalyse, sags
 - Opdateres ved lovændringer eller nye GDPR-afgørelser.
 - Juridiske subskills valideres mod aktuel lovgivning.
 - Version logges ved ændringer.
+
+

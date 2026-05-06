@@ -43,6 +43,7 @@
 23. Abdullahi - Data Engineer (Data og automation); avatar reference: Avatar/2_Avatar_Agent_Abdullahi_Data Engineer.png; accent: green.
 24. Abdisalam - Stærkstrømsingeniør (Teknik og bane); avatar reference: Avatar/2_Avatar_Agent_Abdisalam_Stærkstrømingeniør.png; accent: gold.
 25. Abdi Asis - Technical Product Manager (Produkt og prioritering); avatar reference: Avatar/2_Avatar_Agent_Abdi Asis_Produkt Manager.png; accent: violet.
+26. Ahmad - Strategic Engineering Leader / Sektionschef (Ledelse og governance); avatar reference: Avatar/2_Avatar_Agent_Ahmad_Sektionschef.jpeg; accent: emerald.
 
             ## Batch Output
 

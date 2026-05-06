@@ -1,0 +1,43 @@
+version: 1
+project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Kvalifikationsordning Entreprenoer"
+promotion_target_global_path: "C:\\Users\\HMDR"
+
+primary_models:
+  - codex
+  - kimi
+
+secondary_models:
+  - qwen-code
+  - gemini-code
+
+agents: []
+
+skills: []
+
+brain_paths:
+  readme: brain/README.md
+  context: brain/context.md
+  glossary: brain/glossary.md
+  assumptions: brain/assumptions.md
+  open_questions: brain/open-questions.md
+  decisions: brain/decisions/
+  maps:
+    agents: brain/maps/agent-map.md
+    skills: brain/maps/skill-map.md
+  runbooks:
+    add_agent: brain/runbooks/how-to-add-agent.md
+    add_skill: brain/runbooks/how-to-add-skill.md
+    promote: brain/runbooks/how-to-promote-project-harness-to-global.md
+
+vendor_sources:
+  - mattpocock-skills
+  - andrej-karpathy-skills
+
+model_adapters:
+  - codex
+  - kimi
+  - qwen-code
+  - gemini-code
+
+validation_commands:
+  - "powershell .agents/scripts/validate-harness.ps1"

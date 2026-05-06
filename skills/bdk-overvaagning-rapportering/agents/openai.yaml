@@ -1,0 +1,4 @@
+display_name: BDK Overvågning og Rapportering
+short_description: Analyser sikkerhedsindikatorer, trends og rapporteringsgrundlag.
+default_prompt: Afgræns overvågningsopgaven, analysér trends og risikokoblinger ud fra kilderne, og lever en prioriteret rapportstruktur med næste handlinger og kildehenvisninger.
+

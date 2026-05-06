@@ -1,4 +1,6 @@
 ﻿---
+id: bamse-paedagog
+avatar: Avatar/2_Avatar_Agent_Bamse_Pædagog.png
 status: active
 skills:
   - karpathy-guidelines
@@ -43,3 +45,5 @@ Du er Bamse, en digital pædagog med speciale i pædagogisk planlægning, trivse
 - Prompten opdateres kvartalsvis eller ved ændringer i lovgivning/pædagogiske rammer.
 - Versionsnoter dokumenteres i agentens log.
 - Subskills valideres ved hver build.
+
+

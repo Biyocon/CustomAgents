@@ -1,0 +1,578 @@
+{
+  "metadata": {
+    "scan_date": "2026-05-06T11:45:00+02:00",
+    "project": "Kvalifikationsordning Entreprenør",
+    "avatar_directory": "Avatar/",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "total_files_in_avatar": 33,
+    "avatar_images_individual": 27,
+    "avatar_image_variants": 2,
+    "batch_sheets": 1,
+    "prompt_files": 3,
+    "zip_archives": 1,
+    "legacy_txt_files": 1,
+    "agent_md_files_active": 37,
+    "agent_md_files_backup": 21,
+    "virtual_agents_without_image": 11,
+    "images_without_agent_md": 0,
+    "agents_without_image": 11,
+    "iqra_unimplemented_avatars": 12
+  },
+  "prompt_files": [
+    {
+      "filename": "0_avatar_generatio_prompt.txt",
+      "type": "master_prompt",
+      "size_bytes": 5517,
+      "modified": "2026-05-06T10:09:31",
+      "language": "english",
+      "avatar_count": 25,
+      "scope": "Banedanmark agent family",
+      "status": "active"
+    },
+    {
+      "filename": "1_Prompt_custom_12_avatars.md",
+      "type": "custom_prompt",
+      "size_bytes": 2765,
+      "modified": "2026-05-04T18:20:58",
+      "language": "english",
+      "avatar_count": 12,
+      "scope": "IQRA product family",
+      "status": "unimplemented — no images or agent files exist"
+    },
+    {
+      "filename": "1_Prompt_custom_billede_avatars.txt",
+      "type": "single_template",
+      "size_bytes": 498,
+      "modified": "2026-05-04T18:02:04",
+      "language": "danish/english",
+      "avatar_count": 1,
+      "scope": "single-avatar generation",
+      "status": "active"
+    }
+  ],
+  "avatar_images": [
+    {
+      "id": "yunus",
+      "filename": "2_Avatar_Agent_Yunus_Udbudskonsulent.png",
+      "name": "Yunus",
+      "role": "Udbudskonsulent",
+      "category": "Udbud og kontrakt",
+      "accent": "blue",
+      "agent_md": "agents/System_Prompt_Agent_yunus-udbudskonsulent.md",
+      "status": "mapped",
+      "notes": "Reference template agent; 4201 bytes"
+    },
+    {
+      "id": "william",
+      "filename": "2_Avatar_Agent_William_Udbudskonsulent.png",
+      "name": "William",
+      "role": "Udbudskonsulent",
+      "category": "Udbud og kontrakt",
+      "accent": "navy",
+      "agent_md": "agents/System_Prompt_Agent_william-udbudskonsulent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "the-game",
+      "filename": "2_Avatar_Agent_The Game_Elektrikker.png",
+      "name": "The Game",
+      "role": "Elektriker",
+      "category": "Teknik og udførelse",
+      "accent": "yellow",
+      "agent_md": "agents/System_Prompt_Agent_the-game-elektriker.md",
+      "status": "mapped",
+      "notes": "Image filename misspelled: Elektrikker → should be Elektriker"
+    },
+    {
+      "id": "sibgha",
+      "filename": "2_Avatar_Agent_Sibqah_Finance_Analytics_Specialist.png",
+      "name": "Sibgha",
+      "role": "Finance Analytics Specialist",
+      "category": "Finans og analyse",
+      "accent": "emerald",
+      "agent_md": "agents/System_Prompt_Agent_sibgha-finance-analytics-specialist.md",
+      "status": "mapped",
+      "notes": "Image filename misspelled: Sibqah → roster and agent use Sibgha"
+    },
+    {
+      "id": "siamak",
+      "filename": "2_Avatar_Agent_Siamak_Folkeskole Lære.png",
+      "name": "Siamak",
+      "role": "Folkeskolelærer",
+      "category": "Læring og formidling",
+      "accent": "teal",
+      "agent_md": "agents/System_Prompt_Agent_siamak-folkeskolelaerer.md",
+      "status": "mapped",
+      "notes": "Image filename misspelled: Lære → should be Folkeskolelærer"
+    },
+    {
+      "id": "sharmarke",
+      "filename": "2_Avatar_Agent_Sharmarke_Maler.png",
+      "name": "Sharmarke",
+      "role": "Maler",
+      "category": "Byggeri og kvalitet",
+      "accent": "coral",
+      "agent_md": "agents/System_Prompt_Agent_sharmarke-maler.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "shamso",
+      "filename": "2_Avatar_Agent_Shamso_Socialrådgiver.png",
+      "name": "Shamso",
+      "role": "Socialrådgiver",
+      "category": "Borger, interessent og GDPR",
+      "accent": "purple",
+      "agent_md": "agents/System_Prompt_Agent_shamso-socialraadgiver.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "said",
+      "filename": "2_Avatar_Agent_Said_Anlægsingeniør.png",
+      "name": "Said",
+      "role": "Anlægsingeniør",
+      "category": "Anlæg og bane",
+      "accent": "steel",
+      "agent_md": "agents/System_Prompt_Agent_said-anlaegsingenioer.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "sabina",
+      "filename": "2_Avatar_Agent_Sabina_Udbudskonsulent_Chefkonsulent.png",
+      "name": "Sabina",
+      "role": "Udbudskonsulent / Chefkonsulent",
+      "category": "Udbud og governance",
+      "accent": "magenta",
+      "agent_md": "agents/System_Prompt_Agent_sabina-udbudskonsulent-chefkonsulent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "qanac",
+      "filename": "2_Avatar_Agent_Qanac_Læge.png",
+      "name": "Qanac",
+      "role": "Læge",
+      "category": "Sundhed og risiko",
+      "accent": "green",
+      "agent_md": "agents/System_Prompt_Agent_qanac-laege.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "mohammad",
+      "filename": "2_Avatar_Agent_Mohammad_Udbudskonsulent.png",
+      "name": "Mohammad",
+      "role": "Udbudskonsulent",
+      "category": "Udbud og kontrakt",
+      "accent": "cyan",
+      "agent_md": "agents/System_Prompt_Agent_mohammad-udbudskonsulent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "mehtap",
+      "filename": "2_Avatar_Agent_Mehtap_Udbudskonsulent.png",
+      "name": "Mehtap",
+      "role": "Udbudskonsulent",
+      "category": "Udbud og kvalitet",
+      "accent": "rose",
+      "agent_md": "agents/System_Prompt_Agent_mehtap-udbudskonsulent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "liban",
+      "filename": "2_Avatar_Agent_Liban_Sales_Specialist.png",
+      "name": "Liban",
+      "role": "Sales Specialist",
+      "category": "Salg og positionering",
+      "accent": "orange",
+      "agent_md": "agents/System_Prompt_Agent_liban-sales-specialist.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "joel-mulongo",
+      "filename": "2_Avatar_Agent_Joël Mulongo_Udbudskonsulent.png",
+      "name": "Joël Mulongo",
+      "role": "Udbudsjurist",
+      "category": "Udbud og kontrakt",
+      "accent": "indigo",
+      "agent_md": "agents/System_Prompt_Agent_joel-mulongo-udbudsjurist.md",
+      "status": "mapped",
+      "notes": "Image filename says Udbudskonsulent but roster and agent say Udbudsjurist"
+    },
+    {
+      "id": "ifrah",
+      "filename": "2_Avatar_Agent_Ifrah_Farmaceut.png",
+      "name": "Ifrah",
+      "role": "Farmaceut",
+      "category": "Sundhed og kvalitet",
+      "accent": "mint",
+      "agent_md": "agents/System_Prompt_Agent_ifrah-farmaceut.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "hassan-fagprojektleder",
+      "filename": "2_Avatar_Agent_Hassan_Fagprojektleder.png",
+      "name": "Hassan",
+      "role": "Fagprojektleder",
+      "category": "Projektledelse og fagpakker",
+      "accent": "bluegray",
+      "agent_md": "agents/System_Prompt_Agent_hassan-fagprojektleder.md",
+      "status": "mapped",
+      "notes": "One of two Hassan avatars; disambiguated by role"
+    },
+    {
+      "id": "hassan-anlaegsingenioer",
+      "filename": "2_Avatar_Agent_Hassan_Anlægsingeniør.png",
+      "name": "Hassan",
+      "role": "Anlægsingeniør",
+      "category": "Anlæg og bane",
+      "accent": "brown",
+      "agent_md": "agents/System_Prompt_Agent_hassan-anlaegsingenioer.md",
+      "status": "mapped",
+      "notes": "One of two Hassan avatars; disambiguated by role"
+    },
+    {
+      "id": "hamsa",
+      "filename": "2_Avatar_Agent_Hamsa_Afløbsingeniør.png",
+      "name": "Hamsa",
+      "role": "Afløbsingeniør",
+      "category": "Anlæg og forsyning",
+      "accent": "aqua",
+      "agent_md": "agents/System_Prompt_Agent_hamsa-afloebsingenioer.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "bojang",
+      "filename": "2_Avatar_Agent_Bojang_fodboldagent.png",
+      "name": "Bojang",
+      "role": "Fodboldagent",
+      "category": "Forhandling og talent",
+      "accent": "lime",
+      "agent_md": "agents/System_Prompt_Agent_bojang-fodboldagent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "bodjo",
+      "filename": "2_Avatar_Agent_Bodjo_fodboldagent.png",
+      "name": "Bodjo",
+      "role": "Fodboldagent",
+      "category": "Forhandling og talent",
+      "accent": "forest",
+      "agent_md": "agents/System_Prompt_Agent_bodjo-fodboldagent.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "bamse",
+      "filename": "2_Avatar_Agent_Bamse_Pædagog.png",
+      "name": "Bamse",
+      "role": "Pædagog",
+      "category": "Pædagogik og trivsel",
+      "accent": "amber",
+      "agent_md": "agents/System_Prompt_Agent_bamse-paedagog.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "ali",
+      "filename": "2_Avatar_Agent_Ali_Job Rådgiver.png",
+      "name": "Ali",
+      "role": "Jobrådgiver",
+      "category": "Karriere og rådgivning",
+      "accent": "sky",
+      "agent_md": "agents/System_Prompt_Agent_ali-jobraadgiver.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "abdullahi",
+      "filename": "2_Avatar_Agent_Abdullahi_Data Engineer.png",
+      "name": "Abdullahi",
+      "role": "Data Engineer",
+      "category": "Data og automation",
+      "accent": "green",
+      "agent_md": "agents/System_Prompt_Agent_abdullahi-data-engineer.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "abdisalam",
+      "filename": "2_Avatar_Agent_Abdisalam_Stærkstrømingeniør.png",
+      "name": "Abdisalam",
+      "role": "Stærkstrømsingeniør",
+      "category": "Teknik og bane",
+      "accent": "gold",
+      "agent_md": "agents/System_Prompt_Agent_abdisalam-staerkstroemsingenioer.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "abdi-asis",
+      "filename": "2_Avatar_Agent_Abdi Asis_Produkt Manager.png",
+      "name": "Abdi Asis",
+      "role": "Technical Product Manager",
+      "category": "Produkt og prioritering",
+      "accent": "violet",
+      "agent_md": "agents/System_Prompt_Agent_abdi-asis-produkt-manager.md",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "ahmad",
+      "filename": "2_Avatar_Agent_Ahmad_Sektionschef.jpeg",
+      "name": "Ahmad",
+      "role": "Strategic Engineering Leader / Sektionschef",
+      "category": "Ledelse og governance",
+      "accent": "emerald",
+      "agent_md": "agents/System_Prompt_Agent_ahmad-el-wali.md",
+      "status": "mapped",
+      "notes": "Agent file uses id ahmad-el-wali and references non-existent image. Two JPEG variants exist (001 and 002). Source: Iqra-main."
+    },
+    {
+      "id": "ahmad-variant",
+      "filename": "2_Avatar_Agent_Ahmad_Sektionschef_002.jpeg",
+      "name": "Ahmad",
+      "role": "Strategic Engineering Leader / Sektionschef",
+      "category": "Ledelse og governance",
+      "accent": "emerald",
+      "agent_md": "agents/System_Prompt_Agent_ahmad-el-wali.md",
+      "status": "variant",
+      "notes": "Alternative variant of Ahmad avatar; same agent mapping"
+    },
+    {
+      "id": "batch-sheet",
+      "filename": "ChatGPT Image May 4, 2026, 07_28_31 PM.png",
+      "type": "batch_reference_sheet",
+      "agent_md": null,
+      "status": "unmapped",
+      "notes": "Horizontal reference sheet containing multiple avatars; not an individual avatar"
+    }
+  ],
+  "virtual_agents_without_images": [
+    {
+      "id": "bro-inspektoer",
+      "name": "Bro-inspektør",
+      "role": "Bro-inspektør",
+      "category": "Teknik og bane",
+      "agent_md": "agents/System_Prompt_Agent_bro-inspektoer.md",
+      "notes": "References non-existent image Bro_Inspektoer.png"
+    },
+    {
+      "id": "configuration-manager-project-level",
+      "name": "Configuration Manager",
+      "role": "Configuration Manager",
+      "category": "Projektstyring",
+      "agent_md": "agents/System_Prompt_Agent_configuration-manager-project-level.md",
+      "notes": "Project-level role without dedicated avatar"
+    },
+    {
+      "id": "contract-manager-project-level",
+      "name": "Contract Manager",
+      "role": "Contract Manager",
+      "category": "Udbud og kontrakt",
+      "agent_md": "agents/System_Prompt_Agent_contract-manager-project-level.md",
+      "notes": "Project-level role without dedicated avatar"
+    },
+    {
+      "id": "document-manager-project-level",
+      "name": "Document Manager",
+      "role": "Document Manager",
+      "category": "Dokumentstyring",
+      "agent_md": "agents/System_Prompt_Agent_document-manager-project-level.md",
+      "notes": "Project-level role without dedicated avatar"
+    },
+    {
+      "id": "gis-specialist",
+      "name": "GIS-specialist",
+      "role": "GIS-specialist",
+      "category": "Data og geografisk information",
+      "agent_md": "agents/System_Prompt_Agent_gis-specialist.md",
+      "notes": "References non-existent image GIS_Specialist.png"
+    },
+    {
+      "id": "hassan-dahir",
+      "name": "Hassan Dahir",
+      "role": "Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn",
+      "category": "Teknik og udførelse",
+      "agent_md": "agents/System_Prompt_Agent_hassan-dahir.md",
+      "notes": "IQRA-source agent. References non-existent image. Multi-role super-agent."
+    },
+    {
+      "id": "incident-manager",
+      "name": "Incident Manager",
+      "role": "Incident Manager",
+      "category": "Hændelseshåndtering",
+      "agent_md": "agents/System_Prompt_Agent_incident-manager.md",
+      "notes": "Project-level role without dedicated avatar"
+    },
+    {
+      "id": "interface-manager-project-level",
+      "name": "Interface Manager",
+      "role": "Interface Manager",
+      "category": "Projektstyring",
+      "agent_md": "agents/System_Prompt_Agent_interface-manager-project-level.md",
+      "notes": "Project-level role without dedicated avatar"
+    },
+    {
+      "id": "projekteringsleder",
+      "name": "Projekteringsleder",
+      "role": "Projekteringsleder",
+      "category": "Projektering og design",
+      "agent_md": "agents/System_Prompt_Agent_projekteringsleder.md",
+      "notes": "References non-existent image Projekteringsleder.png"
+    },
+    {
+      "id": "si-manager-csm-interoperabilitet",
+      "name": "SI Manager CSM Interoperabilitet",
+      "role": "SI Manager",
+      "category": "Sikkerhed og interoperabilitet",
+      "agent_md": "agents/System_Prompt_Agent_si-manager-csm-interoperabilitet.md",
+      "notes": "References non-existent image"
+    },
+    {
+      "id": "test-manager-project-level",
+      "name": "Test Manager",
+      "role": "Test Manager",
+      "category": "Kvalitet og test",
+      "agent_md": "agents/System_Prompt_Agent_test-manager-project-level.md",
+      "notes": "Project-level role without dedicated avatar"
+    }
+  ],
+  "iqra_unimplemented_set": [
+    {
+      "name": "Abdi Malik",
+      "role": "Team Leader",
+      "accent": "orange",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Badi",
+      "role": "Ads Specialist",
+      "accent": "yellow",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Qadir",
+      "role": "Automation Specialist",
+      "accent": "beige",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Khabir",
+      "role": "SEO Specialist",
+      "accent": "pink",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Hakim",
+      "role": "Product Manager",
+      "accent": "rose",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Musawwir",
+      "role": "Architect",
+      "accent": "slate-blue",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Hasib",
+      "role": "Data Analyst",
+      "accent": "green",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Alim",
+      "role": "Deep Researcher",
+      "accent": "purple",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Wakil",
+      "role": "Project Manager",
+      "accent": "teal",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Bari",
+      "role": "Design Manager",
+      "accent": "coral",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Matin",
+      "role": "Byggeleder",
+      "accent": "amber",
+      "status": "no_image_no_md"
+    },
+    {
+      "name": "Abdul Raqib",
+      "role": "Tilsyn",
+      "accent": "gray",
+      "status": "no_image_no_md"
+    }
+  ],
+  "naming_issues": [
+    {
+      "issue": "image_filename_misspelling",
+      "severity": "minor",
+      "details": [
+        {
+          "image": "Sibqah",
+          "correct": "Sibgha",
+          "affects": "roster consistency"
+        },
+        {
+          "image": "Folkeskole Lære",
+          "correct": "Folkeskolelærer",
+          "affects": "danish orthography"
+        },
+        {
+          "image": "Elektrikker",
+          "correct": "Elektriker",
+          "affects": "danish orthography"
+        }
+      ],
+      "recommendation": "Do not rename image files (may break references). Document aliases in roster and agent files."
+    },
+    {
+      "issue": "agent_id_image_mismatch",
+      "severity": "moderate",
+      "details": [
+        {
+          "agent_id": "ahmad-el-wali",
+          "agent_avatar_reference": "2_Avatar_Agent_Ahmad_El-Wali_Strategic_Engineering_Leader.png",
+          "actual_images": [
+            "2_Avatar_Agent_Ahmad_Sektionschef.jpeg",
+            "2_Avatar_Agent_Ahmad_Sektionschef_002.jpeg"
+          ],
+          "impact": "Avatar path in agent file points to non-existent file"
+        }
+      ],
+      "recommendation": "Update ahmad-el-wali.md avatar field to reference actual image filename"
+    },
+    {
+      "issue": "role_label_mismatch",
+      "severity": "minor",
+      "details": [
+        {
+          "image_filename_role": "Udbudskonsulent",
+          "roster_role": "Udbudsjurist",
+          "agent": "joel-mulongo-udbudsjurist"
+        }
+      ],
+      "recommendation": "Roster and agent file are source of truth; image filename is descriptive only"
+    }
+  ]
+}
