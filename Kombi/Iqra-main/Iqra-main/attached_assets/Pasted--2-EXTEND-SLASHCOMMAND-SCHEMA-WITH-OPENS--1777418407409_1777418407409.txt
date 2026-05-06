@@ -1,0 +1,87 @@
+========================================
+2. EXTEND SLASHCOMMAND SCHEMA WITH OPENS
+========================================
+
+Erstat SlashCommand schema med:
+
+SlashCommand:
+
+{
+  id: string
+  command: string
+  title: string
+  description: string
+  category: "Prompts" | "Artifacts" | "Tools" | "Skills" | "Agents" | "Modes"
+  badge?: string
+  action:
+    | "insert-template"
+    | "set-mode"
+    | "set-conversation-type"
+    | "set-output-target"
+    | "open-picker"
+    | "enable-tool"
+  opens?: "attachment" | "context" | "skill" | "tool" | "template" | "output" | "theme" | "race"
+}
+
+Regler:
+
+- opens er kun påkrævet, når action = "open-picker".
+- Hvis action = "open-picker" og opens mangler, må kommandoen ikke eksekveres.
+- Ved manglende opens skal der vises en dev warning i console.
+- open-picker commands skal åbne den tilsvarende popover via activePopover.
+- Kun én popover må være åben ad gangen.
+
+Tilføj /theme command:
+
+{
+  id: "theme",
+  command: "/theme",
+  title: "Theme",
+  description: "Choose a visual theme for this task or generated output.",
+  category: "Modes",
+  badge: "Theme",
+  action: "open-picker",
+  opens: "theme"
+}
+
+Tilføj /race command:
+
+{
+  id: "race",
+  command: "/race",
+  title: "Race Mode",
+  description: "Compare multiple models, agents or draft strategies.",
+  category: "Agents",
+  badge: "P2",
+  action: "open-picker",
+  opens: "race"
+}
+
+Eksekveringslogik:
+
+- Hvis command.action = "open-picker":
+  activePopover = command.opens
+
+- Hvis command.opens = "theme":
+  åbn ThemePicker
+
+- Hvis command.opens = "race":
+  åbn RaceModePicker
+
+- Hvis command.opens = "attachment":
+  åbn AttachmentMenu
+
+- Hvis command.opens = "context":
+  åbn ContextPicker
+
+- Hvis command.opens = "skill":
+  åbn SkillPicker
+
+- Hvis command.opens = "tool":
+  åbn ToolPolicyMenu
+
+- Hvis command.opens = "template":
+  åbn PromptTemplatePicker
+
+- Hvis command.opens = "output":
+  åbn OutputTargetSelector

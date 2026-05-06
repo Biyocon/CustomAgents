@@ -1,0 +1,4 @@
+display_name: BDK Trafikal Regelinformation Ændringer
+short_description: Sammenlign regelinformationsudgaver og udpeg driftsrelevante ændringer.
+default_prompt: Sammenlign udvalgte ORS/ORF-regelinformationsudgaver, identificér ændringer, og lever et struktureret ændringsresumé med driftsmæssig vurdering og kildehenvisninger.
+

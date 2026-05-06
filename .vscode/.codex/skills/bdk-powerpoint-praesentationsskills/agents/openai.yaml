@@ -1,0 +1,12 @@
+display_name: BDK PowerPoint Præsentationsskills
+short_description: Generér kreative BDK-brandede præsentationer iht. BDK Designguide 2021, tilpasset målgruppe og indhold.
+default_prompt: >
+  Omsæt mit indhold til en BDK-brandet præsentation med stærkt narrativ,
+  korrekt designretning iht. BDK Designguide 2021 (kun Segoe UI - reparativ
+  strategi mod Arial, officielt 5-farvekort med petrol-grøn #004E51 som
+  primær, korrekt logo-brug med respektafstand), slide-arketyper og en
+  leveranceklar plan med relevante diagrammer, charts og figurer tilpasset
+  indholdet. Brug IPM-standardpræsentationen og Ledelsesbriefingen som
+  primære stilreferencer. Anvend references/bdk-branding-designsystem.md
+  som primær designkontrakt og references/deck-gennemgang.md som
+  stilreference.

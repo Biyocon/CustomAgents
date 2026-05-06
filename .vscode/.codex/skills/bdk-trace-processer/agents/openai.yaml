@@ -1,0 +1,4 @@
+display_name: BDK Tracé-processer
+short_description: Vælg korrekt Tracé-proces og lav en operationel udførelsesplan.
+default_prompt: Afklar ændringstypen i Tracé, vælg korrekt proces-ID med begrundelse, og lever en trinvis plan med krav til input og dokumentation.
+

@@ -1,0 +1,66 @@
+Beskrivelse
+Formålsbeskrivelse:
+Formålet med processen er at sikre, at de medarbejdere, der arbejder med jernbanesikkerhed i Banedanmark, har en stillingsbeskrivelse med korrekt indhold. En stillingsbeskrivelse indeholder de jernbanesikkerhedsbærende ansvar, som vedkommende har i form af funktionsbeskrivelser samt definerer hvilke krav der er til K-kompetencer,  uddannelse/kursus og helbred.
+
+﻿
+
+Processen beskriver, hvordan det vurderes, om en medarbejder skal have en stillingsbeskrivelse,  hvordan en stillingsbeskrivelse oprettes, og hvornår der er behov for en kompetencevurdering, samt hvordan stillingsbeskrivelsen godkendes og frigives i SAP-Portalen. 
+
+﻿
+
+Denne proces er gældende i følgende situationer:
+
+﻿
+
+Når en medarbejder er tiltrådt en ny stilling jf. AS-4.1.1.1.3 Introduktion til ny medarbejder.
+
+Når en medarbejder får ændret i stillingsindhold. 
+﻿
+
+En oprettet eller ændret stillingsbeskrivelse skal være godkendt indenfor 3 måneder (inkl.
+
+kompetencevurdering):
+
+﻿
+
+﻿﻿En medarbejder skal have en godkendt stillingsbeskrivelse senest 3 måneder efter første arbejdsdag i en ny stilling.
+Når der opstår et behov for at ændre en stillingsbeskrivelse, skal ændringen være godkendt indenfor 3 måneder.
+En fungerende medarbejder/leder skal have ændret stillingsbeskrivelse, hvis denne er fungerende i over 3 måneder.
+Afgrænsning:
+Denne proces vedrører kun medarbejdere i Banedanmark. For ressourcepersoner og eksterne konsulenter, følges proces KK-1.1.1.1.3 Oprettelse/ændring af stillingsbeskrivelse - Indlejet personale.
+
+﻿
+
+Denne proces gælder ikke for eksterne fagpersoner, da der ikke er krav om SB for denne gruppe, jf. Retningslinjer for kompetencestyring inden for jernbanesikkerhed.
+
+﻿
+
+Der kan ikke foretages redaktionelle ændringer på stillingsbeskrivelser med jernbanesikkerhed. Funktionen "redaktionel ændring" må derfor ikke anvendes på ﻿stillingsbeskrivelser med jernbanesikkerhed
+
+Definition:
+SB: Stillingsbeskrivelse
+FB: Funktionsbeskrivelse﻿
+KUP: Kompetenceudviklingsplan
+K-kompetence: Jernbanesikkerhedsmæssige kompetencekrav
+SAP Portalen: System til håndtering af stillingsbeskrivelser, funktionsbeskrivelser og kompetenceudviklingsplaner for medarbejdere i Banedanmark.
+Skrivebordsappen SAP Logon: System til registrering af kompetencer for medarbejdere i Banedanmark, indlejet personale og eksterne fagpersoner.
+Kriterie:
+Oprettelse/ændring af en stillingsbeskrivelse skal ske i overensstemmelse med Retningslinjer for kompetencestyring inden for jernbanesikkerhed.
+Registreringer:
+Oprettelse, ændring og godkendelse/afvisning af en stillingsbeskrivelse registreres i SAP Portalen under Log nederst i stillingsbeskrivelsen.
+
+﻿
+
+Stillingsbeskrivelsen er gældende indtil den bliver nedlagt i systemet, når medarbejderen fratræder. En stillingsbeskrivelse kan genbruges efter den har været afgrænset, hvis en medarbejder i samme stilling bliver ansat.
+
+﻿
+
+Den underskrevne KUP registreres i skrivebordsappen SAP Logon på medarbejderens profil. Godkendelsen af KUP dokumenteres samtidig med godkendelsen af SB og fremgår af Log nederst i stillingsbeskrivelsen i SAP Portalen.
+
+﻿
+
+﻿Væsentlig information og konkrete beslutninger, der er taget i forløbet med behandlingen af en stillingsbeskrivelse journaliseres i F2 på sagen 2023-7973.
+
+﻿
+
+Registreringerne opbevares i minimum 5 år.﻿

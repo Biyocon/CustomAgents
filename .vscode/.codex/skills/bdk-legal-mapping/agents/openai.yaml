@@ -1,0 +1,3 @@
+display_name: BDK Lovkravskortlægning
+short_description: Kortlæg lovkrav til interne processer og evidensspor.
+default_prompt: Identificér relevante juridiske kilder, map krav til intern implementeringskontekst, og returnér en sporbar krav-til-proces-matrice med usikkerheder.

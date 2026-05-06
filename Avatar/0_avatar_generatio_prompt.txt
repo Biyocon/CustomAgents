@@ -1,0 +1,78 @@
+# Avatar Generation Prompt - IQRA / Banedanmark Agent Family
+
+            Create a consistent family of circular 3D mascot avatars for a reusable AI-agent harness.
+
+            Use the existing files in `Avatar/` as the visual reference set. Keep the family coherent across all generated avatars, but preserve each role's professional identity.
+
+            ## Global Style
+
+            - soft 3D clay-like mascot avatars
+            - professional, approachable, not childish
+            - circular crop with clean white or transparent background
+            - consistent camera angle, lighting, cropping, scale and material finish
+            - distinct accent color per agent
+            - simple facial expression
+            - no text, no logos, no realistic human portraits
+            - no complex backgrounds
+            - each avatar must be usable as a standalone profile image
+
+            ## Agent Roster
+
+            1. Yunus - Udbudskonsulent (Udbud og kontrakt); avatar reference: Avatar/2_Avatar_Agent_Yunus_Udbudskonsulent.png; accent: blue.
+2. William - Udbudskonsulent (Udbud og kontrakt); avatar reference: Avatar/2_Avatar_Agent_William_Udbudskonsulent.png; accent: navy.
+3. The Game - Elektriker (Teknik og udførelse); avatar reference: Avatar/2_Avatar_Agent_The Game_Elektrikker.png; accent: yellow.
+4. Sibgha - Finance Analytics Specialist (Finans og analyse); avatar reference: Avatar/2_Avatar_Agent_Sibqah_Finance_Analytics_Specialist.png; accent: emerald.
+5. Siamak - Folkeskolelærer (Læring og formidling); avatar reference: Avatar/2_Avatar_Agent_Siamak_Folkeskole Lære.png; accent: teal.
+6. Sharmarke - Maler (Byggeri og kvalitet); avatar reference: Avatar/2_Avatar_Agent_Sharmarke_Maler.png; accent: coral.
+7. Shamso - Socialrådgiver (Borger, interessent og GDPR); avatar reference: Avatar/2_Avatar_Agent_Shamso_Socialrådgiver.png; accent: purple.
+8. Said - Anlægsingeniør (Anlæg og bane); avatar reference: Avatar/2_Avatar_Agent_Said_Anlægsingeniør.png; accent: steel.
+9. Sabina - Udbudskonsulent / Chefkonsulent (Udbud og governance); avatar reference: Avatar/2_Avatar_Agent_Sabina_Udbudskonsulent_Chefkonsulent.png; accent: magenta.
+10. Qanac - Læge (Sundhed og risiko); avatar reference: Avatar/2_Avatar_Agent_Qanac_Læge.png; accent: green.
+11. Mohammad - Udbudskonsulent (Udbud og kontrakt); avatar reference: Avatar/2_Avatar_Agent_Mohammad_Udbudskonsulent.png; accent: cyan.
+12. Mehtap - Udbudskonsulent (Udbud og kvalitet); avatar reference: Avatar/2_Avatar_Agent_Mehtap_Udbudskonsulent.png; accent: rose.
+13. Liban - Sales Specialist (Salg og positionering); avatar reference: Avatar/2_Avatar_Agent_Liban_Sales_Specialist.png; accent: orange.
+14. Joël Mulongo - Udbudsjurist (Udbud og kontrakt); avatar reference: Avatar/2_Avatar_Agent_Joël Mulongo_Udbudskonsulent.png; accent: indigo.
+15. Ifrah - Farmaceut (Sundhed og kvalitet); avatar reference: Avatar/2_Avatar_Agent_Ifrah_Farmaceut.png; accent: mint.
+16. Hassan - Fagprojektleder (Projektledelse og fagpakker); avatar reference: Avatar/2_Avatar_Agent_Hassan_Fagprojektleder.png; accent: bluegray.
+17. Hassan - Anlægsingeniør (Anlæg og bane); avatar reference: Avatar/2_Avatar_Agent_Hassan_Anlægsingeniør.png; accent: brown.
+18. Hamsa - Afløbsingeniør (Anlæg og forsyning); avatar reference: Avatar/2_Avatar_Agent_Hamsa_Afløbsingeniør.png; accent: aqua.
+19. Bojang - Fodboldagent (Forhandling og talent); avatar reference: Avatar/2_Avatar_Agent_Bojang_fodboldagent.png; accent: lime.
+20. Bodjo - Fodboldagent (Forhandling og talent); avatar reference: Avatar/2_Avatar_Agent_Bodjo_fodboldagent.png; accent: forest.
+21. Bamse - Pædagog (Pædagogik og trivsel); avatar reference: Avatar/2_Avatar_Agent_Bamse_Pædagog.png; accent: amber.
+22. Ali - Jobrådgiver (Karriere og rådgivning); avatar reference: Avatar/2_Avatar_Agent_Ali_Job Rådgiver.png; accent: sky.
+23. Abdullahi - Data Engineer (Data og automation); avatar reference: Avatar/2_Avatar_Agent_Abdullahi_Data Engineer.png; accent: green.
+24. Abdisalam - Stærkstrømsingeniør (Teknik og bane); avatar reference: Avatar/2_Avatar_Agent_Abdisalam_Stærkstrømingeniør.png; accent: gold.
+25. Abdi Asis - Technical Product Manager (Produkt og prioritering); avatar reference: Avatar/2_Avatar_Agent_Abdi Asis_Produkt Manager.png; accent: violet.
+
+            ## Batch Output
+
+            Generate a horizontal reference sheet containing all agents in the roster. Keep all avatars individually crop-safe and consistent.
+
+            ## Single Avatar Template
+
+            Create one circular 3D mascot avatar for an AI agent.
+
+            Agent:
+            {Name} - {Role}
+
+            Professional focus:
+            {Mission}
+
+            Visual direction:
+            Use the existing avatar family in `Avatar/` as reference. Use `{Accent}` as the accent color and include a subtle role cue, without adding readable text or logos.
+
+            Style:
+            - soft 3D clay-like mascot
+            - friendly but professional
+            - circular avatar crop
+            - pastel but business-appropriate color palette
+            - clean white or transparent background
+            - subtle shadow
+            - simple face
+            - no text
+            - no logo
+            - no realistic human
+            - consistent with the rest of the IQRA/Banedanmark agent family
+
+            Output:
+            A single high-resolution circular avatar image.

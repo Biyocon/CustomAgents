@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)"
+    ]
+  },
+  "enabledPlugins": {
+    "agent-context-manager@claude-code-plugins-plus": true
+  },
+  "effortLevel": "high",
+  "powerquery.client.additionalSymbolsDirectories": [
+    "${workspaceFolder}/.vscode/excel-pq-symbols"
+  ]
+}

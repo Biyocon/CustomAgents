@@ -1,0 +1,222 @@
+# Agent Harness Registry
+# Machine-readable manifest for the Kvalifikationsordning Entrepren?r agent harness
+version: "2026-05-06"
+
+project:
+  name: Kvalifikationsordning Entrepren?r
+  runtime: .vscode/.codex/
+  brain: .vscode/.codex/Brain/
+  primary_target: Codex
+  compatible:
+    - Codex
+    - Kimi
+    - Qwen Code
+    - Gemini Code
+
+agents:
+  roster_json: .vscode/.codex/agents/agent-roster.json
+  profiles_dir: Avatar/agents/
+  banedanmark_dir: .vscode/.codex/agents/banedanmark/
+  count: 27
+  categories:
+    - name: "Anlæg og bane"
+      count: 2
+      agents:
+        - id: said-anlaegsingenioer
+        - id: hassan-anlaegsingenioer
+    - name: "Anlæg og forsyning"
+      count: 1
+      agents:
+        - id: hamsa-afloebsingenioer
+    - name: "Borger, interessent og GDPR"
+      count: 1
+      agents:
+        - id: shamso-socialraadgiver
+    - name: "Byggeri og kvalitet"
+      count: 1
+      agents:
+        - id: sharmarke-maler
+    - name: "Data og automation"
+      count: 1
+      agents:
+        - id: abdullahi-data-engineer
+    - name: "Finans og analyse"
+      count: 1
+      agents:
+        - id: sibgha-finance-analytics-specialist
+    - name: "Forhandling og talent"
+      count: 2
+      agents:
+        - id: bojang-fodboldagent
+        - id: bodjo-fodboldagent
+    - name: "Karriere og rådgivning"
+      count: 1
+      agents:
+        - id: ali-jobraadgiver
+    - name: "Ledelse og governance"
+      count: 1
+      agents:
+        - id: ahmad-el-wali
+    - name: "Læring og formidling"
+      count: 1
+      agents:
+        - id: siamak-folkeskolelaerer
+    - name: "Produkt og prioritering"
+      count: 1
+      agents:
+        - id: abdi-asis-produkt-manager
+    - name: "Projektledelse og fagpakker"
+      count: 1
+      agents:
+        - id: hassan-fagprojektleder
+    - name: "Pædagogik og trivsel"
+      count: 1
+      agents:
+        - id: bamse-paedagog
+    - name: "Salg og positionering"
+      count: 1
+      agents:
+        - id: liban-sales-specialist
+    - name: "Sundhed og kvalitet"
+      count: 1
+      agents:
+        - id: ifrah-farmaceut
+    - name: "Sundhed og risiko"
+      count: 1
+      agents:
+        - id: qanac-laege
+    - name: "Teknik og bane"
+      count: 1
+      agents:
+        - id: abdisalam-staerkstroemsingenioer
+    - name: "Teknik og udf?relse"
+      count: 1
+      agents:
+        - id: hassan-dahir
+    - name: "Teknik og udførelse"
+      count: 1
+      agents:
+        - id: the-game-elektriker
+    - name: "Udbud og governance"
+      count: 1
+      agents:
+        - id: sabina-udbudskonsulent-chefkonsulent
+    - name: "Udbud og kontrakt"
+      count: 4
+      agents:
+        - id: yunus-udbudskonsulent
+        - id: william-udbudskonsulent
+        - id: mohammad-udbudskonsulent
+        - id: joel-mulongo-udbudsjurist
+    - name: "Udbud og kvalitet"
+      count: 1
+      agents:
+        - id: mehtap-udbudskonsulent
+
+skills:
+  directory: .vscode/.codex/skills/
+  count: 44
+  items:
+    - id: bbe-dokumenter-platform
+      present: True
+    - id: bbtr-csm-tsi-compliance
+      present: True
+    - id: bbtr-dokumentstyring
+      present: True
+    - id: bbtr-fagpakkestruktur
+      present: True
+    - id: bbtr-faseopdelt-ydelser
+      present: True
+    - id: bbtr-forbedringsloop
+      present: True
+    - id: bbtr-indstilling-writer
+      present: True
+    - id: bbtr-kvalitet-dod
+      present: True
+    - id: bbtr-leverance-mapping
+      present: True
+    - id: bbtr-produktionssetup
+      present: True
+    - id: bbtr-raadgiver-udbud
+      present: True
+    - id: bbtr-risiko-myndighed
+      present: True
+    - id: bbtr-role-justification
+      present: True
+    - id: bbtr-tvaerfaglig-koordinering
+      present: True
+    - id: bdk-audit-findings
+      present: True
+    - id: bdk-bkp-v17-data-model
+      present: True
+    - id: bdk-bkp-v17-overview
+      present: True
+    - id: bdk-brand-governance
+      present: True
+    - id: bdk-forbedringsloop
+      present: False
+    - id: bdk-forretningsprojektmodel-gates
+      present: True
+    - id: bdk-gdpr-praksis
+      present: True
+    - id: bdk-gevinststyring-realisering
+      present: True
+    - id: bdk-haendelser-sikkerhedsbrister
+      present: True
+    - id: bdk-legal-mapping
+      present: True
+    - id: bdk-overvaagning-rapportering
+      present: True
+    - id: bdk-portefoljekontor-governance
+      present: True
+    - id: bdk-projektindstilling-og-finansiering
+      present: True
+    - id: bdk-projektrapportering-frister
+      present: True
+    - id: bdk-risk-profile
+      present: True
+    - id: bdk-statens-it-projektmodel-compliance
+      present: True
+    - id: bdk-styregruppearbejde
+      present: True
+    - id: bdk-tilsynsapp-leverance-operations
+      present: True
+    - id: bdk-trafikale-regler-anvendelse
+      present: True
+    - id: diagnose
+      present: True
+    - id: edit-article
+      present: True
+    - id: grill-me
+      present: True
+    - id: grill-with-docs
+      present: True
+    - id: karpathy-guidelines
+      present: True
+    - id: shared-docx
+      present: True
+    - id: shared-quality
+      present: True
+    - id: tdd
+      present: True
+    - id: to-issues
+      present: True
+    - id: to-prd
+      present: True
+    - id: write-a-skill
+      present: True
+
+prompts:
+  master_system: .vscode/.codex/prompts/master-system.md
+
+iqra_source:
+  path: Avatar/Iqra-main/Iqra-main/lib/agents/src/index.ts
+  prompts_integrated: 11
+  prompts_total_in_source: 11
+
+validation:
+  verify_script: temp/verify_agent_harness.py
+  checks:
+    - roster_sync
+    - encoding_sanity
+    - code_fence_presence

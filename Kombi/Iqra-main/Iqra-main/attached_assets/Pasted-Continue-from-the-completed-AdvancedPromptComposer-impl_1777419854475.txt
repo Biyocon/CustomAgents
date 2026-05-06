@@ -1,0 +1,756 @@
+Continue from the completed AdvancedPromptComposer implementation.
+
+Important:
+AdvancedPromptComposer is considered functionally complete for the previous scope. Do not refactor or rewrite the existing composer behavior unless strictly required for the new integration points.
+
+Preserve the existing verified behavior:
+- IME guard
+- Cmd/Ctrl+K slash palette shortcut
+- single activePopover rule
+- textarea refocus after popover close
+- quickPrompt metadata persistence across submit
+- send enable/disable logic using valid attachments/context
+- selectedQuickPrompt only clears on full reset
+- lastConversationTypeSetBy including "quick-prompt"
+- normalized submit payload
+
+Known pre-existing TS issues outside the composer must remain untouched:
+- framer-motion ease-array errors
+- StitchCanvas swatch-property errors
+- orphaned UniversalComposer
+
+This task adds the missing management and source-selection layer around the existing composer.
+
+Do not duplicate existing functionality:
+- no second attachment state
+- no second connector state
+- no second context state
+- no duplicate SkillPicker
+- no duplicate ContextPicker
+- no duplicate ToolPolicyMenu
+- no duplicate ThemePicker
+- no duplicate quick prompt logic
+
+========================================
+1. ADD DIRECTORY MODAL
+========================================
+
+Add a large Directory modal for browsing and managing:
+
+- Skills
+- Connectors
+- Plugins
+
+This is a management/browse surface, not the small composer picker.
+
+Open Directory from:
+- SkillPicker footer → Manage skills
+- Context/Connector picker footer → Manage connectors
+- Plugin management action → Manage plugins
+- Slash commands:
+  /directory
+  /skills
+  /connectors
+  /plugins
+
+Directory layout:
+- centered modal
+- dark overlay
+- white background
+- rounded corners
+- close X top-right
+- left sidebar:
+  - Skills
+  - Connectors
+  - Plugins
+- main content:
+  - search input
+  - category pill: “Anthropic & Partners”
+  - Filter by dropdown
+  - Sort by dropdown
+  - 2-column card grid on desktop
+  - 1-column grid on mobile
+  - internal scroll
+
+Directory state:
+
+directoryState:
+{
+  isOpen: boolean
+  activeTab: "skills" | "connectors" | "plugins"
+  searchQuery: string
+  selectedCategory: string
+  filterBy?: string
+  sortBy?: string
+}
+
+Rules:
+- Opening Directory closes activePopover.
+- Directory modal is separate from activePopover.
+- Directory must not replace existing SkillPicker or ContextPicker.
+- Directory is for browsing/managing.
+- Pickers are for selecting items into the composer.
+- Close must return focus to the trigger.
+
+========================================
+2. DIRECTORY — SKILLS TAB
+========================================
+
+Skills tab card fields:
+- skill name, e.g. “/canvas-design”
+- provider, e.g. “Anthropic”
+- usage/download count
+- short description
+- gear/settings icon
+- optional add/install button
+
+Mock skill cards:
+- /canvas-design
+- /web-artifacts-builder
+- /mcp-builder
+- /theme-factory
+- /doc-coauthoring
+- /brand-guidelines
+- /internal-comms
+- /algorithmic-art
+- /slack-gif-creator
+- /skill-creator
+
+Footer/management behavior:
+- “Manage skills” opens Directory on Skills tab.
+- “Add skill” is mock-only and shows toast or placeholder dialog.
+- Do not implement backend creation.
+
+========================================
+3. DIRECTORY — CONNECTORS TAB
+========================================
+
+Connectors tab card fields:
+- connector name
+- icon/logo placeholder
+- popularity/status text
+- short description
+- plus button or settings button
+- connected state
+
+Mock connectors:
+- Google Drive
+- Gmail
+- Google Calendar
+- Figma
+- Microsoft 365
+- Box
+- HubSpot
+- Intercom
+- Spotify
+- monday.com
+- Atlassian Rovo
+- Autodesk Product Help
+
+Rules:
+- Adding/enabling connector is mock-only.
+- Connected connector can be used later as ContextItem metadata.
+- Do not create selectedConnectors.
+- selectedContextItems remains the only composer context state.
+
+Footer/management behavior:
+- “Manage connectors” opens Directory on Connectors tab.
+- “Add connector” is mock-only.
+- “Tool access” opens ToolAccessMenu.
+
+========================================
+4. DIRECTORY — PLUGINS TAB
+========================================
+
+Plugins are distinct from:
+- Skills
+- Connectors
+- Tools
+
+Plugin schema:
+
+Plugin:
+{
+  id: string
+  name: string
+  description: string
+  provider?: string
+  enabled: boolean
+  availability: "web" | "desktop-only" | "mock"
+}
+
+Plugins tab:
+- show informational banner:
+  “Plugins can be browsed, but are only available for use in the desktop app.”
+- cards show:
+  - plugin name
+  - provider
+  - usage/download count
+  - short description
+  - add/install button or disabled state
+
+Mock plugins:
+- Design
+- Productivity
+- Marketing
+- Data
+- Engineering
+- Finance
+- Product management
+- Operations
+- Legal
+- Sales
+
+Rules:
+- Do not merge plugins into skills.
+- Do not merge plugins into connectors.
+- Enabled web/mock plugins may appear as chips.
+- Desktop-only plugins show disabled install/use state.
+
+Payload extension:
+
+plugins?: {
+  id: string
+  name: string
+}[]
+
+Only include enabled web/mock plugins.
+
+========================================
+5. ADD PROJECT PICKER
+========================================
+
+Add “Add to project” as a Quick Action submenu item.
+
+Purpose:
+Associate the current prompt/session with a project.
+
+Quick Action row:
+- Label: “Add to project”
+- Icon: folder
+- Chevron
+- activePopover = "project"
+- Opens ProjectPicker
+
+ProjectPicker UI:
+- floating submenu on desktop
+- bottom sheet on mobile
+- searchable list
+- scrollable
+- folder/project icon per row
+- project name
+- workspace/org label underneath
+
+Mock projects:
+- kvalifikationsordning Fri
+- Visual FoxPro
+- Brand Biyocon
+- Test
+- To in-house konsulenter til vejafvan…
+- Vejdirektoratet - Tilbud - Fagtilsyn - …
+- Lokaltog_Kvalifikationsordning_Tek…
+
+State:
+
+selectedProject?: {
+  id: string
+  name: string
+  workspace?: string
+}
+
+Behavior:
+- Selecting project adds chip:
+  “Project: {name}”
+- Removing chip clears selectedProject.
+- Project association does not change prompt, mode, conversationType or outputTarget.
+- Project must not be stored as context unless separately selected as context.
+
+Payload extension:
+
+project?: {
+  id: string
+  name: string
+  workspace?: string
+}
+
+========================================
+6. ADD SCREENSHOT CAPTURE ACTION
+========================================
+
+Add “Take a screenshot” to Quick Action Menu.
+
+Purpose:
+Attach a screenshot as visual context.
+
+Mock-only behavior:
+- On click, create a mock attachment using existing attachments state:
+
+{
+  id,
+  name: "screenshot.png",
+  type: "image",
+  mimeType: "image/png",
+  extension: "png",
+  source: "local",
+  status: "complete",
+  progress: 100
+}
+
+Rules:
+- Use existing attachment validation/payload/chips.
+- Do not create screenshotAttachments state.
+- Screenshot appears as normal attachment chip.
+- Send-gating must treat it as valid attachment because status = "complete".
+
+========================================
+7. ADD DIRECT GITHUB SOURCE PICKER
+========================================
+
+Add “Add from GitHub” to Quick Action Menu.
+
+Purpose:
+Allow user to reference GitHub source context directly.
+
+Quick Action row:
+- Label: “Add from GitHub”
+- Icon: GitHub
+- Optional chevron
+- activePopover = "github-source"
+- Opens GitHubSourcePicker
+
+GitHubSourcePicker UI:
+- search input
+- recent repositories
+- mock branch selector
+- mock file/path list
+- add selected items as ContextItem
+
+Mock repositories:
+- Biyocon/Ai-Agent-RAG
+- Biyocon/Ai-agent-platform
+- Biyocon/SkillMatch
+- Biyocon/ai-dev-tasks
+
+When selected, add to selectedContextItems:
+
+{
+  id,
+  title,
+  sourceType: "connector",
+  connectorId: "github",
+  sourceName: "GitHub",
+  status: "available",
+  selected: true
+}
+
+Rules:
+- Do not create selectedGitHubSources as submit state.
+- GitHub sources flow through selectedContextItems.
+- Payload includes them in contextItems.
+
+========================================
+8. ADD COMPANY KNOWLEDGE / VIRKSOMHEDSVIDEN
+========================================
+
+Add Company Knowledge as a first-class context shortcut.
+
+This must not duplicate ContextPicker.
+It opens ContextPicker with a specific filter.
+
+Quick Action row:
+- Label: “Company Knowledge”
+- Danish label allowed: “Virksomhedsviden”
+- Icon: organization/nodes
+- Opens ContextPicker filtered to company knowledge
+
+ContextItem sourceType must support:
+
+sourceType:
+  | "recent-chat"
+  | "artifact"
+  | "file"
+  | "memory"
+  | "company-knowledge"
+  | "connector"
+  | "web"
+
+Mock company knowledge items:
+- Brand guidelines
+- Biyocon operating principles
+- Tender response standards
+- OmniAI product architecture
+- User/team preferences
+
+Behavior:
+- Selected company knowledge items are stored in selectedContextItems.
+- Show chip:
+  “Company Knowledge”
+  or
+  “Context: {title}”
+- Payload includes them in contextItems.
+- Do not create companyKnowledge state.
+
+========================================
+9. ADD STYLE SELECTOR
+========================================
+
+Add “Use style” as Quick Action submenu.
+
+Important:
+Style is not Theme.
+
+Theme = visual/output styling.
+Style = response tone/communication format.
+
+Quick Action row:
+- Label: “Use style”
+- Icon: feather/pen
+- Chevron
+- activePopover = "style"
+- Opens StylePicker
+
+StylePicker options:
+- Normal
+- Learning
+- Concise
+- Explanatory
+- Formal
+
+Default:
+- Normal
+
+Footer:
+- “Create & edit styles”
+
+State:
+
+selectedStyle?: {
+  id: "normal" | "learning" | "concise" | "explanatory" | "formal"
+  label: string
+}
+
+Behavior:
+- Selecting style adds chip:
+  “Style: {label}”
+- Removing chip resets style to Normal or undefined.
+- Style must not overwrite prompt text.
+- Style must not replace Theme.
+- Style is sent as lightweight metadata.
+
+Payload extension:
+
+style?: {
+  id: string
+  label: string
+}
+
+========================================
+10. ADD MODEL SELECTOR
+========================================
+
+Current composer already has Mode.
+Do not confuse Mode with Model.
+
+Mode = reasoning/compute behavior:
+- Instant
+- Fast
+- Expert
+- Heavy
+- Auto
+
+Model = concrete model choice:
+- Sonnet 4.6
+- Opus 4.7
+- Haiku 4.5
+- More models
+
+Add or refine ModelSelector.
+
+ModelSelector UI:
+- trigger shows selected model, e.g. “Sonnet 4.6”
+- dropdown items:
+  - Opus 4.7
+    Description: Most capable for ambitious work
+  - Sonnet 4.6
+    Description: Most efficient for everyday tasks
+  - Haiku 4.5
+    Description: Fastest for quick answers
+- selected checkmark
+- divider
+- Adaptive thinking toggle:
+  - Label: “Adaptive thinking”
+  - Description: “Thinks for more complex tasks”
+- More models submenu:
+  - Opus 4.6
+  - Opus 3
+  - Sonnet 4.5
+
+State:
+
+selectedModel:
+{
+  id: string
+  label: string
+  description?: string
+}
+
+adaptiveThinkingEnabled: boolean
+
+Rules:
+- Model selection updates selectedModel.
+- Adaptive thinking updates adaptiveThinkingEnabled.
+- Model does not overwrite Mode.
+- Mode and Model remain separate state dimensions.
+
+Payload extension:
+
+model?: {
+  id: string
+  label: string
+}
+
+adaptiveThinkingEnabled: boolean
+
+========================================
+11. ADD TOOL ACCESS POLICY SUBMENU
+========================================
+
+Existing toolsMode remains:
+- off
+- ask
+- auto
+- all
+
+Add a separate loading policy:
+
+toolAccessMode:
+  | "load-when-needed"
+  | "preload-tools"
+
+UI:
+- In connector/tool management submenu, add:
+  “Tool access”
+  Subtitle: current value
+  Chevron
+
+ToolAccessMenu options:
+
+Load tools when needed
+Description:
+“Chats compact less since tools aren’t pre-loaded.”
+
+Tools already loaded
+Description:
+“Chats compact more often since tools are always there.”
+
+State:
+
+toolAccessMode: "load-when-needed" | "preload-tools"
+
+Payload extension inside toolsPolicy:
+
+toolsPolicy:
+{
+  toolsMode,
+  allowedTools,
+  requireConfirmation,
+  toolAccessMode
+}
+
+Rules:
+- toolAccessMode does not replace toolsMode.
+- Default = "load-when-needed".
+- This is loading policy only, not permission policy.
+
+========================================
+12. UPDATE ACTIVE POPOVER UNION
+========================================
+
+Extend activePopover with:
+
+| "project"
+| "github-source"
+| "style"
+| "model"
+| "tool-access"
+
+Existing activePopover values remain unchanged.
+
+Rules:
+- Only one popover open at a time.
+- Opening Directory modal sets activePopover = null.
+- Directory modal uses directoryState.isOpen, not activePopover.
+
+========================================
+13. UPDATE NORMALIZED PAYLOAD
+========================================
+
+Extend normalized payload with:
+
+{
+  project?: {
+    id: string
+    name: string
+    workspace?: string
+  }
+
+  style?: {
+    id: string
+    label: string
+  }
+
+  model?: {
+    id: string
+    label: string
+  }
+
+  adaptiveThinkingEnabled: boolean
+
+  plugins?: {
+    id: string
+    name: string
+  }[]
+
+  toolsPolicy: {
+    toolsMode,
+    allowedTools,
+    requireConfirmation,
+    toolAccessMode
+  }
+}
+
+Rules:
+- Do not send full project objects.
+- Do not send full style definitions.
+- Do not send full plugin definitions.
+- Do not send full model metadata.
+- Only send lightweight metadata.
+- Keep existing quickPrompt payload behavior unchanged.
+- Keep existing template/theme/race payload behavior unchanged.
+
+========================================
+14. FILE STRUCTURE
+========================================
+
+Add:
+
+/components/composer/popovers/ProjectPicker.tsx
+/components/composer/popovers/GitHubSourcePicker.tsx
+/components/composer/popovers/StylePicker.tsx
+/components/composer/popovers/ModelSelector.tsx
+/components/composer/popovers/ToolAccessMenu.tsx
+
+/components/composer/directory/DirectoryModal.tsx
+/components/composer/directory/DirectorySidebar.tsx
+/components/composer/directory/DirectoryCard.tsx
+/components/composer/directory/SkillsDirectoryTab.tsx
+/components/composer/directory/ConnectorsDirectoryTab.tsx
+/components/composer/directory/PluginsDirectoryTab.tsx
+
+/hooks/useDirectory.ts
+/hooks/useProjectPicker.ts
+/hooks/useStylePicker.ts
+/hooks/useModelSelector.ts
+
+Extend:
+/types/composer.ts
+/data/mockComposerData.ts
+
+If the project currently keeps the composer as a single file, introduce new files only where it reduces complexity and does not break existing imports.
+
+========================================
+15. MOCK DATA
+========================================
+
+Add mock data to mockComposerData:
+
+- mockProjects
+- mockCompanyKnowledgeItems
+- mockStyles
+- mockModels
+- mockMoreModels
+- mockToolAccessModes
+- mockPlugins
+- mockDirectorySkills
+- mockDirectoryConnectors
+- mockDirectoryPlugins
+- mockGitHubSources
+
+Do not hardcode these arrays inside components.
+
+========================================
+16. SMOKE TESTS
+========================================
+
+After implementation, run smoke tests for:
+
+1. Directory
+- opens from Manage skills
+- opens from Manage connectors
+- switches Skills/Connectors/Plugins tabs
+- search filters cards
+- close returns focus
+
+2. Project picker
+- selecting project adds chip
+- payload includes lightweight project metadata
+
+3. Screenshot
+- creates one complete image attachment
+- uses existing attachment state
+- enables send when composer has no text
+
+4. GitHub source
+- selected GitHub source becomes selectedContextItems entry
+- payload includes it in contextItems
+
+5. Company Knowledge
+- opens ContextPicker with company knowledge filter
+- selected item is stored in selectedContextItems
+
+6. Style
+- selecting style adds chip
+- payload includes style metadata
+- Theme remains unchanged
+
+7. Model selector
+- selecting model updates selectedModel
+- Mode remains unchanged
+- Adaptive thinking toggle updates payload
+
+8. Tool access
+- toolAccessMode updates toolsPolicy
+- toolsMode remains unchanged
+
+9. No regressions
+- existing quickPrompt smoke tests still pass
+- existing IME guard still passes
+- existing send-gating still passes
+- existing single-popover rule still passes
+
+========================================
+17. FINAL ACCEPTANCE
+========================================
+
+Implementation is complete when:
+
+- Directory modal exists with Skills, Connectors and Plugins tabs.
+- Manage skills opens Directory on Skills tab.
+- Manage connectors opens Directory on Connectors tab.
+- Plugins are browseable and distinct from skills/connectors.
+- Project picker exists and selected project appears as chip.
+- Take screenshot creates a mock complete image attachment using existing attachment state.
+- Add from GitHub opens GitHubSourcePicker and selected items flow into selectedContextItems.
+- Company Knowledge opens ContextPicker filtered to company knowledge items.
+- StylePicker exists and selected style appears as chip.
+- Theme and Style remain separate concepts.
+- ModelSelector exists and is separate from Mode dropdown.
+- Adaptive thinking toggle exists and is included in payload.
+- ToolAccess submenu exists and updates toolsPolicy.toolAccessMode.
+- No duplicate attachment state exists.
+- No duplicate connector state exists.
+- No duplicate context state exists.
+- Payload only sends lightweight metadata for project, style, model, plugin, theme, template and quickPrompt.
+- All new popovers follow activePopover single-popover rule.
+- Directory modal closes activePopover when opened.
+- Previous AdvancedPromptComposer smoke tests still pass.

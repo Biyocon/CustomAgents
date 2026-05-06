@@ -1,0 +1,77 @@
+Funktions- og stillingsbeskrivelser
+
+I Banedanmark sikrer vi gennem funktions- og stillingsbeskrivelser, at alle, som arbejder med jernbanesikkerhed har de rette kompetencer og kender deres ansvar.
+
+
+I Banedanmark er der cirka 200 funktioner, der løfter det jernbanesikkerhedsbærende ansvar. For hver af disse funktioner er der lavet en funktionsbeskrivelse, som beskriver hvilke jernbanesikkerhedsbærende ansvar, beføjelser og opgaver funktionen har, og hvilke krav der er til kompetencer, helbred og uddannelse.
+
+En funktionsbeskrivelse er generisk, og tager udgangspunkt i en funktion, og ikke en specifik medarbejder. En medarbejder kan derfor godt varetage flere funktioner og en funktion kan godt varetages af flere medarbejdere. For eksempel er der over 80 medarbejdere, der har tilknyttet funktionsbeskrivelsen “Trafikleder Fjern” til sin stillingsbeskrivelse. 
+
+Alle funktionsbeskrivelser ligger i SAP-Portalen.
+
+Ansvar i en funktionsbeskrivelse
+Det ansvar som er beskrevet i en funktionsbeskrivelse er bestemt af gældende regler samt de processer i Tracé, hvor rollen har et jernbanesikkerhedsbærende ansvar. Disse roller vil altid have et FB foran rollens navn i Tracé for at vise, at der er tilknyttet en funktionsbeskrivelse, som indeholder dette ansvar. 
+
+K-kompetencer i en funktionsbeskrivelse
+Der eksisterer 11 K-kompetencer, som er jernbanesikkerhedsbærende kompetencer. Alle funktionsbeskrivelser indeholder følgende K-kompetencer på kende-niveau:
+
+K1 Risikoledelse - Jernbanesikkerhed
+K2 Jernbanesikkerhedsorganisation i Banedanmark
+K3 Hændelseshåndtering
+K11 Sikkerhedsledelsessystem
+
+Det er en vurdering fra gang til gang hvilke andre K-kompetencer en funktionsbeskrivelse skal have tilknyttet med udgangspunkt i Retningslinjer for kompetencestyring indenfor jernbanesikkerhed. 
+
+Du kan finde de kurser, der er oprettet til opnåelse af K-kompetencer i SuccessFactors.
+
+
+En stillingsbeskrivelse kan ses som en mappe, der samler de jernbanesikkerhedsbærende funktioner, som medarbejderen varetager. 
+
+Alle medarbejdere, ressourcepersoner og eksterne konsulenter i Banedanmark, som varetager et jernbanesikkerhedsbærende ansvar skal have en godkendt stillingsbeskrivelse med relevante funktionsbeskrivelser senest 3 måneder efter første arbejdsgang - dette gælder også når der skiftes stilling.
+
+Det er nærmeste leders ansvar - og i Banedanmark har vi et netværk af kompetenceassistenter, som hjælper lederen med at løfte dette ansvar. 
+
+Stillingsbeskrivelser for medarbejdere i Banedanmark oprettes og håndteres i SAP-Portalen. Stillingsbeskrivelser for ressourcepersoner og eksterne konsulenter håndteres udenfor SAP-Portalen.
+
+
+Der skal oprettes en kompetenceudviklingsplan (KUP), når der er påkrævede kompetencer på kunne-niveau, som medarbejderen ikke har. Medmindre kompetencerne opnås, så medarbejderen senest 3 måneder efter 1. arbejdsdag har en godkendt stillingsbeskrivelse. 
+
+En kompetenceudviklingsplan sikrer, at der er styr på hvordan medarbejderen opnår de manglende kompetencer og hvad der sker i den periode, hvor kompetencerne ikke er opnået.
+
+Hvis kompetencen kan tages gennem e-læring, skal denne ikke stå i kompetenceudviklingsplanen, da e-læring skal gennemføres hurtigst muligt. 
+
+Følg processen KK-1.1.2 Kompetencevurdering og opnåelse af kompetencer inden for jernbanesikkerhed.
+
+
+For at sikre et fokus på at medarbejderen har de rette kompetencer til at varetage sine jernbanesikkerhedsbærende ansvar, og om medarbejderen har de rette funktionsbeskrivelser tilknyttet, foretages der både løbende og årlig kompetencevurdering.
+
+Det er Lederens ansvar at der foretages en kompetencevurdering, hvis en medarbejder har fået oprettet/ændret sin stillingsbeskrivelse ved at følge KK-1.1.1.1.2 Oprettelse / ændring af stillingsbeskrivelse - interne medarbejdere.
+
+Derudover foretages der også en årlig kompetencevurdering i forbindelse med MUS/LUS samtale. Det sker via processen KK-1.1.6 Udviklingssamtaler (MUS, LUS, PLUS, GRUS) (bane.dk).
+
+
+Du kan finde ud af hvilke funktionsbeskrivelser du har tilknyttet ved at finde din stillingsbeskrivelse i SAP-Portalen:  Stillingsbeskrivelser (ondemand.com).  
+
+
+Ved gennemførsel af e-læringskurser kan du opnå K-kompetencer på kende-niveau. For nogle K-kompetencer er det påkrævet at du tager et kursus eller får sidemandsoplæring. 
+
+Du kan finde de kurser, der er oprettet til opnåelse af K-kompetencer i SuccessFactors og Banelearning.
+
+Hvis du mangler K-kompetencer på Kunne-niveau for at kunne varetage en funktion skal der oprettes en kompetenceudviklingsplan. Følg proces KK-1.1.2 Kompetencevurdering og opnåelse af kompetencer inden for jernbanesikkerhed.
+
+
+
+Hvis du skal have oprettet en funktionsbeskrivelse, følg proces KK-1.1.1.2.1 Oprettelse af funktionsbeskrivelse.
+
+Hvis du skal have ændret i en eksisterende funktionsbeskrivelse, følg proces KK-1.1.1.2.2 Ændring af funktionsbeskrivelse. 
+
+Hvis du skal have nedlagt en funktionsbeskrivelse, følg proces KK-1.1.1.2.3 Nedlæggelse af funktionsbeskrivelse.
+
+
+Hvis du skal have oprettet eller ændret i en stillingsbeskrivelse for interne medarbejdere, følg proces KK-1.1.1.1.2 Oprettelse / ændring af stillingsbeskrivelse - Interne medarbejdere.
+
+Hvis du skal have oprettet eller ændret i en stillingsbeskrivelse for indlejet personale, følg proces KK-1.1.1.1.3 Oprettelse/ændring af stillingsbeskrivelse - Indlejet personale.
+
+
+
+Følg KK-1.1.1.2.3 Nedlæggelse af funktionsbeskrivelse, hvis du mener at en funktionsbeskrivelse ikke længere skal anvendes. 

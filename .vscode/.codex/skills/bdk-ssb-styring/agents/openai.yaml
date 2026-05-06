@@ -1,0 +1,4 @@
+display_name: BDK SSB Styring
+short_description: Skab overblik over supplerende sikkerhedsbestemmelser og overlap.
+default_prompt: Identificér relevante SSB-filer, opstil et struktureret overblik med overlap/konflikter, og lever en prioriteret opfølgningsliste med kildehenvisninger.
+

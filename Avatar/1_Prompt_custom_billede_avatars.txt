@@ -1,0 +1,23 @@
+Create one circular 3D mascot avatar for an AI agent.
+
+Agent:
+{Name} — {Role}
+
+Visual direction:
+{Describe character color and role cue}
+
+Style:
+- soft 3D clay-like mascot
+- friendly but professional
+- circular avatar crop
+- pastel color palette
+- clean white or transparent background
+- subtle shadow
+- simple face
+- no text
+- no logo
+- no realistic human
+- consistent with a family of AI workspace assistant avatars
+
+Output:
+A single high-resolution circular avatar image.

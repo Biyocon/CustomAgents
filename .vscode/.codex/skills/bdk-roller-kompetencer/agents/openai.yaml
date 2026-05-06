@@ -1,0 +1,3 @@
+display_name: BDK Roller og Kompetencer
+short_description: Sammenfat roller, kompetencekrav og korrekt KK-procesruting.
+default_prompt: Identificér den relevante funktion, udtræk ansvar/beføjelser/kompetencekrav, kobl til FB/SAP/Tracé-kontekst, og angiv korrekt KK-procesrute med struktureret kildeunderbygget output.

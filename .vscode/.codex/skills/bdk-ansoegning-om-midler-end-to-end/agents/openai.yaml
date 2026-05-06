@@ -1,0 +1,3 @@
+﻿display_name: BDK Ansøgning om Midler End-to-End
+short_description: Lav en komplet, indsendelsesklar ansøgningspakke til Porteføljekontoret.
+default_prompt: Gennemfør en end-to-end ansøgningsvurdering for midler hos Porteføljekontoret, byg den nødvendige dokumentpakke, kør formalia/gate-check, og lever en klar/ikke-klar indsendelsesplan med kilder.

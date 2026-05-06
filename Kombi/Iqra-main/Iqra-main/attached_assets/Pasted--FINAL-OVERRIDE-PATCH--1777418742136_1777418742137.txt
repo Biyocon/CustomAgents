@@ -1,0 +1,272 @@
+========================================
+FINAL OVERRIDE PATCH
+========================================
+
+Følgende regler overskriver eller præciserer tidligere formuleringer i AdvancedPromptComposer-prompten.
+
+========================================
+A. QUICK PROMPT LAST-SET-BY GUARD
+========================================
+
+Udvid lastConversationTypeSetBy med "quick-prompt":
+
+lastConversationTypeSetBy:
+  | "user"
+  | "team-mode"
+  | "deep-research"
+  | "slash-command"
+  | "quick-prompt"
+  | null
+
+Quick prompt pills må kun autosætte selectedConversationType, hvis:
+
+lastConversationTypeSetBy !== "user"
+
+Når en quick prompt pill autosætter conversation type, skal den sætte:
+
+lastConversationTypeSetBy = "quick-prompt"
+
+Quick prompt pills må altid sætte outputTarget, fordi outputTarget er pillens primære intention.
+
+Click behavior:
+
+Create slide deck:
+- outputTarget = "slides"
+- selectedQuickPrompt = {
+    id: "create-slide-deck",
+    label: "Create slide deck"
+  }
+- Hvis lastConversationTypeSetBy !== "user":
+  - selectedConversationType = "Build"
+  - lastConversationTypeSetBy = "quick-prompt"
+- Append eller insert hint:
+  “Create a slide deck about…”
+
+Design system:
+- outputTarget = "ui"
+- selectedQuickPrompt = {
+    id: "design-system",
+    label: "Design system"
+  }
+- Hvis lastConversationTypeSetBy !== "user":
+  - selectedConversationType = "Build"
+  - lastConversationTypeSetBy = "quick-prompt"
+- Append eller insert hint:
+  “Design a system for…”
+
+Document to skill:
+- outputTarget = "workflow"
+- selectedQuickPrompt = {
+    id: "document-to-skill",
+    label: "Document to skill"
+  }
+- Hvis lastConversationTypeSetBy !== "user":
+  - selectedConversationType = "Build"
+  - lastConversationTypeSetBy = "quick-prompt"
+- Open SkillPicker eller insert skill-generation template
+
+Analyze data:
+- outputTarget = "spreadsheet"
+- selectedQuickPrompt = {
+    id: "analyze-data",
+    label: "Analyze data"
+  }
+- Hvis lastConversationTypeSetBy !== "user":
+  - selectedConversationType = "Research"
+  - lastConversationTypeSetBy = "quick-prompt"
+- Open AttachmentMenu eller ContextPicker, så brugeren kan tilføje data
+
+========================================
+B. SEND ENABLE LOGIC MUST USE VALID INPUTS
+========================================
+
+Send button må ikke blive enabled af context eller attachments, som senere fjernes i normalized payload.
+
+Definér:
+
+validAttachments =
+  attachments.filter(item => item.status === "complete")
+
+validContextItems =
+  selectedContextItems.filter(item =>
+    item.status !== "disconnected" &&
+    item.status !== "requires-auth"
+  )
+
+Send er disabled hvis:
+- isSubmitting = true
+- mindst én attachment har status = "uploading"
+- ELLER alle følgende inputkilder er tomme:
+  - prompt.trim().length === 0
+  - validAttachments.length === 0
+  - selectedTemplate ikke findes
+  - validContextItems.length === 0
+
+Send er enabled hvis:
+- isSubmitting = false
+- ingen attachment har status = "uploading"
+- OG mindst én af disse findes:
+  - prompt.trim().length > 0
+  - validAttachments.length > 0
+  - selectedTemplate exists
+  - validContextItems.length > 0
+
+Vigtigt:
+- Attachment med status = "error" må ikke aktivere send.
+- Context item med status = "requires-auth" eller "disconnected" må ikke aktivere send.
+- Prompt uden tekst, men med valid attachment, valid context eller selectedTemplate, skal kunne sendes.
+
+========================================
+C. QUICK PROMPT PAYLOAD METADATA
+========================================
+
+Tilføj optional lightweight metadata til normalized submit payload:
+
+quickPrompt?: {
+  id: "create-slide-deck" | "design-system" | "document-to-skill" | "analyze-data"
+  label: string
+}
+
+Når en quick prompt pill bruges:
+- set selectedQuickPrompt
+- include quickPrompt metadata i payload
+
+Hvis ingen quick prompt er brugt:
+- quickPrompt udelades fra payload
+
+Payload må kun sende:
+- id
+- label
+
+Payload må ikke sende:
+- UI-only metadata
+- hele quick prompt objektet
+- prompt hint separat
+- template content via quickPrompt
+
+quickPrompt erstatter ikke:
+- prompt
+- outputTarget
+- selectedConversationType
+- selectedTemplate
+
+quickPrompt beskriver kun, hvilken shortcut der påvirkede composer state.
+
+========================================
+D. UPDATE STATE MODEL
+========================================
+
+Tilføj til AdvancedPromptComposer state:
+
+{
+  selectedQuickPrompt?: {
+    id: "create-slide-deck" | "design-system" | "document-to-skill" | "analyze-data"
+    label: string
+  }
+}
+
+Rules:
+- Når en quick prompt pill klikkes, skal selectedQuickPrompt sættes.
+- selectedQuickPrompt er kun lightweight metadata.
+- selectedQuickPrompt må ikke erstatte outputTarget, prompt eller selectedConversationType.
+- Hvis brugeren senere ændrer outputTarget manuelt, skal selectedQuickPrompt bevares som historical trigger metadata.
+- outputTarget skal altid afspejle brugerens seneste valg.
+- Hvis composer resettes fuldt, skal selectedQuickPrompt ryddes.
+- selectedQuickPrompt må ikke skabe parallel outputTarget-logik.
+
+========================================
+E. UPDATE NORMALIZED PAYLOAD
+========================================
+
+Udvid normalized submit payload med quickPrompt:
+
+{
+  prompt,
+  mode,
+  conversationType,
+  attachments,
+  contextItems,
+  skills,
+  toolsPolicy,
+  selectedTemplate,
+  outputTarget,
+  voiceEnabled,
+  teamModeEnabled,
+  deepResearchEnabled,
+  theme,
+  raceMode,
+  quickPrompt,
+  createdAt
+}
+
+Normalization:
+
+- prompt = prompt.trim()
+
+- attachments = attachments.filter(item =>
+    item.status === "complete"
+  )
+
+- contextItems = selectedContextItems.filter(item =>
+    item.status !== "disconnected" &&
+    item.status !== "requires-auth"
+  )
+
+- skills = selectedSkills.filter(skill =>
+    skill.enabled
+  )
+
+- selectedTemplate må kun sendes som:
+  {
+    id,
+    title,
+    category
+  }
+
+- theme må kun sendes som:
+  {
+    id,
+    name,
+    palette
+  }
+
+- quickPrompt må kun sendes som:
+  {
+    id,
+    label
+  }
+
+- Hvis selectedQuickPrompt ikke findes:
+  omit quickPrompt
+
+- Hvis toolsMode = "off":
+  toolsPolicy.allowedTools = []
+
+- Hvis toolsMode = "ask":
+  toolsPolicy.requireConfirmation = true
+
+- Hvis toolsMode = "auto" eller "all":
+  toolsPolicy.requireConfirmation = false
+
+- Hvis raceMode.enabled = false:
+  raceMode kan udelades
+
+========================================
+F. UPDATE FINAL ACCEPTANCE CHECK
+========================================
+
+Tilføj til final acceptance:
+
+- Quick prompt pills sætter lastConversationTypeSetBy = "quick-prompt", når de autosætter conversation type.
+- Quick prompt pills overskriver ikke user-selected conversation type.
+- Quick prompt pills må altid sætte outputTarget.
+- Quick prompt pills sætter selectedQuickPrompt med id og label.
+- selectedQuickPrompt er lightweight state og må ikke duplikere outputTarget logic.
+- Hvis brugeren manuelt ændrer outputTarget efter en quick prompt pill, bevares selectedQuickPrompt som historical trigger metadata.
+- Hvis composer resettes fuldt, ryddes selectedQuickPrompt.
+- Send button ignorerer errored attachments.
+- Send button ignorerer disconnected/requires-auth context items.
+- Send button kan aktiveres af valid attachment, valid context, selectedTemplate eller prompt text.
+- Normalized payload inkluderer quickPrompt metadata, hvis en quick prompt pill er brugt.
+- Normalized payload udelader quickPrompt, hvis ingen quick prompt pill er brugt.
+- quickPrompt payload indeholder kun id og label.

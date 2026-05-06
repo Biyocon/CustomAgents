@@ -1,0 +1,3 @@
+﻿display_name: BDK Statens IT-projektmodel Compliance
+short_description: Afklar it-projektkrav, It-råd og rapporteringsforpligtelser.
+default_prompt: Vurder om projektet er omfattet af Statens it-projektmodel, udled obligatoriske krav og rapportering, og returnér en kravmatrix med kildehenvisninger.

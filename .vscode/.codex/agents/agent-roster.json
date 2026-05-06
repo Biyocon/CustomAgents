@@ -1,0 +1,752 @@
+[
+  {
+    "id": "yunus-udbudskonsulent",
+    "name": "Yunus",
+    "role": "Udbudskonsulent",
+    "category": "Udbud og kontrakt",
+    "avatar": "Avatar/2_Avatar_Agent_Yunus_Udbudskonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_yunus-udbudskonsulent.md",
+    "accent": "blue",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bbtr-fagpakkestruktur",
+      "bbtr-dokumentstyring",
+      "bbtr-leverance-mapping",
+      "bbtr-kvalitet-dod",
+      "bdk-legal-mapping",
+      "bbe-dokumenter-platform",
+      "grill-with-docs"
+    ],
+    "capabilities": [
+      "udbudsanalyse",
+      "kravmatricer",
+      "tilbudsstruktur",
+      "evalueringslogik",
+      "risiko- og gapvurdering"
+    ]
+  },
+  {
+    "id": "william-udbudskonsulent",
+    "name": "William",
+    "role": "Udbudskonsulent",
+    "category": "Udbud og kontrakt",
+    "avatar": "Avatar/2_Avatar_Agent_William_Udbudskonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_william-udbudskonsulent.md",
+    "accent": "navy",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bbtr-role-justification",
+      "bbtr-indstilling-writer",
+      "bbtr-kvalitet-dod",
+      "bdk-legal-mapping",
+      "edit-article"
+    ],
+    "capabilities": [
+      "tilbudsoptimering",
+      "konkurrentpositionering",
+      "kvalitetsbeskrivelser",
+      "dokumentationskrav",
+      "forbeholdsreview"
+    ]
+  },
+  {
+    "id": "the-game-elektriker",
+    "name": "The Game",
+    "role": "Elektriker",
+    "category": "Teknik og udførelse",
+    "avatar": "Avatar/2_Avatar_Agent_The Game_Elektrikker.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_the-game-elektriker.md",
+    "accent": "yellow",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-tvaerfaglig-koordinering",
+      "bbtr-risiko-myndighed",
+      "bbtr-dokumentstyring",
+      "bdk-trafikale-regler-anvendelse"
+    ],
+    "capabilities": [
+      "elinstallation",
+      "praktisk udførelsesreview",
+      "sikkerhed",
+      "grænseflader",
+      "teknisk afklaring"
+    ]
+  },
+  {
+    "id": "sibgha-finance-analytics-specialist",
+    "name": "Sibgha",
+    "role": "Finance Analytics Specialist",
+    "category": "Finans og analyse",
+    "avatar": "Avatar/2_Avatar_Agent_Sibqah_Finance_Analytics_Specialist.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_sibgha-finance-analytics-specialist.md",
+    "accent": "emerald",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bdk-projektindstilling-og-finansiering",
+      "bdk-gevinststyring-realisering",
+      "bdk-overvaagning-rapportering",
+      "bdk-risk-profile",
+      "bdk-statens-it-projektmodel-compliance"
+    ],
+    "capabilities": [
+      "business case",
+      "budgetanalyse",
+      "gevinststyring",
+      "KPI-opsamling",
+      "følsomhedsvurdering"
+    ]
+  },
+  {
+    "id": "siamak-folkeskolelaerer",
+    "name": "Siamak",
+    "role": "Folkeskolelærer",
+    "category": "Læring og formidling",
+    "avatar": "Avatar/2_Avatar_Agent_Siamak_Folkeskole Lære.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_siamak-folkeskolelaerer.md",
+    "accent": "teal",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "edit-article",
+      "grill-me",
+      "write-a-skill"
+    ],
+    "capabilities": [
+      "læringsdesign",
+      "forklaring",
+      "øvelser",
+      "begrebsafklaring",
+      "niveauopdeling"
+    ]
+  },
+  {
+    "id": "sharmarke-maler",
+    "name": "Sharmarke",
+    "role": "Maler",
+    "category": "Byggeri og kvalitet",
+    "avatar": "Avatar/2_Avatar_Agent_Sharmarke_Maler.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_sharmarke-maler.md",
+    "accent": "coral",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-kvalitet-dod",
+      "bbtr-dokumentstyring",
+      "bbtr-faseopdelt-ydelser"
+    ],
+    "capabilities": [
+      "kvalitetskontrol",
+      "finish-review",
+      "arbejdsbeskrivelser",
+      "mangelgennemgang",
+      "praktisk planlægning"
+    ]
+  },
+  {
+    "id": "shamso-socialraadgiver",
+    "name": "Shamso",
+    "role": "Socialrådgiver",
+    "category": "Borger, interessent og GDPR",
+    "avatar": "Avatar/2_Avatar_Agent_Shamso_Socialrådgiver.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_shamso-socialraadgiver.md",
+    "accent": "purple",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bdk-legal-mapping",
+      "bdk-haendelser-sikkerhedsbrister",
+      "edit-article"
+    ],
+    "capabilities": [
+      "interessentanalyse",
+      "sagsstruktur",
+      "GDPR-hensyn",
+      "borgerkommunikation",
+      "risikovurdering"
+    ]
+  },
+  {
+    "id": "said-anlaegsingenioer",
+    "name": "Said",
+    "role": "Anlægsingeniør",
+    "category": "Anlæg og bane",
+    "avatar": "Avatar/2_Avatar_Agent_Said_Anlægsingeniør.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_said-anlaegsingenioer.md",
+    "accent": "steel",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-risiko-myndighed",
+      "bbtr-tvaerfaglig-koordinering",
+      "bbtr-fagpakkestruktur",
+      "bdk-bkp-v17-overview",
+      "bdk-bkp-v17-data-model",
+      "bdk-trafikale-regler-anvendelse"
+    ],
+    "capabilities": [
+      "anlægsteknik",
+      "myndighedsrisici",
+      "grænseflader",
+      "fagpakker",
+      "projekteringskrav"
+    ]
+  },
+  {
+    "id": "sabina-udbudskonsulent-chefkonsulent",
+    "name": "Sabina",
+    "role": "Udbudskonsulent / Chefkonsulent",
+    "category": "Udbud og governance",
+    "avatar": "Avatar/2_Avatar_Agent_Sabina_Udbudskonsulent_Chefkonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_sabina-udbudskonsulent-chefkonsulent.md",
+    "accent": "magenta",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bdk-styregruppearbejde",
+      "bdk-portefoljekontor-governance",
+      "bdk-projektindstilling-og-finansiering",
+      "bbtr-indstilling-writer"
+    ],
+    "capabilities": [
+      "strategisk udbud",
+      "ledelsesoplæg",
+      "governance",
+      "kvalitetssikring",
+      "beslutningsnotater"
+    ]
+  },
+  {
+    "id": "qanac-laege",
+    "name": "Qanac",
+    "role": "Læge",
+    "category": "Sundhed og risiko",
+    "avatar": "Avatar/2_Avatar_Agent_Qanac_Læge.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_qanac-laege.md",
+    "accent": "green",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "grill-with-docs",
+      "edit-article"
+    ],
+    "capabilities": [
+      "klinisk struktur",
+      "risikovurdering",
+      "triage",
+      "patientkommunikation",
+      "evidensafvejning"
+    ]
+  },
+  {
+    "id": "mohammad-udbudskonsulent",
+    "name": "Mohammad Abdel-latif",
+    "role": "Udbudskonsulent",
+    "category": "Udbud og kontrakt",
+    "avatar": "Avatar/2_Avatar_Agent_Mohammad_Udbudskonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_mohammad-udbudskonsulent.md",
+    "accent": "cyan",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bbtr-dokumentstyring",
+      "bbtr-leverance-mapping",
+      "bdk-legal-mapping"
+    ],
+    "capabilities": [
+      "compliance-matrix",
+      "kravsporbarhed",
+      "tilbudsgennemgang",
+      "dokumentstruktur",
+      "risikolog"
+    ]
+  },
+  {
+    "id": "mehtap-udbudskonsulent",
+    "name": "Mehtap",
+    "role": "Udbudskonsulent",
+    "category": "Udbud og kvalitet",
+    "avatar": "Avatar/2_Avatar_Agent_Mehtap_Udbudskonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_mehtap-udbudskonsulent.md",
+    "accent": "rose",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "edit-article",
+      "bbtr-kvalitet-dod"
+    ],
+    "capabilities": [
+      "tilbudstekst",
+      "kvalitetssvar",
+      "redigering",
+      "win themes",
+      "evaluerbarhed"
+    ]
+  },
+  {
+    "id": "liban-sales-specialist",
+    "name": "Liban",
+    "role": "Sales Specialist",
+    "category": "Salg og positionering",
+    "avatar": "Avatar/2_Avatar_Agent_Liban_Sales_Specialist.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_liban-sales-specialist.md",
+    "accent": "orange",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "grill-me",
+      "to-prd",
+      "bbtr-role-justification",
+      "bbtr-raadgiver-udbud",
+      "edit-article"
+    ],
+    "capabilities": [
+      "salgsstrategi",
+      "value proposition",
+      "stakeholder mapping",
+      "pitchstruktur",
+      "forhandlingsforberedelse"
+    ]
+  },
+  {
+    "id": "joel-mulongo-udbudsjurist",
+    "name": "Joël Mulongo",
+    "role": "Udbudsjurist",
+    "category": "Udbud og kontrakt",
+    "avatar": "Avatar/2_Avatar_Agent_Joël Mulongo_Udbudskonsulent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_joel-mulongo-udbudsjurist.md",
+    "accent": "indigo",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bbtr-dokumentstyring",
+      "bbtr-leverance-mapping",
+      "to-issues"
+    ],
+    "capabilities": [
+      "processtyring",
+      "reviewplan",
+      "kravspor",
+      "tilbudsdisposition",
+      "risikoafklaring"
+    ]
+  },
+  {
+    "id": "ifrah-farmaceut",
+    "name": "Ifrah",
+    "role": "Farmaceut",
+    "category": "Sundhed og kvalitet",
+    "avatar": "Avatar/2_Avatar_Agent_Ifrah_Farmaceut.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_ifrah-farmaceut.md",
+    "accent": "mint",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "edit-article"
+    ],
+    "capabilities": [
+      "faglig kvalitet",
+      "compliance",
+      "risikokommunikation",
+      "dokumentationskrav",
+      "proceskontrol"
+    ]
+  },
+  {
+    "id": "hassan-fagprojektleder",
+    "name": "Hassan",
+    "role": "Fagprojektleder",
+    "category": "Projektledelse og fagpakker",
+    "avatar": "Avatar/2_Avatar_Agent_Hassan_Fagprojektleder.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_hassan-fagprojektleder.md",
+    "accent": "bluegray",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-produktionssetup",
+      "bbtr-faseopdelt-ydelser",
+      "bbtr-tvaerfaglig-koordinering",
+      "bdk-projektrapportering-frister",
+      "bdk-styregruppearbejde",
+      "bbtr-forbedringsloop"
+    ],
+    "capabilities": [
+      "fagpakkeledelse",
+      "leveranceplan",
+      "risikostyring",
+      "fremdriftsrapportering",
+      "beslutningsoplæg"
+    ]
+  },
+  {
+    "id": "hassan-anlaegsingenioer",
+    "name": "Hassan",
+    "role": "Anlægsingeniør",
+    "category": "Anlæg og bane",
+    "avatar": "Avatar/2_Avatar_Agent_Hassan_Anlægsingeniør.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_hassan-anlaegsingenioer.md",
+    "accent": "brown",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-risiko-myndighed",
+      "bbtr-tvaerfaglig-koordinering",
+      "bbtr-kvalitet-dod",
+      "bdk-bkp-v17-overview",
+      "bdk-trafikale-regler-anvendelse"
+    ],
+    "capabilities": [
+      "anlægsreview",
+      "grænseflader",
+      "faglige forudsætninger",
+      "teknisk risiko",
+      "kvalitetssikring"
+    ]
+  },
+  {
+    "id": "hamsa-afloebsingenioer",
+    "name": "Hamsa",
+    "role": "Afløbsingeniør",
+    "category": "Anlæg og forsyning",
+    "avatar": "Avatar/2_Avatar_Agent_Hamsa_Afløbsingeniør.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_hamsa-afloebsingenioer.md",
+    "accent": "aqua",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-tvaerfaglig-koordinering",
+      "bbtr-risiko-myndighed",
+      "bbtr-dokumentstyring",
+      "bbtr-faseopdelt-ydelser"
+    ],
+    "capabilities": [
+      "afløbsteknik",
+      "dræn",
+      "kapacitet",
+      "anlægsgrænseflader",
+      "teknisk dokumentation"
+    ]
+  },
+  {
+    "id": "bojang-fodboldagent",
+    "name": "Bojang",
+    "role": "Fodboldagent",
+    "category": "Forhandling og talent",
+    "avatar": "Avatar/2_Avatar_Agent_Bojang_fodboldagent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_bojang-fodboldagent.md",
+    "accent": "lime",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "grill-me",
+      "edit-article",
+      "bdk-legal-mapping"
+    ],
+    "capabilities": [
+      "talentprofil",
+      "forhandling",
+      "kontraktlogik",
+      "karriereplan",
+      "markedspositionering"
+    ]
+  },
+  {
+    "id": "bodjo-fodboldagent",
+    "name": "Bodjo",
+    "role": "Fodboldagent",
+    "category": "Forhandling og talent",
+    "avatar": "Avatar/2_Avatar_Agent_Bodjo_fodboldagent.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_bodjo-fodboldagent.md",
+    "accent": "forest",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "grill-me",
+      "to-prd",
+      "edit-article"
+    ],
+    "capabilities": [
+      "transferstrategi",
+      "karrierevalg",
+      "forhandlingsforberedelse",
+      "scoutingbrief",
+      "risikolog"
+    ]
+  },
+  {
+    "id": "bamse-paedagog",
+    "name": "Bamse",
+    "role": "Pædagog",
+    "category": "Pædagogik og trivsel",
+    "avatar": "Avatar/2_Avatar_Agent_Bamse_Pædagog.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_bamse-paedagog.md",
+    "accent": "amber",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "edit-article",
+      "grill-me"
+    ],
+    "capabilities": [
+      "pædagogisk plan",
+      "trivselsvurdering",
+      "forældredialog",
+      "struktur",
+      "konfliktnedtrapning"
+    ]
+  },
+  {
+    "id": "ali-jobraadgiver",
+    "name": "Ali",
+    "role": "Jobrådgiver",
+    "category": "Karriere og rådgivning",
+    "avatar": "Avatar/2_Avatar_Agent_Ali_Job Rådgiver.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_ali-jobraadgiver.md",
+    "accent": "sky",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "edit-article",
+      "grill-me"
+    ],
+    "capabilities": [
+      "CV",
+      "ansøgning",
+      "jobmatch",
+      "samtaleforberedelse",
+      "kompetenceafklaring"
+    ]
+  },
+  {
+    "id": "abdullahi-data-engineer",
+    "name": "Abdullahi",
+    "role": "Data Engineer",
+    "category": "Data og automation",
+    "avatar": "Avatar/2_Avatar_Agent_Abdullahi_Data Engineer.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_abdullahi-data-engineer.md",
+    "accent": "green",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bdk-tilsynsapp-leverance-operations",
+      "bdk-overvaagning-rapportering",
+      "bdk-risk-profile",
+      "bdk-audit-findings",
+      "bbe-dokumenter-platform",
+      "tdd",
+      "diagnose"
+    ],
+    "capabilities": [
+      "datamodel",
+      "pipeline",
+      "datakvalitet",
+      "rapportering",
+      "automation"
+    ]
+  },
+  {
+    "id": "abdisalam-staerkstroemsingenioer",
+    "name": "Abdisalam",
+    "role": "Stærkstrømsingeniør",
+    "category": "Teknik og bane",
+    "avatar": "Avatar/2_Avatar_Agent_Abdisalam_Stærkstrømingeniør.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_abdisalam-staerkstroemsingenioer.md",
+    "accent": "gold",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-csm-tsi-compliance",
+      "bbtr-risiko-myndighed",
+      "bbtr-tvaerfaglig-koordinering",
+      "bdk-trafikale-regler-anvendelse",
+      "bdk-bkp-v17-overview"
+    ],
+    "capabilities": [
+      "stærkstrøm",
+      "sikkerhed",
+      "teknisk compliance",
+      "grænseflader",
+      "driftsrisiko"
+    ]
+  },
+  {
+    "id": "abdi-asis-produkt-manager",
+    "name": "Abdi Asis",
+    "role": "Technical Product Manager",
+    "category": "Produkt og prioritering",
+    "avatar": "Avatar/2_Avatar_Agent_Abdi Asis_Produkt Manager.png",
+    "profile": "Avatar/agents/System_Prompt_Agent_abdi-asis-produkt-manager.md",
+    "accent": "violet",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "to-prd",
+      "to-issues",
+      "grill-with-docs",
+      "bdk-forretningsprojektmodel-gates",
+      "bdk-statens-it-projektmodel-compliance",
+      "bdk-gevinststyring-realisering"
+    ],
+    "capabilities": [
+      "PRD",
+      "roadmap",
+      "acceptkriterier",
+      "prioritering",
+      "stakeholderbehov"
+    ]
+  },
+  {
+    "id": "ahmad-el-wali",
+    "name": "Ahmad El-Wali",
+    "role": "Strategic Engineering Leader / Head of Sourcing, Contracts & Interface Management",
+    "category": "Ledelse og governance",
+    "avatar": "Avatar/2_Avatar_Agent_Ahmad_El-Wali_Strategic_Engineering_Leader.png",
+    "accent": "emerald",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-raadgiver-udbud",
+      "bbtr-fagpakkestruktur",
+      "bbtr-dokumentstyring",
+      "bbtr-leverance-mapping",
+      "bbtr-kvalitet-dod",
+      "bdk-legal-mapping",
+      "bdk-styregruppearbejde",
+      "bdk-portefoljekontor-governance",
+      "bdk-projektindstilling-og-finansiering",
+      "bdk-risk-profile",
+      "grill-with-docs"
+    ],
+    "capabilities": [
+      "strategisk engineering-ledelse",
+      "sourcing- og procurement-strategi",
+      "contract management framework",
+      "interface management model",
+      "governance og beslutningsopl?g"
+    ]
+  },
+  {
+    "id": "hassan-dahir",
+    "name": "Hassan Dahir",
+    "role": "Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn",
+    "category": "Teknik og udf?relse",
+    "avatar": "Avatar/2_Avatar_Agent_Hassan_Dahir_Technical_Interface_Product_Owner.png",
+    "accent": "orange",
+    "skills": [
+      "karpathy-guidelines",
+      "shared-quality",
+      "shared-docx",
+      "bdk-brand-governance",
+      "bdk-gdpr-praksis",
+      "bbtr-tvaerfaglig-koordinering",
+      "bbtr-fagpakkestruktur",
+      "bbtr-leverance-mapping",
+      "bbtr-dokumentstyring",
+      "bbtr-risiko-myndighed",
+      "bbtr-kvalitet-dod",
+      "bbtr-csm-tsi-compliance",
+      "bdk-bkp-v17-overview",
+      "bdk-bkp-v17-data-model",
+      "bdk-trafikale-regler-anvendelse",
+      "bdk-projektrapportering-frister",
+      "bdk-styregruppearbejde",
+      "bdk-forbedringsloop"
+    ],
+    "capabilities": [
+      "fagprojektledelse",
+      "fagtilsyn og kvalitetskontrol",
+      "byggeledelse og udf?relse",
+      "afl?bsteknik og kloak",
+      "product ownership BaneByg",
+      "interface management",
+      "tv?rfaglig koordinering"
+    ]
+  }
+]

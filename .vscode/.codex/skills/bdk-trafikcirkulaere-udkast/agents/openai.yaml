@@ -1,0 +1,4 @@
+display_name: BDK Trafikcirkulære Udkast
+short_description: Lav strukturerede TC-udkast med korrekt skabelonvalg.
+default_prompt: Afklar TC-kontekst, vælg korrekt ORS/ORF/SR-skabelon, og udarbejd et komplet udkast med markerede antagelser og kildehenvisninger.
+

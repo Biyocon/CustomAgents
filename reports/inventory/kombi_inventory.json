@@ -1,0 +1,153 @@
+{
+  "scanned_at": "2026-05-06",
+  "scope": "Kombi/ — referencekatalog per ADR-0001, ikke aktiv runtime",
+  "active_runtime_pointer": ".vscode/.codex/",
+  "items": [
+    {
+      "name": "agency-agents-main",
+      "type": "multi-agent-skills",
+      "purpose": "19 specialiseret agent-personae med personlighed/processer/leverancer (msitarzewski)",
+      "license": "MIT",
+      "classification": "inspiration",
+      "action": "reference",
+      "duplicate_of": null
+    },
+    {
+      "name": "agentic-stack-master",
+      "type": "agent-stack-template",
+      "purpose": "ukendt (dobbelt-nestet zip)",
+      "classification": "manuel-afklaring",
+      "action": "lavprioritet"
+    },
+    {
+      "name": "andrej-karpathy-skills-main",
+      "type": "behavioral-rules",
+      "purpose": "Karpathy CLAUDE.md-principper",
+      "classification": "duplikat",
+      "action": "reference",
+      "duplicate_of": ".vscode/.codex/skills/karpathy-guidelines"
+    },
+    {
+      "name": "caveman-main",
+      "type": "prompt-style-skill",
+      "purpose": "Few-token mode caveman-svar",
+      "classification": "duplikat",
+      "action": "reference",
+      "duplicate_of": ".vscode/.codex/skills/caveman"
+    },
+    {
+      "name": "claude-code-main",
+      "type": "samples",
+      "purpose": "ukendt (dobbelt-nestet zip)",
+      "classification": "manuel-afklaring",
+      "action": "lavprioritet"
+    },
+    {
+      "name": "claude-mem-main",
+      "type": "cli-tool",
+      "purpose": "Memory compression CLI for Claude Code, persistent context",
+      "version": "12.6.0",
+      "classification": "inspiration",
+      "action": "reference"
+    },
+    {
+      "name": "deer-flow-main",
+      "type": "workflow",
+      "purpose": "ukendt (dobbelt-nestet zip)",
+      "classification": "manuel-afklaring",
+      "action": "lavprioritet"
+    },
+    {
+      "name": "everything-claude-code-main",
+      "type": "config-suite",
+      "purpose": "Battle-tested CC configs: agents, skills, hooks, rules",
+      "version": "2.0.0-rc.1",
+      "classification": "inspiration",
+      "action": "reference"
+    },
+    {
+      "name": "get-shit-done-main",
+      "type": "meta-prompting-system",
+      "purpose": "Multi-model spec-driven dev (CC, OpenCode, Gemini, Codex)",
+      "version": "1.39.0-rc.4",
+      "classification": "inspiration-direkte-relevant",
+      "action": "reference-studér-cli-design"
+    },
+    {
+      "name": "graphify-6",
+      "type": "python-package",
+      "purpose": "Knowledge-graph fra kode/docs/papers/billeder/video",
+      "version": "0.6.9",
+      "classification": "inspiration",
+      "action": "reference"
+    },
+    {
+      "name": "oh-my-openagent-dev",
+      "type": "opencode-plugin",
+      "purpose": "Multi-model orchestration, parallel background agents, LSP/AST tools",
+      "version": "3.17.13",
+      "classification": "inspiration-direkte-relevant",
+      "action": "reference-studér-multi-model-mønstre"
+    },
+    {
+      "name": "planning-with-files-master",
+      "type": "file-based-planning",
+      "purpose": "Manus-pattern AI agent planning",
+      "classification": "inspiration",
+      "action": "reference"
+    },
+    {
+      "name": "skills-main",
+      "type": "upstream-source",
+      "purpose": "mattpocock/skills upstream — kilde for installerede mattpocock-skills",
+      "classification": "duplikat-kilde",
+      "action": "reference",
+      "duplicate_of": ".vscode/.codex/skills/* (mattpocock-suite installeret via setup-matt-pocock-skills)"
+    },
+    {
+      "name": "system_prompts_leaks-main",
+      "type": "research",
+      "purpose": "Lækkede system prompts — research only",
+      "classification": "arkivér",
+      "action": "read-only-research-må-ikke-runtime",
+      "warning": "Markeret i Brain/source-map.md som ikke-autoritativ"
+    }
+  ],
+  "zips_root_level": [
+    "agency-agents-main.zip",
+    "agentic-stack-master.zip",
+    "andrej-karpathy-skills-main.zip",
+    "awesome-design-md-main.zip",
+    "caveman-main.zip",
+    "claude-code-main.zip",
+    "claude-mem-main.zip",
+    "claw-code-main.zip",
+    "deer-flow-main.zip",
+    "everything-claude-code-main.zip",
+    "get-shit-done-main.zip",
+    "graphify-6.zip",
+    "linkedin-rs-main.zip",
+    "oh-my-claudecode-main.zip",
+    "oh-my-codex-main.zip",
+    "oh-my-openagent-dev.zip",
+    "planning-with-files-master.zip",
+    "skills-main.zip",
+    "system_prompts_leaks-main.zip"
+  ],
+  "domain_artifacts": [
+    {
+      "name": "Kopi af 03.00 Tilbudsliste_NFSP0598_Høje Taastrup  Roskilde St. Fri strækning_v5 (3).xlsx",
+      "size_kb": 175,
+      "classification": "domain-arbejdsfil-misplaceret",
+      "action_recommended": "flyt-til-docs/banedanmark-artefakter/-eller-temp/"
+    }
+  ],
+  "summary": {
+    "total_dirs": 14,
+    "duplicates_of_runtime": 4,
+    "research_only": 1,
+    "needs_manual_review": 3,
+    "inspiration_only": 6,
+    "active_runtime_changes": 0
+  }
+}

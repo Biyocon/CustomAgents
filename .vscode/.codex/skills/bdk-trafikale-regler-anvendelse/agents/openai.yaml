@@ -1,0 +1,4 @@
+display_name: BDK Trafikale Regler Anvendelse
+short_description: Vurdér om SR, ORS eller ORF gælder i en konkret situation.
+default_prompt: Afgræns driftssituationen, vurder hvilket trafikal regelsæt der gælder, og returnér en prioriteret liste over relevante dokumenter med kildehenvisninger.
+

@@ -1,0 +1,693 @@
+Byg/redesign et “Shortcut-style Spreadsheet Workspace” modul til OmniAI.
+
+Målet er at implementere et moderne Excel-lignende spreadsheet workspace med AI-assistent, filhåndtering, shortcut-bibliotek, skills, tutorials og chat history.
+
+Brug eksisterende OmniAI shell, routing, tokens, ikoner og komponentstil. Modulet skal visuelt matche de vedhæftede screenshots: spreadsheet-first, kompakt, professionelt, med klassisk Excel-ribbon og et diskret AI-lag.
+
+Byg ikke rigtig Excel-kompatibilitet endnu. Byg en funktionel frontend-prototype med realistisk mock data, tydelig state model og UI-interaktioner, så backend/API kan kobles på senere.
+
+Routes:
+- /spreadsheet
+- /spreadsheet/:fileId
+- /spreadsheet/new
+- /spreadsheet/open
+- /spreadsheet/templates
+- /spreadsheet/shortcuts
+
+Hvis eksisterende routing-konventioner bruges i OmniAI, følg dem, men funktionaliteten skal svare til ovenstående.
+
+========================================
+1. Spreadsheet Editor Shell
+========================================
+
+Implementér et full-viewport editor-layout:
+
+[Top File Bar]
+[Ribbon Tabs]
+[Ribbon Command Area]
+[Name Box + Formula Bar]
+[Spreadsheet Grid]
+[Bottom Status Bar + Sheet Tabs]
+
+Når AI Workspace er åbent:
+
+[Spreadsheet Area] [Right AI Workspace Panel]
+
+Editor skal fylde hele skærmen og føles som en webbaseret Excel/Shortcut-klon.
+
+========================================
+2. Top File Bar
+========================================
+
+Venstre:
+- “Open File”
+- “New File”
+- “Export File”
+
+Midten:
+- Aktuel filnavn, fx “empty-sheet.xlsx”
+
+Højre:
+- “Pro Tips”
+- “Set AI Rules”
+- “Add-Ins” dropdown
+- “Account”
+- plus icon
+- history/clock icon
+- “Workspace” toggle
+- share icon
+
+Interaktioner:
+- Open File åbner Open File Modal
+- New File åbner New File Modal
+- Export File viser mock toast/dropdown
+- Workspace toggle viser/skjuler højre panel
+- Add-Ins viser placeholder menu
+
+Design:
+- Højde 36–44px
+- Meget kompakte buttons
+- Hvid/light-gray background
+- Tynde borders
+- Filnavn centreret
+
+========================================
+3. Ribbon Tabs
+========================================
+
+Tabs:
+- Home
+- Insert
+- Page Layout
+- Formulas
+- Data
+- View
+- Settings
+
+Aktiv tab:
+- Grøn underline
+- Mørkere tekst
+- Ribbon command area skifter indhold pr. tab
+
+Byg realistiske command grupper for:
+
+Home:
+- Clipboard: Undo, Redo, Paste, Cut, Copy, Format Painter
+- Font: font family, size, bold, italic, underline, border, fill, text color
+- Alignment: left, center, right, wrap text, merge & center
+- Number: General dropdown, %, currency, decimals
+- Styles: Conditional Format, Format Table, Cell Styles
+- Cells: Insert, Delete, Format
+- Editing: Sum, Fill, Clear, Sort & Filter, Find
+
+Insert:
+- Tables, Charts, Images, Shapes, Pivot Table, Links, Comments
+
+Page Layout:
+- Themes, Colors, Fonts
+- Margins, Orientation, Size, Print Area, Breaks, Background, Print Titles
+- Width/Height dropdowns, Scale 100%
+- Gridlines View/Print
+- Headings View/Print
+- Print Line Visible
+
+Formulas:
+- Insert Function
+- AutoSum
+- Financial
+- Logical
+- Text
+- Date & Time
+- Lookup & Reference
+- Math & Trig
+- More Functions
+- Name Manager
+- Show Formulas
+- Show Formula Editor
+- Calculation Options
+- Calculate Now
+- Calculate Sheet
+
+View:
+- Row Header
+- Column Header
+- Vertical Gridlines
+- Horizontal Gridlines
+- Tab Strip
+- New Tab
+- Zoom
+- 100%
+- Zoom to Selection
+- Freeze Panes
+- Unfreeze Panes
+- Selection Pane
+- Command Palette
+
+Settings:
+- ScrollBars
+- Calculation
+- Tab Strip
+- GridLines
+- Headers
+- General
+- AI Rules shortcut
+
+Ribbon design:
+- Excel-lignende density
+- Små ikoner
+- Labels under grupper
+- Subtile separators
+- Ingen tunge shadows
+
+========================================
+4. Name Box og Formula Bar
+========================================
+
+Under ribbon:
+
+Venstre:
+- Name box viser aktiv celle, fx “A1”, “J12”, “M25”
+
+Midten:
+- Cancel icon
+- Confirm icon
+- fx icon
+- Formula input
+
+Funktionalitet:
+- Klik på celle opdaterer name box
+- Formula input viser aktiv celles value/formula
+- Enter gemmer indhold i cellen
+- Escape annullerer edit
+- Hvis brugeren skriver direkte i en celle, opdateres formula bar
+
+========================================
+5. Spreadsheet Grid
+========================================
+
+Byg et visuelt grid med:
+
+- Kolonner A til AE
+- Rækker 1 til mindst 52
+- Column headers
+- Row headers
+- Gridlines
+- Aktiv celle med grøn border
+- Aktiv row og column header markeres subtilt
+- Vertikal og horisontal scrollbar
+- Sheet tab “Sheet1”
+- Plus button til nyt sheet
+- Status text “Ready”
+- Zoom slider og zoom procent
+
+Minimum interaktion:
+- Klik vælger celle
+- Arrow keys flytter aktiv celle
+- Enter gemmer edit / flytter ned
+- Tab flytter højre
+- Escape annullerer edit
+- Double click starter edit
+- Typing starter edit
+- Cell values gemmes i state
+
+Design:
+- Excel-lignende
+- Hvide celler
+- Meget lyse gridlines
+- Grøn active selection
+- Neutral header background
+
+========================================
+6. Right-side AI Workspace Panel
+========================================
+
+Panelet skal have to modes:
+
+A. Shortcut Assistant
+B. Dark Workspace
+
+A. Shortcut Assistant mode:
+- Hvidt panel, ca. 360–420px bredt
+- “New Chat” tab øverst
+- Shortcut wordmark/logo
+- Close/X icon
+- Subtitle: “A Fundamental Research Labs Product”
+- Version: “v0.8.12”
+- Link: “See what’s new”
+
+Prompt box:
+- Grøn border
+- Placeholder:
+  “Ask Shortcut anything — use @ for references, / for skills and commands”
+- Attachment icon
+- Command/chevron icon
+- Model selector: “Opus 4.6 (1M)”
+- Mode dropdown: “Med”
+- Toggle: “Off”
+- Submit button
+
+Under prompt:
+- “Action mode” dropdown
+- “Ask before edits”
+- Quick actions:
+  - “Automate my Excel work with /skills”
+  - “Build a sales forecast”
+  - “Analyze rent vs buy”
+
+B. Dark Workspace mode:
+- Dark gray panel
+- Header: “Workspace”
+- Refresh icon
+- Close button
+- Tabs:
+  - Files
+  - Skills
+  - Templates
+  - Memories
+  - Backups
+- CTA:
+  “+ Create or Edit Skills with /Skill-Studio”
+- Segmented tabs:
+  - Personal
+  - Default
+- Search:
+  “Search skills...”
+- Empty state:
+  “No personal skills yet”
+
+========================================
+7. My Shortcuts Modal
+========================================
+
+Byg stor modal:
+
+- Titel: “My Shortcuts”
+- Width ca. 960–1100px
+- Height ca. 85–92vh
+- Rounded corners
+- Dark overlay
+- Close X øverst højre
+
+Tabs:
+- Prompt Library
+- Skills 10
+- Tutorials
+- Chat History
+
+Active tab:
+- Mørk underline
+- Mørk tekst
+
+Prompt Library tab:
+- Text:
+  “Type / to invoke in chat. Quick-access prompts you can reuse across conversations.”
+- Section: “New Prompt”
+- Actions: Cancel + grøn Create button
+- Field: Title (optional)
+- Field: Prompt textarea
+- Create gemmer prompt i state
+- Cancel rydder form
+- Prompt er required
+
+Skills tab:
+Vis enten grid/liste eller empty state.
+Mock skills:
+- Spreadsheet Cleaner
+- KPI Dashboard Builder
+- SumSheet Builder
+- Formula Debugger
+- Financial Model Auditor
+- Banedanmark Tender Assistant
+- Forecast Builder
+- Scenario Analyzer
+- Export Formatter
+- Data Validation Helper
+
+Skill card:
+- Icon
+- Title
+- Description
+- Tags
+- Scope: Personal/Default
+- Status: Active/Draft
+
+Tutorials tab:
+- Text:
+  “Step-by-step tutorials you can open and follow in web replay.”
+- Accordion: “Official”
+- 2-column tutorial grid
+- Store screenshot preview cards
+- Title + document icon + tags
+- Bottom link:
+  “Explore all tutorials →”
+
+Tutorial examples:
+- “Create a model summary worksheet using the sumsheet-builder skill”
+- “Use python to create a KPI dashboard for a model”
+- “Reformat a multi-sheet model into a single worksheet”
+- “How to create a KPI dashboard using Python”
+- “Refresh / rollforward stale model”
+- “Auditing using skill”
+
+Chat History tab:
+- Search input:
+  “Search conversations...”
+- Group conversations by workbook/file name
+- Group labels uppercase/grå
+- Row:
+  - Chevron
+  - Truncated title
+  - Timestamp
+
+Examples:
+- File group: “2026-02-24-SHEET.XLSX”
+- File group: “BANEBYG_K_LISTE_BBTR_SUPPORTSAG_UDFYLDT_2.XLSX”
+- Conversation title:
+  “MASTER PROMPT – ‘WBS- og MS Project-planlægger’...”
+- Conversation title:
+  “Betinget formatering er ikke korrekt implementeret på Prioritet-kolonnen...”
+
+========================================
+8. Open File Modal
+========================================
+
+Stor modal:
+- Title: “Open File”
+- Width ca. 1200–1400px
+- Height ca. 80–90vh
+- Close X
+- White background
+
+Toolbar:
+- Button: “Open File from Computer”
+- Text: “20 files in history”
+- Search input: “Search files...”
+
+Table columns:
+- File Name
+- Last Opened
+- Size
+- Actions
+
+Rows:
+- Folder/file icon
+- Bold filename
+- Last opened text
+- Size
+- Open action
+- Dropdown chevron
+
+Mock files:
+- BKP_v170 1.xlsx
+- BKP_v170.xlsx
+- 2026-02-24-sheet.xlsx
+- Banebyg_K_liste_BBTR_Supportsag_udfyldt_2.xlsx
+- empty-sheet.xlsx
+- empty-sheet_6.xlsx
+- Evalueringsark til Banedanmark; clean, 20.11.2025.xlsx
+- Evalueringsark til Banedanmark; clean.xlsx
+- Evalueringsark til Banedanmark; proto.xlsx
+
+Interaktion:
+- Search filtrerer
+- Open vælger fil og lukker modal
+- Dropdown actions:
+  - Rename
+  - Duplicate
+  - Remove from history
+- Open File from Computer trigger hidden file input
+
+========================================
+9. New File Modal
+========================================
+
+Stor modal:
+- Title: “New File”
+- Text:
+  “Choose an option below, or”
+- Button:
+  “start from scratch →”
+- Close X
+
+Cards:
+1. Open File From Computer
+   Description:
+   “Upload your existing spreadsheet to work on with Shortcut”
+   Preview: blue/cyan gradient + folder icon
+
+2. View Templates
+   Description:
+   “Use your own templates or browse our examples”
+   Preview: peach/pink/yellow gradient + folder icon
+
+3. Quick Start
+   Description:
+   “Create a blank spreadsheet or generate one with AI”
+   Preview: mint/green gradient + Shortcut/X icon
+
+Card design:
+- Large white cards
+- Rounded corners
+- Soft shadow
+- Large gradient preview block
+- Dark square arrow button
+- Hover lift
+
+Interaktion:
+- Open File From Computer åbner file picker
+- View Templates åbner templates view
+- Quick Start opretter blank workbook
+- Start from scratch opretter blank workbook
+
+========================================
+10. Data Model
+========================================
+
+Brug Zustand eller eksisterende state management.
+
+Workbook:
+{
+  id: string
+  name: string
+  sheets: Sheet[]
+  activeSheetId: string
+  lastOpened: string
+  sizeKb: number
+  createdAt: string
+  updatedAt: string
+}
+
+Sheet:
+{
+  id: string
+  name: string
+  cells: Record<string, CellData>
+  rowCount: number
+  columnCount: number
+}
+
+CellData:
+{
+  value: string
+  formula?: string
+  format?: CellFormat
+}
+
+CellFormat:
+{
+  bold?: boolean
+  italic?: boolean
+  underline?: boolean
+  fontFamily?: string
+  fontSize?: number
+  textColor?: string
+  fillColor?: string
+  align?: "left" | "center" | "right"
+  verticalAlign?: "top" | "middle" | "bottom"
+  numberFormat?: "general" | "currency" | "percent" | "date" | "number"
+}
+
+SpreadsheetUIState:
+{
+  activeWorkbookId: string
+  activeSheetId: string
+  activeCell: string
+  selectedRange?: string
+  formulaBarValue: string
+  zoom: number
+  activeRibbonTab: "Home" | "Insert" | "Page Layout" | "Formulas" | "Data" | "View" | "Settings"
+  isWorkspaceOpen: boolean
+  workspaceMode: "assistant" | "workspace"
+  activeWorkspaceTab: "Files" | "Skills" | "Templates" | "Memories" | "Backups"
+  isOpenFileModalOpen: boolean
+  isNewFileModalOpen: boolean
+  isShortcutsModalOpen: boolean
+}
+
+ShortcutPrompt:
+{
+  id: string
+  title?: string
+  prompt: string
+  createdAt: string
+  updatedAt: string
+}
+
+Skill:
+{
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  scope: "personal" | "default"
+  status: "active" | "draft"
+}
+
+Tutorial:
+{
+  id: string
+  title: string
+  imageUrl?: string
+  tags: string[]
+  category: "Official" | "Personal"
+}
+
+ChatHistory:
+{
+  id: string
+  workbookName: string
+  title: string
+  createdAt: string
+  relativeTime: string
+}
+
+========================================
+11. Component Breakdown
+========================================
+
+Opret/redesign disse komponenter:
+
+SpreadsheetShell
+TopFileBar
+RibbonTabs
+RibbonCommandArea
+RibbonGroup
+FormulaBar
+SpreadsheetGrid
+SpreadsheetCell
+ColumnHeader
+RowHeader
+SheetTabs
+StatusBar
+WorkspacePanel
+ShortcutAssistantPanel
+DarkWorkspacePanel
+WorkspaceTabs
+MyShortcutsModal
+PromptLibraryTab
+SkillsTab
+TutorialsTab
+ChatHistoryTab
+OpenFileModal
+FileHistoryTable
+NewFileModal
+NewFileCard
+SkillCard
+TutorialCard
+ChatHistoryRow
+
+Mock data skal ligge samlet ét sted, fx:
+spreadsheetMockData.ts
+
+State/store skal ligge samlet ét sted, fx:
+spreadsheetStore.ts
+
+========================================
+12. Functional Acceptance Criteria
+========================================
+
+Godkend kun implementeringen når:
+
+- /spreadsheet viser spreadsheet editoren.
+- Top file bar matcher screenshots.
+- Open File, New File og Export File findes.
+- Ribbon tabs kan skiftes.
+- Home, Page Layout, Formulas, View og Settings viser realistiske controls.
+- Grid viser kolonner A–AE og mindst 52 rækker.
+- Aktiv celle kan vælges.
+- Name box opdateres ved cellevalg.
+- Formula bar viser og ændrer celleværdi.
+- Arrow keys, Tab, Enter og Escape virker basalt.
+- Sheet tab “Sheet1” findes.
+- Zoom slider ændrer zoom state.
+- Workspace panel kan vises/skjules.
+- Assistant mode og dark Workspace mode findes.
+- My Shortcuts modal har alle fire tabs.
+- Prompt Library kan oprette en prompt.
+- Skills tab viser 10 mock skills.
+- Tutorials tab viser tutorial cards i scrollbart grid.
+- Chat History tab har søgning og grupperede conversations.
+- Open File modal viser søgbar filhistorik.
+- New File modal viser tre store cards.
+- Alle modals kan lukkes med X og Escape.
+- Layout er responsive.
+- Mock data er centraliseret.
+- Ingen spredt hardcoding i UI-komponenterne.
+- Ingen backend/API antages; alt kører frontend-only med mock state.
+
+========================================
+13. Design Acceptance Criteria
+========================================
+
+Visuel kvalitet skal matche screenshots:
+
+- Spreadsheet-first layout
+- Kompakt Excel-lignende ribbon
+- Meget lyse gridlines
+- Grøn active cell selection
+- Hvid/light gray produktivitets-UI
+- Mørk workspace panel som kontrast
+- Store modals med afrundede hjørner
+- Modal headings store og klare
+- Shortcut assistant med grøn accent
+- Ingen tunge gradients undtagen New File cards
+- Ingen overdesignede shadows
+- Ingen unødvendige farver
+- UI skal føles hurtigt, tæt og professionelt
+
+========================================
+14. Scope Guardrails
+========================================
+
+Byg ikke:
+- Rigtig XLSX parser endnu
+- Rigtig formula engine
+- Rigtig AI integration
+- Rigtig fil-upload persistence
+- Rigtig multi-user collaboration
+- Backend database
+- Kompleks chart engine
+
+Byg kun:
+- UI
+- routing
+- state model
+- mock interactions
+- realistisk spreadsheet grid
+- modals
+- AI panel shell
+- shortcuts/skills/tutorials/history frontend
+
+========================================
+15. Final QA Pass
+========================================
+
+Efter implementering:
+- Gennemgå alle routes.
+- Test alle modals.
+- Test ribbon-tab switching.
+- Test cell selection og formula bar.
+- Test workspace toggle.
+- Test responsive breakpoints.
+- Fjern visuelle inconsistencies.
+- Sørg for at komponentnavne og filstruktur er klare.

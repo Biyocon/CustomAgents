@@ -1,0 +1,174 @@
+{
+  "scanned_at": "2026-05-06",
+  "scope": "Avatar/ folder - PNG-aktiver, prompt-kilder, og system-prompt-filer pr. agent",
+  "active_runtime_pointer": ".vscode/.codex/agents/agent-roster.json",
+  "summary": {
+    "total_pngs": 26,
+    "agents_in_roster": 25,
+    "roster_png_match": "25/25",
+    "orphan_pngs": 1,
+    "system_prompt_md_files": 25,
+    "spec_roles_covered": 5,
+    "spec_roles_missing": 13,
+    "id_corrections_needed": 4
+  },
+  "id_corrections": [
+    {
+      "current_id": "sibqah-finance-analytics-specialist",
+      "correct_id": "sibgha-finance-analytics-specialist",
+      "reason": "typo in name (Sibqah → Sibgha per Iqra source)"
+    },
+    {
+      "current_id": "joel-mulongo-udbudskonsulent",
+      "correct_id": "joel-mulongo-udbudsjurist",
+      "current_role": "Udbudskonsulent",
+      "correct_role": "Udbudsjurist",
+      "reason": "wrong role per Iqra source"
+    },
+    {
+      "current_id": "mohammad-udbudskonsulent",
+      "current_name": "Mohammad",
+      "correct_name": "Mohammad Abdel-latif",
+      "reason": "incomplete name per Iqra source"
+    },
+    {
+      "current_id": "abdi-asis-produkt-manager",
+      "current_role": "Produkt Manager",
+      "correct_role": "Technical Product Manager",
+      "reason": "more specific per Iqra source"
+    }
+  ],
+  "iqra_prompt_upgrades_block3": [
+    "yunus-udbudskonsulent",
+    "william-udbudskonsulent",
+    "mehtap-udbudskonsulent",
+    "joel-mulongo-udbudsjurist",
+    "ifrah-farmaceut",
+    "mohammad-udbudskonsulent",
+    "sabina-udbudskonsulent-chefkonsulent",
+    "abdi-asis-produkt-manager",
+    "sibgha-finance-analytics-specialist",
+    "ahmad-el-wali",
+    "hassan-dahir"
+  ],
+  "spec_roles_to_add_block4": [
+    {
+      "role": "Head of Sourcing & Interface Management",
+      "id": "ahmad-el-wali",
+      "source": "Iqra",
+      "iqra_const": "AHMAD_EL_WALI_SYSTEM_PROMPT"
+    },
+    {
+      "role": "Technical Interface & Product Owner",
+      "id": "hassan-dahir",
+      "source": "Iqra",
+      "iqra_const": "HASSAN_DAHIR_SYSTEM_PROMPT"
+    },
+    {
+      "role": "Byggeleder",
+      "id": "abdul-matin-byggeleder",
+      "source": "Iqra",
+      "iqra_const": "agentPrompt() — generic"
+    },
+    {
+      "role": "Tilsyn",
+      "id": "abdul-raqib-tilsyn",
+      "source": "Iqra",
+      "iqra_const": "agentPrompt() — generic"
+    },
+    {
+      "role": "Projekteringsleder",
+      "id": "projekteringsleder-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Dokumentcontroller",
+      "id": "dokumentcontroller-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Kvalitetsspecialist",
+      "id": "kvalitetsspecialist-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Kontraktmanager",
+      "id": "kontraktmanager-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Planlægningskoordinator",
+      "id": "planlaegningskoordinator-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Sikkerhedskoordinator",
+      "id": "sikkerhedskoordinator-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Fagansvarlig Spor",
+      "id": "fagansvarlig-spor-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Fagansvarlig Sikring",
+      "id": "fagansvarlig-sikring-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Fagansvarlig Kørestrøm",
+      "id": "fagansvarlig-koerestroem-bdk",
+      "source": "placeholder",
+      "needs_source_material": true,
+      "note": "abdisalam-staerkstroemsingenioer findes (relateret men kørestrøm = ikke samme som stærkstrøm i jernbanekontekst)"
+    },
+    {
+      "role": "Fagansvarlig Tele",
+      "id": "fagansvarlig-tele-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Miljøkoordinator",
+      "id": "miljoekoordinator-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Ibrugtagning/Commissioning",
+      "id": "ibrugtagning-bdk",
+      "source": "placeholder",
+      "needs_source_material": true
+    },
+    {
+      "role": "Økonomi/Controller",
+      "id": "controller-oekonomi-bdk",
+      "source": "placeholder",
+      "needs_source_material": true,
+      "note": "sibgha-finance-analytics-specialist findes (related but not Controller-rolle)"
+    }
+  ],
+  "orphan_files": [
+    "ChatGPT Image May 4, 2026, 07_28_31 PM.png"
+  ],
+  "subfolders": {
+    "agents/": {
+      "purpose": "system prompt markdown pr. agent",
+      "file_count": 26,
+      "controlled_by": "AGENTS.md i mappen + agent-roster.json"
+    },
+    "Iqra-main/": {
+      "purpose": "kilde for rige system prompts (READ-ONLY reference)",
+      "action_block6": "flyttes til Kombi/Iqra-main/"
+    }
+  }
+}

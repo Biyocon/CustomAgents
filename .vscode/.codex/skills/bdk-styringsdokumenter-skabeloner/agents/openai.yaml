@@ -1,0 +1,3 @@
+﻿display_name: BDK Styringsdokumenter og Skabeloner
+short_description: Vælg og prioriter de rigtige skabeloner til projektets styringsgrundlag.
+default_prompt: Afgræns projektbehovet, match til relevante styringsdokumentskabeloner, og returnér en prioriteret udfyldningscheckliste med kilder.

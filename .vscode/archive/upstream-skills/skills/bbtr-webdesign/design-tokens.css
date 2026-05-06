@@ -1,0 +1,189 @@
+/* ==========================================================
+   BBTR Design Tokens — BaneByg Teknisk Rådgivning
+   Baseret på Banedanmarks Designguide 2021
+   ========================================================== */
+
+:root {
+  /* ============================================
+     1. BRAND FARVER (Banedanmark officielle)
+     ============================================ */
+
+  /* Primære farver */
+  --bdk-petrol: #004E51;
+  --bdk-petrol-dark: #003638;
+  --bdk-petrol-50: #80A7A8;
+  --bdk-petrol-20: #CCE0E0;
+  --bdk-petrol-10: #E6F0F0;
+
+  --bdk-koks: #323232;
+  --bdk-koks-50: #999999;
+  --bdk-koks-20: #D6D6D6;
+  --bdk-koks-10: #EBEBEB;
+
+  /* Sekundære farver */
+  --bdk-gul: #FFFF66;
+  --bdk-gul-50: #FFFFB3;
+  --bdk-gul-20: #FFFFE0;
+
+  --bdk-rosa: #FFC8C8;
+  --bdk-rosa-50: #FFE4E4;
+  --bdk-rosa-20: #FFF3F3;
+
+  --bdk-mint: #43FFC8;
+  --bdk-mint-50: #A1FFE3;
+  --bdk-mint-20: #D9FFF3;
+
+  /* ============================================
+     2. SEMANTISKE FARVER (Platform-specifikke)
+     ============================================ */
+
+  /* Baggrunde */
+  --bdk-bg-page: #FFFFFF;
+  --bdk-bg-surface: #F5F5F5;
+  --bdk-bg-elevated: #FFFFFF;
+  --bdk-bg-dark: #333333;
+  --bdk-bg-modal: #4A4A4A;
+  --bdk-bg-header: var(--bdk-koks);
+  --bdk-bg-nav: #444444;
+  --bdk-bg-footer: #333333;
+  --bdk-bg-hover-row: rgba(0, 78, 81, 0.04);
+  --bdk-bg-selected: rgba(0, 78, 81, 0.08);
+
+  /* Tekst */
+  --bdk-text-primary: var(--bdk-koks);
+  --bdk-text-secondary: #666666;
+  --bdk-text-muted: #999999;
+  --bdk-text-on-dark: #FFFFFF;
+  --bdk-text-on-modal: #FFFFFF;
+  --bdk-text-link: var(--bdk-petrol);
+  --bdk-text-link-hover: var(--bdk-petrol-dark);
+  --bdk-text-error: #C0392B;
+  --bdk-text-required: #E74C3C;
+
+  /* Borders */
+  --bdk-border-default: #E0E0E0;
+  --bdk-border-strong: #CCCCCC;
+  --bdk-border-focus: var(--bdk-petrol);
+  --bdk-border-error: #E74C3C;
+  --bdk-border-input: #555555;
+
+  /* Status */
+  --bdk-status-aktiv: #2D8A3E;
+  --bdk-status-inaktiv: #B0B0B0;
+  --bdk-status-udgaaet: #C0392B;
+  --bdk-status-nyt: #27AE60;
+  --bdk-status-warning: #F39C12;
+
+  /* ============================================
+     3. TYPOGRAFI
+     ============================================ */
+
+  --bdk-font-primary: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* Font sizes */
+  --bdk-font-size-2xs: 0.625rem;  /* 10px */
+  --bdk-font-size-xs: 0.75rem;    /* 12px */
+  --bdk-font-size-sm: 0.875rem;   /* 14px */
+  --bdk-font-size-base: 1rem;     /* 16px */
+  --bdk-font-size-lg: 1.125rem;   /* 18px */
+  --bdk-font-size-xl: 1.25rem;    /* 20px */
+  --bdk-font-size-2xl: 1.5rem;    /* 24px */
+  --bdk-font-size-3xl: 2rem;      /* 32px */
+
+  /* Font weights */
+  --bdk-font-weight-normal: 400;
+  --bdk-font-weight-medium: 500;
+  --bdk-font-weight-semibold: 600;
+  --bdk-font-weight-bold: 700;
+
+  /* Line heights */
+  --bdk-line-height-tight: 1.2;
+  --bdk-line-height-snug: 1.35;
+  --bdk-line-height-normal: 1.5;
+  --bdk-line-height-relaxed: 1.75;
+
+  /* Letter spacing */
+  --bdk-letter-spacing-tight: -0.01em;
+  --bdk-letter-spacing-normal: 0;
+  --bdk-letter-spacing-wide: 0.02em;
+
+  /* ============================================
+     4. SPACING
+     ============================================ */
+
+  --bdk-space-0: 0;
+  --bdk-space-1: 4px;
+  --bdk-space-2: 8px;
+  --bdk-space-3: 12px;
+  --bdk-space-4: 16px;
+  --bdk-space-5: 20px;
+  --bdk-space-6: 24px;
+  --bdk-space-8: 32px;
+  --bdk-space-10: 40px;
+  --bdk-space-12: 48px;
+  --bdk-space-16: 64px;
+
+  /* ============================================
+     5. BORDERS & RADII
+     ============================================ */
+
+  --bdk-radius-none: 0;
+  --bdk-radius-sm: 2px;
+  --bdk-radius-md: 4px;
+  --bdk-radius-lg: 8px;
+  --bdk-radius-full: 9999px;
+
+  --bdk-border-width-thin: 1px;
+  --bdk-border-width-medium: 2px;
+  --bdk-border-width-thick: 3px;
+
+  /* ============================================
+     6. SHADOWS
+     ============================================ */
+
+  --bdk-shadow-none: none;
+  --bdk-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --bdk-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --bdk-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --bdk-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --bdk-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.2);
+  --bdk-shadow-modal: 0 12px 40px rgba(0, 0, 0, 0.3);
+
+  /* ============================================
+     7. TRANSITIONS
+     ============================================ */
+
+  --bdk-transition-fast: 150ms ease;
+  --bdk-transition-normal: 250ms ease;
+  --bdk-transition-slow: 400ms ease;
+
+  /* ============================================
+     8. Z-INDEX
+     ============================================ */
+
+  --bdk-z-dropdown: 100;
+  --bdk-z-sticky: 200;
+  --bdk-z-modal-backdrop: 900;
+  --bdk-z-modal: 1000;
+  --bdk-z-tooltip: 1100;
+
+  /* ============================================
+     9. LAYOUT
+     ============================================ */
+
+  --bdk-content-max-width: 1400px;
+  --bdk-sidebar-width: 280px;
+  --bdk-header-height: 48px;
+  --bdk-nav-height: 40px;
+  --bdk-footer-min-height: 120px;
+
+  /* ============================================
+     10. BREAKPOINTS (for media queries)
+     ============================================ */
+  /* Brug i @media: min-width */
+  /* --bdk-bp-sm: 640px;   */
+  /* --bdk-bp-md: 768px;   */
+  /* --bdk-bp-lg: 1024px;  */
+  /* --bdk-bp-xl: 1280px;  */
+  /* --bdk-bp-2xl: 1536px; */
+}

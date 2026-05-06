@@ -1,0 +1,10 @@
+Koncept for kompetencestyring inden for jernbanesikkerhed
+
+
+Banedanmark skal som sikkerhedsgodkendt infrastrukturforvalter identificere de funktioner, som har et jernbanesikkerhedsmæssigt ansvar. 
+
+Derfor har Banedanmark et koncept for kompetencestyring, som er beskrevet i Retningslinjer for kompetencestyring inden for jernbanesikkerhed. Konceptet dækker de funktioner, der har et jernbanesikkerhedsmæssigt ansvar i jernbanesikkerhedsorganisationen.  Funktionens ansvar og kompetence-/helbreds- og uddannelseskrav er beskrevet i funktionsbeskrivelser, som er tilknyttet medarbejderens stillingsbeskrivelse. Funktionsbeskrivelser og stillingsbeskrivelser for medarbejdere i Banedanmark håndteres i SAP-Portalen.
+
+De krav indenfor kompetencestyring som Banedanmark skal opfylde som sikkerhedsgodkendt infrastrukturforvalter er defineret i Bekendtgørelse om sikkerhedsgodkendelse og sikkerhedscertifikat på jernbaneområdet.
+
+Konceptet for kompetencestyring inden for jernbanesikkerhed ejes af Sektionschefen for Processtyring i Kvalitet & Sikkerhed.

@@ -1,0 +1,4 @@
+display_name: BDK Trafikale Blanketter
+short_description: Vælg korrekt ORS/ORF-blanket og få en udfyldningscheckliste.
+default_prompt: Afklar situationen, identificér den korrekte ORS/ORF-blanket, og returnér et begrundet blanketvalg med praktisk udfyldningscheckliste og kilder.
+

@@ -1,0 +1,89 @@
+========================================
+FINAL OVERRIDE NOTES
+========================================
+
+Disse noter overskriver relevante dele af tidligere patches og skal følges som sidste kilde til sandhed.
+
+========================================
+1. PRECISE LAST-SET-BY GUARDS
+========================================
+
+Erstat tidligere lastSetBy state:
+
+lastConversationTypeSetBy: "user" | "system" | null
+lastModeSetBy: "user" | "system" | null
+
+Med:
+
+lastConversationTypeSetBy:
+  | "user"
+  | "team-mode"
+  | "deep-research"
+  | "slash-command"
+  | null
+
+lastModeSetBy:
+  | "user"
+  | "deep-research"
+  | "slash-command"
+  | null
+
+Regler:
+
+- Brugerens manuelle valg vinder altid.
+- Hvis brugeren manuelt vælger conversation type via dropdown:
+  lastConversationTypeSetBy = "user"
+
+- Hvis brugeren manuelt vælger mode via dropdown:
+  lastModeSetBy = "user"
+
+- Team Mode må kun autosætte selectedConversationType = "Agent", hvis:
+  lastConversationTypeSetBy !== "user"
+
+- Når Team Mode autosætter conversation type:
+  lastConversationTypeSetBy = "team-mode"
+
+- Deep Research må kun autosætte selectedConversationType = "Research", hvis:
+  lastConversationTypeSetBy !== "user"
+
+- Når Deep Research autosætter conversation type:
+  lastConversationTypeSetBy = "deep-research"
+
+- Deep Research må kun autosætte selectedMode = "Expert", hvis:
+  lastModeSetBy !== "user"
+
+- Når Deep Research autosætter mode:
+  lastModeSetBy = "deep-research"
+
+- Slash commands må sætte conversation type eller mode.
+- Når slash command sætter conversation type:
+  lastConversationTypeSetBy = "slash-command"
+
+- Når slash command sætter mode:
+  lastModeSetBy = "slash-command"
+
+Conflict rule:
+
+Hvis flere system-capabilities forsøger at autosætte conversation type:
+
+- Brugerens manuelle valg vinder altid.
+- Hvis brugeren ikke har valgt manuelt, vinder den senest aktiverede capability.
+- Team Mode sætter selectedConversationType = "Agent".
+- Deep Research sætter selectedConversationType = "Research".
+- Hvis både Team Mode og Deep Research er aktive, og ingen user override findes, skal den senest aktiverede capability bestemme conversationType.
+
+Eksempel:
+
+- User aktiverer Team Mode:
+  selectedConversationType = "Agent"
+  lastConversationTypeSetBy = "team-mode"
+
+- User aktiverer derefter Deep Research:
+  selectedConversationType = "Research"
+  lastConversationTypeSetBy = "deep-research"
+
+- User vælger manuelt Build:
+  selectedConversationType = "Build"
+  lastConversationTypeSetBy = "user"
+
+- Herefter må Team Mode eller Deep Research ikke automatisk overskrive conversation type.

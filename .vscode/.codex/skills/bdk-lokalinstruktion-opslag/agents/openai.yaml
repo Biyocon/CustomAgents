@@ -1,0 +1,4 @@
+display_name: BDK Lokalinstruktion Opslag
+short_description: Find lokale instruktioner og korrekt ORS/ORF-kontekst.
+default_prompt: Brug geografi og driftssituation til at finde relevante lokale instruktioner, angiv ORS/ORF-tilknytning, og returnér prioriterede matches med kildehenvisninger.
+

@@ -1,0 +1,72 @@
+Godt. Fortsæt ikke til næste IQRA-modul endnu. Luk AdvancedPromptComposer med en kort QA/smoke-test først.
+
+Gør følgende:
+
+1. Verificér quick prompt pills manuelt:
+- Create slide deck:
+  - outputTarget = "slides"
+  - selectedQuickPrompt = { id: "create-slide-deck", label: "Create slide deck" }
+  - conversationType sættes kun til Build hvis lastConversationTypeSetBy !== "user"
+
+- Design system:
+  - outputTarget = "ui"
+  - selectedQuickPrompt = { id: "design-system", label: "Design system" }
+
+- Document to skill:
+  - outputTarget = "workflow"
+  - selectedQuickPrompt = { id: "document-to-skill", label: "Document to skill" }
+  - SkillPicker åbner
+
+- Analyze data:
+  - outputTarget = "spreadsheet"
+  - selectedQuickPrompt = { id: "analyze-data", label: "Analyze data" }
+  - AttachmentMenu eller ContextPicker åbner
+
+2. Verificér user override:
+- Vælg manuelt Conversation Type = Chat eller Build.
+- Klik derefter Analyze data eller Create slide deck.
+- Bekræft at quick prompt ikke overskriver manuelt valgt Conversation Type.
+- Bekræft at outputTarget stadig opdateres.
+
+3. Verificér send gating:
+- Empty composer uden attachments/context/template skal have disabled send.
+- Prompt text alene skal enable send.
+- Complete attachment alene skal enable send.
+- Uploading attachment skal disable send.
+- Error attachment må ikke enable send.
+- Disconnected/requires-auth context må ikke enable send.
+- Valid context alene skal enable send.
+
+4. Verificér normalized payload i console/debug:
+Payload skal indeholde:
+- prompt
+- mode
+- conversationType
+- outputTarget
+- attachments kun med status complete
+- contextItems kun valid/available
+- skills kun enabled
+- toolsPolicy
+- selectedTemplate kun som { id, title, category }
+- theme kun som { id, name, palette }
+- quickPrompt kun som { id, label }
+- createdAt
+
+5. Verificér persistence:
+- selectedQuickPrompt må ikke ryddes på submit.
+- selectedQuickPrompt må kun ryddes ved full composer reset.
+
+6. Verificér popover/focus:
+- Escape lukker aktiv popover.
+- Click outside lukker aktiv popover.
+- Kun én popover er åben ad gangen.
+- Efter valg refokuseres textarea.
+- Cmd/Ctrl+K åbner slash palette.
+- IME guard må ikke være brudt.
+
+Hvis alt ovenstående passer, marker AdvancedPromptComposer som færdig og lav en kort implementation note med:
+- hvilke filer der blev ændret
+- hvilke smoke-tests der er kørt
+- hvilke kendte issues der stadig er pre-existing og ikke relateret til composer
+
+Rør ikke de eksisterende framer-motion ease-array errors i denne iteration.

@@ -1,0 +1,3 @@
+﻿display_name: BDK Styregruppearbejde
+short_description: Strukturér styregruppeaftale, ansvar og beslutningsgrundlag.
+default_prompt: Afgræns styregruppens mandat, kortlæg roller og beslutningsgrundlag, og returnér en operationel opsætning med kilder.

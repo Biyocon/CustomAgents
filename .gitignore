@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/settings/*.json
+.vscode/settings/*.bak
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OneDrive / Windows
+*.tmp
+*.temp
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Local temp
+.temp/
+temp/*.bak
+temp/*.json
+temp/*.zip
+temp/mattpocock-skills/
+
+# Backup files
+*.bak*
+*.bak-*
+
+# OS
+.DS_Store
