@@ -10,9 +10,186 @@ secondary_models:
   - qwen-code
   - gemini-code
 
-agents: []
+agents:
+  - id: yunus-udbudskonsulent
+    name: Yunus
+    role: Udbudskonsulent
+    category: Udbud og kontrakt
+  - id: william-udbudskonsulent
+    name: William
+    role: Udbudskonsulent
+    category: Udbud og kontrakt
+  - id: the-game-elektriker
+    name: The Game
+    role: Elektriker
+    category: Teknik og udførelse
+  - id: sibgha-finance-analytics-specialist
+    name: Sibgha
+    role: Finance Analytics Specialist
+    category: Finans og analyse
+  - id: siamak-folkeskolelaerer
+    name: Siamak
+    role: Folkeskolelærer
+    category: Læring og formidling
+  - id: sharmarke-maler
+    name: Sharmarke
+    role: Maler
+    category: Byggeri og kvalitet
+  - id: shamso-socialraadgiver
+    name: Shamso
+    role: Socialrådgiver
+    category: Borger, interessent og GDPR
+  - id: said-anlaegsingenioer
+    name: Said
+    role: Anlægsingeniør
+    category: Anlæg og bane
+  - id: sabina-udbudskonsulent-chefkonsulent
+    name: Sabina
+    role: Udbudskonsulent / Chefkonsulent
+    category: Udbud og governance
+  - id: qanac-laege
+    name: Qanac
+    role: Læge
+    category: Sundhed og risiko
+  - id: mohammad-udbudskonsulent
+    name: Mohammad Abdel-latif
+    role: Udbudskonsulent
+    category: Udbud og kontrakt
+  - id: mehtap-udbudskonsulent
+    name: Mehtap
+    role: Udbudskonsulent
+    category: Udbud og kvalitet
+  - id: liban-sales-specialist
+    name: Liban
+    role: Sales Specialist
+    category: Salg og positionering
+  - id: joel-mulongo-udbudsjurist
+    name: Joël Mulongo
+    role: Udbudsjurist
+    category: Udbud og kontrakt
+  - id: ifrah-farmaceut
+    name: Ifrah
+    role: Farmaceut
+    category: Sundhed og kvalitet
+  - id: hassan-fagprojektleder
+    name: Hassan
+    role: Fagprojektleder
+    category: Projektledelse og fagpakker
+  - id: hassan-anlaegsingenioer
+    name: Hassan
+    role: Anlægsingeniør
+    category: Anlæg og bane
+  - id: hamsa-afloebsingenioer
+    name: Hamsa
+    role: Afløbsingeniør
+    category: Anlæg og forsyning
+  - id: bojang-fodboldagent
+    name: Bojang
+    role: Fodboldagent
+    category: Forhandling og talent
+  - id: bodjo-fodboldagent
+    name: Bodjo
+    role: Fodboldagent
+    category: Forhandling og talent
+  - id: bamse-paedagog
+    name: Bamse
+    role: Pædagog
+    category: Pædagogik og trivsel
+  - id: ali-jobraadgiver
+    name: Ali
+    role: Jobrådgiver
+    category: Karriere og rådgivning
+  - id: abdullahi-data-engineer
+    name: Abdullahi
+    role: Data Engineer
+    category: Data og automation
+  - id: abdisalam-staerkstroemsingenioer
+    name: Abdisalam
+    role: Stærkstrømsingeniør
+    category: Teknik og bane
+  - id: abdi-asis-produkt-manager
+    name: Abdi Asis
+    role: Technical Product Manager
+    category: Produkt og prioritering
+  - id: ahmad-el-wali
+    name: Ahmad El-Wali
+    role: Strategic Engineering Leader / Head of Sourcing, Contracts & Interface Management
+    category: Ledelse og governance
+  - id: hassan-dahir
+    name: Hassan Dahir
+    role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
+    category: Teknik og udf?relse
+  - id: interface-manager-project-level
+    name: Interface Manager
+    role: Interface Manager, Project Level
+    category: Projektledelse og grænseflader
+  - id: contract-manager-project-level
+    name: Contract Manager
+    role: Contract Manager, Project Level
+    category: Kontrakt og compliance
+  - id: document-manager-project-level
+    name: Document Manager
+    role: Document Manager, Project Level
+    category: Dokumentation og kvalitet
+  - id: configuration-manager-project-level
+    name: Configuration Manager
+    role: Configuration Manager, Project Level
+    category: Teknik og konfiguration
+  - id: test-manager-project-level
+    name: Test Manager
+    role: Test Manager, Project Level
+    category: Test og verifikation
+  - id: incident-manager
+    name: Incident Manager
+    role: Incident Manager
+    category: Drift og hændelser
+  - id: si-manager-csm-interoperabilitet
+    name: S&I Manager
+    role: S&I Manager CSM og Interoperabilitet
+    category: Sikkerhed og interoperabilitet
+  - id: projekteringsleder
+    name: Projekteringsleder
+    role: Projekteringsleder
+    category: Projektering og design
+  - id: bro-inspektoer
+    name: Bro-inspektør
+    role: Bro-inspektør
+    category: Teknik og bane
+  - id: gis-specialist
+    name: GIS-specialist
+    role: GIS-specialist
+    category: Data og geografisk information
 
-skills: []
+skills:
+  - id: banebyg
+  - id: bdk-brand-governance
+  - id: bdk-gdpr-praksis
+  - id: bdk-legal-mapping
+  - id: caveman
+  - id: design-an-interface
+  - id: diagnose
+  - id: edit-article
+  - id: git-guardrails-claude-code
+  - id: grill-me
+  - id: grill-with-docs
+  - id: improve-codebase-architecture
+  - id: karpathy-guidelines
+  - id: migrate-to-shoehorn
+  - id: obsidian-vault
+  - id: qa
+  - id: request-refactor-plan
+  - id: scaffold-exercises
+  - id: setup-matt-pocock-skills
+  - id: setup-pre-commit
+  - id: shared-docx
+  - id: shared-quality
+  - id: tdd
+  - id: to-issues
+  - id: to-prd
+  - id: triage
+  - id: ubiquitous-language
+  - id: write-a-skill
+  - id: zoom-out
 
 brain_paths:
   readme: brain/README.md

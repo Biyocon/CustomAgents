@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 <#
 .SYNOPSIS
     Validerer agent-harness konsistens.
@@ -99,14 +99,14 @@ Write-Host "[2] Ekstra validering..." -ForegroundColor $ColorInfo
 $registryPath = Join-Path $Root ".agents/registry.yaml"
 if (Test-Path $registryPath) {
     $registryContent = Get-Content $registryPath -Encoding UTF8 -Raw -ErrorAction SilentlyContinue
-    if ($registryContent -match "^version:") {
+    if ($registryContent -match "(?m)^version:") {
         Write-Status -Level "OK" -Message "registry.yaml har version-felt"
         $okCount++
     } else {
         Write-Status -Level "WARN" -Message "registry.yaml mangler version-felt"
         $warnCount++
     }
-    if ($registryContent -match "^agents:") {
+    if ($registryContent -match "(?m)^agents:") {
         Write-Status -Level "OK" -Message "registry.yaml har agents-sektion"
         $okCount++
     } else {
@@ -168,7 +168,7 @@ if (Test-Path $skillsDir) {
         $skillMd = Join-Path $dir.FullName "SKILL.md"
         if (Test-Path $skillMd) {
             $content = Get-Content $skillMd -Encoding UTF8 -Raw -ErrorAction SilentlyContinue
-            if ($content -match "^#\s+") {
+            if ($content -match "(?m)^#\s+") {
                 Write-Status -Level "OK" -Message "Skill '$($dir.Name)' har gyldig SKILL.md med overskrift"
                 $okCount++
             } else {

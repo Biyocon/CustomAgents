@@ -5,16 +5,18 @@ skills:
   - bdk-brand-governance
   - bdk-gdpr-praksis
   - bbtr-fagpakkestruktur
-  - bbtr-tværfaglig-koordinering
+  - bbtr-tvaerfaglig-koordinering
   - bbtr-dokumentstyring
   - bbtr-kvalitet-dod
   - bdk-bkp-v17-overview
   - bdk-bkp-v17-data-model
+  - bdk-projektrapportering-frister
+  - bbtr-leverance-mapping
+  - grill-with-docs
 
 capabilities:
-  - projekteringsledelse
-  - designkoordinering
-  - teknisk dokumentation
-  - fagpakkestruktur
-  - BKP-data
-  - tegningshåndtering
+  - designledelse
+  - projekteringsplan
+  - fagkoordinering
+  - tegnings- og modelstyring
+  - kvalitetssikring af design

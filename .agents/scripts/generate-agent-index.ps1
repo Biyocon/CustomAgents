@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 <#
 .SYNOPSIS
     Genererer indeks over alle agenter i .agents/agents/.
@@ -71,7 +71,7 @@ foreach ($dir in $agentDirs) {
     # Parse profile.md for navn, rolle, beskrivelse
     if ($agent.HasProfile) {
         $content = Get-Content $profilePath -Encoding UTF8 -Raw -ErrorAction SilentlyContinue
-        if ($content -match "^#\s+(.+)") {
+        if ($content -match "(?m)^#\s+(.+)") {
             $agent.Role = $Matches[1].Trim()
         }
         if ($content -match "(?ms)^##\s+Beskrivelse\s*\r?\n(.+?)(?=^##|\z)") {

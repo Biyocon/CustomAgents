@@ -60,6 +60,7 @@ if (Test-Path $baneDir) {
     $baneFiles = Get-ChildItem $baneDir -Filter "*.md" -ErrorAction SilentlyContinue
     Add-Issue "INFO" "Banedanmark-agenter: $($baneFiles.Count)"
     foreach ($f in $baneFiles) {
+        if ($f.Name -eq "README.md") { continue }
         $txt = Get-Content $f.FullName -Encoding UTF8 -Raw
         if ($txt -notmatch "^---") {
             Add-Issue "WARN" "$($f.Name): mangler YAML-frontmatter"
