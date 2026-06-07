@@ -76,3 +76,10 @@ temp/*.toml
 temp/*config*.toml
 temp/*-config-*.toml
 temp/*before*mcp*cleanup*.toml
+
+# Temp test/debug junk (B3.2.1)
+temp/test_*.txt
+temp/test_uv.py
+temp/patch.py
+temp/*_debug.txt
+temp/commitmsg.txt
