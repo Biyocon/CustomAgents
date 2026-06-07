@@ -1,5 +1,17 @@
 # AgentSkills — Custom AI Agent Harness
 
+## Runtime Status (QA 2026-06-07)
+
+**Aktiv runtime:** `.vscode/.codex/`
+
+**Migration/reference:** `.agents/`
+
+`.agents/` er en fremtidig model-agnostisk harness-struktur. Den må ikke behandles som aktiv runtime, før der foreligger en ny valideringsrapport og en eksplicit aktiveringsbeslutning.
+
+**Snapshot-branch:** `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`. Den er ikke en backup af lokale ignored/temp/vendor-filer uden for normal Git-tracking.
+
+**Kendt Git-fejl:** `.agents/vendor/mattpocock-skills` er registreret som gitlink/submodule-entry, men `.gitmodules` mangler. Afklar strategien før større oprydning: korrekt submodule, subtree eller vendored copy.
+
 > **Model-agnostisk, genbrugelig agent-harness til professionelle VS Code-projekter.**
 > Udviklet med udgangspunkt i jernbane- og entreprenørkompetencer (Banedanmark), men strukturen er generisk og skal kunne tilpasses ethvert domæne og genbruges i alle fremtidige projekter.
 
@@ -36,7 +48,7 @@ git clone https://github.com/mattpocock/skills.git .agents/vendor/mattpocock-ski
 git clone https://github.com/forrestchang/andrej-karpathy-skills.git .agents/vendor/andrej-karpathy-skills
 ```
 
-> **Status:** Begge repoer er allerede klonet under `.agents/vendor/`.
+> **Status:** `andrej-karpathy-skills` er tilgængelig som almindeligt tracked vendor-indhold. `mattpocock-skills` er en kendt Git hygiene defect: repoet har et gitlink/submodule-entry for `.agents/vendor/mattpocock-skills`, men mangler `.gitmodules`. Afklar dette før `.agents/` aktiveres eller vendor-strukturen ryddes op.
 
 ---
 

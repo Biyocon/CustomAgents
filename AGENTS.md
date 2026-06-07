@@ -1,5 +1,13 @@
 # AGENTS.md
 
+## Runtime status (QA 2026-06-07)
+
+- **Aktiv runtime:** `.vscode/.codex/`
+- **Migration/reference:** `.agents/`
+- `.agents/` må ikke behandles som aktiv runtime, før der foreligger en ny valideringsrapport og en eksplicit aktiveringsbeslutning
+- `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`; den er ikke en backup af ignored/temp/vendor-filer uden for normal Git-tracking
+- Kendt Git-fejl: `.agents/vendor/mattpocock-skills` er et gitlink/submodule-entry uden `.gitmodules`; vælg korrekt submodule, subtree eller vendored copy før større oprydning
+
 ## Projektets AI-struktur
 
 - Aktiv runtime-kerne for dette projekt er `.vscode/.codex/`
@@ -112,13 +120,14 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 | Model adapters | ✅ Komplet | Codex, Kimi, Qwen Code, Gemini Code |
 | Scripts | ✅ Komplet | 4 PowerShell-scripts — audit, install, generate-index, validate |
 | Rapporter | ✅ Komplet | 8 analyse-rapporter + 2 valideringsrapporter |
-| Vendor | ✅ Kopieret | mattpocock-skills + andrej-karpathy-skills |
+| Vendor | ⚠️ Delvist blokeret | andrej-karpathy-skills er tracked; mattpocock-skills er gitlink/submodule-entry uden `.gitmodules` |
 
 ### Kendte mangler
 
 - **23 avatarer mangler** — 11 Banedanmark-roller + 12 IQRA-agenter (dokumenteret i `reports/inventory/`)
 - **4 agenter er FORELØBIG** — `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` — afventer kilde-materiale
 - **6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality` — struktur oprettet, indhold afventer kilde-dokumenter
+- **Vendor-strategi mangler beslutning** — `.agents/vendor/mattpocock-skills` skal rettes som korrekt submodule, subtree eller vendored copy før `.agents/` aktiveres
 
 ### Migrationstilstand
 
