@@ -70,3 +70,9 @@ temp/mattpocock-skills/
 
 # Historical Banedanmark agent backups (B2.1)
 temp/backup_agents/
+
+# Local config backups (B3.1)
+temp/*.toml
+temp/*config*.toml
+temp/*-config-*.toml
+temp/*before*mcp*cleanup*.toml
