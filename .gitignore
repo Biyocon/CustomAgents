@@ -67,3 +67,6 @@ temp/mattpocock-skills/
 # Claude Code local settings (never commit)
 **/.claude/settings.local.json
 .claude/settings.local.json
+
+# Historical Banedanmark agent backups (B2.1)
+temp/backup_agents/
