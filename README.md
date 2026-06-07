@@ -10,7 +10,7 @@
 
 **Snapshot-branch:** `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`. Den er ikke en backup af lokale ignored/temp/vendor-filer uden for normal Git-tracking.
 
-**Kendt Git-fejl:** `.agents/vendor/mattpocock-skills` er registreret som gitlink/submodule-entry, men `.gitmodules` mangler. Afklar strategien før større oprydning: korrekt submodule, subtree eller vendored copy.
+**Vendor-status:** `.agents/vendor/mattpocock-skills` er almindeligt tracked vendored copy, ikke submodule. Bevar vendor-indhold som read-only upstream-reference og opdater kun i et separat vendor-PR.
 
 > **Model-agnostisk, genbrugelig agent-harness til professionelle VS Code-projekter.**
 > Udviklet med udgangspunkt i jernbane- og entreprenørkompetencer (Banedanmark), men strukturen er generisk og skal kunne tilpasses ethvert domæne og genbruges i alle fremtidige projekter.
@@ -38,17 +38,17 @@ For at undgå at rode rå open-source-indhold, lokale projektregler og domænesp
 | **Kurateret** | `.agents/skills/` | Udvalgte og tilpassede skills | Små, skarpe, model-agnostiske. Kildehenvisning bevares. |
 | **Domæne** | `.agents/agents/` + `.agents/brain/` | Banedanmark-specifik viden og roller | Bygget på evidens fra lokale filer. Placeholders markeres tydeligt. |
 
-### Installere vendor-kilder
+### Vendor-kilder
 
 ```bash
 # Matt Pocock skills — engineering workflows, TDD, PRD, issue-slicing, debugging
-git clone https://github.com/mattpocock/skills.git .agents/vendor/mattpocock-skills
+# Status: tracked vendored copy under .agents/vendor/mattpocock-skills
 
 # Andrej Karpathy skills — adfærdsregler: antagelser, enkelhed, kirurgiske ændringer
 git clone https://github.com/forrestchang/andrej-karpathy-skills.git .agents/vendor/andrej-karpathy-skills
 ```
 
-> **Status:** `andrej-karpathy-skills` er tilgængelig som almindeligt tracked vendor-indhold. `mattpocock-skills` er en kendt Git hygiene defect: repoet har et gitlink/submodule-entry for `.agents/vendor/mattpocock-skills`, men mangler `.gitmodules`. Afklar dette før `.agents/` aktiveres eller vendor-strukturen ryddes op.
+> **Status:** `andrej-karpathy-skills` og `mattpocock-skills` er tilgængelige som almindeligt tracked vendor-indhold. Behandl dem som read-only upstream-reference; kopier og tilpas i `.agents/skills/` i stedet for at redigere vendor direkte.
 
 ---
 
