@@ -1,6 +1,8 @@
 # AGENTS.md
 
-## Runtime status (QA 2026-06-07)
+## Runtime status (current: 2026-06-12)
+
+Se også `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsoliderede status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
 
 - **Aktiv runtime:** `.vscode/.codex/`
 - **Migration/reference:** `.agents/`

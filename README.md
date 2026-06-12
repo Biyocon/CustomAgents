@@ -1,6 +1,8 @@
 # AgentSkills — Custom AI Agent Harness
 
-## Runtime Status (QA 2026-06-07)
+## Runtime Status (current: 2026-06-12)
+
+Se `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsoliderede runtime-status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
 
 **Aktiv runtime:** `.vscode/.codex/`
 
@@ -167,11 +169,13 @@ Kvalifikationsordning Entreprenør\
 
 ## Hurtig start
 
-1. **Læs** `AGENTS.md` for at forstå projektets regler og struktur
-2. **Læs** `.agents/brain/context.md` for domæneforståelse
-3. **Vælg agent** efter fagrolle i `.agents/registry.yaml`
-4. **Indlæs** agentens profil og listede skills før leverance
-5. **Kør** validering: `.\.agents\scripts\validate-harness.ps1`
+1. **Læs** `AGENTS.md` for at forstå projektets regler og struktur.
+2. **Læs** `docs/agents/runtime-status-2026-06-12.md` for aktuel runtime-status.
+3. **Læs** `.vscode/.codex/Brain/context.md` for domæneforståelse ved komplekse opgaver.
+4. **Vælg agent** via `.vscode/.codex/scripts/invoke-agent.ps1 -l` eller `.vscode/.codex/agents/registry.yaml`.
+5. **Indlæs** agentens aktive profil og relevante skills fra `.vscode/.codex/`.
+
+Brug kun `.\.agents\scripts\validate-harness.ps1` ved arbejde med den fremtidige/reference-runtime.
 
 ---
 
@@ -275,15 +279,15 @@ Alle agenter i dette harness skal følge disse principper (integreret i `AGENTS.
 
 ---
 
-## Validering
+## Validering Af `.agents`
 
-Kør valideringsscriptet for at tjekke harnessets integritet:
+Kør kun dette script, når du arbejder med den fremtidige/reference-runtime i `.agents/`:
 
 ```powershell
 .\.agents\scripts\validate-harness.ps1
 ```
 
-Scriptet kontrollerer:
+Scriptet kontrollerer `.agents/`-strukturen:
 - `AGENTS.md` findes
 - `.agents/registry.yaml` er valid
 - Brain-mappen er komplet
