@@ -1,12 +1,12 @@
 ﻿# Harness Valideringsrapport
 
-Genereret: 2026-06-03 21:10:28
-Projektrod: C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom
+Genereret: 2026-06-10 23:40:33
+Projektrod: .
 
 ## Resultat
 
-- OK: 3
-- Advarsler: 79
+- OK: 61
+- Advarsler: 7
 - Fejl: 0
 - Kritiske: 0
 
