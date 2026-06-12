@@ -26,7 +26,7 @@
 
 5. **Hvordan testes harnesset optimalt?**
    - Skal vi have et automatiseret test-suite der verificerer at agenter og skills loader korrekt?
-   - Skal der vaere "gyldne" testcases � kendte input/output-par � for hver agent?
+   - Skal der vaere "gyldne" testcases � kendte input/output-par � for hver agent?
 
 6. **Hvordan maaler vi agent-kvalitet?**
    - Noejagtighed af svar?
@@ -35,11 +35,16 @@
 
 ## Migration og drift
 
-7. **Hvornaar migreres `.vscode/.codex/` fuldt til `.agents/`?**
+7. **Hvornaar migreres `.vscode/.codex/` fuldt til `.agents/`?** (opdateret 2026-06-10)
    - Hvilke kriterier skal vaere opfyldt foer den gamle struktur kan nedlaegges?
    - Skal der vaere en "soft launch" periode hvor begge strukturer koerer sideloebende?
+   - **Status efter audit 2026-06-10**: Dual-runtime drift er bekræftet som Critical. Anbefaling: Ryd op i duplication først, fix frontmatter, ingest kilder, kør unified validering, træf eksplicit aktiveringsbeslutning. `.vscode/.codex/` forbliver sandhed indtil da.
 
-8. **Hvordan haandteres samtidige opdateringer af Brain?**
+8. **Hvordan sikres single source of truth under dual-runtime?** (nyt spørgsmål 2026-06-10)
+   - Hvordan undgår vi at agenter/skills bruger forskellige versioner af registry, roster, brain og skills?
+   - Skal der være en master + sync-mekanisme, eller skal `.agents/` kun være tynd reference indtil aktivering?
+
+9. **Hvordan haandteres samtidige opdateringer af Brain?**
    - Hvis to agenter samtidig forsoger at opdatere `assumptions.md`, hvordan undgaar vi konflikter?
    - Skal der indfoeres en laasemekanisme eller et review-flow?
 

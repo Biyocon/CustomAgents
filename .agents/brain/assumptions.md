@@ -4,13 +4,37 @@
 
 ## Domaene og indhold
 
-1. **BBTR/BBE/BKP-indhold skal verificeres senere**
+1. **BBTR/BBE/BKP-indhold skal verificeres senere** (stadig gyldig)
    - Vi antager at de domaenespecifikke skills der refererer til BBTR, BBE og BKP er korrekte, men de er ikke endeligt valideret mod Banedanmarks officielle kilder.
    - *Impact*: Fejl i domaeneskills kan give forkerte raad.
+   - **Status 2026-06-10**: Bekræftet via audit – stadig FORELØBIG i flere skills og agenter.
 
-2. **Funktions- og stillingsbeskrivelser er repraesentative**
+2. **Funktions- og stillingsbeskrivelser er repraesentative** (stadig gyldig)
    - De nuvaerende funktionsbeskrivelser i `Funktions- og stillingsbeskrivelser/` antages at daekke de roller der skal modelleres.
    - *Impact*: Hvis roller mangler, vil agent-koordinering vaere ufuldstaendig.
+   - **Status 2026-06-10**: Bekræftet – 213+ PDF'er er primær kilde, men indlæsning er stadig ufuldendt for flere Banedanmark-roller.
+
+## Nye verificerede forhold fra audit 2026-06-10
+
+3. **Dual-runtime er en realitet og vil vare i overgangsperioden**
+   - `.vscode/.codex/` er den aktive autoritative runtime. `.agents/` er fremtidig/reference-struktur.
+   - Der er betydelig drift mellem de to (registries, skills, agents, brain, scripts).
+   - **Impact**: Agenter og skills kan opføre sig inkonsistent afhængig af hvilken kontekst der bruges. Blokkerer global promotion og `.agents/` aktivering.
+   - **Kilde**: Root AGENTS.md, .vscode/.codex/AGENTS.md, QA_2026-06-07_CustomAgents.md, frisk valideringsrapport, MULTI_AGENT_AUDIT_ADAPTED...
+
+4. **Task/harness-roadmap.md er outdated som sandhedskilde**
+   - Mange "✅ Done" (faser 1-14) modsiger egne samtidige rapporter og aktuel filtilstand.
+   - De åbne faser 6-9 (avatar-prompts, 4 FORELØBIG-agenter, 6 FORELØBIG-skills, validering + promotion) er stadig reelle huller.
+   - **Impact**: Planen må ikke bruges som primær styring uden krydstjek mod aktuelle filer og valideringsrapporter.
+
+5. **Skills frontmatter i .agents/skills/-træet er delvist non-compliant**
+   - Flere FORELØBIG domæne-skills (banebyg + bdk-*) mangler påkrævet `name:` felt og har inkonsistent trigger/description-format.
+   - **Impact**: Validering og discovery bliver upålidelig for den fremtidige model-agnostiske struktur.
+
+6. **Temp/ + duplication er et reelt governance- og hygiene-problem**
+   - Temp/ indeholder 195+ filer med gamle generators, vendored copies og backups.
+   - Der findes multiple registries, script-duplikater og et u-spec "root/skills/" lag.
+   - **Impact**: Øger risiko for at bruge forældet indhold og gør oprydning før promotion nødvendig.
 
 ## Tekniske antagelser
 
