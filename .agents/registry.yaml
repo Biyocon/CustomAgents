@@ -119,46 +119,61 @@ agents:
     name: Hassan Dahir
     role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
     category: Teknik og udf?relse
+
+# Arkiverede avatarløse agenter — flyttet til archive/avatarless-agents/.
+# Årsag: intet matchende avatar-billede. Indhold + historik bevaret.
+# Aktiv runtime (.vscode/.codex/**) er bevidst urørt; projekteringsleder har en separat aktiv runtime-kopi der ikke arkiveres.
+archived_avatarless_agents:
   - id: interface-manager-project-level
     name: Interface Manager
     role: Interface Manager, Project Level
     category: Projektledelse og grænseflader
+    archived_reason: no matching avatar image
   - id: contract-manager-project-level
     name: Contract Manager
     role: Contract Manager, Project Level
     category: Kontrakt og compliance
+    archived_reason: no matching avatar image
   - id: document-manager-project-level
     name: Document Manager
     role: Document Manager, Project Level
     category: Dokumentation og kvalitet
+    archived_reason: no matching avatar image
   - id: configuration-manager-project-level
     name: Configuration Manager
     role: Configuration Manager, Project Level
     category: Teknik og konfiguration
+    archived_reason: no matching avatar image
   - id: test-manager-project-level
     name: Test Manager
     role: Test Manager, Project Level
     category: Test og verifikation
+    archived_reason: no matching avatar image
   - id: incident-manager
     name: Incident Manager
     role: Incident Manager
     category: Drift og hændelser
+    archived_reason: no matching avatar image
   - id: si-manager-csm-interoperabilitet
     name: S&I Manager
     role: S&I Manager CSM og Interoperabilitet
     category: Sikkerhed og interoperabilitet
+    archived_reason: no matching avatar image
   - id: projekteringsleder
     name: Projekteringsleder
     role: Projekteringsleder
     category: Projektering og design
+    archived_reason: no matching avatar image
   - id: bro-inspektoer
     name: Bro-inspektør
     role: Bro-inspektør
     category: Teknik og bane
+    archived_reason: no matching avatar image
   - id: gis-specialist
     name: GIS-specialist
     role: GIS-specialist
     category: Data og geografisk information
+    archived_reason: no matching avatar image
 
 skills:
   - id: banebyg
