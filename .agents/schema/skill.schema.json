@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customagents/.agents/schema/skill.schema.json",
+  "title": "Canonical skill",
+  "description": "Target contract for .agents/skills/<id>/SKILL.md frontmatter. DEFINITION ONLY — not enforced in PR B. Three frontmatter variants currently exist across 33 .agents skills: 'name+description' (27), 'trigger+description' with NO name (6: banebyg, bdk-brand-governance, bdk-legal-mapping, bdk-gdpr-praksis, shared-quality, shared-docx), and 'version+name+description' (Higgsfield skills). Normalizing the 6 trigger-only skills to carry name is a LATER migration, not PR B.",
+  "type": "object",
+  "required": ["name", "description"],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Lowercase-hyphen; MUST equal the skill directory name (validate-harness checks name==dir)."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "description": "What the skill does + when to use it (trigger intent embedded in prose)."
+    },
+    "trigger": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional supplemental trigger keywords. Supplement to name+description, NOT a replacement for name."
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional semantic version. Allowed because Higgsfield skills carry it."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "FORELOEBIG", "deprecated", "candidate"],
+      "description": "FORELOEBIG = placeholder/provisional. 'candidate' = source-library capability not yet an active skill."
+    },
+    "category": { "type": "string" },
+    "domain": { "type": "string", "description": "e.g. banedanmark, engineering, productivity." },
+    "source": { "type": "string", "description": "Origin, e.g. mattpocock-skills (vendor), Banedanmark domain, higgsfield-ai/skills." },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": { "origin": { "type": "string" }, "ref": { "type": "string" } }
+    },
+    "runtime_support": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Adapter ids that can render/execute this skill. Planned; not populated in PR B."
+    },
+    "references": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Relative paths to references/ files."
+    },
+    "safety_notes": { "type": "string" },
+    "owner": { "type": "string" },
+    "maintenance": { "type": "string" }
+  },
+  "$comment": "Scope note: 33 .agents/skills, 73 .vscode/.codex/skills, 35 root skills/ (legacy), plus vendor read-only copies under .agents/vendor/. This schema targets the .agents curated layer. Source-library capability CANDIDATES (not active skills yet): design-artifacts (claude-design.md), visual-explainer (visualize.md), deep-research (research_instructions.md) — see docs/agents/sources/. 73-vs-33 reconciliation and name-vs-trigger normalization are OPEN DECISIONS."
+}

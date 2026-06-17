@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customagents/.agents/schema/archive-entry.schema.json",
+  "title": "Archive entry (archived / avatarless agent)",
+  "description": "Target contract for agents deliberately archived out of the persona/reference layer (currently archive/avatarless-agents/). DEFINITION ONLY — not enforced in PR B. Archive entries MUST NOT require an active .agents/agents/<id> directory.",
+  "type": "object",
+  "required": ["id", "archive_path", "archived_reason"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "original_path": {
+      "type": "string",
+      "description": "Where the agent lived before archiving, e.g. .agents/agents/<id>/ and/or Avatar/agents/System_Prompt_Agent_<id>.md."
+    },
+    "archive_path": {
+      "type": "string",
+      "description": "Current archived location, e.g. archive/avatarless-agents/.agents/agents/<id>/."
+    },
+    "archived_reason": {
+      "type": "string",
+      "description": "Why archived, e.g. 'no matching avatar image'."
+    },
+    "archived_at": { "type": "string", "description": "ISO date/timestamp." },
+    "avatar_status": {
+      "type": "string",
+      "enum": ["none", "present", "restored"],
+      "description": "'none' for avatarless archived agents."
+    },
+    "source": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": { "origin": { "type": "string" }, "ref": { "type": "string" } }
+    },
+    "restore_criteria": {
+      "type": "string",
+      "description": "What must be true to restore to the active layer, e.g. 'an avatar image is added' (cf. hassan-dahir, restored when avatar landed in PR #13)."
+    },
+    "validation_behavior": {
+      "type": "string",
+      "description": "Archived entries should not be flagged as missing active agents. validate-harness currently emits FALSE POSITIVES for archived_avatarless_agents — that fix is LATER validation-hygiene, NOT PR B."
+    },
+    "notes": { "type": "string" }
+  },
+  "$comment": "10 agents are deliberately archived under archive/avatarless-agents/ (reason: no matching avatar image). hassan-dahir is NOT archived (avatar added in PR #13). validate-harness false positives for archived_avatarless_agents are tracked as later validation-hygiene."
+}

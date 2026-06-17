@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customagents/.agents/schema/runtime-adapter.schema.json",
+  "title": "Runtime adapter",
+  "description": "Target contract describing how the canonical .agents/ layer maps onto a specific LLM/coding-agent runtime. DEFINITION ONLY — no adapter is implemented in PR B. All adapters are 'planned' unless a documented active runtime exists (only .vscode/.codex/ is currently active, for the Codex runtime).",
+  "type": "object",
+  "required": ["id", "status"],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["codex", "claude", "claude-code", "kimi", "ollama", "gemini", "cursor"],
+      "description": "Runtime id. Future candidates (visual/design/research host-runtimes) may extend this enum later — not implemented."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "planned", "not-implemented"],
+      "description": "Only the Codex runtime backing .vscode/.codex/ is 'active' today. All others are 'planned'/'not-implemented'. Cursor is a planned adapter candidate sourced from docs/agents/sources/runtimes/cursor.md."
+    },
+    "entrypoint": {
+      "type": "string",
+      "description": "Instruction file the runtime reads, e.g. AGENTS.md, CLAUDE.md, GEMINI.md, or an Ollama Modelfile SYSTEM block."
+    },
+    "target_paths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Generated output locations for this runtime (e.g. .vscode/.codex/ for codex, .claude/ for claude-code)."
+    },
+    "supported_artifact_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. agents, skills, prompts, registry."
+    },
+    "prompt_rendering": { "type": "string", "description": "How canonical prompts are rendered for this runtime." },
+    "skill_loading": { "type": "string", "description": "How skills are exposed (e.g. symlink, copy, absolute-path load)." },
+    "registry_rendering": { "type": "string", "description": "How the canonical registry is rendered/validated for this runtime." },
+    "memory_behavior": { "type": "string", "description": "How Brain/memory is provided to this runtime." },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  },
+  "$comment": "Planned adapter set: codex (active, .vscode/.codex/), claude/claude-code (CLAUDE.md + .claude/), kimi, ollama (Modelfiles), gemini (GEMINI.md), cursor (from source-library). Future candidates: design/visual/research host-runtimes (claude-design.md, visualize.md, research_instructions.md) — reference only, not implemented. Adapter implementation is PR C; runtime generation is PR D/F."
+}
