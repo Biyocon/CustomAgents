@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customagents/.agents/schema/registry.schema.json",
+  "title": "Canonical registry",
+  "description": "Target contract for the canonical registry (.agents/registry.yaml). DEFINITION ONLY — not enforced in PR B; .agents/registry.yaml is NOT edited by this PR. Runtime registries are target-generated-only later (PR D/F).",
+  "type": "object",
+  "required": ["version", "agents", "skills"],
+  "additionalProperties": true,
+  "properties": {
+    "version": { "type": ["string", "integer"] },
+    "agents": {
+      "type": "array",
+      "description": "Active agent entries. See agent-profile.schema.json for per-agent profile contract.",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "category": { "type": "string" },
+          "accent": { "type": "string" },
+          "status": { "type": "string" },
+          "source": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } },
+          "capabilities": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "Skill ids (or {id} objects) available in the canonical layer.",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "object", "required": ["id"], "properties": { "id": { "type": "string" } }, "additionalProperties": true }
+        ]
+      }
+    },
+    "archived_avatarless_agents": {
+      "type": "array",
+      "description": "Agents archived out of the persona layer. See archive-entry.schema.json.",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "vendor_sources": { "type": "array", "items": { "type": "string" } },
+    "runtime_adapters": {
+      "type": "array",
+      "description": "Adapter ids (see runtime-adapter.schema.json). May appear as 'model_adapters' in legacy data.",
+      "items": { "type": "string" }
+    },
+    "model_adapters": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Legacy alias for runtime_adapters (present in current .agents/registry.yaml)."
+    },
+    "validation_commands": { "type": "array", "items": { "type": "string" } },
+    "brain_paths": { "type": "object", "additionalProperties": true },
+    "source_prompt_references": {
+      "type": "array",
+      "description": "References to docs/agents/sources/** (capabilities/runtimes/orchestrators). Reference material — NOT active runtime, NOT active agents, NOT executable skills.",
+      "items": {
+        "type": "object",
+        "required": ["path", "category"],
+        "additionalProperties": true,
+        "properties": {
+          "path": { "type": "string" },
+          "category": { "type": "string", "enum": ["capability", "runtime", "orchestrator"] },
+          "candidate": { "type": "string", "description": "e.g. design-artifacts, visual-explainer, deep-research, cursor-adapter." }
+        }
+      }
+    },
+    "open_decisions": { "type": "array", "items": { "type": "string" } }
+  },
+  "$comment": "Registry landscape (4 registries, 3 schemas): .agents/registry.yaml = CANONICAL target (not edited in PR B); .vscode/.codex/agents/registry.yaml = ACTIVE runtime, generation target later (NEVER touched in PR B); registry.yaml (root) = legacy pointer-manifest, deprecate-candidate (not deleted); .vscode/.codex/registry.yaml = empty scaffold, deprecate-candidate (not deleted). Reconciliation 4->1 and runtime generation are OPEN — see docs/architecture/registry-reconciliation.md."
+}

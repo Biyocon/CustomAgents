@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://customagents/.agents/schema/agent-profile.schema.json",
+  "title": "Canonical agent profile",
+  "description": "Target contract for .agents/agents/<id>/profile.md frontmatter. DEFINITION ONLY — not enforced in PR B. Existing profiles are not migrated by this schema. The system prompt is target-canonical as a fenced ```text block in the profile.md body (NOT a separate file); Avatar/agents/System_Prompt_Agent_*.md is a later dedup/migration concern, not PR B.",
+  "type": "object",
+  "required": ["id", "name", "role", "category", "status", "source"],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Lowercase-hyphen id; must equal the agent directory name."
+    },
+    "name": { "type": "string", "description": "Human display name." },
+    "role": { "type": "string", "description": "Role / title." },
+    "category": { "type": "string", "description": "Grouping category." },
+    "status": {
+      "type": "string",
+      "enum": ["active", "planned", "FORELOEBIG", "deprecated", "archived"],
+      "description": "Lifecycle status. FORELOEBIG = placeholder/provisional (Danish 'FORELØBIG'); spelled ASCII here for tooling-safety."
+    },
+    "source": {
+      "type": "string",
+      "description": "Provenance string, e.g. 'Iqra-main/lib/agents/src/index.ts (X_SYSTEM_PROMPT)' or 'Agent-harness / Banedanmark domain knowledge'."
+    },
+    "avatar": {
+      "type": ["string", "null"],
+      "description": "Relative path to avatar image, or null if avatarless (avatarless candidates belong in archive-entry.schema.json)."
+    },
+    "accent": { "type": "string", "description": "Accent color token/name." },
+    "primary_models": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Preferred model runtimes (e.g. Codex, Kimi, Qwen Code, Gemini Code)."
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Skill ids. TARGET-CANONICAL location for skills (single source). skills.yaml is target-deprecated/generated — folding it in is a later migration, not PR B."
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form capability tags. Target-canonical location is this profile frontmatter (currently also duplicated in skills.yaml + runtime registry)."
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "runtime_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Adapter ids this agent renders to (see runtime-adapter.schema.json). Planned; not populated in PR B."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "origin": { "type": "string" },
+        "ref": { "type": "string" }
+      },
+      "description": "Structured provenance (supersedes the flat source string over time)."
+    },
+    "open_decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Known unresolved questions for this agent."
+    },
+    "notes": { "type": "string" }
+  },
+  "$comment": "Body contract (not expressible in JSON Schema): profile.md MUST contain the system prompt in a fenced ```text block under a '## System Prompt' heading. This is the single canonical prompt source; the Avatar/agents/System_Prompt_Agent_*.md duplicate is slated for later dedup. Role-vs-persona agent model and system-prompt placement are OPEN DECISIONS — see docs/architecture/registry-reconciliation.md."
+}
