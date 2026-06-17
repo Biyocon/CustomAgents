@@ -1,0 +1,110 @@
+# ADR: Multi-runtime VS Code agent system
+
+## Status
+
+Proposed (2026-06-17)
+
+## Context
+
+Slutproduktet for dette repo er et **komplet, model-agnostisk agent-system til VS Code**, der kan bruges direkte med flere LLM-runtimes:
+
+- Claude
+- Codex
+- Kimi
+- Ollama
+- Gemini / Gemini CLI
+- andre lokale/cloud LLM'er
+
+Den nuværende tilstand:
+
+- `.vscode/.codex/` er **aktiv runtime** i dag (eneste lokale kilde til sandhed for drift).
+- `.agents/` er et **model-agnostisk reference-/canonical-kandidat-lag** (3-lags-design: vendor / kurateret / domæne; med et `model-adapters/`-lag).
+
+Det centrale problem er **divergens og dobbeltvedligeholdelse** mellem de to lag:
+
+- `.vscode/.codex/` og `.agents/` er i dag **divergerende, ikke spejlede**.
+- **Rolle-agenter vs persona-agenter:** `.vscode/.codex/agents/banedanmark/` har ~14 rolle-baserede agenter; `.agents/agents/` har 27 persona-baserede agenter.
+- **73 skills vs 29 skills:** `.vscode/.codex/skills/` har ~73 skills; `.agents/skills/` har 29 kuraterede.
+- **Flere registries:** root `registry.yaml`, `.agents/registry.yaml`, en tom scaffold `.vscode/.codex/registry.yaml`, og den reelle aktive `.vscode/.codex/agents/registry.yaml`.
+- **Adapter-laget er primært dokumentation, ikke generatorer:** `.agents/model-adapters/` indeholder beskrivende noter for codex/kimi/qwen/gemini — der findes ingen Claude- eller Ollama-adapter og ingen export/generate-mekanisme.
+
+PR #9–#14 har ryddet persona/reference-laget:
+
+- 27 avatar-backed agents i normal roster.
+- 10 avatarless agents arkiveret i `archive/avatarless-agents/`.
+- `hassan-dahir` er avatar-backed og ikke arkiveret.
+- Aktiv runtime `.vscode/.codex/**` er hidtil urørt.
+
+## Decision
+
+1. **`.agents/` skal modnes til canonical source of truth** for agenter, skills, prompts og canonical Brain — det model-agnostiske lag, ikke det codex-navngivne runtime-lag.
+2. **`.vscode/.codex/` forbliver aktiv runtime midlertidigt** (transitional), så drift ikke afbrydes.
+3. **`.vscode/.codex/` skal på sigt genereres eller valideres fra `.agents/`** — runtime-output, ikke selvstændig kilde.
+4. **Runtime-adapters skal bygges** for Claude, Codex, Kimi, Ollama og Gemini/Gemini CLI.
+5. **Én canonical registry skal etableres senere** (`.agents/registry.yaml`); øvrige registries genereres/valideres fra den.
+6. **Runtime-output må ikke blive permanent separat sandhed** — ingen parallel håndvedligehold når generatorer findes.
+7. **Memory opdeles i tre kategorier:**
+   - canonical memory (varig projektviden: context, glossary, operating-principles, ADR'er)
+   - runtime-local working memory (aktiv Brain, session-history)
+   - session/audit snapshots (end-of-day, audit-noter)
+8. **Migration sker PR-for-PR, ikke big-bang.**
+
+## Consequences
+
+**Positivt:**
+- Model-agnostisk system, der virker på tværs af Claude/Codex/Kimi/Ollama/Gemini.
+- Mindre dobbeltvedligeholdelse (én kilde → genererede runtimes).
+- Bedre portabilitet i VS Code og på tværs af projekter.
+- Klarere governance (source vs runtime vs memory vs archive).
+
+**Negativt / forudsætninger:**
+- Kræver et canonical schema (agent/skill/registry).
+- Kræver generatorer/export-scripts.
+- Kræver adapter-dokumentation pr. runtime.
+- Kræver registry-reconciliation (de 4 registries → én canonical).
+
+**Risiko:**
+- Aktiv runtime (`.vscode/.codex/`) kan brækkes ved for hurtig migration.
+
+**Mitigering:**
+- `.vscode/.codex/` røres **ikke** før export/validation-mekanismer findes og en eksplicit aktiveringsbeslutning er taget.
+- Reconciliation (73 vs 29 skills, rolle vs persona) afklares før canonicalisering.
+
+## Non-goals
+
+- Ingen migration i denne PR.
+- Ingen schema i denne PR.
+- Ingen adapter-implementation i denne PR.
+- Ingen memory commit i denne PR.
+- Ingen cleanup.
+- Ingen branch deletion.
+- Ingen Funktionsbeskrivelser-flytning.
+
+Denne PR er **udelukkende dokumentation** (ADR + repo-map).
+
+## Target model
+
+```text
+.agents/  (CANONICAL SOURCE — model-agnostisk)
+   │
+   │  export/generate + validation (senere PR'er)
+   ▼
+   ├─> .vscode/.codex/        # generated Codex / VS Code runtime (i dag håndholdt)
+   ├─> .claude/ + CLAUDE.md   # generated Claude runtime
+   ├─> kimi runtime           # generated Kimi runtime
+   ├─> ollama/ Modelfiles     # generated Ollama runtime (SYSTEM baked in)
+   └─> gemini/ + GEMINI.md    # generated Gemini / Gemini CLI runtime
+```
+
+Princip: canonical (`.agents/`) → genererede runtime-outputs via scripts; adapters beskriver mapping; docs/archive er versioneret; memory/scratch er lokal/delvist ignored.
+
+## Roadmap
+
+PR-sekvens (denne ADR er PR A):
+
+- **PR A — ADR + repo map** (denne PR): fastslår target architecture og kortlægger repoet. Kun dokumentation.
+- **PR B — Canonical schema:** JSON Schema for agent `profile`, `skill` og `registry`; konsolidering mod én canonical registry-kilde.
+- **PR C — Adapter plan:** README + settings-templates pr. runtime (Claude/Codex/Kimi/Ollama/Gemini).
+- **PR D — Export/validation scripts:** generér runtime fra canonical; sync-validation; konsolidér de eksisterende script-sæt.
+- **PR E — Memory governance:** policy for canonical vs runtime-local vs snapshot; landing af memory-artefakter.
+- **PR F — Runtime activation/migration:** generér `.vscode/.codex/` fra canonical; afvikl manuel dobbeltvedligehold. Højeste risiko — kræver rollback-plan og eksplicit aktiveringsbeslutning.
