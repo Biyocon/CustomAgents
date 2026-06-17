@@ -64,3 +64,72 @@ Brugeren anmodede om en dybdeanalyse af 213 Banedanmark funktionsbeskrivelser (P
 ## 2026-05-06 — Tidligere session
 
 Se `qa-log.md` og `Kombi/claude-mem-main/` for upstream historik.
+
+---
+
+## 2026-06-10 — Dyb multi-agent audit + plan-gennemgang + anvendelse af MULTI_AGENT_AUDIT_TEMPLATE.md
+
+### Baggrund
+Brugeren bad om at scanne, gennemgå, analysere og vurdere hele kodebasen grundigt og systematisk, derefter tilpasse `MULTI_AGENT_AUDIT_TEMPLATE.md` til dette repo, gennemgå den eksisterende plan (`Task/harness-roadmap.md`) og anvende den tilpassede skabelon.
+
+### Metode
+- Fuld strukturel og indholdsmæssig gennemgang af rod, begge runtimes (`.vscode/.codex/` + `.agents/`), skills, agenter, Brain, scripts, temp/, reports/, Avatar/, Funktions- og stillingsbeskrivelser/FB/ (213+ PDF'er), registries.
+- Oprettelse af `MULTI_AGENT_AUDIT_ADAPTED_FOR_THIS_HARNESS.md` (fuldt udfyldt projektkonfiguration, tilpassede workstreams, checks, sandhedskilderegel).
+- Gennemgang af `Task/harness-roadmap.md` mod aktuelle filer og tidligere rapporter.
+- Udførelse af rigtigt multi-agent audit via 4 parallelle workstreams (A: Arkitektur & Dual-Runtime, B: Skills & Frontmatter, C: Agenter & Domæne-sporbarhed, D: QA/Drift/Risici) baseret på den tilpassede skabelon.
+- Syntese til fuld struktureret audit-rapport i skabelonens krævede format.
+
+### Centrale fund og observationer
+- **Dual-runtime er den dominerende virkelighed** (Critical): `.vscode/.codex/` er aktiv autoritativ runtime. `.agents/` er delvist populeret men har betydelig drift (registries, skills, agents, brain, scripts).
+- **Task/harness-roadmap.md er væsentligt outdated**: Mange "✅ Done" (faser 1-14) modsiger egne May-rapporter og aktuel tilstand. De åbne faser 6-9 er stadig reelle huller.
+- **FORELØBIG-persistens**: 4 agenter (Phase 7) + 6 domæne-skills (Phase 8) mangler stadig konkret kildeindlæsning fra FB-PDF'er.
+- **Skills frontmatter-problemer** i `.agents/skills/`-træet (flere mangler `name:`).
+- **Bloat og duplication**: temp/ (195+ filer), multiple registries, script-duplikater, root/skills/ som u-spec lag.
+- Valideringsscripts virker, men mangler dual-runtime dækning og fuld spec-compliance.
+- Styrker: Brain + runbooks solide, vendor-isolation på plads, aktiv runtime har god domænedækning.
+
+### Beslutninger / anbefalinger
+- `.vscode/.codex/` forbliver eneste lokale sandhedskilde indtil ny valideringsrapport + eksplicit aktiveringsbeslutning.
+- Roadmap-planen skal opdateres snarest (falske "Done" fjernes, åbne faser linkes til konkrete audit-anbefalinger).
+- Kildeindlæsning fra FB-PDF'er er højeste prioritet for domæneværdi.
+- Oprydning af drift, temp/ og duplication er forudsætning for promotion og `.agents/` aktivering.
+- Den tilpassede audit-skabelon er nu det officielle værktøj til fremtidige audits.
+
+### Leverancer
+- `MULTI_AGENT_AUDIT_ADAPTED_FOR_THIS_HARNESS.md`
+- Fuld audit-rapport (Executive Summary + Metode + 4 analyse-sektioner + Verifikationsstatus + Prioriteret handlingsplan (Nu/Snart/Senere) + Bilag)
+- Ny session-memory: `.agents/brain/memory/session-2026-06-10.md`
+- Opdateringer til `.agents/brain/assumptions.md`, `.agents/brain/open-questions.md` og ny ADR `ADR-0002-2026-06-10-audit-dual-runtime-plan-review.md`
+
+### Næste trin (prioriteret)
+**Nu:** Opdater roadmap, fix frontmatter i .agents/skills/, unificér registries/scripts, ryd temp/, opdater brain-filer.
+**Snart:** Indlæs kilder fra FB-PDF'er til FORELØBIG-agenter/skills, kør unified dual-validate, træf eksplicit .agents/-beslutning.
+**Senere:** Færdiggør Phase 6 (avatars), eksekvér global promotion.
+
+### Bemaerkninger
+- Arbejdet fulgte skabelonens krav om evidensbaseret tilgang, sandhedskilderegel og workstream-struktur.
+- Subagents blev brugt til de 4 workstreams for at undgå "single-agent analyse forklædt som multi-agent".
+
+---
+
+## 2026-06-17 — Agent-system PR-serie + multi-runtime arkitekturbeslutning
+
+### Merged denne arbejdsdag (PR #9–#16)
+- PR #9 avatar encoding/fences · #10 skill H1 hygiene · #11 validation report refresh · #12 untrack validation-report.json · #13 add Hassan Dahir avatar · #14 archive 10 avatarless agents · #15 ADR + repo-map · #16 add 4 Higgsfield AI skills.
+- main HEAD efter #16: bbb15592a18773b4fb80a7170d97fc6857858738.
+
+### Arkitekturbeslutning (PR A / ADR landet)
+- `.agents/` = canonical source target; `.vscode/.codex/` = aktiv/transitional runtime; runtime skal senere genereres/valideres fra canonical.
+- Roadmap: A (ADR) done · B (schema) next, ikke startet · C (adapters) · D (export/validation) · E (memory governance) · F (runtime activation) — ikke startet.
+
+### Persona/agent-status
+- 27 avatar-backed agenter i normal persona/reference-lag; 10 avatarløse arkiveret i `archive/avatarless-agents/`; hassan-dahir er avatar-backed (ikke arkiveret). Aktiv runtime `.vscode/.codex/**` urørt.
+
+### Higgsfield
+- 4 Higgsfield AI media-gen skills tilføjet til `.agents/skills/` (canonical lag, ikke runtime-aktiveret); domæne-fremmede, tilføjet på eksplicit ordre; schema/registry-reconciliation skal senere tage højde for dem.
+
+### Næste planlagte workstream
+- Design Agent (HTML/design-artifact agent) — planned, ikke implementeret. Næste beslutning: persona-agent vs role-agent vs skill vs runtime-adapter.
+
+### Kontrolleret nedlukning
+- Dagen lukket kontrolleret; ingen tunge spor startet (ingen schema/adapter/export/runtime-activation/cleanup).
