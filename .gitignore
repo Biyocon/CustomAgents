@@ -50,6 +50,9 @@ desktop.ini
 *.log
 logs/
 
+# Generated reports (regenerated on demand via validation scripts)
+validation-report.json
+
 # Local temp
 .temp/
 temp/*.bak
