@@ -1,7 +1,8 @@
-﻿# Agenter
+# Agenter
 
 > Root-index over alle agenter i dette harness.
 > Genereret: 2026-06-03 21:33:03
+> Opdateret: 2026-06-17 — 10 avatarløse agenter flyttet til arkiv (se nederst).
 
 ## Agent-liste
 
@@ -61,41 +62,6 @@
 - [profile.md](bojang-fodboldagent/profile.md)
 - [skills.yaml](bojang-fodboldagent/skills.yaml)
 
-### bro-inspektoer
-
-**Rolle:** Agent: Bro-inspektør – Bro-inspektør
-
-- [profile.md](bro-inspektoer/profile.md)
-- [skills.yaml](bro-inspektoer/skills.yaml)
-
-### configuration-manager-project-level
-
-**Rolle:** Agent: Configuration Manager – Configuration Manager, Project Level
-
-- [profile.md](configuration-manager-project-level/profile.md)
-- [skills.yaml](configuration-manager-project-level/skills.yaml)
-
-### contract-manager-project-level
-
-**Rolle:** Agent: Contract Manager – Contract Manager, Project Level
-
-- [profile.md](contract-manager-project-level/profile.md)
-- [skills.yaml](contract-manager-project-level/skills.yaml)
-
-### document-manager-project-level
-
-**Rolle:** Agent: Document Manager – Document Manager, Project Level
-
-- [profile.md](document-manager-project-level/profile.md)
-- [skills.yaml](document-manager-project-level/skills.yaml)
-
-### gis-specialist
-
-**Rolle:** Agent: GIS-specialist – GIS-specialist
-
-- [profile.md](gis-specialist/profile.md)
-- [skills.yaml](gis-specialist/skills.yaml)
-
 ### hamsa-afloebsingenioer
 
 **Rolle:** Agent: Hamsa – Afløbsingeniør
@@ -131,20 +97,6 @@
 - [profile.md](ifrah-farmaceut/profile.md)
 - [skills.yaml](ifrah-farmaceut/skills.yaml)
 
-### incident-manager
-
-**Rolle:** Agent: Incident Manager – Incident Manager
-
-- [profile.md](incident-manager/profile.md)
-- [skills.yaml](incident-manager/skills.yaml)
-
-### interface-manager-project-level
-
-**Rolle:** Agent: Interface Manager – Interface Manager, Project Level
-
-- [profile.md](interface-manager-project-level/profile.md)
-- [skills.yaml](interface-manager-project-level/skills.yaml)
-
 ### joel-mulongo-udbudsjurist
 
 **Rolle:** Agent: Joël Mulongo – Udbudsjurist
@@ -172,13 +124,6 @@
 
 - [profile.md](mohammad-udbudskonsulent/profile.md)
 - [skills.yaml](mohammad-udbudskonsulent/skills.yaml)
-
-### projekteringsleder
-
-**Rolle:** Agent: Projekteringsleder – Projekteringsleder
-
-- [profile.md](projekteringsleder/profile.md)
-- [skills.yaml](projekteringsleder/skills.yaml)
 
 ### qanac-laege
 
@@ -229,20 +174,6 @@
 - [profile.md](sibgha-finance-analytics-specialist/profile.md)
 - [skills.yaml](sibgha-finance-analytics-specialist/skills.yaml)
 
-### si-manager-csm-interoperabilitet
-
-**Rolle:** Agent: S&I Manager – S&I Manager CSM og Interoperabilitet
-
-- [profile.md](si-manager-csm-interoperabilitet/profile.md)
-- [skills.yaml](si-manager-csm-interoperabilitet/skills.yaml)
-
-### test-manager-project-level
-
-**Rolle:** Agent: Test Manager – Test Manager, Project Level
-
-- [profile.md](test-manager-project-level/profile.md)
-- [skills.yaml](test-manager-project-level/skills.yaml)
-
 ### the-game-elektriker
 
 **Rolle:** System Prompt for The Game
@@ -266,4 +197,83 @@
 
 ---
 
-*Index genereret af generate-agent-index.ps1*
+## Arkiverede avatarløse agenter
+
+> Følgende 10 agenter er flyttet til `archive/avatarless-agents/` fordi der ikke findes et matchende avatar-billede.
+> Indhold og historik er bevaret. Aktiv runtime (`.vscode/.codex/**`) er ikke ændret.
+> Bemærk: `projekteringsleder` har en separat aktiv runtime-kopi under `.vscode/.codex/agents/banedanmark/` der **ikke** er arkiveret.
+> Årsag for alle: no matching avatar image.
+
+### bro-inspektoer
+
+**Rolle:** Agent: Bro-inspektør – Bro-inspektør
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/bro-inspektoer/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/bro-inspektoer/skills.yaml)
+
+### configuration-manager-project-level
+
+**Rolle:** Agent: Configuration Manager – Configuration Manager, Project Level
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/configuration-manager-project-level/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/configuration-manager-project-level/skills.yaml)
+
+### contract-manager-project-level
+
+**Rolle:** Agent: Contract Manager – Contract Manager, Project Level
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/contract-manager-project-level/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/contract-manager-project-level/skills.yaml)
+
+### document-manager-project-level
+
+**Rolle:** Agent: Document Manager – Document Manager, Project Level
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/document-manager-project-level/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/document-manager-project-level/skills.yaml)
+
+### gis-specialist
+
+**Rolle:** Agent: GIS-specialist – GIS-specialist
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/gis-specialist/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/gis-specialist/skills.yaml)
+
+### incident-manager
+
+**Rolle:** Agent: Incident Manager – Incident Manager
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/incident-manager/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/incident-manager/skills.yaml)
+
+### interface-manager-project-level
+
+**Rolle:** Agent: Interface Manager – Interface Manager, Project Level
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/interface-manager-project-level/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/interface-manager-project-level/skills.yaml)
+
+### projekteringsleder
+
+**Rolle:** Agent: Projekteringsleder – Projekteringsleder
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/projekteringsleder/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/projekteringsleder/skills.yaml)
+
+### si-manager-csm-interoperabilitet
+
+**Rolle:** Agent: S&I Manager – S&I Manager CSM og Interoperabilitet
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/si-manager-csm-interoperabilitet/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/si-manager-csm-interoperabilitet/skills.yaml)
+
+### test-manager-project-level
+
+**Rolle:** Agent: Test Manager – Test Manager, Project Level
+
+- [profile.md](../../archive/avatarless-agents/.agents/agents/test-manager-project-level/profile.md)
+- [skills.yaml](../../archive/avatarless-agents/.agents/agents/test-manager-project-level/skills.yaml)
+
+---
+
+*Index genereret af generate-agent-index.ps1; arkiv-sektion vedligeholdt manuelt 2026-06-17.*
