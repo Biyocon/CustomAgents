@@ -120,6 +120,11 @@ agents:
     role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
     category: Teknik og udf?relse
 
+  - id: council-chairman
+    name: Council Chairman
+    role: LLM Council Orchestrator
+    category: Meta og deliberation
+
 # Arkiverede avatarløse agenter — flyttet til archive/avatarless-agents/.
 # Årsag: intet matchende avatar-billede. Indhold + historik bevaret.
 # Aktiv runtime (.vscode/.codex/**) er bevidst urørt; projekteringsleder har en separat aktiv runtime-kopi der ikke arkiveres.
@@ -205,6 +210,7 @@ skills:
   - id: ubiquitous-language
   - id: write-a-skill
   - id: zoom-out
+  - id: llm-council
 
 brain_paths:
   readme: brain/README.md
@@ -233,3 +239,62 @@ model_adapters:
 
 validation_commands:
   - "powershell .agents/scripts/validate-harness.ps1"
+
+# Operationelt lag overført fra Sharmake-template (2026-07-01)
+# Se docs/audit/integration-plan-sharmake-patterns.md for detaljer.
+operational_layer:
+  commands:
+    path: commands/
+    description: Korte, kaldelige workflows
+    count: 12
+  tools:
+    path: tools/
+    description: Scripts, beregningshjælpere, validering og automatisering
+    subdirs:
+      - python
+      - excel/schemas
+      - excalidraw/templates
+      - cad
+  templates:
+    path: templates/
+    description: Genbrugelige faglige og projektstyringsmæssige skabeloner
+    subdirs:
+      - load-lists
+      - work-descriptions
+      - tender-lists
+      - qa
+      - diagrams
+      - calculations
+      - decision-notes
+      - risk-logs
+  plugins:
+    path: plugins/
+    description: Integrationer og adapters til eksterne værktøjer
+    entries:
+      - sharepoint
+      - projectwise
+      - teams
+      - outlook
+      - autocad
+      - microstation
+      - febdoc
+      - simaris
+
+# Udvidet Brain med personlig hukommelse og opgavestyring
+extended_brain_paths:
+  personal:
+    path: brain/personal/
+    files:
+      - user-profile.md
+      - preferences.md
+      - lessons-learned.md
+      - open-decisions.md
+  diary:
+    path: brain/diary/
+    pattern: YYYY-MM-DD.md
+  tasks:
+    path: brain/tasks/
+    files:
+      - today.md
+      - backlog.md
+      - completed.md

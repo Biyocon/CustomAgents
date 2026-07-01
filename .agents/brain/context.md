@@ -17,12 +17,12 @@ Harnesset fungerer som en standardiseret runtime-infrastruktur hvor AI-agenter k
 | **Model-agnostisk** | En struktur (.agents/) der virker paa tvaers af Codex, Kimi, Qwen Code og Gemini Code |
 | **Kontekstbevidst** | Brain-mappen baerer domaeneviden saa agenter ikke starter fra nul |
 | **Skalerbart** | Nye agenter og skills tilfoejes via standardiserede runbooks |
-| **Referencebaseret** | Kombi/ er referencekatalog � ikke aktiv runtime |
+| **Referencebaseret** | Kombi/ er referencekatalog  ikke aktiv runtime |
 
 ## Primaer vs. sekundaer runtime
 
-- **Ny model-agnostisk runtime**: `.agents/` � fremtidens hovedstruktur
-- **Aktiv runtime indtil valideret migration**: `.vscode/.codex/` � bevares fuldt funktionel indtil `.agents/` er testet og godkendt
+- **Ny model-agnostisk runtime**: `.agents/`  fremtidens hovedstruktur
+- **Aktiv runtime indtil valideret migration**: `.vscode/.codex/`  bevares fuldt funktionel indtil `.agents/` er testet og godkendt
 
 ## Maalplatforme
 
@@ -48,3 +48,15 @@ Banedanmarks kvalifikationsordning for entreprenoerer daekker:
 - Ved komplekse eller flertrinsopgaver
 - Naar en agent ikke kender projektets historie eller domaene
 - Foer der traekkes arkitekturbeslutninger
+
+## Operationelt lag
+
+Fra 2026-07-01 er følgende operationelle komponenter tilføjet `.agents/` for at gøre harnesset mere anvendeligt:
+
+- **commands/**: Korte, kaldelige workflows (`start-project`, `review-deliverable`, `use-multi-agent`, etc.)
+- **tools/**: Scripts, beregningshjælpere, validering og automatisering.
+- **templates/**: Genbrugelige skabeloner til load lists, arbejdsbeskrivelser, tilbudslister, QA, diagrammer, beregninger, beslutningsnotater og risikolog.
+- **plugins/**: Integrationer til eksterne værktøjer (SharePoint, ProjectWise, Teams, Outlook, AutoCAD, MicroStation, FEBDOC, Simaris).
+- **brain/personal/**, **brain/diary/**, **brain/tasks/**: Personlig hukommelse, dagbog og opgavestyring.
+
+Se `docs/audit/integration-plan-sharmake-patterns.md` for detaljer.

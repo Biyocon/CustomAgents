@@ -1,5 +1,28 @@
 # AgentSkills — Custom AI Agent Harness
 
+## ⚠️ Projektstyrings-dokumentation (tilføjet 2026-07-01)
+
+Dette repo har en **uafklaret P0-modsigelse** om hvilken runtime der er aktiv
+(se linjen nedenfor vs. `docs/architecture/ADR-multi-runtime-agent-system.md`).
+Læs `primer.md` og `systemkort.md` FØR du handler på "Aktiv runtime"-linjen
+nedenfor — den er én af to modstridende kilder.
+
+Nyt PM-system, læs i denne rækkefølge:
+
+1. `primer.md` — kort statuskondensat, læses ved hver sessionsstart
+2. `systemkort.md` — autoritativ arkitektur inkl. den uafklarede runtime-modstrid
+3. `FORBEDRINGSNOTAT.md` — dyb kritik + samlet roadmap
+4. `KØREPLAN.md` — faseopdelt implementeringsplan (Fase A–G)
+5. `PROJEKT_PLAN.md` — idébank, designbeslutninger, ønskeliste
+6. `DEPS.md` — afhængigheder og kritisk sti mellem tasks
+7. `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` — konsolideret fund-liste
+8. `docs/active/`, `docs/drafts/`, `docs/done/` — sporede opgaver med acceptkriterier
+9. `docs/qa/RELEASE-runtime-activation-gate.md` — gate før runtime-beslutning aktiveres
+10. `docs/plans/runtime-konsolidering-plan.md` — løsningsdesign for P0-modstriden
+11. `LESSON.md`, `CHANGELOG.md` — retrospektiv og ændringslog for selve PM-systemet
+
+---
+
 ## Runtime Status (current: 2026-06-12)
 
 Se `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsoliderede runtime-status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.

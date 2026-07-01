@@ -67,3 +67,11 @@
 9. **Subagents kan koordineres via filsystemet**
    - Vi antager at agenter kan dele tilstand og koordinere ved at skrive/laese filer i `.agents/`-strukturen.
    - *Impact*: Race conditions eller filkonflikter kan opstaa ved parallelle agent-koersler.
+
+## Overførsel af Sharmake-mønstre (2026-07-01)
+
+10. **Nye operationelle komponenter i `.agents/` er brugbare og korrekt placeret**
+    - Commands, tools, templates, plugins og personal memory er overført fra Sharmake-template og tilpasset Custom/Banedanmark-konteksten.
+    - De er placeret under `.agents/` selvom `.vscode/.codex/` stadig er aktiv runtime.
+    - **Impact**: Indtil `.agents/` aktiveres, vil de nye komponenter ikke være tilgængelige for den aktive VS Code/Codex-runtime medmindre de synkroniseres.
+    - **Status**: Overført som scaffolds; skal valideres og eventuelt synkroniseres til `.vscode/.codex/`.
