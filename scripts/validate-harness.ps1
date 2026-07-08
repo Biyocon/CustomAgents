@@ -2,113 +2,46 @@
 #Requires -PSEdition Desktop
 <#
 .SYNOPSIS
-    Validerer agent-harness konsistens.
+    DEPRECATED - tynd wrapper. Se scripts/Validate-Harness-Unified.ps1.
 .DESCRIPTION
-    Tjekker at agent-roster.json, Avatar/agents/*.md og .vscode/.codex/agents/banedanmark/*.md
-    er synkroniserede, korrekt encodede, og indeholder forventede sektioner.
+    Denne fil (scripts/validate-harness.ps1) var tidligere en selvstaendig
+    validator (94 linjer) der tjekkede agent-roster.json mod Avatar/agents/*.md
+    (eksistens, ```text fence, mojibake-encoding, orphans), banedanmark-
+    frontmatter (alle *.md), Root/registry.yaml og .vscode/.codex/Brain/*.md.
 
-.NOTES
-    SCOPE-KORT (se docs/architecture/validate-scripts-map.md for fuld oversigt)
+    Den 2026-07-09 blev tre uafhaengige "valider harness"-scripts konsolideret
+    til ét kanonisk script: scripts/Validate-Harness-Unified.ps1. Se
+    docs/architecture/validate-scripts-map.md for baggrund og fuld oversigt.
 
-    DENNE fil (scripts/validate-harness.ps1, 94 linjer) tjekker:
-      - .vscode/.codex/agents/agent-roster.json findes og kan parses
-      - Hver roster-id har en Avatar/agents/System_Prompt_Agent_<id>.md fil
-      - Den fil indeholder ```text fence og ikke har mojibake-encoding (Ã¦/Ã)
-      - Orphan-filer i Avatar/agents/ uden roster-entry
-      - .vscode/.codex/agents/banedanmark/*.md har YAML-frontmatter (---)
-      - Root/registry.yaml findes (kun eksistens-tjek)
-      - .vscode/.codex/Brain/{glossary,open-questions,source-map}.md findes
+    Alle tjek denne fil tidligere udforte findes nu (uaendret logik) i
+    Sektion A, B og D af scripts/Validate-Harness-Unified.ps1. Denne fil er
+    bevaret som en tynd wrapper - af hensyn til bagudkompatibilitet for alt
+    der stadig kalder den paa dens kendte sti - som blot delegerer til det
+    samlede script og videresender output og exit code uaendret.
 
-    Denne fil tjekker IKKE:
-      - .agents/agents/*/profile.md + skills.yaml mod .agents/registry.yaml (se .agents/scripts/validate-harness.ps1)
-      - status/skills/avatar/id-konsistens i detaljer mellem roster og .md-profiler (se scripts/Validate-AgentHarness.ps1)
-      - .agents/registry.yaml syntaks eller .agents/skills/*/SKILL.md
-
-    For fuld dækning: kør også scripts/Validate-AgentHarness.ps1 (dybere .vscode/.codex-tjek)
-    og .agents/scripts/validate-harness.ps1 (tjekker den separate .agents/-struktur).
+    NB: Fordi det samlede script daekker BAADE .vscode/.codex- og
+    .agents/-strukturen, vil et kald til denne wrapper nu ogsaa rapportere
+    .agents/-tjek (Sektion E-H), som denne fil aldrig gjorde foer
+    konsolideringen. Det er tilsigtet: det samlede resultat er nu ens uanset
+    hvilken af de tre gamle stier man kalder.
+.PARAMETER Root
+    Rodstien til projektet. Videresendes til Validate-Harness-Unified.ps1.
+.PARAMETER JsonReport
+    Valgfri sti til JSON-rapport. Videresendes til Validate-Harness-Unified.ps1.
+.PARAMETER SkipAudit
+    Videresendes til Validate-Harness-Unified.ps1 (spring .agents-audit-fasen over).
 #>
 param(
-    [string]$Root = (Get-Location)
+    [string]$Root = (Get-Location),
+    [string]$JsonReport = $null,
+    [switch]$SkipAudit
 )
 
-$ErrorActionPreference = "Stop"
-$issues = @()
+$unifiedScript = Join-Path $PSScriptRoot "Validate-Harness-Unified.ps1"
 
-function Add-Issue {
-    param([string]$Severity, [string]$Message)
-    $script:issues += [PSCustomObject]@{ Severity = $Severity; Message = $Message }
-}
+$forwardParams = @{ Root = $Root }
+if ($JsonReport) { $forwardParams["JsonReport"] = $JsonReport }
+if ($SkipAudit)  { $forwardParams["SkipAudit"] = $true }
 
-$rosterPath = Join-Path $Root ".vscode/.codex/agents/agent-roster.json"
-$agentsDir  = Join-Path $Root "Avatar/agents"
-$baneDir    = Join-Path $Root ".vscode/.codex/agents/banedanmark"
-
-# 1. Roster load
-if (!(Test-Path $rosterPath)) {
-    Add-Issue "CRITICAL" "agent-roster.json mangler"
-    exit 1
-}
-$roster = Get-Content $rosterPath -Encoding UTF8 -Raw | ConvertFrom-Json
-Add-Issue "INFO" "Roster indlaest: $($roster.Count) agenter"
-
-# 2. Agent-filer vs roster
-foreach ($id in $roster.id) {
-    $file = Join-Path $agentsDir "System_Prompt_Agent_$id.md"
-    if (!(Test-Path $file)) {
-        Add-Issue "ERROR" "Manglende agent-fil: $file"
-    } else {
-        $txt = Get-Content $file -Encoding UTF8 -Raw
-        if ($txt -notmatch "```text") {
-            Add-Issue "WARN" "${file}: mangler ```text fence"
-        }
-        if ($txt -match "Ã¦|Ã") {
-            Add-Issue "WARN" "${file}: ser ud til at have encoding-problemer"
-        }
-    }
-}
-
-# 3. Orphan files
-Get-ChildItem $agentsDir -Filter "System_Prompt_Agent_*.md" | ForEach-Object {
-    $m = $_.Name -replace "System_Prompt_Agent_","" -replace "\.md$",""
-    if ($m -notin $roster.id) {
-        Add-Issue "WARN" "Orphan agent-fil uden roster-entry: $($_.Name)"
-    }
-}
-
-# 4. Banedanmark-agenter
-if (Test-Path $baneDir) {
-    $baneFiles = Get-ChildItem $baneDir -Filter "*.md" -ErrorAction SilentlyContinue
-    Add-Issue "INFO" "Banedanmark-agenter: $($baneFiles.Count)"
-    foreach ($f in $baneFiles) {
-        if ($f.Name -eq "README.md") { continue }
-        $txt = Get-Content $f.FullName -Encoding UTF8 -Raw
-        if ($txt -notmatch "^---") {
-            Add-Issue "WARN" "$($f.Name): mangler YAML-frontmatter"
-        }
-    }
-} else {
-    Add-Issue "WARN" "Banedanmark-mappe mangler: $baneDir"
-}
-
-# 5. Registry
-$regPath = Join-Path $Root "registry.yaml"
-if (Test-Path $regPath) {
-    Add-Issue "INFO" "registry.yaml findes"
-} else {
-    Add-Issue "WARN" "registry.yaml mangler"
-}
-
-# 6. Brain
-$brainFiles = @(".vscode/.codex/Brain/glossary.md", ".vscode/.codex/Brain/open-questions.md", ".vscode/.codex/Brain/source-map.md")
-foreach ($bf in $brainFiles) {
-    $p = Join-Path $Root $bf
-    if (Test-Path $p) { Add-Issue "INFO" "$bf findes" } else { Add-Issue "WARN" "$bf mangler" }
-}
-
-# Output
-$issues | Format-Table -AutoSize
-$errCount = ($issues | Where-Object Severity -in @("ERROR","CRITICAL")).Count
-$warnCount = ($issues | Where-Object Severity -eq "WARN").Count
-Write-Host "`nResumee: $($issues.Count) linjer, $errCount fejl, $warnCount advarsler" -ForegroundColor Cyan
-
-if ($errCount -gt 0) { exit 1 }
+& $unifiedScript @forwardParams
+exit $LASTEXITCODE
