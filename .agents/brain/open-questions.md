@@ -26,7 +26,7 @@
 
 5. **Hvordan testes harnesset optimalt?**
    - Skal vi have et automatiseret test-suite der verificerer at agenter og skills loader korrekt?
-   - Skal der vaere "gyldne" testcases � kendte input/output-par � for hver agent?
+   - Skal der vaere "gyldne" testcases — kendte input/output-par — for hver agent?
 
 6. **Hvordan maaler vi agent-kvalitet?**
    - Noejagtighed af svar?
@@ -35,10 +35,16 @@
 
 ## Migration og drift
 
-7. **Hvornaar migreres `.vscode/.codex/` fuldt til `.agents/`?** (opdateret 2026-06-10)
+7. **Hvornaar migreres `.vscode/.codex/` fuldt til `.agents/`?** (opdateret 2026-07-09)
    - Hvilke kriterier skal vaere opfyldt foer den gamle struktur kan nedlaegges?
    - Skal der vaere en "soft launch" periode hvor begge strukturer koerer sideloebende?
-   - **Status efter audit 2026-06-10**: Dual-runtime drift er bekræftet som Critical. Anbefaling: Ryd op i duplication først, fix frontmatter, ingest kilder, kør unified validering, træf eksplicit aktiveringsbeslutning. `.vscode/.codex/` forbliver sandhed indtil da.
+   - **Status efter beslutning 2026-07-09**: Retningen er nu afgjort — `docs/architecture/ADR-multi-runtime-agent-system.md`
+     er Accepted (se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
+     `.agents/` skal modnes til canonical source of truth; `.vscode/.codex/` forbliver aktiv
+     runtime indtil PR B-F (schema, adapters, export/validation-scripts, aktivering) er
+     gennemført. **"Hvornår" og de konkrete kriterier er stadig ikke fastlagt** — kun retningen
+     er besluttet, ikke tidsplanen eller de tekniske forudsætninger. Spørgsmålet forbliver derfor
+     åbent, men er ikke længere modstridende med ADR-0002 (se ADR-0003).
 
 8. **Hvordan sikres single source of truth under dual-runtime?** (nyt spørgsmål 2026-06-10)
    - Hvordan undgår vi at agenter/skills bruger forskellige versioner af registry, roster, brain og skills?

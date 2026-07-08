@@ -2,7 +2,15 @@
 
 ## Status
 
-Proposed (2026-06-17)
+**Accepted (2026-07-09)** — besluttet af projektejer (Biyocon) efter 48-agent dybdeaudit
+(`docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`). Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`
+for formel registrering og forholdet til ADR-0002.
+
+**Vigtigt:** "Accepted" gælder retningen (punkt 1-8 i Decision nedenfor), ikke at migrationen er
+udført. `.vscode/.codex/` forbliver aktiv runtime indtil PR B-F (se Roadmap) er gennemført —
+intet i `.vscode/.codex/` må slettes eller ændres alene på baggrund af denne status-opdatering.
+
+~~Proposed (2026-06-17)~~
 
 ## Context
 

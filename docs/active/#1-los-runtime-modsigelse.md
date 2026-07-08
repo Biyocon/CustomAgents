@@ -12,7 +12,7 @@ blocks:
   - "#4"
   - "#6"
 oprettet: "2026-07-01"
-sidst_opdateret: "2026-07-01"
+sidst_opdateret: "2026-07-09"
 ---
 
 ---
@@ -36,20 +36,27 @@ læse-søm mellem lagene, blot ikke ét autoritativt registry/kildelag. Se
 
 ## Done ser sådan ud
 
-Én fil (ADR-0002) har status "Accepted" eller "Rejected" — ikke "Proposed".
+`docs/architecture/ADR-multi-runtime-agent-system.md` har status "Accepted" eller "Rejected"
+— ikke "Proposed". (Rettelse 2026-07-09: teksten her henviste fejlagtigt til "ADR-0002", som
+allerede havde status Accepted siden 2026-06-10 — det er ADR-multi-runtime-agent-system.md
+der var den reelt uafklarede fil.)
 README.md, AGENTS.md og runtime-status-filen siger alle det samme om hvilket
 lag der er aktivt. En ny bruger kan læse `systemkort.md` og se ét ✅, ikke to ⚠️.
+
+**Status 2026-07-09:** ADR'en er nu Accepted (se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
+De øvrige "Done"-kriterier (README/AGENTS.md/systemkort.md-konsistens) er endnu ikke opfyldt —
+ticket forbliver `active` indtil de er gjort.
 
 ---
 
 ## Teknisk scope
 
 - [ ] Gennemfør sektion-for-sektion sammenligning af de 14 Banedanmark-agenter i `.vscode/.codex/agents/` vs. `.agents/agents/` (se `docs/plans/runtime-konsolidering-plan.md`)
-- [ ] Træf og dokumentér beslutningen med skriftlig begrundelse
-- [ ] Opdatér `docs/architecture/ADR-multi-runtime-agent-system.md` status
+- [x] Træf og dokumentér beslutningen med skriftlig begrundelse (2026-07-09, se ADR-0003)
+- [x] Opdatér `docs/architecture/ADR-multi-runtime-agent-system.md` status (2026-07-09: Accepted)
 - [ ] Opdatér `README.md`, `AGENTS.md`, tilføj ny `docs/agents/runtime-status-{{DATO}}.md`
 - [ ] Opdatér `systemkort.md` Layer 2
-- [ ] Fjern det tilsvarende åbne spørgsmål fra `.agents/brain/open-questions.md`
+- [x] Opdatér (ikke fjern — spørgsmålet om "hvornår" er stadig åbent) det tilsvarende spørgsmål i `.agents/brain/open-questions.md` (spørgsmål 7)
 - [ ] Kør `docs/qa/RELEASE-runtime-activation-gate.md`
 
 ---
@@ -69,7 +76,7 @@ lag der er aktivt. En ny bruger kan læse `systemkort.md` og se ét ✅, ikke to
 
 ## Acceptkriterie
 
-- [ ] `docs/architecture/ADR-multi-runtime-agent-system.md` har status Accepted eller Rejected
+- [x] `docs/architecture/ADR-multi-runtime-agent-system.md` har status Accepted eller Rejected (Accepted, 2026-07-09)
 - [ ] Grep for ".vscode/.codex" og ".agents/" i README.md/AGENTS.md/runtime-status-filerne giver konsistente, ikke-modstridende resultater
 - [ ] `docs/qa/RELEASE-runtime-activation-gate.md` er udfyldt med "GODKENDT"
 
@@ -80,3 +87,10 @@ lag der er aktivt. En ny bruger kan læse `systemkort.md` og se ét ✅, ikke to
 2026-07-01: Oprettet som del af ny PM-dokumentation efter fund af P0-modsigelsen
 i `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` (finding A-1). Kræver en
 menneskelig/projektejer-beslutning — kan ikke afgøres automatisk af en agent alene.
+
+2026-07-09: Projektejer traf beslutningen efter 48-agent dybdeaudit
+(`docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`): ADR-multi-runtime-agent-system.md
+er Accepted, `.agents/` bliver canonical, `.vscode/.codex/` forbliver aktiv runtime indtil
+PR B-F er gennemført. Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`.
+Ticket forbliver `active` — README/AGENTS.md/systemkort.md-synkronisering og
+RELEASE-runtime-activation-gate.md mangler stadig.

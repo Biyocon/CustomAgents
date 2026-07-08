@@ -1,8 +1,15 @@
 # ADR-0002: Resultater af dyb multi-agent audit 2026-06-10 + opdatering af harness-plan
 
 **Dato:** 2026-06-10  
-**Status:** Accepted  
+**Status:** Accepted (punkt 1 supersederet 2026-07-09, se note nedenfor)  
 **Besluttet af:** Grok (koordinator) + bruger via audit-proces
+
+> **RETTELSE (2026-07-09):** Punkt 1 nedenfor ("`.vscode/.codex/` er den aktive autoritative
+> runtime... eksplicit aktiveringsbeslutning... før `.agents/` må behandles som aktiv") er
+> supersederet af `ADR-0003-2026-07-09-multi-runtime-accepted.md`: `docs/architecture/ADR-multi-runtime-agent-system.md`
+> er nu formelt Accepted, og retningen er vendt — `.agents/` skal modnes til canonical source of
+> truth, `.vscode/.codex/` bliver det genererede/transitional lag. Punkt 2-5 nedenfor forbliver
+> gyldige og upåvirkede. Originalt indhold bevaret uændret som historik.
 
 ## Kontekst
 
