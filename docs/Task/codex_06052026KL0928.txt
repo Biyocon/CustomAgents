@@ -1,0 +1,56 @@
+• Jeg har nu nok kontekst til at lave den første egentlige harness-version:
+
+  - Matt Pocock-skills installeres som aktive projekt-skills.
+  - Karpathy-principperne bliver en fælles adfærds-skill og en Brain-mappe.
+  - Kombi bliver behandlet som referencekatalog, ikke runtime.
+  - Avatar-agenterne får hver sin promptfil med rolle, systemprompt og subskills.
+  - Masterprompten placeres i .vscode/.codex/prompts/, mens AGENTS.md peger alle modeller mod samme kilde.
+
+• Updated Plan
+  └ ✔ Læs relevante skill-instruktioner og kortlæg workspace
+    ✔ Gennemgå Kombi, Avatar og eksisterende agentopsætning
+    ✔ Installér mattpocock skills lokalt i projektet
+    □ Udform master/system prompt og mappestruktur
+    □ Opdatér avatar promptfiler og agentprofiler
+    □ Verificér ændringer mod original anmodning
+
+
+
+• Færdigt. Jeg arbejdede i den aktive workspace: C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Kvalifikationsordning Entreprenør og installerede ikke noget globalt.
+
+  Vigtigste ændringer:
+
+  - Installerede alle 22 mattpocock/skills projektlokalt i .vscode/.codex/skills/.
+  - Installerede karpathy-guidelines som projekt-skill.
+  - Oprettede masterprompten her: .vscode/.codex/prompts/master-system.md
+  - Oprettede Brain-struktur her: .vscode/.codex/Brain/AGENTS.md
+  - Oprettede agentroster her: .vscode/.codex/agents/agent-roster.json
+  - Oprettede Interface Manager som første Banedanmark/BaneByg-subagent: .vscode/.codex/agents/banedanmark/interface-manager-banebyg.md
+  - Oprettede 25 individuelle avatar-agentprofiler i Avatar/agents/AGENTS.md
+  - Opdaterede avatar-genereringsprompten: Avatar/0_avatar_generatio_prompt.txt
+  - Skrev Kombi-vurderingen her: docs/agent-harness-kombi-analysis.md
+  - Rettede .vscode/settings.json, så den ikke længere peger på en hardcoded C:/Users/HMDR/... sti, men bruger ${workspaceFolder}.
+
+  Verificering:
+
+  - mattpocock_missing=0
+  - avatar_profiles=25
+  - roster_items=25
+  - encoding_bad_files=0
+  - sample_has_code_fence=True
+
+  Kilder brugt til repo-validering:
+
+  - https://github.com/mattpocock/skills
+  - https://github.com/forrestchang/andrej-karpathy-skills
+
+  Restart Codex for at få de nye skills indlæst.
+relevante henvisning:
+• Edited AGENTS.md (+21 -0)
+• Edited .vscode\.codex\AGENTS.md (+16 -0)
+• Added temp\generate_agent_harness.py (+1153 -0)
+• Added temp\verify_agent_harness.py (+34 -0)
+
+
+Fortsættelse fra næste gang:
+run codex resume 019dfc10-d134-7c22-a5bb-2d8d9c53a773

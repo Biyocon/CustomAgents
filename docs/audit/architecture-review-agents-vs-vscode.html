@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<title>Arkitektur-review: .agents vs .vscode/.codex</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "base", themeVariables: { primaryColor: "#eef2ff", primaryBorderColor: "#6366f1", lineColor: "#6366f1", fontFamily: "ui-sans-serif, system-ui" } });
+</script>
+<style>
+  body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .badge-strong { background:#dcfce7; color:#166534; }
+  .badge-explore { background:#fef9c3; color:#854d0e; }
+  .badge-spec { background:#f3f4f6; color:#4b5563; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <header class="mb-10">
+    <p class="text-xs uppercase tracking-wide text-indigo-500 font-semibold mb-2">Arkitektur-review · 2026-07-01</p>
+    <h1 class="text-3xl font-bold text-slate-900">.agents/ vs .vscode/.codex/ — hvor er dybden, og hvor er sømmen?</h1>
+    <p class="mt-3 text-slate-600 max-w-3xl">
+      Du byggede oprindeligt <code class="bg-slate-200 px-1 rounded">.vscode/.codex/</code> fordi det er det eneste
+      program du kan bruge på din arbejdscomputer. <code class="bg-slate-200 px-1 rounded">.agents/</code> kom senere,
+      da IQRA-projektet (persona/avatar/brain-idéen) blev flettet ind. Du er nået længst med
+      <code class="bg-slate-200 px-1 rounded">.agents/</code>, men målet er ét system — ikke to parallelle.
+      Denne review bruger modul/interface/dybde/søm/adapter-sproget (ikke "component/service/API") til at vise hvor
+      de to lag reelt er dybe, hvor de er tynde gennemsigtige kopier af hinanden, og hvad der konkret skal ske for
+      at samle dem.
+    </p>
+  </header>
+
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <p class="text-xs text-slate-500">Agent-mapper</p>
+      <p class="text-2xl font-bold">28 <span class="text-sm font-normal text-slate-400">persona</span></p>
+      <p class="text-2xl font-bold">14 <span class="text-sm font-normal text-slate-400">rolle</span></p>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <p class="text-xs text-slate-500">SKILL.md-filer</p>
+      <p class="text-2xl font-bold">34 <span class="text-sm font-normal text-slate-400">.agents</span></p>
+      <p class="text-2xl font-bold">74 <span class="text-sm font-normal text-slate-400">.vscode/.codex</span></p>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <p class="text-xs text-slate-500">Registries</p>
+      <p class="text-2xl font-bold">4</p>
+      <p class="text-xs text-slate-400">kun 1 reelt aktiv (613 linjer)</p>
+    </div>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <p class="text-xs text-slate-500">Brain-indhold</p>
+      <p class="text-2xl font-bold">1894 <span class="text-sm font-normal text-slate-400">vs</span> 399</p>
+      <p class="text-xs text-slate-400">linjer, .agents vs .vscode/.codex</p>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-lg font-semibold text-slate-900 mb-3">Registry-landskabet i dag (4 registries, 1 reel adapter)</h2>
+    <div class="bg-white rounded-lg border border-slate-200 p-4">
+      <pre class="mermaid">
+graph LR
+  A["/registry.yaml (rod)<br/>222 linjer"] -.->|ikke synkroniseret| B["Faktisk aktiv runtime"]
+  C[".agents/registry.yaml<br/>240 linjer, canonical-kandidat"] -.->|ikke synkroniseret| B
+  D[".vscode/.codex/registry.yaml<br/>43 linjer — tom scaffold"] -.->|ubrugt| B
+  E[".vscode/.codex/agents/registry.yaml<br/>613 linjer — REELT AKTIV"] --> B["Runtime i produktion"]
+  style E fill:#dcfce7,stroke:#16a34a
+  style D fill:#f3f4f6,stroke:#9ca3af,stroke-dasharray: 5 5
+      </pre>
+    </div>
+    <p class="text-sm text-slate-500 mt-2">Fire filer hedder tilsammen "registry", men kun én er faktisk i drift. Det er selve definitionen af et modul uden en klar søm — ingen ved hvilken interface der gælder.</p>
+  </section>
+
+  <!-- CANDIDATE 1 -->
+  <article class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-xl font-semibold text-slate-900">1. Gør .agents/ til det dybe modul — .vscode/.codex/ bliver en genereret adapter</h3>
+      <span class="badge-strong text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">Strong</span>
+    </div>
+    <p class="text-xs text-indigo-600 font-medium mb-3">Bekræfter og udfører ADR-multi-runtime-agent-system (Proposed) — ingen konflikt, kun manglende eksekvering af PR B–D i ADR'ens egen roadmap.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Filer</p>
+    <p class="text-sm mb-4"><code class="bg-slate-100 px-1 rounded">.agents/schema/agent-profile.schema.json</code> (findes allerede), <code class="bg-slate-100 px-1 rounded">.agents/registry.yaml</code>, <code class="bg-slate-100 px-1 rounded">.vscode/.codex/agents/registry.yaml</code>, ny <code class="bg-slate-100 px-1 rounded">.agents/scripts/export-to-vscode-runtime.ps1</code></p>
+
+    <p class="text-sm text-slate-500 mb-1">Problem</p>
+    <p class="text-sm mb-4">Der findes intet skema-håndhævet søm mellem lagene. Begge lag håndvedligeholdes parallelt — når en agent opdateres i <code class="bg-slate-100 px-1 rounded">.agents/</code>, sker intet automatisk i <code class="bg-slate-100 px-1 rounded">.vscode/.codex/</code>, og omvendt. Det er præcis "to parallelle projekter"-problemet du selv beskriver.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Løsning</p>
+    <p class="text-sm mb-4">Behandl <code class="bg-slate-100 px-1 rounded">.agents/</code> som det dybe modul: interfacet er <code class="bg-slate-100 px-1 rounded">agent-profile.schema.json</code> + <code class="bg-slate-100 px-1 rounded">registry.yaml</code>. Byg ét eksport-script der læser canonical-laget og skriver <code class="bg-slate-100 px-1 rounded">.vscode/.codex/agents/registry.yaml</code> + agent-filer som output. <code class="bg-slate-100 px-1 rounded">.vscode/.codex/</code> bliver dermed en adapter (VS Code-runtime-formatet), ikke en selvstændig kilde du redigerer i hånden.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Fordele (dybde/lokalitet)</p>
+    <p class="text-sm mb-4">Al domæneviden får ét sted at leve (lokalitet) — ret en agent i <code class="bg-slate-100 px-1 rounded">.agents/</code>, og rettelsen forplanter sig alle vegne. Du kan fortsat arbejde udelukkende i VS Code, fordi eksport-scriptet kører lokalt uden ekstra software. "Er de synkrone?" bliver en testbar egenskab af interfacet (skema-validering), ikke en manuel vurdering.</p>
+
+    <div class="bg-slate-50 rounded-lg p-4 mt-4">
+      <p class="text-xs font-semibold text-slate-500 mb-2">FØR / EFTER</p>
+      <pre class="mermaid">
+graph TB
+  subgraph FØR["Før: to håndholdte kilder"]
+    direction LR
+    A1[".agents/ redigeres"] -.ingen kobling.-> B1[".vscode/.codex/ redigeres separat"]
+  end
+  subgraph EFTER["Efter: ét canonical + genereret adapter"]
+    direction LR
+    A2[".agents/ (canonical, dybt modul)"] -->|export-script, skema-valideret| B2[".vscode/.codex/ (genereret adapter)"]
+  end
+      </pre>
+    </div>
+  </article>
+
+  <!-- CANDIDATE 2 -->
+  <article class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-xl font-semibold text-slate-900">2. Reconciliér de 4 registries til én kanonisk kilde + genererede views</h3>
+      <span class="badge-strong text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">Strong</span>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-1">Filer</p>
+    <p class="text-sm mb-4"><code class="bg-slate-100 px-1 rounded">registry.yaml</code> (rod, 222 linjer), <code class="bg-slate-100 px-1 rounded">.agents/registry.yaml</code> (240 linjer), <code class="bg-slate-100 px-1 rounded">.vscode/.codex/registry.yaml</code> (43 linjer, tom scaffold), <code class="bg-slate-100 px-1 rounded">.vscode/.codex/agents/registry.yaml</code> (613 linjer, reelt aktiv)</p>
+
+    <p class="text-sm text-slate-500 mb-1">Problem</p>
+    <p class="text-sm mb-4">Fire filer med samme navn "registry" er ikke fire adaptere af samme interface — de er fire uafhængige, ikke-synkroniserede implementeringer. Ingen enkelt fil kan i dag betegnes "sandheden" uden forbehold, og den mest komplette (613 linjer) er begravet i runtime-laget i stedet for at være tydeligt kanonisk.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Løsning</p>
+    <p class="text-sm mb-4">Vælg <code class="bg-slate-100 px-1 rounded">.agents/registry.yaml</code> som kanonisk (jf. ADR beslutning #5), merge relevant indhold ind fra de øvrige tre (særligt de 613 linjer runtime-detalje), og lad de tre andre blive genererede/valideret-fra-kanonisk i stedet for selvstændigt redigerbare.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Fordele</p>
+    <p class="text-sm mb-4">Fjerner den stille fejlkilde hvor en agent/script tilfældigt læser den forkerte fil. Giver dig én kommando at køre for at vide "er alt synkroniseret" — det direkte modstykke til den nuværende situation hvor det kræver manuel diff at vide.</p>
+
+    <div class="bg-slate-50 rounded-lg p-4 mt-4">
+      <pre class="mermaid">
+graph LR
+  subgraph FØR
+    R1[rod: 222L] --- R2[.agents: 240L] --- R3[scaffold: 43L] --- R4[runtime: 613L]
+  end
+      </pre>
+      <pre class="mermaid">
+graph LR
+  subgraph EFTER
+    K[".agents/registry.yaml — KANONISK"] -->|genereret| V1[rod-view]
+    K -->|genereret| V2[runtime-view: .vscode/.codex]
+  end
+      </pre>
+    </div>
+  </article>
+
+  <!-- CANDIDATE 3 -->
+  <article class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-xl font-semibold text-slate-900">3. Rolle-agenter (14) vs. persona-agenter (28): to reelle koncepter, ikke duplikater</h3>
+      <span class="badge-explore text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">Worth exploring</span>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-1">Filer</p>
+    <p class="text-sm mb-4"><code class="bg-slate-100 px-1 rounded">.vscode/.codex/agents/banedanmark/</code> (14 rolle-mapper) vs. <code class="bg-slate-100 px-1 rounded">.agents/agents/</code> (28 persona-mapper, inkl. Bodjo/Qanac/Bamse m.fl. som slet ikke er Banedanmark-relaterede)</p>
+
+    <p class="text-sm text-slate-500 mb-1">Problem</p>
+    <p class="text-sm mb-4">"Integrér .agents ind i .vscode" kan let mistolkes som "flet de 28 personaer ind i de 14 roller". Deletion-testen viser hvorfor det er forkert: hvis du sletter skellet mellem rolle og persona, dukker kompleksiteten op igen — en fodboldagent (Bodjo) eller en læge (Qanac) har intet meningsfuldt rolle-modstykke i Banedanmark-strukturen. Det er to forskellige domænekoncepter, ikke to lag af samme ting.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Løsning</p>
+    <p class="text-sm mb-4">Behold begge som separate, navngivne undermoduler under det samme canonical-lag: <code class="bg-slate-100 px-1 rounded">.agents/agents/banedanmark-roller/</code> (14) og <code class="bg-slate-100 px-1 rounded">.agents/agents/personas/</code> (28+). Eksport-scriptet (kandidat 1) genererer så <code class="bg-slate-100 px-1 rounded">.vscode/.codex/agents/banedanmark/</code> KUN fra rolle-undermappen — personas eksporteres kun hvis/når du får brug for dem i VS Code-runtime.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Fordele</p>
+    <p class="text-sm mb-4">Undgår en tvungen, meningsløs sammenlægning. Gør det eksplicit hvilket undermodul der reelt "tæller" som Banedanmark-arbejdsværktøj vs. det bredere IQRA-persona-eksperiment — uden at skulle vælge mellem dem.</p>
+
+    <div class="bg-slate-50 rounded-lg p-4 mt-4">
+      <pre class="mermaid">
+graph TB
+  C[".agents/agents/ (canonical)"] --> R["banedanmark-roller/ (14)<br/>eksporteres til .vscode/.codex"]
+  C --> P["personas/ (28+, IQRA)<br/>eksporteres senere/selektivt"]
+      </pre>
+    </div>
+  </article>
+
+  <!-- CANDIDATE 4 -->
+  <article class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+    <div class="flex items-start justify-between mb-3">
+      <h3 class="text-xl font-semibold text-slate-900">4. Brain-lagene (1894 vs. 399 linjer) — indfør de 3 hukommelses-tiers ADR'en allerede foreslår</h3>
+      <span class="badge-explore text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap">Worth exploring</span>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-1">Filer</p>
+    <p class="text-sm mb-4"><code class="bg-slate-100 px-1 rounded">.agents/brain/</code> (9 kategorier, 1894 linjer) vs. <code class="bg-slate-100 px-1 rounded">.vscode/.codex/Brain/</code> (8 filer, 399 linjer — mangler bl.a. runbooks/ og har source-map.md i stedet for maps/)</p>
+
+    <p class="text-sm text-slate-500 mb-1">Problem</p>
+    <p class="text-sm mb-4"><code class="bg-slate-100 px-1 rounded">.vscode/.codex/Brain/</code> er tydeligvis et ældre, tyndere uddrag — ikke en bevidst forskellig adapter. Det er en shallow kopi: interfacet (filnavnene) ligner, men implementeringen (indholdet) er markant mindre. To agenter der arbejder i hvert sit lag vil have forskellig kontekst om samme projekt.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Løsning</p>
+    <p class="text-sm mb-4">ADR'en foreslår allerede selv 3 hukommelses-tiers: canonical memory (context/glossary/principper/ADR'er — hører hjemme i <code class="bg-slate-100 px-1 rounded">.agents/brain/</code>), runtime-local working memory (aktiv session-arbejde i <code class="bg-slate-100 px-1 rounded">.vscode/.codex/Brain/</code>), og session/audit-snapshots. Gennemfør denne opdeling konkret i stedet for at lade den stå som ueksekveret beslutning #7 i ADR'en.</p>
+
+    <p class="text-sm text-slate-500 mb-1">Fordele</p>
+    <p class="text-sm mb-4">Fjerner tvivlen om hvilket Brain der er "rigtigt". Giver en klar regel for hvor ny kontekst skal skrives hen, fremfor at den tilfældigt havner i det lag agenten arbejdede i den dag.</p>
+  </article>
+
+  <section class="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-indigo-900 mb-2">Top-anbefaling</h2>
+    <p class="text-sm text-indigo-900">
+      Start med <strong>kandidat 1 (canonical + genereret adapter)</strong>. Den er den eneste af de fire der reelt
+      løser "to parallelle projekter"-problemet du selv beskrev, fordi den etablerer den søm (export-script) der
+      gør de tre andre kandidater udførbare bagefter i stedet for endnu en manuel oprydningsrunde. Den følger
+      desuden nøjagtigt den roadmap din egen ADR allerede har skitseret (PR B → C → D) — det er ikke en ny
+      beslutning, kun den udførelse der mangler. Kandidat 2 (registry) er det første konkrete skridt inden i
+      kandidat 1's eksport-script skal skrives, så de to bør angribes sammen.
+    </p>
+  </section>
+
+</div>
+</body>
+</html>
