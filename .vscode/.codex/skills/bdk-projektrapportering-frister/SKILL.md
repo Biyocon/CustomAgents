@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-projektrapportering-frister
 description: Planlæg projektets rapportering og frister til porteføljekontor, direktion og eventuelle eksterne fora.
 ---

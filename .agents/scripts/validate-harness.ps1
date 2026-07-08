@@ -15,6 +15,25 @@
 .EXAMPLE
     .\.agents\scripts\validate-harness.ps1
     .\.agents\scripts\validate-harness.ps1 -Root "C:\projekt"
+.NOTES
+    SCOPE-KORT (se docs/architecture/validate-scripts-map.md for fuld oversigt)
+
+    DENNE fil (.agents/scripts/validate-harness.ps1, 244 linjer) tjekker:
+      - Kører .agents/scripts/audit-harness.ps1 (medmindre -SkipAudit)
+      - .agents/registry.yaml findes og har version:- og agents:-felter
+      - .agents/agents/<id>/-mapper mod .vscode/.codex/agents/agent-roster.json (begge veje:
+        agent-mappe uden roster-entry, og roster-entry uden agent-mappe)
+      - .agents/skills/*/SKILL.md har en markdown-overskrift (#)
+      - Skriver rapport til .agents/reports/validation_report.md (med .bak-backup af evt. eksisterende)
+
+    Denne fil tjekker IKKE:
+      - Avatar/agents/*.md indhold (```text fence, encoding, status/skills/avatar/id-felter)
+        — se scripts/validate-harness.ps1 og scripts/Validate-AgentHarness.ps1
+      - .vscode/.codex/agents/banedanmark/*.md frontmatter
+      - Root/registry.yaml (den ANDEN registry-fil, uden for .agents/) eller .vscode/.codex/Brain/*.md
+
+    For fuld dækning: kør også scripts/validate-harness.ps1 og scripts/Validate-AgentHarness.ps1
+    (de tjekker Avatar/agents/*.md mod agent-roster.json — en helt separat struktur fra denne fil).
 #>
 param(
     [string]$Root = (Get-Location),

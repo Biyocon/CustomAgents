@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-projektindstilling-og-finansiering
 description: Støt korrekt udarbejdelse af projektindstilling og afklaring af finansierings- og behandlingsspor i porteføljekontoret.
 ---

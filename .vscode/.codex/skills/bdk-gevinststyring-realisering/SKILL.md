@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-gevinststyring-realisering
 description: Strukturér gevinststyring og opfølgning på realisering i forretningsprojekter.
 ---

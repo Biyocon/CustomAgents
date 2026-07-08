@@ -13,6 +13,28 @@
     Vis hvad der ville ske uden at ændre noget.
 .EXAMPLE
     .\Validate-AgentHarness.ps1 -JsonReport validation-report.json
+.NOTES
+    SCOPE-KORT (se docs/architecture/validate-scripts-map.md for fuld oversigt)
+
+    DENNE fil (scripts/Validate-AgentHarness.ps1, 197 linjer, del af v2-toolset med
+    Export-Registry.ps1/New-AgentProfile.ps1/Sync-Skills.ps1/Activate-Agent.ps1) tjekker:
+      - .vscode/.codex/agents/agent-roster.json findes og kan parses
+      - Hver roster-agent har Avatar/agents/System_Prompt_Agent_<id>.md
+      - status-felt i .md er "active"
+      - skills-liste i .md frontmatter matcher roster.skills (diff begge veje)
+      - avatar-filnavn i .md matcher roster.avatar
+      - id-felt i .md matcher roster.id (ERROR ved mismatch)
+      - Orphan-.md-filer uden roster-entry
+      - .vscode/.codex/agents/banedanmark/bd-*.md har YAML-frontmatter
+      - Kan skrive JSON-rapport via -JsonReport
+
+    Denne fil tjekker IKKE:
+      - ```text fence eller mojibake-encoding i .md-filer (se scripts/validate-harness.ps1)
+      - Root/registry.yaml eller .vscode/.codex/Brain/*.md eksistens (se scripts/validate-harness.ps1)
+      - .agents/agents/*/profile.md+skills.yaml mod .agents/registry.yaml, eller .agents/skills/ (se .agents/scripts/validate-harness.ps1)
+
+    For fuld dækning: kør også scripts/validate-harness.ps1 (bredere men fladere .vscode/.codex-tjek)
+    og .agents/scripts/validate-harness.ps1 (tjekker den separate .agents/-struktur).
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(

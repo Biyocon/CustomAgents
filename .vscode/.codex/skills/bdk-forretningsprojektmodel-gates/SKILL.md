@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-forretningsprojektmodel-gates
 description: Anvend Banedanmarks forretningsprojektmodel med korrekt gateforståelse, faseskift og dokumentkrav.
 ---

@@ -1,27 +1,27 @@
-﻿---
+---
 name: bdk-risk-profile
-description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer, risikoejeransvar og sammenhÃ¦ng til SRAC.
+description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer, risikoejeransvar og sammenhæng til SRAC.
 ---
 
 # BDK Risikoprofil
 
-## HvornÃ¥r skillen bruges
-- NÃ¥r brugeren spÃ¸rger til risikoprofil, risikoejer, barrierer eller SRAC-effekt i drift.
-- NÃ¥r brugeren Ã¸nsker en struktureret vurdering af Ã¦ndringer til sikkerhedsbarrierer eller overvÃ¥gning.
+## Hvornår skillen bruges
+- Når brugeren spørger til risikoprofil, risikoejer, barrierer eller SRAC-effekt i drift.
+- Når brugeren ønsker en struktureret vurdering af ændringer til sikkerhedsbarrierer eller overvågning.
 
 ## Arbejdsgang
-1. LÃ¦s `references/source-map.md` for relevante kilder.
-2. IdentificÃ©r det prÃ¦cise risikoobjekt:
+1. Læs `references/source-map.md` for relevante kilder.
+2. Identificér det præcise risikoobjekt:
    - fare/risiko
    - barrierekategori (sandsynlighed/konsekvens)
    - risikoejer
-   - overvÃ¥gningskobling (indikator, audit, tilsyn, SRAC)
-3. Ved Ã¦ndringer i barrierer/processer: rout til procesreferencer (`ST-5.1.3`, `IB-2.1.1`, `IB-2.1.2`) fÃ¸r anbefalinger.
+   - overvågningskobling (indikator, audit, tilsyn, SRAC)
+3. Ved ændringer i barrierer/processer: rout til procesreferencer (`ST-5.1.3`, `IB-2.1.1`, `IB-2.1.2`) før anbefalinger.
 4. Lever resultat med:
-   - nuvÃ¦rende tilstand
+   - nuværende tilstand
    - effektvurdering
    - ejer og styringsspor
-   - nÃ¸dvendig procesopfÃ¸lgning
+   - nødvendig procesopfølgning
 
 ## Outputformat
 1. Konklusion
@@ -33,4 +33,4 @@ description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer
 ## Styringsregler
 - Opfind ikke manglende procestrin.
 - Skeln mellem krav og anbefaling.
-- Ved ordlydsnÃ¦re juridiske spÃ¸rgsmÃ¥l: brug `K&S/Lovkrav og regler/*`.
+- Ved ordlydsnære juridiske spørgsmål: brug `K&S/Lovkrav og regler/*`.

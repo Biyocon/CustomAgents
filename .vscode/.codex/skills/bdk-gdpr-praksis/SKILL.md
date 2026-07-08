@@ -1,27 +1,27 @@
-﻿---
+---
 name: bdk-gdpr-praksis
-description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus pÃ¥ korrekt systembrug, dataminimering og hÃ¥ndtering af personoplysninger.
+description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus på korrekt systembrug, dataminimering og håndtering af personoplysninger.
 ---
 
 # BDK GDPR-praksis
 
-## HvornÃ¥r skillen bruges
-- NÃ¥r brugeren spÃ¸rger hvordan persondata skal hÃ¥ndteres i daglig drift.
-- NÃ¥r brugeren vil vide hvor data mÃ¥ opbevares/journaliseres.
+## Hvornår skillen bruges
+- Når brugeren spørger hvordan persondata skal håndteres i daglig drift.
+- Når brugeren vil vide hvor data må opbevares/journaliseres.
 
 ## Arbejdsgang
-1. LÃ¦s `references/source-map.md`.
-2. KlassificÃ©r datascenarie:
+1. Læs `references/source-map.md`.
+2. Klassificér datascenarie:
    - opbevaring
    - deling
    - journalisering
    - adgangsstyring
-3. Match scenariet til godkendte systemer og begrÃ¦nsninger.
-4. Lever en kort handlingsliste med "mÃ¥/skal/mÃ¥ ikke".
+3. Match scenariet til godkendte systemer og begrænsninger.
+4. Lever en kort handlingsliste med "må/skal/må ikke".
 
 ## Outputformat
 1. Scenarie
-2. Korrekt hÃ¥ndtering
+2. Korrekt håndtering
 3. Forbudte eller risikofyldte handlinger
 4. Kilder (repo-stier)
 5. Usikkerheder/eskalering
@@ -29,4 +29,4 @@ description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus pÃ¥ k
 ## Styringsregler
 - Ingen persondata i eksempler.
 - Ingen anbefaling af lokal lagring eller uautoriseret deling.
-- Ved tvivl om lovfortolkning: markÃ©r behov for juridisk validering.
+- Ved tvivl om lovfortolkning: markér behov for juridisk validering.

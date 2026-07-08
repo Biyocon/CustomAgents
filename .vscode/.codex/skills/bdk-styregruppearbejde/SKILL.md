@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-styregruppearbejde
 description: Understøt etablering og drift af styregruppearbejdet med fokus på aftaler, beslutningsgrundlag og ledelsesstøtte.
 ---

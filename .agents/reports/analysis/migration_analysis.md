@@ -1,5 +1,8 @@
 # Migration Analysis Report
 
+
+> **RETTELSE (addendum, 2026-07-09):** Denne rapports konklusion — at migrationen af de 14 Banedanmark-agenter var „gennemført“ — er forældet. Commit `7626c697` rullede migrationen tilbage: alle 14 rolle-agent-mapper blev slettet fra `.agents/agents/` og erstattet af persona-baserede agenter. Rapporten blev aldrig opdateret efter rollbacken. Se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md` for detaljer. Originalt indhold nedenfor er bevaret uændret som historik.
+
 ## Dato
 2026-05-06
 

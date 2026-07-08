@@ -6,6 +6,26 @@
 .DESCRIPTION
     Tjekker at agent-roster.json, Avatar/agents/*.md og .vscode/.codex/agents/banedanmark/*.md
     er synkroniserede, korrekt encodede, og indeholder forventede sektioner.
+
+.NOTES
+    SCOPE-KORT (se docs/architecture/validate-scripts-map.md for fuld oversigt)
+
+    DENNE fil (scripts/validate-harness.ps1, 94 linjer) tjekker:
+      - .vscode/.codex/agents/agent-roster.json findes og kan parses
+      - Hver roster-id har en Avatar/agents/System_Prompt_Agent_<id>.md fil
+      - Den fil indeholder ```text fence og ikke har mojibake-encoding (Ã¦/Ã)
+      - Orphan-filer i Avatar/agents/ uden roster-entry
+      - .vscode/.codex/agents/banedanmark/*.md har YAML-frontmatter (---)
+      - Root/registry.yaml findes (kun eksistens-tjek)
+      - .vscode/.codex/Brain/{glossary,open-questions,source-map}.md findes
+
+    Denne fil tjekker IKKE:
+      - .agents/agents/*/profile.md + skills.yaml mod .agents/registry.yaml (se .agents/scripts/validate-harness.ps1)
+      - status/skills/avatar/id-konsistens i detaljer mellem roster og .md-profiler (se scripts/Validate-AgentHarness.ps1)
+      - .agents/registry.yaml syntaks eller .agents/skills/*/SKILL.md
+
+    For fuld dækning: kør også scripts/Validate-AgentHarness.ps1 (dybere .vscode/.codex-tjek)
+    og .agents/scripts/validate-harness.ps1 (tjekker den separate .agents/-struktur).
 #>
 param(
     [string]$Root = (Get-Location)

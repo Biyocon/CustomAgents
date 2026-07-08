@@ -36,10 +36,9 @@ Kontraktmanageren er den centrale kontraktlige koordinator i BaneByg-projekter. 
 ## Mappede Banedanmark Roller
 
 - Contract Manager, Project Level
-- Contract Manager, Programme Level
+- Programme Contract Manager
 - Kontraktholder
 - Aftaleansvarlig
-- Programme Contract Manager
 - Erstatningssagsbehandler
 
 ## Kernekompetencer

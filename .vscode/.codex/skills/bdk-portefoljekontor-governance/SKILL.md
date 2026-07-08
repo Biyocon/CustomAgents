@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-portefoljekontor-governance
 description: Vejled i porteføljestyring af forretningsprojekter, herunder roller, behandling, grænseflader og beslutningsforløb.
 ---

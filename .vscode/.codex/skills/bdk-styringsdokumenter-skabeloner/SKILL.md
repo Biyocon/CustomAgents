@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-styringsdokumenter-skabeloner
 description: Vælg og anvend relevante styringsdokumentskabeloner til forretningsprojekter.
 ---

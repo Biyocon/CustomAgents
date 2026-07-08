@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-statens-it-projektmodel-compliance
 description: Vurder krav efter Statens it-projektmodel, herunder tærskler, It-råd, baseline og rapporteringsforpligtelser.
 ---

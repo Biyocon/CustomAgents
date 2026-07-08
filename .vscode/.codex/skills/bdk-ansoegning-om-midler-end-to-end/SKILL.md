@@ -1,4 +1,4 @@
-﻿---
+---
 name: bdk-ansoegning-om-midler-end-to-end
 description: Gennemfør en komplet ansøgning om midler til Porteføljekontoret fra projektidé til indstillingspakke, gate-parathed og indsendelsesplan.
 ---

@@ -1,5 +1,7 @@
 # Multi-Agent Dybdeanalyse — Banedanmark Roller → Agent Harness Mapping
 
+> **RETTELSE (addendum, 2026-07-09):** Betegnelsen "verificeret" i sektion 4's "Høj-confidence Mapping"-overskrift er misvisende — rapportens egen "Begrænsninger"-sektion erkender at PDF-indhold aldrig blev parset, kun filnavne blev mønster-matchet. Konkret holder mappingen "Ahmad El-Wali → Administrerende direktør, Direktør, Styregruppeformand" ikke ved direkte læsning af kilde-PDF'en: personaens faktiske scope er indkøb/kontrakter/interfacestyring for en ~15-personers afdeling, ikke topledelse/jernbanesikkerhedsledelse. Se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`, fund "domain-source-traceability / correctness - F1". Originalt indhold nedenfor er bevaret uændret som historik.
+
 **Dato:** 2026-05-06
 **Auditor:** Koordinator (simuleret multi-agent workstream)
 **Projekt:** Kvalifikationsordning Entreprenør — Banedanmark Agent Harness

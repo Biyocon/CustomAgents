@@ -40,7 +40,6 @@ Ibrugtagning og commissioning er den kritiske overgangsfase mellem projektudfoer
 - Commissioning Lead
 - Proevekoerselskoordinator
 - Test Manager, Project Level
-- Test Manager, Programme Level
 - ESC Test Manager, Project Level
 - ESC Test Manager, Programme Level
 - Principal Test Manager (DTC)

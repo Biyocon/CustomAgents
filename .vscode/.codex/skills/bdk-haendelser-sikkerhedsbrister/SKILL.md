@@ -1,31 +1,31 @@
-﻿---
+---
 name: bdk-haendelser-sikkerhedsbrister
-description: StÃ¸t korrekt klassifikation og hÃ¥ndtering af sikkerhedsmÃ¦ssige hÃ¦ndelser og administrative sikkerhedsbrister.
+description: Støt korrekt klassifikation og håndtering af sikkerhedsmæssige hændelser og administrative sikkerhedsbrister.
 ---
 
-# BDK HÃ¦ndelser og Sikkerhedsbrister
+# BDK Hændelser og Sikkerhedsbrister
 
-## HvornÃ¥r skillen bruges
-- NÃ¥r brugeren skal klassificere en hÃ¦ndelse eller sikkerhedsbrist.
-- NÃ¥r brugeren spÃ¸rger om indmelding, undersÃ¸gelse eller opfÃ¸lgning.
+## Hvornår skillen bruges
+- Når brugeren skal klassificere en hændelse eller sikkerhedsbrist.
+- Når brugeren spørger om indmelding, undersøgelse eller opfølgning.
 
 ## Arbejdsgang
-1. LÃ¦s `references/source-map.md`.
-2. KlassificÃ©r case:
-   - sikkerhedsmÃ¦ssig hÃ¦ndelse
+1. Læs `references/source-map.md`.
+2. Klassificér case:
+   - sikkerhedsmæssig hændelse
    - administrativ sikkerhedsbrist
-   - alvorlig hÃ¦ndelse med undersÃ¸gelsesbehov
-3. Angiv korrekt indmeldings- og opfÃ¸lgningsvej.
-4. Lever anbefalet handlingsforlÃ¸b med roller og dokumentationskrav.
+   - alvorlig hændelse med undersøgelsesbehov
+3. Angiv korrekt indmeldings- og opfølgningsvej.
+4. Lever anbefalet handlingsforløb med roller og dokumentationskrav.
 
 ## Outputformat
 1. Klassifikation
 2. Indmelding og system
 3. Roller/ansvar
-4. OpfÃ¸lgning
+4. Opfølgning
 5. Kilder (repo-stier)
 
 ## Styringsregler
-- UndgÃ¥ skyldplacering uden dokumenteret grundlag.
+- Undgå skyldplacering uden dokumenteret grundlag.
 - Skeln klart mellem fakta og antagelser.
-- Ved potentielt alvorlig hÃ¦ndelse: foreslÃ¥ hurtig eskalering.
+- Ved potentielt alvorlig hændelse: foreslå hurtig eskalering.
