@@ -1,3 +1,0 @@
-﻿display_name: BDK Porteføljekontor Governance
-short_description: Afklar roller, beslutningsflow og styringsansvar i porteføljestyringen.
-default_prompt: Afgræns governance-spørgsmålet, kortlæg roller og beslutningsflow, og returnér et handlingsnært svar med kildehenvisninger.

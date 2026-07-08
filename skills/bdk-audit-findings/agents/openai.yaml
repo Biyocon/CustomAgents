@@ -1,3 +1,0 @@
-display_name: BDK Auditfund og Opfølgning
-short_description: Planlæg audits og strukturér håndtering af findings og opfølgning.
-default_prompt: Klassificér auditkonteksten, map findings til håndteringskrav, og udarbejd en dokumenteret handlingsplan med ansvar, frister og kildehenvisninger.

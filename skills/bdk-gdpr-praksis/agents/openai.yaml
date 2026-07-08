@@ -1,4 +1,0 @@
-display_name: BDK GDPR-praksis
-short_description: Giv konkret vejledning i korrekt håndtering af persondata i Banedanmark.
-default_prompt: Klassificér persondatascenariet, map til korrekt systembrug og begrænsninger, og returnér en kort må/skal/må ikke-handlingsliste med kilder.
-

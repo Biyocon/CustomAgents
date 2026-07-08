@@ -1,4 +1,0 @@
-display_name: BDK Hændelser og Sikkerhedsbrister
-short_description: Klassificér og håndtér hændelser og sikkerhedsbrister korrekt.
-default_prompt: Klassificér den konkrete case, angiv korrekt indmeldings- og opfølgningsforløb i SafetyNet, og lever en rolle- og handlingsorienteret plan med kildehenvisninger.
-

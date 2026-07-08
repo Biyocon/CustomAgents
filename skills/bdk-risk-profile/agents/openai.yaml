@@ -1,3 +1,0 @@
-display_name: BDK Risikoprofil
-short_description: Analyser jernbanesikkerhedsrisici, barrierer, risikoejere og SRAC-effekt.
-default_prompt: Analyser det ønskede risikotema ud fra repository-kilderne, identificér barrierer og risikoejeransvar, og giv næste handlinger med procesrute og kildehenvisninger.

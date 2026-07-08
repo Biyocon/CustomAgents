@@ -1,3 +1,0 @@
-﻿display_name: BDK Forretningsprojektmodel GATES
-short_description: Vurdér fase- og gatekrav i Banedanmarks forretningsprojektmodel.
-default_prompt: Afklar projektets fase/gate, udtræk relevante kriterier og dokumentkrav, og returnér en struktureret go/no-go vurderingsramme med kilder.
