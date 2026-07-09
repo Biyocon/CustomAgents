@@ -68,7 +68,7 @@ Afslutning af Fase A — Runtime- og registry-konsolidering (se `KØREPLAN.md`)
 **Varighed:** Én nats forløb (2026-07-01 kl. ~00:44 → 2026-07-02 kl. ~02:00).
 **Status ved start → slut:** 5 ikke-committede filer korrumperet (afkortet/tilbagefaldet) →
 genoprettet, committet, og en efterfølgende `.gitattributes`-regression (tabt LFS-regel)
-fundet og lukket samme session. 3 commits: `829b34ad`, `61201b3e`, `38eb411f`.
+fundet og lukket samme session. 3 commits: `1ea48fba`, `2be73f02`, `c6a68cce`.
 
 ### Hvad gik godt
 

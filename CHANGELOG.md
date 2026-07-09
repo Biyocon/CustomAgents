@@ -83,7 +83,7 @@ Rodårsagen er ikke endeligt identificeret, men mønstret ligner en afbrudt enco
 (Set-Content/Python-stil), muligvis relateret til at to agent-sessioner (denne + Fable 5)
 arbejdede på samme OneDrive-synkroniserede arbejdstræ samtidigt. Indholdet blev genskabt
 fuldstændigt fra en pre-korruptions-diff-fangst (Fable 5) + `git show HEAD:<fil>` for de
-uændrede haler, verificeret linje-for-linje via `Read`, og committet som `829b34ad`.
+uændrede haler, verificeret linje-for-linje via `Read`, og committet som `1ea48fba`.
 Sideløbende blev ~180 filer med tilsyneladende "M"-status i `git status` bekræftet som ren
 CRLF/LF-linjeskiftstøj (ikke relateret til korruptionen) — se ticket #12.
 **Berørte tasks:** Ny ticket #13 (rodårsagsundersøgelse + resterende code-review-fund), #12 (CRLF)
@@ -101,15 +101,15 @@ om driftsreglen "kun én skrivende session ad gangen" skal formaliseres i `AGENT
 **Ændrede filer:** `.gitattributes` (ny), `docs/drafts/#12-normalisér-linjeskift-crlf-stoej.md`,
 `LESSON.md`, `primer.md`
 **Årsag:** Ticket #12 udført efter bruger-godkendelse: `.gitattributes` med `* text=auto` +
-eksplicitte binary-regler, `git add --renormalize .`, committet i `61201b3e`. Fjernede alle
+eksplicitte binary-regler, `git add --renormalize .`, committet i `2be73f02`. Fjernede alle
 ~180 falske " M"-filer fra `git status`. En parallel review-session (Fable 5) opdagede at
 overskrivningen af `.gitattributes` havde slettet en eksisterende, aktiv Git LFS-regel
 (`*.zip filter=lfs diff=lfs merge=lfs -text`) for 2 LFS-sporede zip-filer i
 `.vscode/archive/upstream-skills/`. Uafhængigt bekræftet (git-historik + faktisk
-LFS-pointer-indhold i begge zip-filer), og genindsat i `38eb411f`.
+LFS-pointer-indhold i begge zip-filer), og genindsat i `c6a68cce`.
 **Berørte tasks:** #12 (lukket, status: done), #13 (uændret, stadig åben)
 **Impact:** Ingen re-sekvensering. 3 commits på `main` samlet fra nattens forløb:
-`829b34ad` (genoprettelse), `61201b3e` (CRLF-normalisering), `38eb411f` (LFS-fix).
+`1ea48fba` (genoprettelse), `2be73f02` (CRLF-normalisering), `c6a68cce` (LFS-fix).
 Ny lesson tilføjet i `LESSON.md` om at tjekke eksisterende filindhold før overskrivning af
 konfigurationsfiler, og om at Cowork-sandboxens OneDrive-mount kan vise forældet
 arbejdstræ-indhold — index-muterende git-kommandoer køres derfor fremover kun fra

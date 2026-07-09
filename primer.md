@@ -37,7 +37,7 @@ driftsregler før kode/dokumenter rettes.
 - Reconciliere de to divergerende `registry.yaml`-filer (rod vs. `.agents/`)
 - **Lukket siden sidst:** Natlig filkorruptions-hændelse (5 filer) + `.gitattributes`-
   regression (tabt LFS-regel) — begge genoprettet og verificeret. 3 nye commits:
-  `829b34ad`, `61201b3e`, `38eb411f`. Se `LESSON.md` og `docs/drafts/#12`/`#13`.
+  `1ea48fba`, `2be73f02`, `c6a68cce`. Se `LESSON.md` og `docs/drafts/#12`/`#13`.
 
 ## Verificeret denne session
 
@@ -62,8 +62,8 @@ driftsregler før kode/dokumenter rettes.
 | 28 ufuldstændige agentmapper (0/28 komplette) | ⬜ | Se `docs/active/#6-komplettér-agentmapper.md` |
 | Roster/registry-fejl (arkiv-mismatch, council-chairman, Higgsfield) | ⬜ | Se `docs/active/#11-ryd-op-i-roster-og-registry-fejl.md` |
 | QA-sikkerhedsfund | ⬜ | Vendor-gitlink uden `.gitmodules`, tracked API-nøgle-placeholder |
-| CRLF-støj (~180 falske "M") | ✅ | Lukket via `#12` — `.gitattributes` + renormalize, commits `61201b3e`/`38eb411f` |
-| Filkorruptions-hændelse (5 filer) | ✅ | Genoprettet og committet (`829b34ad`) — rodårsag stadig åben, se `#13` |
+| CRLF-støj (~180 falske "M") | ✅ | Lukket via `#12` — `.gitattributes` + renormalize, commits `2be73f02`/`c6a68cce` |
+| Filkorruptions-hændelse (5 filer) | ✅ | Genoprettet og committet (`1ea48fba`) — rodårsag stadig åben, se `#13` |
 
 ## Vigtige filer
 

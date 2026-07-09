@@ -60,7 +60,7 @@
 
 **Scripts/validering:** 3 uafhængige "validate harness"-implementeringer tjekker forskellige, ikke-overlappende strukturer — kørsel af den forkerte giver en falsk-ren rapport for reel drift. Mindst 2 bekræftede silent no-ops (en regex der aldrig kan matche, en anden der grabber forkert felt).
 
-**PM/Task-rapportering:** Hele "det nye PM-system" er untracked i git. Task #12 ("done") citerer 3 commit-SHA'er der er dangling (unreachable) efter en rebase — og #12's eget "done"-kriterium (ingen CRLF-advarsler) fejler igen ved direkte gentest.
+**PM/Task-rapportering:** Hele "det nye PM-system" er untracked i git (**opdateret 2026-07-09: committet**, se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`s egen note øverst og commit `7c090376`). Task #12 ("done") citerer 3 commit-SHA'er der er dangling (unreachable) efter en rebase (**rettet 2026-07-09**, se `docs/drafts/#12-normalisér-linjeskift-crlf-stoej.md`) — og #12's eget "done"-kriterium (ingen CRLF-advarsler) fejler igen ved direkte gentest (**genundersøgt 2026-07-09: IKKE en regression af selve fixet, se samme fil for rodårsag**).
 
 **Registry/orkestrerings-drift:** Bekræftet som et allerede kendt P0-issue (docs/active/#2, blokeret af #1) — denne audit tilføjer nyt: 3 byte-korrupte profilfiler i `.agents/agents/` skygge-duplikat af `Avatar/agents/`, og et helt forældreløst tredje skills-træ i repo-roden (`skills/`, 35 undermapper) der ikke er nævnt i nogen AGENTS.md.
 
@@ -74,7 +74,7 @@
 | ADR-multi-runtime: `.agents/` skal blive canonical, `.codex/` bliver transitional | 2026-06-17, **Proposed** (aldrig lukket) | **Uafgjort** | Modsiger ADR-0002 direkte; ingen ADR-0003 forener dem |
 | Ticket #1 (P0): afgør runtime-modsigelsen | 2026-07-01, active | **Uløst, blokerer #2/#3/#4/#6** | 8 dage gammel, ingen bevægelse |
 | Ticket #11: ryd roster/registry-fejl (3 delpunkter) | 2026-07-01, active | **1 af 3 løst** (council-chairman-placering), 2 uløst (10 arkiverede roster-entries, Higgsfield-skills uregistreret) | Delvist gjort, ikke lukket/opdateret |
-| Task #12: normalisér CRLF-støj | Lukket 2026-07-02 | **Regredieret** | Samme LF/CRLF-advarsel udløses igen for 42 filer ved test i dag; commit-SHA'er i "Resultat" er dangling efter rebase |
+| Task #12: normalisér CRLF-støj | Lukket 2026-07-02 | ~~Regredieret~~ **Genundersøgt 2026-07-09: ikke regredieret** | Advarslen skyldes ~37 gamle, ikke-relaterede uncommittede filer (ikke selve normaliseringen); forsvinder når de committes/forkastes. SHA-referencer rettet (`1ea48fba`/`2be73f02`/`c6a68cce`). Se `docs/drafts/#12-normalisér-linjeskift-crlf-stoej.md` |
 | Migration af 14 Banedanmark-rolleagenter til `.agents/agents/` | 2026-05-06, rapporteret "gennemført" | **Faktisk rullet tilbage** en måned senere (commit 7626c697) uden at rapporten er rettet | migration_analysis.md fremstår stadig som gældende |
 | PDF-kildeindlæsning af FB/-indhold (ADR-0002 §3, "højeste prioritet") | 2026-06-10 | **Aldrig udført** | Ingen commit siden har rørt FB-indhold |
 
@@ -123,11 +123,11 @@
 
 1. **ADR-multi-runtime står "Proposed" i 3+ uger** og modsiger ADR-0002 direkte — rodårsagen til at intet andet kan afgøres. *(agent-roster-profiles/consistency)*
 2. **`.vscode/.codex/Brain/` modsiger sig selv internt**: hævder stadig at være "eneste kilde til sandhed" i AGENTS.md/context.md, mens samme mappes session-history.md dokumenterer at autoriteten er vendt om. *(brain-memory-system/correctness)*
-3. **open-questions.md's status-note er forældet** — citerer en 2026-06-10-konklusion som en uge senere blev omgjort af ADR-multi-runtime, uden opdatering. *(brain-consistency/rehearsal)*
-4. **docs/active/ og docs/audit/ (P0-tickets + selve audit-rapporten dette bygger på) er 100% untracked i git** — samme sårbarhedsklasse som OneDrive-hændelsen 2026-07-02. *(brain-memory-system/consistency)*
-5. **Hele PM-systemet er untracked** (KØREPLAN, PROJEKT_PLAN, FORBEDRINGSNOTAT, DEPS, systemkort, docs/active|audit|drafts|Task). *(pm-task-reporting/correctness + pm-task-staleness/rehearsal)*
-6. **3 dangling commit-SHA'er citeret som "bevis" for #12's lukning** i 5 filer, 9 forekomster — historikken blev omskrevet, referencerne aldrig opdateret. *(pm-task-reporting/correctness)*
-7. **#12's eget "done"-kriterium fejler igen ved direkte gentest** (42 filer udløser CRLF-advarsel i dag). *(pm-task-reporting/consistency)*
+3. ~~**open-questions.md's status-note er forældet**~~ **Rettet 2026-07-09** — citerede en 2026-06-10-konklusion som en uge senere blev omgjort af ADR-multi-runtime; opdateret sammen med ADR-accept, se `ADR-0003-2026-07-09-multi-runtime-accepted.md`. *(brain-consistency/rehearsal)*
+4. ~~**docs/active/ og docs/audit/ ... er 100% untracked i git**~~ **Rettet 2026-07-09** (commit `7c090376`) — samme sårbarhedsklasse som OneDrive-hændelsen 2026-07-02. *(brain-memory-system/consistency)*
+5. ~~**Hele PM-systemet er untracked**~~ **Rettet 2026-07-09** (commit `7c090376`) — KØREPLAN, PROJEKT_PLAN, FORBEDRINGSNOTAT, DEPS, systemkort, docs/active|audit|drafts|Task. *(pm-task-reporting/correctness + pm-task-staleness/rehearsal)*
+6. ~~**3 dangling commit-SHA'er citeret som "bevis" for #12's lukning**~~ **Rettet 2026-07-09** — alle 9 forekomster i 5 filer opdateret til de faktiske main-SHA'er. *(pm-task-reporting/correctness)*
+7. ~~**#12's eget "done"-kriterium fejler igen ved direkte gentest**~~ **Genundersøgt 2026-07-09 — falsk alarm.** Skyldes ~37 gamle uncommittede filer, ikke selve CRLF-normaliseringen; se `docs/drafts/#12-normalisér-linjeskift-crlf-stoej.md`. *(pm-task-reporting/consistency)*
 8. **Valideringstooling tjekker aldrig den erklærede autoritative runtime** (.vscode/.codex/) — kun kandidatlaget .agents/. *(dual-runtime-sync/correctness)*
 9. **migration_analysis.md hævder stadig "migration gennemført"** for 14 agenter der blev fjernet igen en måned senere. *(dual-runtime-sync/consistency)*
 10. **ADR-0002's eksplicitte "frys ny funktionalitet"-beslutning er ignoreret** — efterfølgende commits tilføjer ny, uafstemt .agents-funktionalitet. *(dual-runtime-sync/consistency)*
@@ -170,7 +170,7 @@
 4. Fjern de 10 arkiverede agent-id'er fra `agent-roster.json` (ticket #11, delpunkt 1 — bekræftet stadig åbent).
 5. Ret de 3 byte-korrupte `.agents/agents/*/profile.md`-filer (regenerér fra ren `Avatar/agents/`-kilde).
 6. Ret de 6 dobbelt-mojibake-korrupte SKILL.md-filer (særligt GDPR/legal-mapping — bruges til reel compliance-vejledning).
-7. Opdatér `#12`'s "Resultat"-sektion (og LESSON.md/CHANGELOG-referencer) til de faktiske main-SHA'er efter rebasen; genundersøg CRLF-regressionen.
+7. ~~Opdatér `#12`'s "Resultat"-sektion (og LESSON.md/CHANGELOG-referencer) til de faktiske main-SHA'er efter rebasen; genundersøg CRLF-regressionen.~~ **DONE (2026-07-09).** SHA'er rettet i 5 filer (9 forekomster). CRLF-"regressionen" genundersøgt — er ikke en regression, kun støj fra ~37 gamle uncommittede banedanmark/Brain-filer (separat, allerede kendt oprydningsopgave). Se `docs/drafts/#12-normalisér-linjeskift-crlf-stoej.md`.
 
 **Senere (P2):**
 8. Konsolidér de 3 parallelle validate-harness-implementeringer til én, eller dokumentér eksplicit hvilken der gælder for hvilken struktur.

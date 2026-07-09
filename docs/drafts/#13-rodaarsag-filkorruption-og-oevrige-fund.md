@@ -16,7 +16,7 @@ oprettet: "2026-07-02"
 
 Natten mellem 2026-07-01/02 blev 5 ikke-committede filer korrumperet (4 afkortet midt i
 ord/sætning, 1 faldet tilbage til ældre indhold) — se CHANGELOG 2026-07-02. Indholdet er
-genoprettet og committet (`829b34ad`), men selve rodårsagen til hvilken proces der skrev
+genoprettet og committet (`1ea48fba`), men selve rodårsagen til hvilken proces der skrev
 de korrupte versioner kl. 00:47:05/00:48:56 er ikke identificeret. Samtidig fandt
 code-review-sessionen (Fable 5) 4 mindre fund der overlevede genoprettelsen og stadig
 er reelle huller.
