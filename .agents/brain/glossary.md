@@ -30,11 +30,11 @@
 |--------|-----------|
 | **Harness** | Den samlede infrastruktur af agenter, skills, prompts og konfigurationer |
 | **Agent** | En specialiseret AI-rolle med eget prompt, trigger-betingelser og arbejdsomraade |
-| **Skill** | En genanvendelig evne — typisk et prompt eller en guide — der kan aktiveres af agenter |
+| **Skill** | En genanvendelig evne â€” typisk et prompt eller en guide â€” der kan aktiveres af agenter |
 | **Brain** | Projektets persistente kontekst- og hukommelsesarkiv |
 | **Runbook** | En trin-for-trin driftsguide |
-| **ADR** | Architecture Decision Record — dokumenteret arkitekturbeslutning |
-| **MCP** | Model Context Protocol — protokol til vaerktoejsintegration |
+| **ADR** | Architecture Decision Record â€” dokumenteret arkitekturbeslutning |
+| **MCP** | Model Context Protocol â€” protokol til vaerktoejsintegration |
 | **Runtime** | Den aktive koerselskontekst (stier, prompts, skills) for agenter |
 | **Kombi** | Referencekatalog med upstream-materiale og inspiration |
 | **Promovering** | Kopiering af projekt-harness til global brugerprofil |

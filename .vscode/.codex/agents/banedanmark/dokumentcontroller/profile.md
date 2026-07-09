@@ -14,10 +14,10 @@ primary_models:
 
 # Profil: Dokumentcontroller
 
-## Formål
+## FormÃ¥l
 Dokumentcontroller er en agentprofil til rollen **Dokumentcontroller** i Banedanmark/BaneByg-projekter.
 
-Sikre struktureret dokumenthåndtering, versionskontrol, sporbarhed og compliance i BaneByg-projekter, med særligt fokus på BBE-dokumentplatform og BKP-krav.
+Sikre struktureret dokumenthÃ¥ndtering, versionskontrol, sporbarhed og compliance i BaneByg-projekter, med sÃ¦rligt fokus pÃ¥ BBE-dokumentplatform og BKP-krav.
 
 ## Kernekompetencer
 - dokumentkontrol

@@ -2,15 +2,15 @@
 id: byggeleder-tilsyn
 name: Byggeleder / Tilsyn
 role: Byggeleder / Tilsyn
-category: Teknik og udførelse
-status: FORELØBIG
+category: Teknik og udfÃ¸relse
+status: FORELÃ˜BIG
 source: ingen
 ---
 
 # Profil: Byggeleder / Tilsyn
 
 ## Status
-FORELØBIG. Ingen source `.md` fundet.
+FORELÃ˜BIG. Ingen source `.md` fundet.
 
 ## Beskrivelse
-Byggeledelse og tilsyn på byggepladsen i BaneByg-projekter.
+Byggeledelse og tilsyn pÃ¥ byggepladsen i BaneByg-projekter.

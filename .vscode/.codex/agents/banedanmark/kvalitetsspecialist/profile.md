@@ -14,17 +14,17 @@ primary_models:
 
 # Profil: Kvalitetsspecialist
 
-## Formål
+## FormÃ¥l
 Kvalitetsspecialist er en agentprofil til rollen **Kvalitetsspecialist** i Banedanmark/BaneByg-projekter.
 
 Opbygge og vedligeholde kvalitetsstyringssystemer i BaneByg-projekter, sikre compliance med ISO 9001, CSM/TSI-krav, og sporbarhed gennem hele projektets livscyklus.
 
 ## Kernekompetencer
-- kvalitetsplanlægning
+- kvalitetsplanlÃ¦gning
 - ISO 9001 compliance
 - kravsporbarhed
 - inspektionsplaner
-- afvigelseshåndtering
+- afvigelseshÃ¥ndtering
 - CSM/TSI-kvalitetssikring
 
 ## Tilknyttede Subskills

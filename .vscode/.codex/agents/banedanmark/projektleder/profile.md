@@ -2,15 +2,15 @@
 id: projektleder
 name: Projektleder
 role: Projektleder
-category: Projektledelse og grænseflader
-status: FORELØBIG
+category: Projektledelse og grÃ¦nseflader
+status: FORELÃ˜BIG
 source: ingen
 ---
 
 # Profil: Projektleder
 
 ## Status
-FORELØBIG. Ingen source `.md` fundet.
+FORELÃ˜BIG. Ingen source `.md` fundet.
 
 ## Beskrivelse
-Overordnet projektledelse på BaneByg-projekter.
+Overordnet projektledelse pÃ¥ BaneByg-projekter.

@@ -13,7 +13,7 @@ Projektet har eksisteret med en `.vscode/.codex/`-struktur som aktiv runtime for
 **Motivation**:
 - reducerer duplikation og drift mellem filer
 - sikrer at alle modeller modtager samme arbejdsregler og stier
-- forenkler vedligeholdelse — aendringer skal kun foretages et sted
+- forenkler vedligeholdelse â€” aendringer skal kun foretages et sted
 
 **Konsekvenser**:
 - `AGENTS.md` skal skrives i generelle termer uden model-specifikke tricks
@@ -22,11 +22,11 @@ Projektet har eksisteret med en `.vscode/.codex/`-struktur som aktiv runtime for
 ### Beslutning 2: `.agents/` som ny model-agnostisk runtime
 
 **Valg**: Vi introducerer `.agents/` som ny topniveau-struktur med foelgende undermapper:
-- `brain/` — persistent kontekst og hukommelse
-- `agents/` — agent-definitioner
-- `skills/` — genanvendelige evner
-- `scripts/` — validering og vedligeholdelse
-- `model-adapters/` — model-specifikke tilpasninger
+- `brain/` â€” persistent kontekst og hukommelse
+- `agents/` â€” agent-definitioner
+- `skills/` â€” genanvendelige evner
+- `scripts/` â€” validering og vedligeholdelse
+- `model-adapters/` â€” model-specifikke tilpasninger
 
 **Motivation**:
 - adskiller aktiv runtime fra IDE-konfiguration (`.vscode/`)

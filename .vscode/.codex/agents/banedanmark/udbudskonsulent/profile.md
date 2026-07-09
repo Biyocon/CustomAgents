@@ -3,14 +3,14 @@ id: udbudskonsulent
 name: Udbudskonsulent
 role: Udbudskonsulent
 category: Udbud og kontrakt
-status: FORELØBIG
+status: FORELÃ˜BIG
 source: ingen
 ---
 
 # Profil: Udbudskonsulent
 
 ## Status
-FORELØBIG. Ingen source `.md` fundet.
+FORELÃ˜BIG. Ingen source `.md` fundet.
 
 ## Beskrivelse
-Agent til støtte af udbudsprocesser og kontraktforberedelse i BaneByg-projekter.
+Agent til stÃ¸tte af udbudsprocesser og kontraktforberedelse i BaneByg-projekter.

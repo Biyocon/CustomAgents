@@ -2,21 +2,21 @@
 id: interface-manager
 name: Interface Manager
 role: Interface Manager, Project Level
-category: Projektledelse og grænseflader
-status: FORELØBIG
-source: ingen — afledt fra roster: interface-manager-project-level
+category: Projektledelse og grÃ¦nseflader
+status: FORELÃ˜BIG
+source: ingen â€” afledt fra roster: interface-manager-project-level
 ---
 
 # Profil: Interface Manager
 
 ## Status
-FORELØBIG. Ingen source `.md` fundet i `.vscode/.codex/agents/banedanmark/`.
+FORELÃ˜BIG. Ingen source `.md` fundet i `.vscode/.codex/agents/banedanmark/`.
 
 ## Beskrivelse
-Agent til håndtering af tekniske og kontraktuelle grænseflader på projektniveau i BaneByg-projekter.
+Agent til hÃ¥ndtering af tekniske og kontraktuelle grÃ¦nseflader pÃ¥ projektniveau i BaneByg-projekter.
 
 ## Kernekompetencer
-- grænsefladestyring
+- grÃ¦nsefladestyring
 - teknisk koordinering
 - kontraktuelle interfaces
 - risikovurdering
