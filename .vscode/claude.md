@@ -1,8 +1,4 @@
-# AGENTS.md
+﻿See [.codex/AGENTS.md](.codex/AGENTS.md).
 
-## Critical Rules
-
-- NEVER delete files you didn't create
-- ALWAYS use `uv run` to execute Python scripts
-- ALWAYS write newly created scripts to the `temp/` subfolder (create it if it doesn't exist)
-- ALWAYS verify before marking a task complete that your solution fully addresses the original request
+<!-- Harnessens regel: AGENTS.md er eneste aktive instruktionskilde; separate CLAUDE.md/GEMINI.md/CODEX.md-filer må ikke indeholde egne regler.
+     Denne fil havde tidligere en fuld kopi af runtime-reglerne (overskrift "# AGENTS.md") — original i ~/.claude/backups/agents-md-consolidation-2026-07-06/ -->
