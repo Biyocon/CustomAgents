@@ -1,0 +1,39 @@
+{
+  "name": "source_delete",
+  "description": "Delete source(s) permanently. IRREVERSIBLE. Requires confirm=True.\n\nArgs:\n    source_id: Source UUID to delete (single)\n    source_ids: List of source UUIDs to delete (bulk, alternative to source_id)\n    confirm: Must be True after user approval",
+  "inputSchema": {
+    "additionalProperties": false,
+    "properties": {
+      "source_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "source_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "confirm": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  }
+}

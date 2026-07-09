@@ -1,0 +1,34 @@
+{
+  "name": "research_import",
+  "description": "Import discovered sources into notebook.\n\nCall after research_status shows status=\"completed\".\n\nArgs:\n    notebook_id: Notebook UUID\n    task_id: Research task ID\n    source_indices: Source indices to import (default: all)",
+  "inputSchema": {
+    "additionalProperties": false,
+    "properties": {
+      "notebook_id": {
+        "type": "string"
+      },
+      "task_id": {
+        "type": "string"
+      },
+      "source_indices": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "notebook_id",
+      "task_id"
+    ],
+    "type": "object"
+  }
+}

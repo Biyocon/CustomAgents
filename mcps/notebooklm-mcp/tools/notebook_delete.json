@@ -1,0 +1,20 @@
+{
+  "name": "notebook_delete",
+  "description": "Delete notebook permanently. IRREVERSIBLE. Requires confirm=True.\n\nArgs:\n    notebook_id: Notebook UUID\n    confirm: Must be True after user approval",
+  "inputSchema": {
+    "additionalProperties": false,
+    "properties": {
+      "notebook_id": {
+        "type": "string"
+      },
+      "confirm": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "notebook_id"
+    ],
+    "type": "object"
+  }
+}

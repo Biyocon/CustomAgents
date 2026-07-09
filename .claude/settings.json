@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(gh pr view 18 --json state,mergedAt,mergeCommit)",
+      "PowerShell(gh pr list --state open --json number)",
+      "PowerShell(git push -u origin docs/canonical-schema-and-registry-reconciliation 2>&1)",
+      "PowerShell(gh pr create --base main --head docs/canonical-schema-and-registry-reconciliation --title \"docs\\(architecture\\): add canonical schemas + registry reconciliation plan\" --body-file \"temp/_prbody_prb.md\" 2>&1)",
+      "PowerShell(gh pr merge 19 --rebase --match-head-commit c3e749e896a852bb72e4ff15d0fe200532a351a3 2>&1)",
+      "PowerShell(gh pr view 19 --json state,mergedAt,mergeCommit)",
+      "Bash(cd \"/c/Users/Biyocon/.claude/projects/c--Users-Biyocon-OneDrive---Biyocon-Desktop-Custom/memory\" && echo \"=== FILES ===\" && ls -1 && echo \"=== MEMORY.md ===\" && cat MEMORY.md)",
+      "Read(//c/Users/Biyocon/.claude/projects/c--Users-Biyocon-OneDrive---Biyocon-Desktop-Custom/memory/**)"
+    ]
+  }
+}
