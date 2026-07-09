@@ -6,12 +6,12 @@ Ledsagedokument til [ADR-multi-runtime-agent-system.md](ADR-multi-runtime-agent-
 
 | Folder | Current role | Classification | Future role | Notes |
 |---|---|---|---|---|
-| `.agents/` | model-agnostisk reference (agents, skills, brain, vendor, model-adapters) | source | **canonical source of truth** | skal modnes; har 27 persona-agenter + 29 skills |
-| `.vscode/.codex/` | aktiv runtime (codex/VS Code) | runtime | **generated runtime** (transitional nu) | 14 rolle-agenter, ~73 skills, aktiv registry, aktiv Brain |
+| `.agents/` | model-agnostisk reference (agents, skills, brain, vendor, model-adapters) | source | **canonical source of truth** | skal modnes; har 27 persona-agenter + 79 skills (opdateret 2026-07-09, se note) |
+| `.vscode/.codex/` | aktiv runtime (codex/VS Code) | runtime | **generated runtime** (transitional nu) | 14 rolle-agenter, kun 1 skill (`banebyg`, bevidst) — resten flyttet 2026-07-09, se note; aktiv registry, aktiv Brain |
 | `Avatar/` | persona-prompts (System_Prompt_Agent_*.md) + portrætbilleder | source | canonical persona-input | 27 avatar-backed agenter |
 | `archive/avatarless-agents/` | arkiv for 10 avatarløse agenter | archive | versioneret arkiv | ikke aktiv runtime |
-| `scripts/` | PowerShell-automatisering (8 scripts) | tooling | konsolidér til ét script-sæt | overlapper `.agents/scripts/` |
-| `.agents/scripts/` | PowerShell-automatisering (4 scripts) | tooling | konsolidér til ét script-sæt | overlapper `scripts/` |
+| `scripts/` | PowerShell-automatisering | tooling | ~~konsolidér til ét script-sæt~~ konsolideret 2026-07-09 | `validate-harness.ps1`/`Validate-AgentHarness.ps1` er nu tynde wrappers om `scripts/Validate-Harness-Unified.ps1` |
+| `.agents/scripts/` | PowerShell-automatisering | tooling | ~~konsolidér til ét script-sæt~~ konsolideret 2026-07-09 | `validate-harness.ps1` er nu tynd wrapper om `scripts/Validate-Harness-Unified.ps1` |
 | `docs/` | dokumentation (agents, architecture, runtime-status) | docs | versioneret dokumentation | denne ADR bor her |
 | root `skills/` | ældre skill-lag (~35 dirs) | legacy | konsolidér/arkivér | forgænger til `.agents/skills/` |
 | `temp/` | midlertidige scripts + scratch | scratch | dels ignored, dels slettes | helper-scripts parkeret |
@@ -64,8 +64,9 @@ Fælles indgang er `AGENTS.md`; hver runtime får en adapter der mapper canonica
 - **Agent schema** — canonical struktur for `profile.md` + `skills.yaml` (+ System_Prompt-felt).
 - **Skill schema** — canonical struktur for `SKILL.md`.
 - **Registry reconciliation** — de 4 registries → én canonical.
-- **73 vs 29 skills** — hvilket skill-sæt er sandheden (aktiv `.codex` vs kurateret `.agents`)?
-- **Role-agents vs persona-agents** — hvilken agent-model er canonical (rolle `.codex/banedanmark` vs persona `.agents/agents`)?
+- ~~**73 vs 29 skills** — hvilket skill-sæt er sandheden (aktiv `.codex` vs kurateret `.agents`)?~~
+  **Afgjort 2026-07-09:** `.agents/skills` (79 skills) — se `docs/architecture/registry-reconciliation.md`.
+- **Role-agents vs persona-agents** — hvilken agent-model er canonical (rolle `.codex/banedanmark` vs persona `.agents/agents`)? (Stadig åbent — kun skills er afklaret, ikke agents.)
 - **Claude/Ollama adapter implementation** — mangler helt; Codex/Kimi/Gemini findes kun som noter.
 - **Memory governance** — canonical vs runtime-local vs snapshot (PR E).
 - **Vendor/temp/audit handling** — vendor `skills-main`, temp helper-scripts, `MULTI_AGENT_AUDIT_*.md` afventer separat beslutning.

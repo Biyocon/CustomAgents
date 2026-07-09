@@ -1,5 +1,11 @@
 # Gap-analyse: Sharmake-template vs. Custom .agents/ vs. .vscode/.codex/
 
+> **RETTELSE (addendum, 2026-07-09):** Skill-tallene nedenfor for `.agents/` (34 mapper) og
+> `.vscode/.codex/` (74 mapper) er forældede — `.vscode/.codex/skills/` blev flyttet permanent
+> ind i `.agents/skills/` (79 skills i dag; `.codex/skills/` har kun `banebyg/` tilbage). Se
+> `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md` og commit `ff2e3907`. Sammenligningen mod
+> Sharmake (13 skills) og de kvalitative observationer er stadig gyldige som historisk kontekst.
+
 > Dato: 2026-07-01
 > Kilde: `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom\docs\kilde\my-agent stærkstrøm-template`
 > Sammenligningsmål: `Custom\.agents\` og `Custom\.vscode\.codex\`

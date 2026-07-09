@@ -32,7 +32,11 @@ Det centrale problem er **divergens og dobbeltvedligeholdelse** mellem de to lag
 
 - `.vscode/.codex/` og `.agents/` er i dag **divergerende, ikke spejlede**.
 - **Rolle-agenter vs persona-agenter:** `.vscode/.codex/agents/banedanmark/` har ~14 rolle-baserede agenter; `.agents/agents/` har 27 persona-baserede agenter.
-- **73 skills vs 29 skills:** `.vscode/.codex/skills/` har ~73 skills; `.agents/skills/` har 29 kuraterede.
+- ~~**73 skills vs 29 skills:** `.vscode/.codex/skills/` har ~73 skills; `.agents/skills/` har 29 kuraterede.~~
+  **Opdateret 2026-07-09:** Løst i praksis — projektejer flyttede hele `.vscode/.codex/skills/`-indholdet
+  til `.agents/skills/` (permanent, native OS-flytning). `.agents/skills/` har nu 79 skills;
+  `.vscode/.codex/skills/` har kun `banebyg/` tilbage (bevidst bevaret). Se
+  `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md` og commit `ff2e3907`.
 - **Flere registries:** root `registry.yaml`, `.agents/registry.yaml`, en tom scaffold `.vscode/.codex/registry.yaml`, og den reelle aktive `.vscode/.codex/agents/registry.yaml`.
 - **Adapter-laget er primært dokumentation, ikke generatorer:** `.agents/model-adapters/` indeholder beskrivende noter for codex/kimi/qwen/gemini — der findes ingen Claude- eller Ollama-adapter og ingen export/generate-mekanisme.
 
@@ -73,10 +77,19 @@ PR #9–#14 har ryddet persona/reference-laget:
 
 **Risiko:**
 - Aktiv runtime (`.vscode/.codex/`) kan brækkes ved for hurtig migration.
+- **Materialiseret 2026-07-09 for skills-delen:** Projektejer valgte bevidst at flytte hele
+  `.vscode/.codex/skills/` til `.agents/skills/` nu, forud for den planlagte PR-rækkefølge
+  (ingen generator/export-script bygget først). Verificeret uden dataskade (fuldt encoding-sweep,
+  0 korruption). Risikoen for `.vscode/.codex/agents/` (roller/registry/Brain) er **ikke**
+  materialiseret — kun skills-laget er rørt.
 
 **Mitigering:**
-- `.vscode/.codex/` røres **ikke** før export/validation-mekanismer findes og en eksplicit aktiveringsbeslutning er taget.
-- Reconciliation (73 vs 29 skills, rolle vs persona) afklares før canonicalisering.
+- `.vscode/.codex/agents/`, `.vscode/.codex/registry.yaml` og `.vscode/.codex/Brain/` røres
+  **stadig ikke** før export/validation-mekanismer findes og en eksplicit aktiveringsbeslutning
+  er taget. (Skills-laget er undtaget — se Risiko ovenfor.)
+- ~~Reconciliation (73 vs 29 skills, rolle vs persona) afklares før canonicalisering.~~
+  Skills-reconciliation er udført (2026-07-09). Rolle-vs-persona-afklaringen for `agents/` er
+  fortsat åben.
 
 ## Non-goals
 

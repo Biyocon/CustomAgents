@@ -29,8 +29,13 @@ Definere vejen fra det nuværende fragmenterede registry-landskab (4 registries,
 
 Ingen big-bang. Aktiv runtime brydes ikke før generator + validation findes og en eksplicit aktiveringsbeslutning er taget.
 
+## Afgjorte punkter
+- ~~**73 vs 33 skills** — `.vscode/.codex/skills` (73) vs `.agents/skills` (33, incl. 4 Higgsfield). Hvilket sæt er canonical; migreres de 40+ codex-only skills ind?~~
+  **Afgjort 2026-07-09:** `.agents/skills` er canonical og har nu 79 skills — hele `.vscode/.codex/skills`-indholdet
+  (inkl. de 40+ codex-only skills) er migreret ind (permanent flytning, verificeret uden dataskade).
+  `.vscode/.codex/skills` har kun `banebyg/` tilbage. Se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`, commit `ff2e3907`.
+
 ## Open decisions (ikke afgjort)
-- **73 vs 33 skills** — `.vscode/.codex/skills` (73) vs `.agents/skills` (33, incl. 4 Higgsfield). Hvilket sæt er canonical; migreres de 40+ codex-only skills ind?
 - **name vs trigger** — 27 skills har `name:`, 6 har `trigger:` uden `name:` (banebyg, bdk-brand-governance, bdk-legal-mapping, bdk-gdpr-praksis, shared-quality, shared-docx). Normalisering er senere migration.
 - **role vs persona** — aktiv runtime er rolle-baseret (`.codex/agents/banedanmark/`, 14), `.agents/agents/` er persona-baseret (27). Hvilken er canonical agent-model?
 - **system prompt canonical placering** — `profile.md` body (canonical-forslag) vs `Avatar/agents/System_Prompt_Agent_*.md` (dublet). Dedup er senere.

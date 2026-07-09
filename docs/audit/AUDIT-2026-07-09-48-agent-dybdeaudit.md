@@ -5,6 +5,17 @@
 **Fase udført:** Discovery → Deep-Audit → Rehearsal → Adversarial Verification (39 agenter). Implementering (Phase 4, 8 agenter) er **ikke** kørt — afventer godkendelse, jf. gate.
 **Rå journal:** `subagents/workflows/wf_ac39a6e6-8e0/journal.jsonl` (session-lokal, ikke i repo)
 
+> **OPDATERING (samme dag, 2026-07-09, senere):** Efter denne audit blev udført besluttede
+> projektejer at gøre `.agents/` canonical (ADR-multi-runtime-agent-system.md → Accepted) og
+> flyttede efterfølgende hele `.vscode/.codex/skills/`-indholdet permanent til `.agents/skills/`
+> (commit `ff2e3907`). Skills-relaterede fund i denne rapport (74 vs. 34 skills-splittet,
+> "40 BDK/BBTR-skills findes kun i .codex", 15 BOM-filer m.fl.) beskriver derfor tilstanden
+> **før** flytningen — de fleste af de konkrete filfejl (mojibake, BOM) blev allerede rettet
+> som del af Phase 4 samme dag og fulgte med til `.agents/skills/` i flytningen. Se
+> `docs/architecture/registry-reconciliation.md` og `docs/active/#3-afklar-skill-antal.md`
+> for den opdaterede status. Resten af rapporten (agent-roster, PM-system, ADR-modsigelser,
+> script-triplikering) er upåvirket og fortsat gældende.
+
 ---
 
 ## 1. Executive Summary

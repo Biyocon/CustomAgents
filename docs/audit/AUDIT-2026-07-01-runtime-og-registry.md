@@ -1,4 +1,10 @@
 # Arkitektur-Audit: AgentSkills — Custom AI Agent Harness
+
+> **RETTELSE (addendum, 2026-07-09):** Finding B-1 nedenfor (skill-antal-uenighed 29 vs.
+> 73 vs. 33 vs. 188) er nu løst — `.vscode/.codex/skills/` blev flyttet permanent ind i
+> `.agents/skills/` (79 skills i dag). Se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`
+> og commit `ff2e3907`. Originalt indhold nedenfor bevaret uændret som historik.
+
 **Dato:** 2026-07-01
 **Scope:** Hele repoet — runtime-lag (`.vscode/.codex/` vs. `.agents/`), registries,
 skill-/agent-optælling, validerings-historik, QA-fund
