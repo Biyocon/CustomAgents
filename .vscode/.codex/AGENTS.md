@@ -77,7 +77,7 @@ python .vscode/.codex/scripts/invoke-agent.py "Udbudskonsulent" -p
 ### Roster-synkronisering
 - `agent-roster.json` er master for Avatar-agenter
 - `registry.yaml` er master for Banedanmark-agenter
-- `temp/agent-roster-full.json` er legacy — bør ikke bruges som master
+- ~~`temp/agent-roster-full.json` er legacy — bør ikke bruges som master~~ (fjernet 2026-07-09, del af `temp/`-oprydning, se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`)
 
 ## Critical Rules
 

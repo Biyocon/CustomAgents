@@ -174,7 +174,7 @@
 
 **Senere (P2):**
 8. Konsolidér de 3 parallelle validate-harness-implementeringer til én, eller dokumentér eksplicit hvilken der gælder for hvilken struktur.
-9. Afklar skæbnen for det forældreløse rod-`skills/`-træ og `temp/`-legacy-indholdet.
+9. ~~Afklar skæbnen for det forældreløse rod-`skills/`-træ og `temp/`-legacy-indholdet.~~ **DONE (2026-07-09).** Rod-`skills/` reconciled+slettet (commit `ae15daae`). `temp/` gennemgået fil for fil (217 filer, 1,5 MB) og reduceret til 2 filer (52 KB): `verify_agent_harness.py` (aktivt refereret, beholdt) og `recovery-2026-07-02-pre-corruption-content.md` (genopretningsbevis, beholdt + committet — var utracket). Resten var uden aktive referencer (kun historiske dagbogsnoter) eller allerede gitignored backup/cache-junk (`mattpocock-skills/`-git-klon, `uvcache/`, `backup_agents/`).
 10. Ret de 2 forkerte PDF-rollereferencer i `bd-kontraktmanager.md`/`bd-ibrugtagning.md`, og omkvalificér "verificeret HIGH confidence"-sektionen i AUDIT_2026-05-06_Banedanmark_Roles.md.
 
 ---
