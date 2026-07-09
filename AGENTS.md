@@ -79,7 +79,7 @@ Projektet bruger single-context Brain-layout under `.vscode/.codex/Brain/`. Se `
 
 1. **Via registry**: ".agents/registry.yaml" lister alle registrerede agenter med deres triggers.
 2. **Via agent-map**: ".agents/brain/maps/agent-map.md" viser roller og relationer.
-3. **Manuelt**: Brugeren vaelger agent baseret p� opgavens domaene.
+3. **Manuelt**: Brugeren vaelger agent baseret på opgavens domaene.
 
 Nar en agent vaelges, laeser den:
 - Sit eget "AGENT.md"-manifest
@@ -96,12 +96,12 @@ Nar en agent vaelges, laeser den:
 
 Brain (".agents/brain/") er projektets persistente hukommelse:
 
-- **context.md**: Stabil projektkontekst � laes ved opstart af komplekse opgaver
-- **glossary.md**: Domaenesprog og forkortelser � laes naar du moeder ukendte begreber
-- **assumptions.md**: Ikke-verificerede antagelser � tjek foer du traeffer beslutninger
-- **open-questions.md**: Uafklarede forhold � tilfoej nye spoergsmaal under arbejdet
-- **decisions/**: Architecture Decision Records � laes foer arkitekturaendringer
-- **runbooks/**: Driftsguides � foelg ved vedligeholdelse
+- **context.md**: Stabil projektkontekst — laes ved opstart af komplekse opgaver
+- **glossary.md**: Domaenesprog og forkortelser — laes naar du moeder ukendte begreber
+- **assumptions.md**: Ikke-verificerede antagelser — tjek foer du traeffer beslutninger
+- **open-questions.md**: Uafklarede forhold — tilfoej nye spoergsmaal under arbejdet
+- **decisions/**: Architecture Decision Records — laes foer arkitekturaendringer
+- **runbooks/**: Driftsguides — foelg ved vedligeholdelse
 
 ### Arbejdsregler for .agents/
 
