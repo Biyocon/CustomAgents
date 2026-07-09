@@ -3,6 +3,8 @@ name: bdk-bkp-v17-data-model
 description: Ekspert-skill til forståelse, anvendelse og videreudvikling af BKP v17-datamodellen. Dækker felter, værdilister, hierarki, KPID-opbygning, roller, kontroltyper, statusser og sporbarhed mellem TKP, KP og BKP.
 ---
 
+# BDK BKP v17 Datamodel
+
 ## Formål
 
 Denne skill er den **autoritative reference** for **datamodellen i BKP v17**.
