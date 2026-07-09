@@ -1,92 +1,85 @@
 ---
-trigger: [bdk-brand, banedanmark-brand, brand-governance, logo, farver, typografi, designguide]
-description: Banedanmarks brand-regler — logo, farver, typografi og preflight-tjekliste. FORELØBIG indtil designguide er indlæst.
+name: bdk-brand-governance
+version: "1.0"
+description: Styr korrekt anvendelse af Banedanmarks brand-assets på tværs af kanaler, med valg af logo, regler og preflight.
+metadata:
+  owner: Biyocon
+  created: 2026-02-25
+  last_reviewed: 2026-02-25
 ---
 
 # BDK Brand Governance
 
-## TL;DR
+## Hvornår skillen bruges
+- Når brugeren vil anvende BDK-logo korrekt i materiale.
+- Når brugeren vil have én samlet brand-vurdering før publicering.
+- Når brugeren er i tvivl om korrekt logo-variant, farve eller typografi.
 
-Brug denne skill når du skaber materialer med Banedanmarks brand.
+## Autoritative kilder
+1. **BDK Designguide Nyt logo 2021** (primær) — officiel intern designguide fra Banedanmark (13 sider)
+2. **Banedanmark logopakke 2021** — officielle logofiler (RGB/CMYK/AI, 14 filer ekskl. støj)
+3. **references/bdk-brand-designsystem.md** — komplet udtrukket regelsæt fra designguiden
 
-**Hvad er aktivt:**
-- Logo-regler (placering, størrelse, clearspace)
-- Farve-palette (primær, sekundær, neutral)
-- Typografi (fonte, størrelser, vægte)
-- Preflight-tjekliste
+## Kerneregelsæt (quick reference)
 
-**Hvad er UKENDT / FORELØBIG:**
-- Præcise Pantone/CMYK/RGB-værdier — kræver designguide
-- Specifikke font-licenser — kræver verificering
-- Præcis clearspace-måling — kræver designguide
+### Logo
+- **3 varianter:** 2-dæk (primær), 1-dæk (sekundær), krone alene (sekundær)
+- **2 farver:** Grå (`#323232`) på lyse baggrunde, hvid (`#FFFFFF`) på mørke
+- **ALDRIG** andre farver uden tilladelse fra kommunikationsafdelingen
+- **Respektafstand** skal overholdes (baseret på bomærkets dimensioner)
+- **Altid** på baggrund med tydelig kontrast
 
-## Hurtig-reference
+### Farver (5 officielle)
+| Farve | Type | HEX |
+|-------|------|-----|
+| Petrol-grøn | Primær | `#004E51` |
+| Koks-grå | Primær | `#323232` |
+| Mint | Sekundær | `#43FFC8` |
+| Pink | Sekundær | `#FFC8C8` |
+| Gul | Sekundær | `#FFFF66` |
 
-| Element | Status | Note |
-|---------|--------|------|
-| Logo | Kendt | Banedanmark-logo, horisontal og vertikal variant |
-| Primære farver | Delvist kendt | Blå og grøn tone |
-| Sekundære farver | UKENDT | Kræver designguide |
-| Typografi | Delvist kendt | Sans-serif familie |
-| Clearspace | Delvist kendt | Minimum omkring logo |
-
-## Detaljeret vejledning
-
-### Logo-regler
-
-1. **Anvendelse:**
-   - Brug kun godkendte logo-filer
-   - Bevar proportioner — ingen forvrængning
-   - Ingen farveændringer uden godkendelse
-
-2. **Clearspace:**
-   - Hold minimumsafstand omkring logo
-   - Clearspace svarer til logoets højde (estimeret)
-
-3. **Størrelse:**
-   - Minimum bredde: 30 mm i print
-   - Minimum bredde: 120 px digitalt
-
-### Farver
-
-**FORELØBIG** — præcise værdier skal verificeres mod designguide:
-
-| Farve | Hex (estimeret) | Note |
-|-------|-----------------|------|
-| Primær blå | #004D99 | Estimeret |
-| Primær grøn | #008855 | Estimeret |
-| Neutral mørk | #333333 | Estimeret |
-| Neutral lys | #F5F5F5 | Estimeret |
+Alle farver i 100%, 50% og 20% mætning. Petrol-grøn vejer tungest i grafisk hierarki.
 
 ### Typografi
+- **Segoe UI** (regular + bold) — eneste font til daglig brug
+- Noir No1 og "Det 5. element" — FORBEHOLDT grafikere
+- Arial, Calibri og andre fonter er IKKE autoriserede
 
-**FORELØBIG**:
-- Primær font: Sans-serif (estimeret: Arial eller tilsvarende)
-- Overskrifter: Bold, stor størrelse
-- Brødtekst: Regular, læsbar størrelse
+## Arbejdsgang
+1. Læs `references/bdk-brand-designsystem.md` og `references/source-map.md`.
+2. Afklar leverancekontekst:
+   - Kanal (digital/print/professionel produktion)
+   - Målgruppe
+   - Baggrund (lys/mørk)
+   - Format og placering
+3. Kald `bdk-logo-asset-valg` → konkret filvalg med begrundelse.
+4. Kald `bdk-brand-regler-anvendelse` → regelcheck mod designguide.
+5. Kald `bdk-brand-preflight-leverance` → slutkontrol og pakning.
+6. Levér samlet brandstatus med alle resultater.
 
-## Dybt reference
+## Outputformat
+1. Kontekst (kanal, målgruppe, baggrund, format)
+2. Valgte assets og begrundelse (filstier)
+3. Regelcheck (compliant/ikke-compliant pr. regel)
+4. Preflight-resultat (pass/fail med detaljer)
+5. **Klar/Ikke klar** + næste handling
+6. Kilder (repo-stier)
 
-### Preflight-tjekliste
+## Kvalitetsflags
+- **FLAG-001:** `Logo-RGB-2-dark.png` er undersized (250x100 px vs forventet 761x409). Anbefal erstatning fra kommunikationsafdelingen ved brug på mørke digitale baggrunde.
 
-- [ ] Logo er korrekt placeret og i godkendt variant
-- [ ] Farver matcher brand-palette (verificer mod designguide)
-- [ ] Typografi er konsistent
-- [ ] Clearspace er overholdt
-- [ ] Ingen forvrængning af logo
-- [ ] Materialer er godkendt af kommunikationsafdeling (hvis krævet)
+## Fast QA-rutine (alle punkter skal bestås)
+- [ ] **Logo-variant:** Korrekt variant valgt (2-dæk primær, 1-dæk/krone kun sekundært)
+- [ ] **Logo-farve:** Kun grå (`#323232`) eller hvid (`#FFFFFF`) — ingen andre farver
+- [ ] **Respektafstand:** Overholdt baseret på bomærkets dimensioner
+- [ ] **Kontrast:** Logo står på baggrund med tydelig kontrast
+- [ ] **Farver:** Kun officielle BDK-farver (5 HEX-værdier + justerede udgaver)
+- [ ] **Typografi:** Kun Segoe UI i ikke-grafiker materiale
+- [ ] **Farverum:** RGB til digital, CMYK til print, AI til produktion
+- [ ] **Støjfiler:** Ingen __MACOSX, .DS_Store, ._* i leverance
 
-### Kilder med status
-
-| Kilde | Status | Bemærkning |
-|-------|--------|------------|
-| Banedanmark Designguide | UKENDT | Skal anmodes |
-| Logo-filer | Delvist kendt | Findes i projektet |
-| Font-licenser | UKENDT | Skal verificeres |
-
-### Næste trin
-
-1. Anmod om Banedanmark Designguide 202X
-2. Indlæs præcise farveværdier
-3. Verificér font-navne og licenser
-4. Opdater denne skill med verificerede værdier
+## Styringsregler
+- Ved tvivl om regel: designguiden er højeste lokale kilde.
+- Ingen antagelser om rettigheder eller rebranding uden dokumenteret grundlag.
+- Ingen kreative undtagelser uden tydelig risikomarkering og eskalering til kommunikationsafdelingen.
+- Kontakt for godkendelse af undtagelser: redaktion@bane.dk
