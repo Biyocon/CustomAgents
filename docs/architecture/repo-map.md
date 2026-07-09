@@ -70,3 +70,14 @@ Fælles indgang er `AGENTS.md`; hver runtime får en adapter der mapper canonica
 - **Claude/Ollama adapter implementation** — mangler helt; Codex/Kimi/Gemini findes kun som noter.
 - **Memory governance** — canonical vs runtime-local vs snapshot (PR E).
 - **Vendor/temp/audit handling** — vendor `skills-main`, temp helper-scripts, `MULTI_AGENT_AUDIT_*.md` afventer separat beslutning.
+- **`.vscode/.codex/` burde formentlig ligge i roden som `.codex/`, ikke nested under `.vscode/`** (tilføjet 2026-07-09).
+  `.vscode/` er VS Code's eget workspace-config-rum (settings.json, extensions.json); `.codex/` er
+  Codex-værktøjets egne, editor-uafhængige instruktioner (`config.toml` matcher OpenAI Codex' egen
+  config-konvention, ikke en VS Code-extension). Ingen teknisk grund til nesting fundet — projektet
+  følger allerede det korrekte mønster for `.claude/` (rod-niveau, side om side med `.vscode/`), kun
+  `.codex/` afviger. Ikke rettet nu: `.vscode/.codex/` er i dag den aktive runtime, og alt (det
+  samlede `Validate-Harness-Unified.ps1`, `agent-roster.json`, `registry.yaml`, banedanmark-agenter,
+  `invoke-agent.py`) har stien hardkodet — en ren flytning nu ville knække alt dette uden reel
+  gevinst. Naturligt tidspunkt at rette det: når PR F (generator der bygger runtime-output fra
+  `.agents/`, jf. `ADR-multi-runtime-agent-system.md`) alligevel bygges — generatoren kan lige så
+  nemt outputte til rod-`.codex/` i stedet for `.vscode/.codex/`.
