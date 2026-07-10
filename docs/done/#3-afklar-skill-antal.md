@@ -3,7 +3,7 @@ id: "#3"
 title: "Afklar det reelle skill-antal og lås metrikken til ét script"
 fase: "B"
 sprint: "B-1"
-status: active
+status: done
 prioritet: "P0"
 deps:
   - "#1"
@@ -11,6 +11,7 @@ deps:
 blocks: []
 oprettet: "2026-07-01"
 sidst_opdateret: "2026-07-09"
+lukket: "2026-07-09"
 ---
 
 ---

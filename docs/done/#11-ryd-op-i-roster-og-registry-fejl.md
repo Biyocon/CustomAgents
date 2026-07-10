@@ -3,7 +3,7 @@ id: "#11"
 title: "Fjern arkiverede agenter fra aktiv roster + ret council-chairman + registrér Higgsfield-skills"
 fase: "A"
 sprint: "A-2"
-status: active
+status: done
 prioritet: "P1"
 deps:
   - "#1"
@@ -11,6 +11,7 @@ blocks:
   - "#3"
 oprettet: "2026-07-01"
 sidst_opdateret: "2026-07-09"
+lukket: "2026-07-09"
 ---
 
 ---

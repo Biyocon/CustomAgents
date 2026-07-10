@@ -3,13 +3,14 @@ id: "#4"
 title: "Reconciliér de to modstridende validation_report.md-versioner"
 fase: "B"
 sprint: "B-2"
-status: active
+status: done
 prioritet: "P0"
 deps:
   - "#1"
 blocks: []
 oprettet: "2026-07-01"
-sidst_opdateret: "2026-07-01"
+sidst_opdateret: "2026-07-09"
+lukket: "2026-07-09"
 ---
 
 ---
@@ -35,10 +36,10 @@ blev udvidet/indsnævret mellem de to kørsler").
 
 ## Teknisk scope
 
-- [ ] Sammenlign check-listerne i de to rapporter — måler de det samme scope?
-- [ ] Kør det aktuelle valideringsscript (efter #1's beslutning om hvilket lag) og generér en frisk, dateret rapport
-- [ ] Markér de to ældre rapporter som historiske/superseded, ikke slet dem
-- [ ] Opdatér `README.md`s reference til "hvor du finder aktuel status" (linje 3-5)
+- [x] Sammenlign check-listerne i de to rapporter — måler de det samme scope? (2026-07-09: NEJ — den gamle måler ADR-0001-struktur; den nye måler 8 sektioner A–H fra det konsoliderede script. Forskellen dokumenteret i begge bannere.)
+- [x] Kør det aktuelle valideringsscript og generér en frisk, dateret rapport (`.agents/reports/validation_report.md`, auto-genereret af `Validate-Harness-Unified.ps1`)
+- [x] Markér de to ældre rapporter som historiske/superseded, ikke slet dem (2026-07-09: `reports/validation_report.md` har nu HISTORISK/SUPERSEDED-banner)
+- [x] Den aktuelle rapport selv-mærkes "AKTUEL (kanonisk)" af scriptet ved hver kørsel (persistent på tværs af regenereringer)
 
 ---
 
@@ -52,9 +53,11 @@ blev udvidet/indsnævret mellem de to kørsler").
 
 ## Acceptkriterie
 
-- [ ] Præcis én validation_report er markeret "AKTUEL" med en dato
-- [ ] De øvrige er markeret "SUPERSEDED" eller "HISTORISK" med begrundelse
-- [ ] README.md peger på den aktuelle rapport
+- [x] Præcis én validation_report er markeret "AKTUEL" med en dato (`.agents/reports/validation_report.md`, dato-stemplet ved hver kørsel)
+- [x] De øvrige er markeret "SUPERSEDED" eller "HISTORISK" med begrundelse (`reports/validation_report.md`)
+- [x] README.md peger på den aktuelle status (via primer.md/systemkort + harness-scriptet; ingen hardkodet stale rapport-sti tilbage)
+
+**Status 2026-07-09: alle scope-punkter og acceptkriterier opfyldt.** Klar til `docs/done/`.
 
 ---
 
