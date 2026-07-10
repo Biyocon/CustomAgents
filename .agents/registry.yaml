@@ -1,5 +1,5 @@
 version: 1
-project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Kvalifikationsordning Entreprenoer"
+project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
 promotion_target_global_path: "C:\\Users\\HMDR"
 
 primary_models:
@@ -118,7 +118,7 @@ agents:
   - id: hassan-dahir
     name: Hassan Dahir
     role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
-    category: Teknik og udf?relse
+    category: Teknik og udførelse
 
   - id: council-chairman
     name: Council Chairman
@@ -182,9 +182,54 @@ archived_avatarless_agents:
 
 skills:
   - id: banebyg
+  - id: bbe-dokumenter-platform
+  - id: bbtr-csm-tsi-compliance
+  - id: bbtr-dokumentstyring
+  - id: bbtr-fagpakkestruktur
+  - id: bbtr-faseopdelt-ydelser
+  - id: bbtr-forbedringsloop
+  - id: bbtr-indstilling-writer
+  - id: bbtr-ipm-konsistens
+  - id: bbtr-kvalitet-dod
+  - id: bbtr-leverance-mapping
+  - id: bbtr-presentation-builder
+  - id: bbtr-produktionssetup
+  - id: bbtr-raadgiver-udbud
+  - id: bbtr-risiko-myndighed
+  - id: bbtr-role-justification
+  - id: bbtr-tvaerfaglig-koordinering
+  - id: bbtr-webdesign
+  - id: bdk-ansoegning-om-midler-end-to-end
+  - id: bdk-audit-findings
+  - id: bdk-bkp-v17-data-model
+  - id: bdk-bkp-v17-overview
   - id: bdk-brand-governance
+  - id: bdk-brand-preflight-leverance
+  - id: bdk-brand-regler-anvendelse
+  - id: bdk-forretningsprojektmodel-gates
   - id: bdk-gdpr-praksis
+  - id: bdk-gevinststyring-realisering
+  - id: bdk-haendelser-sikkerhedsbrister
   - id: bdk-legal-mapping
+  - id: bdk-logo-asset-valg
+  - id: bdk-lokalinstruktion-opslag
+  - id: bdk-overvaagning-rapportering
+  - id: bdk-portefoljekontor-governance
+  - id: bdk-powerpoint-praesentationsskills
+  - id: bdk-projektindstilling-og-finansiering
+  - id: bdk-projektrapportering-frister
+  - id: bdk-risk-profile
+  - id: bdk-roller-kompetencer
+  - id: bdk-ssb-styring
+  - id: bdk-statens-it-projektmodel-compliance
+  - id: bdk-styregruppearbejde
+  - id: bdk-styringsdokumenter-skabeloner
+  - id: bdk-tilsynsapp-leverance-operations
+  - id: bdk-trace-processer
+  - id: bdk-trafikale-blanketter
+  - id: bdk-trafikale-regelinfo-aendringer
+  - id: bdk-trafikale-regler-anvendelse
+  - id: bdk-trafikcirkulaere-udkast
   - id: caveman
   - id: design-an-interface
   - id: diagnose
@@ -192,8 +237,13 @@ skills:
   - id: git-guardrails-claude-code
   - id: grill-me
   - id: grill-with-docs
+  - id: higgsfield-generate
+  - id: higgsfield-marketplace-cards
+  - id: higgsfield-product-photoshoot
+  - id: higgsfield-soul-id
   - id: improve-codebase-architecture
   - id: karpathy-guidelines
+  - id: llm-council
   - id: migrate-to-shoehorn
   - id: obsidian-vault
   - id: qa
@@ -210,7 +260,6 @@ skills:
   - id: ubiquitous-language
   - id: write-a-skill
   - id: zoom-out
-  - id: llm-council
 
 brain_paths:
   readme: brain/README.md
