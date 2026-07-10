@@ -1,4 +1,16 @@
-﻿# Agent Harness Registry
+﻿# ============================================================================
+# REGISTRY-ROLLE: AKTIV RUNTIME (transitional) - MAA IKKE HAANDREDIGERES
+# ----------------------------------------------------------------------------
+# Dette er den reelle aktive runtime-registry (rige inline entries). Den er
+# transitional: skal paa sigt GENERERES fra canonical (.agents/registry.yaml)
+# via PR D/F. Indtil da er den aktiv sandhed - redigeres kun bevidst, ikke
+# som kilde til nye data (nye data hoerer i .agents/registry.yaml).
+#
+# CANONICAL kilde: .agents/registry.yaml  (ADR-multi-runtime Accepted 2026-07-09)
+# Roller for alle 4 registries: docs/architecture/registry-reconciliation.md
+# ============================================================================
+
+# Agent Harness Registry
 # Model-agnostisk: understøtter Codex, Kimi, Qwen Code, Gemini Code
 # Kilde: Iqra-main + Banedanmark domain knowledge
 

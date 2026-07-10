@@ -35,16 +35,36 @@ Ingen big-bang. Aktiv runtime brydes ikke før generator + validation findes og 
   (inkl. de 40+ codex-only skills) er migreret ind (permanent flytning, verificeret uden dataskade).
   `.vscode/.codex/skills` har kun `banebyg/` tilbage. Se `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`, commit `ff2e3907`.
 
-## Open decisions (ikke afgjort)
-- **name vs trigger** — 27 skills har `name:`, 6 har `trigger:` uden `name:` (banebyg, bdk-brand-governance, bdk-legal-mapping, bdk-gdpr-praksis, shared-quality, shared-docx). Normalisering er senere migration.
-- **role vs persona** — aktiv runtime er rolle-baseret (`.codex/agents/banedanmark/`, 14), `.agents/agents/` er persona-baseret (27). Hvilken er canonical agent-model?
-- **system prompt canonical placering** — `profile.md` body (canonical-forslag) vs `Avatar/agents/System_Prompt_Agent_*.md` (dublet). Dedup er senere.
-- **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter; deprecér/generér `skills.yaml`.
-- **source-library capability candidates** — design-artifacts, visual-explainer, deep-research (fra `docs/agents/sources/`). Registreres som `source_prompt_references`, ikke aktive skills.
-- **Cursor runtime adapter** — adapter-kandidat (fra `docs/agents/sources/runtimes/cursor.md`).
-- **Perplexity / orchestrator governance** — `docs/agents/sources/orchestrators/perplexity-computer.md` informerer skill-loading/subagent/memory/scheduling/confirm-gating-design (PR E).
-- **vendor strategy** — `.agents/vendor/mattpocock-skills/skills-main/**` som read-only upstream; track vs gitignore.
-- **validation false positives** — `archived_avatarless_agents` flages evt. fejlagtigt af validate-harness.
+## Registry-klarhed (afgjort 2026-07-09, ticket #2)
+
+De 4 registry-filer er nu **utvetydige**: hver fil har en selv-dokumenterende
+header-kommentar der angiver dens rolle og forholdet til de andre. Ingen risikabel
+omdøbning eller data-merge (den hører til PR D/F). Roller:
+
+| Fil | Header-markering |
+|---|---|
+| `.agents/registry.yaml` | **CANONICAL SOURCE OF TRUTH** |
+| `.vscode/.codex/agents/registry.yaml` | **AKTIV RUNTIME** (transitional; må ikke håndredigeres som datakilde) |
+| `registry.yaml` (rod) | **LEGACY / genereret build-output** (deprecate-kandidat) |
+| `.vscode/.codex/registry.yaml` | **TOM SCAFFOLD** (deprecated) |
+
+`scripts/Export-Registry.ps1` emitterer nu også en provenance-header/`_note` i sit
+output, så et regenereret rod-registry forbliver selv-dokumenterende.
+
+## Open decisions (ikke afgjort — hver har eksplicit ejer-PR)
+
+> Alle punkter nedenfor er bevidst **udskudt** til en senere PR (ejer = den angivne PR).
+> Ingen af dem blokerer #2's registry-klarhed, som er lukket ovenfor.
+
+- **name vs trigger** — 6 skills har `trigger:` uden `name:`. **Ejer: PR B/skill-normalisering.**
+- **role vs persona** — rolle-baseret (`.codex/agents/banedanmark/`) vs persona (`.agents/agents/`). Hvilken canonical agent-model? **Ejer: PR D/F (runtime-generering).**
+- **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
+- **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
+- **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**
+- **Cursor runtime adapter** — adapter-kandidat. **Ejer: PR C.**
+- **Perplexity / orchestrator governance** — informerer skill-loading/subagent/memory/scheduling. **Ejer: PR E.**
+- **vendor strategy** — `.agents/vendor/mattpocock-skills/skills-main/**` track vs gitignore. **Ejer: separat vendor-PR** (foreløbig: tracked, committet 2026-07-09).
+- **validation false positives** — `archived_avatarless_agents` flages evt. af validate-harness. **Ejer: validation-hygiene-spor** (council-chairman-delen er allerede løst 2026-07-09).
 
 ## Separate senere spor (IKKE PR B)
 - **Validation-hygiene:** archived false-positives, stale `project_root` i rapporter, report-output-path.

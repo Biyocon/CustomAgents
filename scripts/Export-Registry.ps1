@@ -104,6 +104,7 @@ if (Test-Path $baneDir) {
 
 # Byg output-data
 $registry = [ordered]@{
+    _note       = "GENERERET af scripts/Export-Registry.ps1 - IKKE canonical. Canonical kilde: .agents/registry.yaml (ADR-multi-runtime Accepted 2026-07-09). Se docs/architecture/registry-reconciliation.md."
     generatedAt = (Get-Date -Format "yyyy-MM-ddTHH:mm:ss")
     totalAgents = $roster.Count
     categories  = $categories
@@ -134,8 +135,10 @@ if ($PSCmdlet.ShouldProcess($OutputPath, "Skriver registry som $Format")) {
             $registry | ConvertTo-Json -Depth 10 | Set-Content $OutputPath -Encoding UTF8
         }
         "yaml" {
+            $yamlHeader = "# GENERERET af scripts/Export-Registry.ps1 - IKKE canonical / deprecate-kandidat.`n" +
+                          "# Canonical kilde: .agents/registry.yaml. Se docs/architecture/registry-reconciliation.md.`n"
             $yaml = ConvertTo-Yaml -Obj $registry
-            Set-Content $OutputPath -Value $yaml -Encoding UTF8
+            Set-Content $OutputPath -Value ($yamlHeader + $yaml) -Encoding UTF8
         }
         "csv" {
             $rows = @()

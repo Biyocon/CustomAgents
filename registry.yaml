@@ -1,9 +1,19 @@
+# ============================================================================
+# REGISTRY-ROLLE: LEGACY / GENERERET BUILD-OUTPUT (deprecate-kandidat)
+# ----------------------------------------------------------------------------
+# GENERERET pointer-manifest, skrevet af scripts/Export-Registry.ps1 (som laeser
+# .vscode/.codex/agents/agent-roster.json). IKKE haandvedligeholdt, IKKE canonical.
+#
+# CANONICAL kilde er:  .agents/registry.yaml  (ADR-multi-runtime Accepted 2026-07-09)
+# De 4 registries' roller: docs/architecture/registry-reconciliation.md
+# Deprecate-kandidat: slet ikke uden ordre; ryddes formelt ved PR F.
+# ============================================================================
 # Agent Harness Registry
-# Machine-readable manifest for the Kvalifikationsordning Entrepren?r agent harness
+# Machine-readable manifest for the Kvalifikationsordning Entreprenør agent harness
 version: "2026-05-06"
 
 project:
-  name: Kvalifikationsordning Entrepren?r
+  name: Kvalifikationsordning Entreprenør
   runtime: .vscode/.codex/
   brain: .vscode/.codex/Brain/
   primary_target: Codex
@@ -89,7 +99,7 @@ agents:
       count: 1
       agents:
         - id: abdisalam-staerkstroemsingenioer
-    - name: "Teknik og udf?relse"
+    - name: "Teknik og udførelse"
       count: 1
       agents:
         - id: hassan-dahir

@@ -1,3 +1,16 @@
+# ============================================================================
+# REGISTRY-ROLLE: TOM SCAFFOLD (DEPRECATED - aldrig populeret)
+# ----------------------------------------------------------------------------
+# Denne fil blev scaffoldet men ALDRIG udfyldt (agents:[]/skills:[] er tomme).
+# Intet script laeser den meningsfuldt. Vaerdier nedenfor (project_root,
+# promotion_target_global_path) er STALE og skal ikke bruges.
+#
+# CANONICAL kilde er:  .agents/registry.yaml
+# Aktiv runtime-registry er:  .vscode/.codex/agents/registry.yaml
+# Roller: docs/architecture/registry-reconciliation.md
+# Deprecate-kandidat: slet ikke uden ordre; ryddes formelt ved PR F.
+# ============================================================================
+
 version: 1
 project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Kvalifikationsordning Entreprenoer"
 promotion_target_global_path: "C:\\Users\\HMDR"
