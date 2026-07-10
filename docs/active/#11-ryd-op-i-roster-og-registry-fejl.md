@@ -64,9 +64,14 @@ De 4 Higgsfield-skills er registreret i det canonical registry (afgjort af #1/#2
 - [x] `validate-harness.ps1` kører uden "missing systemprompt"-fejl relateret til de 10 arkiverede agenter
 
 **Status 2026-07-09: alle scope-punkter og acceptkriterier opfyldt.** Klar til at flytte til
-`docs/done/` (afventer at done/-mappen oprettes, jf. docs/drafts/#12-diskussionen). Bemærk separat,
-IKKE-blokerende forhold uden for denne tickets scope: `council-chairman` mangler i `agent-roster.json`
-(er en avatarløs meta-agent — Avatar-baseret roster passer dårligt; se open-questions/næste session).
+`docs/done/` (afventer at done/-mappen oprettes, jf. docs/drafts/#12-diskussionen).
+
+Relateret forhold også løst 2026-07-09 (valgt løsning: b): `council-chairman` mangler i
+`agent-roster.json` fordi den er en avatarløs meta-agent (LLM Council-orkestrator) — hører ikke
+til på den Avatar-baserede roster. Nu dokumenteret som bevidst undtagelse i `.agents/registry.yaml`
+(`meta_agent: true` / `roster_exempt: true`), og `scripts/Validate-Harness-Unified.ps1` Sektion G
+springer den over (INFO i stedet for WARN). `promotion_target_global_path` rettet fra det stale
+`C:\Users\HMDR` til `C:\Users\Biyocon` i samme ombæring.
 
 ---
 

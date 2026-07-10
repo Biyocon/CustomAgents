@@ -403,6 +403,10 @@ Write-SectionHeader -Letter "G" -Title ".agents/agents/<id>/ <-> agent-roster.js
     -SourceScript ".agents/scripts/validate-harness.ps1"
 
 $agentsAgentsDir = Join-Path $Root ".agents/agents"
+# Meta-agenter er avatarløse orkestratorer der bevidst UDELADES af den Avatar-baserede
+# agent-roster.json (dokumenteret i .agents/registry.yaml med meta_agent/roster_exempt).
+# De skal derfor ikke give "mangler i roster"-advarsel her.
+$rosterExemptMetaAgents = @('council-chairman')
 if (Test-Path $agentsAgentsDir) {
     $agentDirs = Get-ChildItem $agentsAgentsDir -Directory -ErrorAction SilentlyContinue
     if (Test-Path $rosterPath) {
@@ -411,7 +415,10 @@ if (Test-Path $agentsAgentsDir) {
             $rosterIdsG = @($rosterG | ForEach-Object { $_.id })
 
             foreach ($dir in $agentDirs) {
-                if ($dir.Name -notin $rosterIdsG) {
+                if ($dir.Name -in $rosterExemptMetaAgents) {
+                    Add-Finding "INFO" "G" "Meta-agent '$($dir.Name)' er bevidst roster-undtaget (avatarløs)"
+                    Write-Status "INFO" "Meta-agent '$($dir.Name)' er bevidst roster-undtaget (avatarløs)"
+                } elseif ($dir.Name -notin $rosterIdsG) {
                     Add-Finding "WARN" "G" "Agent '$($dir.Name)' mangler i roster"
                     Write-Status "WARN" "Agent '$($dir.Name)' mangler i roster"
                 } else {

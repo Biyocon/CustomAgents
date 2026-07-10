@@ -1,6 +1,6 @@
 version: 1
 project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
-promotion_target_global_path: "C:\\Users\\HMDR"
+promotion_target_global_path: "C:\\Users\\Biyocon"
 
 primary_models:
   - codex
@@ -120,10 +120,15 @@ agents:
     role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
     category: Teknik og udførelse
 
+  # Meta-agent: avatarløs orkestrator (LLM Council). Bevidst UDELADT af den
+  # Avatar-baserede agent-roster.json — hører ikke til på persona-tavlen.
+  # Validate-scriptets roster-krydstjek (Sektion G) springer den derfor over.
   - id: council-chairman
     name: Council Chairman
     role: LLM Council Orchestrator
     category: Meta og deliberation
+    meta_agent: true          # avatarløs; roster-undtaget
+    roster_exempt: true
 
 # Arkiverede avatarløse agenter — flyttet til archive/avatarless-agents/.
 # Årsag: intet matchende avatar-billede. Indhold + historik bevaret.
