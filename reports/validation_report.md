@@ -1,5 +1,14 @@
 # Fase 14 --- Strukturvalideringsrapport
 
+> **⚠️ HISTORISK / SUPERSEDED (markeret 2026-07-09).** Denne rapport er fra 2026-05-06
+> og måler den daværende struktur under det gamle ADR-0001-regime (`.vscode/.codex/`
+> som eneste autoritative runtime). Den er **ikke gældende**. Den aktuelle, kanoniske
+> valideringsrapport er `.agents/reports/validation_report.md`, auto-genereret af
+> `scripts/Validate-Harness-Unified.ps1`. Forskellen skyldes at (a) runtime-retningen
+> er ændret (ADR-multi-runtime Accepted 2026-07-09, `.agents/` canonical), og (b) de tre
+> tidligere validate-scripts er konsolideret til ét med udvidet check-scope (Sektion A–H).
+> Bevaret som historik, jf. `docs/active/#4-reconciliér-validation-report.md`.
+
 **Dato:** 2026-05-06
 **Projekt:** Agent Harness --- Kvalifikationsordning Entreprenør
 **Valideringsramme:** ADR-0001 (`.vscode/.codex/` som autoritativ runtime) + `.agents/`-specifikation fra blok 3

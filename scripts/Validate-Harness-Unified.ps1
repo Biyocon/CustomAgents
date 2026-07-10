@@ -519,6 +519,10 @@ if ($JsonReport) {
 $reportLines = @()
 $reportLines += "# Harness Valideringsrapport (samlet/unified)"
 $reportLines += ""
+$reportLines += "> **Status: AKTUEL (kanonisk valideringsrapport).** Denne fil er den ENESTE"
+$reportLines += "> gaeldende valideringsrapport, auto-genereret ved hver koersel. Den aeldre"
+$reportLines += "> ``reports/validation_report.md`` (2026-05-06) er markeret HISTORISK/SUPERSEDED."
+$reportLines += ""
 $reportLines += "Genereret: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 $reportLines += "Projektrod: $Root"
 $reportLines += ""
