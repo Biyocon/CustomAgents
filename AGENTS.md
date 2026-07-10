@@ -27,11 +27,11 @@ Se også `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsolidere
 - Behandl `.vscode/.codex/` som eneste lokale kilde til sandhed for agent-konfiguration
 - Brug ikke `.vscode/archive/` som aktiv runtime, medmindre noget bevidst reaktiveres
 - Bevar Codex som primær målplatform; Claude/Gemini konfigurationer er kompatibilitetslag
-- Kimi, Qwen Code og Gemini Code skal pege mod samme `AGENTS.md`, `.vscode/.codex/prompts/`, `.vscode/.codex/skills/` og `.vscode/.codex/agents/`
+- Kimi, Qwen Code og Gemini Code skal pege mod samme `AGENTS.md`, `.vscode/.codex/prompts/`, `.agents/skills/` (skills flyttet hertil 2026-07-09) og `.vscode/.codex/agents/`
 - Opret ikke aktive klientfiler som `CLAUDE.md`, `GEMINI.md`, `CODEX.md` eller `KIMI.md`; brug `AGENTS.md`
 - Læs `.vscode/.codex/prompts/master-system.md` ved opsætning af nye agentarbejdsgange
 - Læs `.vscode/.codex/Brain/AGENTS.md` ved komplekse eller flertrinsopgaver
-- **Invoke-agent system**: `.vscode/.codex/scripts/invoke-agent.ps1 -l` lister alle 50 agenter; se `.vscode/.codex/AGENTS.md` for detaljer
+- **Invoke-agent system**: `.vscode/.codex/scripts/invoke-agent.ps1 -l` lister de aktive agenter (kør for aktuelt antal); se `.vscode/.codex/AGENTS.md` for detaljer
 - NEVER delete files you didn't create
 - ALWAYS use `uv run` to execute Python scripts
 - ALWAYS write newly created scripts to the `temp/` subfolder (create it if it doesn't exist)
@@ -118,7 +118,7 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 | Brain | ✅ Komplet | 9 filer — kontekst, glossary, antagelser, spørgsmål, ADR, kort, runbooks |
 | Registry | ✅ Komplet | `registry.yaml` v1 — agenter, skills, model adapters, scripts |
 | Agenter | ✅ Komplet | 14 Banedanmark-agenter — 10 DRAFT, 4 FORELØBIG |
-| Skills | ✅ Komplet | 29 skills — 23 mattpocock, 1 karpathy, 5 domæne-specifikke |
+| Skills | ✅ Komplet | Kør `scripts/Validate-Harness-Unified.ps1` for aktuelt antal (metrik-linjen "Aktive skills"); alle skills ligger nu i `.agents/skills/` efter flytning 2026-07-09 |
 | Model adapters | ✅ Komplet | Codex, Kimi, Qwen Code, Gemini Code |
 | Scripts | ✅ Komplet | 4 PowerShell-scripts — audit, install, generate-index, validate |
 | Rapporter | ✅ Komplet | 8 analyse-rapporter + 2 valideringsrapporter |
@@ -131,11 +131,13 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 - **6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality` — struktur oprettet, indhold afventer kilde-dokumenter
 - **Vendor-strategi er afklaret** — `.agents/vendor/mattpocock-skills` er vendored copy; fremtidige upstream-opdateringer skal ske i separat vendor-PR
 
-### Migrationstilstand
+### Migrationstilstand (opdateret 2026-07-09)
+
+> **Runtime-retningen er afgjort:** ADR-multi-runtime-agent-system.md er **Accepted** (2026-07-09).
+> `.agents/` er canonical source of truth; `.vscode/.codex/` er transitional runtime.
+> Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`.
 
 - **Fase 1 (opbygning):** ✅ FÆRDIG — `.agents/` er strukturelt komplet
-- **Fase 2 (validering):** 🔄 I GANG — kør `.agents/scripts/validate-harness.ps1` før brug
-- **Fase 3 (aktivering):** ⏳ VENTER — `.vscode/.codex/` bevares som aktiv runtime indtil videre
-- `.vscode/.codex/` er stadig **eneste lokale kilde til sandhed** for aktiv drift
-- `.agents/` kan bruges til reference og planlagt udvikling
-- Dobbeltstruktur accepteres i overgangsperioden — dokumenter hvilken sti du bruger
+- **Fase 2 (validering):** kør `scripts/Validate-Harness-Unified.ps1` (afløste de tre gamle scripts)
+- **Fase 3 (aktivering):** 🔄 DELVIST — skills er flyttet til `.agents/skills/` (canonical nu); agenter/registry/Brain kører fortsat fra `.vscode/.codex/` indtil generatorer (PR B–F) findes, jf. `docs/qa/RELEASE-runtime-activation-gate.md`
+- **Hybrid-tilstand:** skill-laget = `.agents/`; agent/registry/Brain-runtime = `.vscode/.codex/`. Rør ikke agent/registry/Brain-laget manuelt før den formelle aktivering — dokumentér altid hvilken sti du bruger.

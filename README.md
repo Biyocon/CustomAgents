@@ -1,16 +1,20 @@
 # AgentSkills — Custom AI Agent Harness
 
-## ⚠️ Projektstyrings-dokumentation (tilføjet 2026-07-01)
+## Projektstyrings-dokumentation (tilføjet 2026-07-01, opdateret 2026-07-09)
 
-Dette repo har en **uafklaret P0-modsigelse** om hvilken runtime der er aktiv
-(se linjen nedenfor vs. `docs/architecture/ADR-multi-runtime-agent-system.md`).
-Læs `primer.md` og `systemkort.md` FØR du handler på "Aktiv runtime"-linjen
-nedenfor — den er én af to modstridende kilder.
+> **Runtime-retningen er afgjort (2026-07-09):** `docs/architecture/ADR-multi-runtime-agent-system.md`
+> er nu **Accepted** — `.agents/` er canonical source of truth; `.vscode/.codex/` er
+> transitional runtime indtil generatorer (PR B–F) findes. Den tidligere "uafklarede
+> P0-modsigelse" er dermed løst i retning. Bemærk hybrid-tilstand: skills er allerede
+> flyttet til `.agents/skills/` (2026-07-09), mens agenter/registry/Brain-runtime stadig
+> ligger i `.vscode/.codex/` indtil aktivering. Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`.
+
+Nyt PM-system, læs i denne rækkefølge:
 
 Nyt PM-system, læs i denne rækkefølge:
 
 1. `primer.md` — kort statuskondensat, læses ved hver sessionsstart
-2. `systemkort.md` — autoritativ arkitektur inkl. den uafklarede runtime-modstrid
+2. `systemkort.md` — autoritativ arkitektur inkl. runtime-status (modstriden er afgjort 2026-07-09)
 3. `FORBEDRINGSNOTAT.md` — dyb kritik + samlet roadmap
 4. `KØREPLAN.md` — faseopdelt implementeringsplan (Fase A–G)
 5. `PROJEKT_PLAN.md` — idébank, designbeslutninger, ønskeliste
@@ -23,15 +27,15 @@ Nyt PM-system, læs i denne rækkefølge:
 
 ---
 
-## Runtime Status (current: 2026-06-12)
+## Runtime Status (opdateret: 2026-07-09)
 
-Se `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsoliderede runtime-status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
+Se `docs/agents/runtime-status-2026-06-12.md` for den historiske konsoliderede runtime-status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
 
-**Aktiv runtime:** `.vscode/.codex/`
+**Canonical source of truth:** `.agents/` (besluttet 2026-07-09, ADR-multi-runtime-agent-system.md = Accepted)
 
-**Migration/reference:** `.agents/`
+**Aktiv runtime (transitional):** `.vscode/.codex/` — for agenter/registry/Brain, indtil generatorer (PR B–F) findes.
 
-`.agents/` er en fremtidig model-agnostisk harness-struktur. Den må ikke behandles som aktiv runtime, før der foreligger en ny valideringsrapport og en eksplicit aktiveringsbeslutning.
+**Bemærk hybrid-tilstand:** Skills er allerede flyttet til `.agents/skills/` (permanent, 2026-07-09), så skill-laget er canonical nu. Agenter, roster, registry og Brain kører fortsat fra `.vscode/.codex/` indtil den formelle aktivering (jf. `docs/qa/RELEASE-runtime-activation-gate.md`). `.agents/`-strukturen skal modnes til fuldt canonical via PR B–F; røres agenter/registry/Brain manuelt før da, mistes sync-garantien.
 
 **Snapshot-branch:** `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`. Den er ikke en backup af lokale ignored/temp/vendor-filer uden for normal Git-tracking.
 
@@ -125,7 +129,7 @@ Kvalifikationsordning Entreprenør\
 │  │  ├─ ibrugtagning\
 │  │  └─ oekonomi-controller\
 │  │
-│  ├─ skills\                   # 29 kuraterede skills
+│  ├─ skills\                   # kuraterede skills (kør validate-scriptet for aktuelt antal)
 │  │  ├─ karpathy-guidelines\   # Think before coding, simplicity, surgical changes
 │  │  ├─ tdd\                   # Test-driven development
 │  │  ├─ diagnose\              # Systematisk debugging
@@ -240,7 +244,11 @@ Se `Avatar/` for alle billeder og `.agents/brain/maps/agent-map.md` for relation
 
 ---
 
-## Skills-bibliotek (29 skills)
+## Skills-bibliotek
+
+> Aktuelt antal skills: kør `scripts/Validate-Harness-Unified.ps1` og se metrik-linjen
+> "Aktive skills" (kanonisk kilde, jf. `docs/active/#3-afklar-skill-antal.md`). Tabellen
+> nedenfor er en kurateret oversigt over udvalgte skills, ikke en komplet optælling.
 
 ### Generelle engineering-skills (fra mattpocock/skills, kurateret)
 

@@ -45,8 +45,8 @@ at hardkode et tal.
 ## Teknisk scope
 
 - [x] Definér præcist hvad der tæller som "en skill" (2026-07-09: kun `.agents/skills/` — `.codex/skills/` er tømt, kun `banebyg` tilbage bevidst)
-- [ ] Skriv/opdatér `scripts/Validate-Harness-Unified.ps1` (afløste `Validate-AgentHarness.ps1`/`validate-harness.ps1`, se ticket-historik) til at tælle og udskrive antallet i ét samlet resume-tal (i dag: individuelle OK/WARN-linjer pr. skill, ikke ét total-tal)
-- [ ] Opdatér README.md og AGENTS.md til at referere scriptets output i stedet for et hardkodet tal
+- [x] Skriv/opdatér `scripts/Validate-Harness-Unified.ps1` til at tælle og udskrive antallet i ét samlet resume-tal (2026-07-09: ny "METRIKKER"-blok med linjen "Aktive skills (.agents/skills/*/SKILL.md): N"; verificeret reproducerbar = 79 ved to kørsler)
+- [x] Opdatér README.md og AGENTS.md til at referere scriptets output i stedet for et hardkodet tal (2026-07-09: begge "29 skills"-referencer + AGENTS Bygge-status-tabel peger nu på scriptets metrik)
 - [x] Fjern eller markér som "historisk" det modstridende tal i `docs/architecture/registry-reconciliation.md` (2026-07-09)
 
 ---
@@ -62,9 +62,11 @@ at hardkode et tal.
 
 ## Acceptkriterie
 
-- [ ] Scriptet giver samme tal ved to på hinanden følgende kørsler
-- [ ] README/AGENTS.md indeholder ikke længere et hardkodet skill-antal, men en reference til "kør [script] for aktuelt antal"
-- [ ] `docs/architecture/registry-reconciliation.md` har ingen tilbageværende modstridende tal uden forklaring
+- [x] Scriptet giver samme tal ved to på hinanden følgende kørsler (verificeret 2026-07-09: 79 begge gange)
+- [x] README/AGENTS.md indeholder ikke længere et hardkodet skill-antal, men en reference til "kør [script] for aktuelt antal"
+- [x] `docs/architecture/registry-reconciliation.md` har ingen tilbageværende modstridende tal uden forklaring
+
+**Status 2026-07-09: alle scope-punkter og acceptkriterier opfyldt.** Klar til `docs/done/`.
 
 ---
 

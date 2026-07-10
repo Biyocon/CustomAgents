@@ -7,24 +7,25 @@
 
 ---
 
-## Core-distinktion: DEN UAFKLAREDE MODSIGELSE (læs dette først)
+## Core-distinktion: RUNTIME-RETNINGEN ER AFGJORT (2026-07-09) ✅
 
-Repoet indeholder pt. to modstridende påstande om hvilket lag der er "sandheden":
+**Den tidligere P0-modsigelse er løst.** `docs/architecture/ADR-multi-runtime-agent-system.md`
+er nu **Accepted** (2026-07-09, se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
 
-| Kilde | Påstand | Dato |
-|---|---|---|
-| `README.md`, `AGENTS.md`, `docs/agents/runtime-status-2026-06-12.md` | `.vscode/.codex/` er **aktiv runtime**. `.agents/` er migrations-/referencelag og må ikke bruges som aktiv runtime uden ny valideringsrapport + eksplicit aktiveringsbeslutning. | 2026-06-12 |
-| `docs/architecture/ADR-multi-runtime-agent-system.md` (Status: **Proposed**) og `docs/agents/end-of-day-memory-2026-06-17.md` | `.agents/` er "canonical source target". `.vscode/.codex/` er blot "transitional". | 2026-06-17 |
+| Lag | Rolle efter beslutningen |
+|---|---|
+| `.agents/` | **Canonical source of truth** — det model-agnostiske kildelag. Skill-laget (`.agents/skills/`) er allerede canonical efter flytning 2026-07-09. |
+| `.vscode/.codex/` | **Transitional aktiv runtime** for agenter/registry/Brain — skal på sigt genereres fra `.agents/` via PR B–F. |
 
-**Der findes ingen fil der forklarer eller formelt beslutter skiftet mellem de to datoer.**
-Filsystemet støtter delvist begge sider: `.vscode/.codex/` har flest filer med reelt
-indhold (272), men `.agents/` har flere filer totalt (329) og langt mere fyldige
-agent-profiler (120–178 linjer vs. 16–79 linjer i `.vscode/.codex/`).
+**Hybrid-tilstand (vigtig):** Skills er flyttet til `.agents/skills/` og er canonical nu.
+Agenter, roster, registry og Brain kører fortsat fra `.vscode/.codex/` indtil den formelle
+aktivering (`docs/qa/RELEASE-runtime-activation-gate.md`). Rør ikke agent/registry/Brain-laget
+i `.vscode/.codex/` manuelt før aktivering — sync-garantien mistes ellers.
 
-**Dette er P0 — se `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` og
-`docs/active/#1-los-runtime-modsigelse.md`.** Indtil denne er løst, skal enhver
-agent/bruger, der arbejder i repoet, betragte BEGGE runtime-lag som "muligvis aktive"
-og ikke slette eller nedprioritere nogen af dem uden at tjekke begge kilder.
+**Historik:** Modstriden var åben som P0 (`docs/active/#1-los-runtime-modsigelse.md`,
+`docs/audit/AUDIT-2026-07-01-runtime-og-registry.md`) fra 2026-06-17 (ADR "Proposed") til
+2026-07-09 (ADR "Accepted"). Ticket #1 forbliver `active` for de resterende sync-punkter
+(README/AGENTS.md/systemkort er opdateret; RELEASE-gaten afventer selve aktiveringen).
 
 ---
 
@@ -75,14 +76,15 @@ og ikke slette eller nedprioritere nogen af dem uden at tjekke begge kilder.
 
 ---
 
-## Layer 2: Runtime-lag (den uafklarede modstrid)
+## Layer 2: Runtime-lag (retningen afgjort 2026-07-09)
 
-| Komponent | Påstået status | Faktisk indhold | Runtime-status |
-|---|---|---|---|
-| `.vscode/.codex/` | "Aktiv runtime" (README/AGENTS.md, 2026-06-12) | 272 filer med reelt indhold; agent-profiler 16–79 linjer | ⚠️ Aktiv ifølge dokumentation, men tyndere indhold |
-| `.agents/` | "Canonical source target" (ADR, Status: Proposed, 2026-06-17) | 329 filer; agent-profiler 120–178 linjer; kun 1 af 37 agentmapper har fuld filpakke (profile.md + skills.yaml + AGENTS.md + avatar.md) | ⚠️ Rigere indhold, men ADR er stadig "Proposed", ikke "Accepted" |
+| Komponent | Rolle | Runtime-status |
+|---|---|---|
+| `.agents/` | **Canonical source of truth** (ADR-multi-runtime **Accepted** 2026-07-09). Skill-laget (`.agents/skills/`, 79 skills) er canonical nu efter flytning. | ✅ Canonical (skills aktive; agenter/registry/Brain modnes via PR B–F) |
+| `.vscode/.codex/` | **Transitional aktiv runtime** for agenter/registry/Brain, indtil generatorer findes. | ✅ Aktiv runtime (transitional, planlagt genereret fra `.agents/`) |
 
-**Ingen af de to kan i dag kaldes ✅ uden forbehold.** Se
+**Retningen er ét entydigt ✅:** `.agents/` er canonical. Den fulde aktivering (agenter/registry/Brain)
+afventer PR B–F og `docs/qa/RELEASE-runtime-activation-gate.md`. Se
 `docs/plans/runtime-konsolidering-plan.md` for løsningsdesignet.
 
 ---

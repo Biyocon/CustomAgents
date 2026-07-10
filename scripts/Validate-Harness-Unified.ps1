@@ -81,6 +81,7 @@ $script:infoCount     = 0
 $script:warnCount     = 0
 $script:errorCount    = 0
 $script:criticalCount = 0
+$script:skillTotal    = 0   # antal .agents/skills/*/SKILL.md (metrik, jf. docs/active/#3)
 
 function Add-Finding {
     param(
@@ -451,6 +452,7 @@ if (Test-Path $agentsSkillsDir) {
     foreach ($dir in $skillDirs) {
         $skillMd = Join-Path $dir.FullName "SKILL.md"
         if (Test-Path $skillMd) {
+            $script:skillTotal++
             $content = Get-Content $skillMd -Encoding UTF8 -Raw -ErrorAction SilentlyContinue
             if ($content -match "(?m)^#\s+") {
                 Add-Finding "OK" "H" "Skill '$($dir.Name)' har gyldig SKILL.md med overskrift"
@@ -469,6 +471,9 @@ if (Test-Path $agentsSkillsDir) {
 # =====================================================================
 # SAMLET OPSUMMERING (faelles for hele unified-scriptet)
 # =====================================================================
+Write-Host ""
+Write-Host "=== METRIKKER (kanonisk kilde for tal, jf. docs/active/#3) ===" -ForegroundColor Cyan
+Write-Status "INFO" "Aktive skills (.agents/skills/*/SKILL.md): $script:skillTotal"
 Write-Host ""
 Write-Host "=== SAMLET RESUME (alle sektioner A-H) ===" -ForegroundColor Cyan
 Write-Status "OK" "OK:        $script:okCount"

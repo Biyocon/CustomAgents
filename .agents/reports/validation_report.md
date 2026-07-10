@@ -1,6 +1,6 @@
 ﻿# Harness Valideringsrapport (samlet/unified)
 
-Genereret: 2026-07-09 04:31:26
+Genereret: 2026-07-10 15:39:20
 Projektrod: C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom
 
 Genereret af scripts/Validate-Harness-Unified.ps1 - konsolidering af

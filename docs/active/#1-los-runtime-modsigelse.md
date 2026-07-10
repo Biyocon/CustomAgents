@@ -54,10 +54,10 @@ ticket forbliver `active` indtil de er gjort.
 - [ ] Gennemfør sektion-for-sektion sammenligning af de 14 Banedanmark-agenter i `.vscode/.codex/agents/` vs. `.agents/agents/` (se `docs/plans/runtime-konsolidering-plan.md`)
 - [x] Træf og dokumentér beslutningen med skriftlig begrundelse (2026-07-09, se ADR-0003)
 - [x] Opdatér `docs/architecture/ADR-multi-runtime-agent-system.md` status (2026-07-09: Accepted)
-- [ ] Opdatér `README.md`, `AGENTS.md`, tilføj ny `docs/agents/runtime-status-{{DATO}}.md`
-- [ ] Opdatér `systemkort.md` Layer 2
+- [x] Opdatér `README.md`, `AGENTS.md` (2026-07-09: runtime-status + banner opdateret til ADR Accepted / hybrid-tilstand). NB: valgte at opdatere de eksisterende filer i stedet for at tilføje ny `runtime-status-{{DATO}}.md`, da en ny dateret status-fil ville tilføje endnu en potentielt-divergerende kilde.
+- [x] Opdatér `systemkort.md` Layer 2 (2026-07-09: Core-distinktion + Layer 2-tabel opdateret til ét ✅ = `.agents/` canonical)
 - [x] Opdatér (ikke fjern — spørgsmålet om "hvornår" er stadig åbent) det tilsvarende spørgsmål i `.agents/brain/open-questions.md` (spørgsmål 7)
-- [ ] Kør `docs/qa/RELEASE-runtime-activation-gate.md`
+- [ ] Kør `docs/qa/RELEASE-runtime-activation-gate.md` — **udskudt bevidst:** gaten dækker den FULDE runtime-aktivering (agenter/registry/Brain genereret fra `.agents/`, PR B–F), ikke blot retningsbeslutningen. Kan først markeres GODKENDT når aktiveringen faktisk er sket. At markere den GODKENDT nu ville være usandt.
 
 ---
 
@@ -77,8 +77,12 @@ ticket forbliver `active` indtil de er gjort.
 ## Acceptkriterie
 
 - [x] `docs/architecture/ADR-multi-runtime-agent-system.md` har status Accepted eller Rejected (Accepted, 2026-07-09)
-- [ ] Grep for ".vscode/.codex" og ".agents/" i README.md/AGENTS.md/runtime-status-filerne giver konsistente, ikke-modstridende resultater
-- [ ] `docs/qa/RELEASE-runtime-activation-gate.md` er udfyldt med "GODKENDT"
+- [x] Grep for ".vscode/.codex" og ".agents/" i README.md/AGENTS.md/systemkort.md giver konsistente, ikke-modstridende resultater (2026-07-09: alle tre siger nu ".agents/ = canonical, .vscode/.codex/ = transitional aktiv runtime, hybrid pga. skills-flytning")
+- [ ] `docs/qa/RELEASE-runtime-activation-gate.md` er udfyldt med "GODKENDT" — **udskudt til faktisk aktivering (PR B–F)**, se teknisk scope
+
+**Status 2026-07-09:** Retningsbeslutningen + dokumentkonsistens er gjort. Ticket forbliver `active`
+for de to resterende, aktiverings-afhængige punkter: (1) sektion-for-sektion agent-sammenligning
+`.vscode/.codex/agents/` vs `.agents/agents/`, og (2) RELEASE-gaten (kræver selve aktiveringen).
 
 ---
 
