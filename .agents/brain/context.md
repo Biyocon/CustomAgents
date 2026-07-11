@@ -17,12 +17,12 @@ Harnesset fungerer som en standardiseret runtime-infrastruktur hvor AI-agenter k
 | **Model-agnostisk** | En struktur (.agents/) der virker paa tvaers af Codex, Kimi, Qwen Code og Gemini Code |
 | **Kontekstbevidst** | Brain-mappen baerer domaeneviden saa agenter ikke starter fra nul |
 | **Skalerbart** | Nye agenter og skills tilfoejes via standardiserede runbooks |
-| **Referencebaseret** | Kombi/ er referencekatalog  ikke aktiv runtime |
+| **Referencebaseret** | Kombi/ er referencekatalog — ikke aktiv runtime |
 
 ## Primaer vs. sekundaer runtime
 
-- **Ny model-agnostisk runtime**: `.agents/`  fremtidens hovedstruktur
-- **Aktiv runtime indtil valideret migration**: `.vscode/.codex/`  bevares fuldt funktionel indtil `.agents/` er testet og godkendt
+- **Ny model-agnostisk runtime**: `.agents/` — fremtidens hovedstruktur
+- **Aktiv runtime indtil valideret migration**: `.vscode/.codex/` — bevares fuldt funktionel indtil `.agents/` er testet og godkendt
 
 ## Maalplatforme
 

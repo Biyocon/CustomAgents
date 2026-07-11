@@ -1,6 +1,6 @@
 # Brain
 
-Brain-mappen er projektets persistente, model-agnostiske hukommelse og kontekstarkiv. Den fungerer som en "single source of truth" for domaeneviden, beslutninger, antagelser og runbooks  uafhaengigt af hvilken AI-model eller klient der koerer.
+Brain-mappen er projektets persistente, model-agnostiske hukommelse og kontekstarkiv. Den fungerer som en "single source of truth" for domaeneviden, beslutninger, antagelser og runbooks — uafhaengigt af hvilken AI-model eller klient der koerer.
 
 ## Formaal
 
@@ -30,16 +30,16 @@ brain/
 +-- assumptions.md         # Ikke-verificerede antagelser
 +-- open-questions.md      # Uafklarede forhold
 +-- decisions/             # Architecture Decision Records
-¦   +-- ADR-0001-agent-harness.md
+|   +-- ADR-0001-agent-harness.md
 +-- maps/                  # Oversigtskort
-¦   +-- agent-map.md
-¦   +-- skill-map.md
+|   +-- agent-map.md
+|   +-- skill-map.md
 +-- memory/                # Sessionslogfiler
 +-- personal/              # Personlig brugerhukommelse
-¦   +-- user-profile.md
-¦   +-- preferences.md
-¦   +-- lessons-learned.md
-¦   +-- open-decisions.md
+|   +-- user-profile.md
+|   +-- preferences.md
+|   +-- lessons-learned.md
+|   +-- open-decisions.md
 +-- diary/                 # Teknisk arbejdsdagbog
 +-- tasks/                 # Opgaver og backlog
 +-- runbooks/              # Driftsguides
