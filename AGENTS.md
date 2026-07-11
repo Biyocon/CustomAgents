@@ -117,7 +117,7 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 |-----------|--------|----------|
 | Brain | ✅ Komplet | 9 filer — kontekst, glossary, antagelser, spørgsmål, ADR, kort, runbooks |
 | Registry | ✅ Komplet | `registry.yaml` v1 — agenter, skills, model adapters, scripts |
-| Agenter | ✅ Komplet | 14 Banedanmark-agenter — alle DRAFT (de 4 tidligere FORELØBIG komplettéret fra FB-PDF'er 2026-07-10, ticket #5) |
+| Agenter | ✅ Komplet | Banedanmark-rolleagenter i to formater (kendt dobbeltformat, afklares ved PR D/F): 15 flade filer (13 `bd-*` = active; `bd-bro-og-anlaeg` + `interface-manager-banebyg` = draft) + 14 undermappe-profiler (alle draft; de 4 tidligere FORELØBIG komplettéret fra FB-PDF'er 2026-07-10, ticket #5). Se `banedanmark/README.md` for detaljer |
 | Skills | ✅ Komplet | Kør `scripts/Validate-Harness-Unified.ps1` for aktuelt antal (metrik-linjen "Aktive skills"); alle skills ligger nu i `.agents/skills/` efter flytning 2026-07-09 |
 | Model adapters | ✅ Komplet | Codex, Kimi, Qwen Code, Gemini Code |
 | Scripts | ✅ Komplet | 4 PowerShell-scripts — audit, install, generate-index, validate |
