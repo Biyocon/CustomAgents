@@ -1,22 +1,23 @@
 # AGENTS.md
 
-## Runtime status (current: 2026-06-12)
+## Runtime status (current: 2026-07-11 — PR F-aktivering gennemført)
 
-Se også `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsoliderede status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
-
-- **Aktiv runtime:** `.vscode/.codex/`
-- **Migration/reference:** `.agents/`
-- `.agents/` må ikke behandles som aktiv runtime, før der foreligger en ny valideringsrapport og en eksplicit aktiveringsbeslutning
+- **CANONICAL source of truth:** `.agents/` (ADR-multi-runtime Accepted 2026-07-09; roadmap PR A–F fuldført 2026-07-11)
+- **Aktiv runtime:** `.vscode/.codex/` — agents-laget (registry + rolleagenter) **GENERERES** nu fra canonical af `.agents/scripts/generate-runtime.py`; håndredigér aldrig genererede filer. Gate: `docs/qa/RELEASE-runtime-activation-gate.md` (GODKENDT). Sync-verifikation: `uv run --with pyyaml python .agents/scripts/generate-runtime.py --check` (exit 0 = i sync)
+- Nye agenter/skills/ændringer laves i `.agents/` og aktiveres via generatoren (`--apply`)
+- `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`; den er ikke en backup af ignored/temp/vendor-filer uden for normal Git-tracking
+- Vendor-status: `.agents/vendor/mattpocock-skills` er almindeligt tracked vendored copy, ikke submodule; bevar vendor-indhold som read-only upstream-reference
 - `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`; den er ikke en backup af ignored/temp/vendor-filer uden for normal Git-tracking
 - Vendor-status: `.agents/vendor/mattpocock-skills` er almindeligt tracked vendored copy, ikke submodule; bevar vendor-indhold som read-only upstream-reference
 
 ## Projektets AI-struktur
 
-- Aktiv runtime-kerne for dette projekt er `.vscode/.codex/`
+- Canonical kilde for agenter/skills/registry/brain er `.agents/`
+- Aktiv runtime-kerne er `.vscode/.codex/` (agents-laget GENERERET fra canonical, PR F)
 - Aktive prompts ligger i `.vscode/.codex/prompts/`
-- Aktive projektskills ligger i `.vscode/.codex/skills/`
-- Aktive subagents ligger i `.vscode/.codex/agents/`
-- Projektets Brain ligger i `.vscode/.codex/Brain/`
+- Aktive projektskills ligger i `.agents/skills/` (flyttet 2026-07-09)
+- Aktive subagents ligger i `.vscode/.codex/agents/` (genereret fra `.agents/agents/`)
+- Projektets hukommelse er `.agents/brain/` (canonical); `.vscode/.codex/Brain/` er frosset legacy (jf. `docs/architecture/memory-governance.md`)
 - Delte hooks ligger i `.vscode/hooks/`
 - Klientadaptere ligger i `.vscode/settings/`
 - Arkiveret eller upstream materiale ligger i `.vscode/archive/`
@@ -24,7 +25,7 @@ Se også `docs/agents/runtime-status-2026-06-12.md` for den aktuelle konsolidere
 
 ## Arbejdsregler
 
-- Behandl `.vscode/.codex/` som eneste lokale kilde til sandhed for agent-konfiguration
+- Behandl `.agents/` som canonical kilde til sandhed for agent-konfiguration; `.vscode/.codex/agents/` er genereret output og håndredigeres aldrig
 - Brug ikke `.vscode/archive/` som aktiv runtime, medmindre noget bevidst reaktiveres
 - Bevar Codex som primær målplatform; Claude/Gemini konfigurationer er kompatibilitetslag
 - Kimi, Qwen Code og Gemini Code skal pege mod samme `AGENTS.md`, `.vscode/.codex/prompts/`, `.agents/skills/` (skills flyttet hertil 2026-07-09) og `.vscode/.codex/agents/`

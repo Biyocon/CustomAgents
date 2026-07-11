@@ -10,6 +10,19 @@ primary_models:
   - Kimi
   - Qwen Code
   - Gemini Code
+skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bbtr-raadgiver-udbud
+  - bdk-styringsdokumenter-skabeloner
+  - bdk-legal-mapping
+capabilities:
+  - udbudsstrategi og udbudsform
+  - udbudsmateriale, ydelsesbeskrivelser og tilbudslister
+  - tilbudsevaluering og tildeling
+  - kontraktforberedelse og overdragelse
+  - udbudsjura og compliance
 ---
 
 # Profil: Udbudskonsulent

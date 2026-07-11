@@ -270,7 +270,9 @@ Write-SectionHeader -Letter "B" -Title "Banedanmark-agenter - alle *.md (bredde)
     -SourceScript "scripts/validate-harness.ps1"
 
 if (Test-Path $baneDir) {
-    $baneFilesWide = Get-ChildItem $baneDir -Filter "*.md" -ErrorAction SilentlyContinue
+    # @() noedvendig: efter PR F-aktiveringen er der kun README.md tilbage paa topniveau,
+    # og et enkelt resultat er en skalar uden .Count under StrictMode.
+    $baneFilesWide = @(Get-ChildItem $baneDir -Filter "*.md" -ErrorAction SilentlyContinue)
     Add-Finding "INFO" "B" "Banedanmark-agenter (alle *.md): $($baneFilesWide.Count)"
     Write-Status "INFO" "Banedanmark-agenter (alle *.md): $($baneFilesWide.Count)"
     foreach ($f in $baneFilesWide) {
@@ -293,7 +295,9 @@ Write-SectionHeader -Letter "C" -Title "Banedanmark-agenter - kun bd-*.md (snaev
     -SourceScript "scripts/Validate-AgentHarness.ps1"
 
 if (Test-Path $baneDir) {
-    $baneFilesNarrow = Get-ChildItem $baneDir -Filter "bd-*.md" -ErrorAction SilentlyContinue
+    # @() noedvendig: efter PR F-aktiveringen findes ingen flade bd-*.md laengere
+    # (rolleagenter ligger som <id>/profile.md), og 0/1 resultater er skalar/null under StrictMode.
+    $baneFilesNarrow = @(Get-ChildItem $baneDir -Filter "bd-*.md" -ErrorAction SilentlyContinue)
     Add-Finding "INFO" "C" "Banedanmark-agenter (bd-*.md): $($baneFilesNarrow.Count)"
     Write-Status "INFO" "Banedanmark-agenter (bd-*.md): $($baneFilesNarrow.Count)"
     foreach ($f in $baneFilesNarrow) {

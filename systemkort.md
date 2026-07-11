@@ -76,16 +76,16 @@ i `.vscode/.codex/` manuelt før aktivering — sync-garantien mistes ellers.
 
 ---
 
-## Layer 2: Runtime-lag (retningen afgjort 2026-07-09)
+## Layer 2: Runtime-lag (AKTIVERET 2026-07-11, PR F)
 
 | Komponent | Rolle | Runtime-status |
 |---|---|---|
-| `.agents/` | **Canonical source of truth** (ADR-multi-runtime **Accepted** 2026-07-09). Skill-laget (`.agents/skills/`, 79 skills) er canonical nu efter flytning. | ✅ Canonical (skills aktive; agenter/registry/Brain modnes via PR B–F) |
-| `.vscode/.codex/` | **Transitional aktiv runtime** for agenter/registry/Brain, indtil generatorer findes. | ✅ Aktiv runtime (transitional, planlagt genereret fra `.agents/`) |
+| `.agents/` | **Canonical source of truth** (ADR-multi-runtime **Accepted** 2026-07-09; PR A–F fuldført 2026-07-11). Skills (79), agenter (28 personaer + 19 rolleagenter), registry og brain er canonical. | ✅ Canonical (eneste redigeringssted) |
+| `.vscode/.codex/` | **Aktiv runtime — agents-laget GENERERET** fra canonical af `.agents/scripts/generate-runtime.py`. Brain frosset legacy (memory-governance). | ✅ Aktiv runtime (genereret; håndredigeres aldrig) |
 
-**Retningen er ét entydigt ✅:** `.agents/` er canonical. Den fulde aktivering (agenter/registry/Brain)
-afventer PR B–F og `docs/qa/RELEASE-runtime-activation-gate.md`. Se
-`docs/plans/runtime-konsolidering-plan.md` for løsningsdesignet.
+**Ét entydigt ✅:** `.agents/` er canonical, runtime genereres. Aktiveringen er gennemført og
+gaten `docs/qa/RELEASE-runtime-activation-gate.md` er GODKENDT (2026-07-11). Sync verificeres
+løbende med `generate-runtime.py --check` (exit 0 = i sync).
 
 ---
 

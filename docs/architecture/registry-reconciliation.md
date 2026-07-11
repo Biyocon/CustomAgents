@@ -28,9 +28,12 @@ Definere vejen fra det nuværende fragmenterede registry-landskab (4 registries,
    **LEVERET 2026-07-11:** `.agents/scripts/generate-runtime.py` (generering til `.agents/build/runtime/<adapter>/`
    + `--check`-driftrapport mod live runtime). Live runtime stadig urørt; aktivering = PR F.
    `--check` kvantificerer også trin 2's felt-merge-rest (12 personaer mangler `accent` i canonical).
-4. **PR F:** runtime activation — `.vscode/.codex/` genereres fra canonical; manuel dobbeltvedligehold afvikles; root + scaffold-registry deprecates formelt.
+4. ~~**PR F:** runtime activation — `.vscode/.codex/` genereres fra canonical; manuel dobbeltvedligehold afvikles; root + scaffold-registry deprecates formelt.~~
+   **LEVERET 2026-07-11:** aktiveret på eksplicit ordre; `--check` = exit 0; gate GODKENDT;
+   root + scaffold formelt DEPRECATED. **Reconciliation 4→1 er fuldført:** én canonical registry
+   (`.agents/registry.yaml`), én genereret runtime-registry, to deprecated legacy-filer.
 
-Ingen big-bang. Aktiv runtime brydes ikke før generator + validation findes og en eksplicit aktiveringsbeslutning er taget.
+Ingen big-bang. ~~Aktiv runtime brydes ikke før generator + validation findes og en eksplicit aktiveringsbeslutning er taget.~~ Betingelsen blev opfyldt: generator (PR D) + validation (--check) + eksplicit aktiveringsbeslutning (2026-07-11) forelå før aktivering.
 
 ## Afgjorte punkter
 - ~~**73 vs 33 skills** — `.vscode/.codex/skills` (73) vs `.agents/skills` (33, incl. 4 Higgsfield). Hvilket sæt er canonical; migreres de 40+ codex-only skills ind?~~

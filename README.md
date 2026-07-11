@@ -1,13 +1,14 @@
 # AgentSkills — Custom AI Agent Harness
 
-## Projektstyrings-dokumentation (tilføjet 2026-07-01, opdateret 2026-07-09)
+## Projektstyrings-dokumentation (tilføjet 2026-07-01, opdateret 2026-07-11)
 
-> **Runtime-retningen er afgjort (2026-07-09):** `docs/architecture/ADR-multi-runtime-agent-system.md`
-> er nu **Accepted** — `.agents/` er canonical source of truth; `.vscode/.codex/` er
-> transitional runtime indtil generatorer (PR B–F) findes. Den tidligere "uafklarede
-> P0-modsigelse" er dermed løst i retning. Bemærk hybrid-tilstand: skills er allerede
-> flyttet til `.agents/skills/` (2026-07-09), mens agenter/registry/Brain-runtime stadig
-> ligger i `.vscode/.codex/` indtil aktivering. Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`.
+> **Runtime-aktiveringen er GENNEMFØRT (2026-07-11, PR F):** `.agents/` er canonical source
+> of truth, og `.vscode/.codex/agents/` (registry + rolleagenter) **genereres** nu fra canonical
+> af `.agents/scripts/generate-runtime.py`. ADR-roadmappen PR A–F er fuldført; gaten
+> `docs/qa/RELEASE-runtime-activation-gate.md` er GODKENDT. Dobbeltvedligehold er afviklet:
+> redigér altid `.agents/`, aldrig genererede runtime-filer. Sync verificeres med
+> `generate-runtime.py --check` (exit 0). Brain: `.agents/brain/` er canonical;
+> `.vscode/.codex/Brain/` er frosset legacy (se `docs/architecture/memory-governance.md`).
 
 Nyt PM-system, læs i denne rækkefølge:
 

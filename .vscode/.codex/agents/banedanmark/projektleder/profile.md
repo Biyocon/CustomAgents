@@ -10,6 +10,19 @@ primary_models:
   - Kimi
   - Qwen Code
   - Gemini Code
+skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bdk-forretningsprojektmodel-gates
+  - bdk-styregruppearbejde
+  - bdk-projektrapportering-frister
+  - bbtr-produktionssetup
+capabilities:
+  - jernbaneprojektledelse
+  - styring inden for ledelsessystem og styregrupperammer
+  - interessent- og styregruppehåndtering
+  - risikostyring og eskalering
+  - strategisk alignment
 ---
 
 # Profil: Projektleder for infrastrukturprojekter

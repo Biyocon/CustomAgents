@@ -27,15 +27,16 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 ---
 
-## Arkitektur-tilstand (afgjort 2026-07-09, ADR Accepted)
+## Arkitektur-tilstand (AKTIVERET 2026-07-11 — roadmap A–F fuldført)
 
-- **`.agents/` = CANONICAL source of truth** (ADR-multi-runtime Accepted; se
-  `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
-- **`.vscode/.codex/` = transitional aktiv runtime** for agenter/registry/Brain —
-  må IKKE håndredigeres som datakilde; genereres fra canonical ved PR D/F.
-- **Hybrid-tilstand:** skills er ALLEREDE flyttet permanent til `.agents/skills/`
-  (79 skills; `.codex/skills/` har kun `banebyg` tilbage, bevidst). Rolleagenterne er
-  2026-07-11 ligeledes migreret til canonical: `.agents/agents/banedanmark/` (19 stk.).
+- **`.agents/` = CANONICAL source of truth** (ADR-multi-runtime Accepted 2026-07-09; se
+  `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`). Eneste redigeringssted.
+- **`.vscode/.codex/agents/` = GENERERET runtime** (PR F aktiveret 2026-07-11): registry +
+  19 rolleagenter genereres af `.agents/scripts/generate-runtime.py`. Håndredigeres ALDRIG.
+  Ændringer: redigér canonical → `--apply` → verificér `--check` (exit 0).
+- Skills (79) i `.agents/skills/` (canonical); Brain: `.agents/brain/` canonical,
+  `.vscode/.codex/Brain/` frosset legacy (memory-governance). Gate GODKENDT:
+  `docs/qa/RELEASE-runtime-activation-gate.md` (inkl. rollback-plan).
 - **4 registries, alle med rolle-headers** (#2 lukket): `.agents/registry.yaml`=CANONICAL,
   `.vscode/.codex/agents/registry.yaml`=aktiv runtime, rod-`registry.yaml`=legacy
   build-output, `.vscode/.codex/registry.yaml`=død scaffold.
@@ -49,14 +50,13 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 | C — Adapter-plan | ✅ 2026-07-11 | 7 skema-konforme adaptere i `.agents/model-adapters/` (codex=active; claude-code/kimi/ollama/gemini/cursor/qwen-code=planned) |
 | D — Export/generering | ✅ 2026-07-11 | `generate-runtime.py`: canonical → build-output + `--check` sync-drift |
 | E — Memory-governance | ✅ 2026-07-11 | `docs/architecture/memory-governance.md`; runtime-Brain FROSSET; 3 artefakter landet |
-| F — Runtime-aktivering | ⬜ NÆSTE | Anvender PR D-generatoren på `.vscode/.codex/`; lukker #1 + RELEASE-gate |
+| F — Runtime-aktivering | ✅ 2026-07-11 | `--apply` udført; `--check` exit 0; gate GODKENDT; #1 lukket. **ROADMAP FULDFØRT** |
 
 ## Ticket-status
 
-- **`docs/done/` = 12+ lukkede tickets** (#2–#13 alle lukket 2026-07-09/10).
-- **Kun #1 er åben** (`docs/active/#1-los-runtime-modsigelse.md`): retning afgjort,
-  men fuld aktivering + `docs/qa/RELEASE-runtime-activation-gate.md` afventer PR D–F.
-  Gaten må IKKE markeres GODKENDT før faktisk aktivering.
+- **ALLE tickets lukket** (#1–#13 → `docs/done/`; `docs/active/` er tom pr. 2026-07-11).
+- #1 (runtime-modsigelsen) lukket ved PR F-aktiveringen; gaten
+  `docs/qa/RELEASE-runtime-activation-gate.md` er GODKENDT med evidens.
 
 ## Verificeret (2026-07-09→11-sessionerne)
 
@@ -93,18 +93,16 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - `.agents/model-adapters/README.md` — adapter-sæt (PR C)
 - `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md` — dybdeaudit med alle rettelses-annoteringer
 
-## Næste skridt
+## Næste skridt (roadmappen er fuldført — alt herunder er valgfrit/nyt scope)
 
-1. **PR F — Runtime-aktivering (sidste PR på roadmappen):** anvend `generate-runtime.py`-output på
-   `.vscode/.codex/` (kræver EKSPLICIT aktiveringsbeslutning + rollback-plan; gate: `--check` → exit 0
-   og `docs/qa/RELEASE-runtime-activation-gate.md` godkendes). Lukker #1. Omfatter også: runtime-Brain-
-   erstatning (jf. memory-governance), rod-registry deprecation, evt. flyt af `.codex` til rod.
-2. Driftrapporten (`generate-runtime.py --check`) viser nu KUN bevidste forskelle (ryddet 2026-07-11):
-   20 agenter kun canonical (rolle-migreringen + council-chairman), 10 kun live (arkiverede, bevares til
-   PR F), profil-normaliseringer, og stale live-katalogentry `bdk-forbedringsloop` (nu `planned_skills`
-   hos hassan-dahir). Accents udfyldt (11), dangling skill-refs løst (remap/planned_skills, 0 tilbage,
-   integritetstjek i --check), '?'-mojibake i 2 personaer repareret.
-3. Valgfrit vedligehold: fix fence-regex-buggen. (Role-vs-persona afgjort 2026-07-11 — begge i canonical.)
+1. **Løbende disciplin:** nye agenter/skills laves i `.agents/`, aktiveres med
+   `generate-runtime.py --apply`, verificeres med `--check` (exit 0). Genererede filer røres aldrig.
+2. Valgfri oprydning (bevidst udskudt, dokumenteret i gaten): fysisk erstatning af frosset
+   runtime-Brain; sletning af deprecated rod-registry + scaffold + Export-Registry.ps1; evt. flyt
+   af `.codex` til rod (repo-map.md). Kræver eksplicit ordre.
+3. Valgfrit vedligehold: fix fence-regex-buggen (27 falske advarsler); opret `planned_skills`
+   on-demand (30 refs venter); KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet af A–F — kunne
+   arkiveres/opdateres ved lejlighed.
 
 ## Noter
 

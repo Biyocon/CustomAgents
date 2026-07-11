@@ -1,12 +1,16 @@
 # ============================================================================
-# REGISTRY-ROLLE: LEGACY / GENERERET BUILD-OUTPUT (deprecate-kandidat)
+# REGISTRY-ROLLE: DEPRECATED (formelt ved PR F 2026-07-11) — LEGACY BUILD-OUTPUT
 # ----------------------------------------------------------------------------
 # GENERERET pointer-manifest, skrevet af scripts/Export-Registry.ps1 (som laeser
 # .vscode/.codex/agents/agent-roster.json). IKKE haandvedligeholdt, IKKE canonical.
 #
+# FORMELT DEPRECATED ved PR F-aktiveringen: den aktive runtime-registry
+# (.vscode/.codex/agents/registry.yaml) GENERERES nu af generate-runtime.py fra
+# canonical. Denne fil og Export-Registry.ps1 vedligeholdes ikke laengere; kan
+# slettes ved naeste oprydning (bevaret for historik-referencer).
+#
 # CANONICAL kilde er:  .agents/registry.yaml  (ADR-multi-runtime Accepted 2026-07-09)
 # De 4 registries' roller: docs/architecture/registry-reconciliation.md
-# Deprecate-kandidat: slet ikke uden ordre; ryddes formelt ved PR F.
 # ============================================================================
 # Agent Harness Registry
 # Machine-readable manifest for the Kvalifikationsordning Entreprenør agent harness

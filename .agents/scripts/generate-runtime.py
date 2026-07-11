@@ -211,11 +211,20 @@ def render_registry(model, adapter_id):
     return GENERATED_HEADER.format(adapter=adapter_id, ts=ts) + "\n" + body
 
 
-def generate(root, model, adapter_id, out_root):
+def generate(root, model, adapter_id, out_root, apply=False):
     adapter = model["adapters"].get(adapter_id)
     if adapter is None:
         sys.exit(f"Ukendt adapter: {adapter_id}")
-    out = os.path.join(out_root, adapter_id)
+    if apply:
+        # AKTIVERING (PR F): skriv direkte ind i adapterens live target_path.
+        # Kraever eksplicit --apply; brug kun efter aktiveringsbeslutning
+        # (docs/qa/RELEASE-runtime-activation-gate.md).
+        tp = (adapter.get("target_paths") or [None])[0]
+        if not tp:
+            sys.exit(f"Adapter {adapter_id} har ingen target_paths — kan ikke --apply.")
+        out = os.path.join(root, tp.strip("/").replace("/", os.sep))
+    else:
+        out = os.path.join(out_root, adapter_id)
 
     written = []
     reg_path = os.path.join(out, "agents", "registry.yaml")
@@ -324,6 +333,9 @@ def main():
                     help="Build-output-rod (default: .agents/build/runtime/)")
     ap.add_argument("--check", action="store_true",
                     help="Sync-validering: diff genereret output mod live runtime; exit 1 ved drift")
+    ap.add_argument("--apply", action="store_true",
+                    help="AKTIVERING: skriv genereret output direkte ind i adapterens live "
+                         "target_path (PR F; kraever eksplicit aktiveringsbeslutning)")
     args = ap.parse_args()
 
     root = args.root
@@ -341,8 +353,9 @@ def main():
     print(f"Rod: {root}")
     exit_code = 0
     for aid in adapter_ids:
-        out, written = generate(root, model, aid, out_root)
-        print(f"\n[{aid}] {len(written)} artefakter -> {os.path.relpath(out, root)}")
+        out, written = generate(root, model, aid, out_root, apply=args.apply)
+        mode = "AKTIVERET (live)" if args.apply else "artefakter"
+        print(f"\n[{aid}] {len(written)} {mode} -> {os.path.relpath(out, root)}")
         if args.check:
             adapter = model["adapters"][aid]
             findings = (check_skill_refs(model) + check_registry(model, root, adapter)

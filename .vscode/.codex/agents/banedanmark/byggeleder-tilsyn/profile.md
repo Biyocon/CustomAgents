@@ -10,6 +10,19 @@ primary_models:
   - Kimi
   - Qwen Code
   - Gemini Code
+skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-kvalitet-dod
+  - bdk-tilsynsapp-leverance-operations
+  - bdk-haendelser-sikkerhedsbrister
+  - bbtr-fagpakkestruktur
+capabilities:
+  - byggeledelse og entreprenørstyring
+  - styring af kvalitet/tid/økonomi/miljø/arbejdsmiljø
+  - jernbanesikkerhed og togdriftens regularitet
+  - fagtilsyn og kvalitetskontrol
+  - dokumentation og sporbarhed
 ---
 
 # Profil: Byggeleder / Tilsyn

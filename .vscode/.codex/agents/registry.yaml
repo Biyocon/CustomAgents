@@ -1,625 +1,1636 @@
-﻿# ============================================================================
-# REGISTRY-ROLLE: AKTIV RUNTIME (transitional) - MAA IKKE HAANDREDIGERES
+# ============================================================================
+# GENERERET FIL - MAA IKKE HAANDREDIGERES
 # ----------------------------------------------------------------------------
-# Dette er den reelle aktive runtime-registry (rige inline entries). Den er
-# transitional: skal paa sigt GENERERES fra canonical (.agents/registry.yaml)
-# via PR D/F. Indtil da er den aktiv sandhed - redigeres kun bevidst, ikke
-# som kilde til nye data (nye data hoerer i .agents/registry.yaml).
-#
-# CANONICAL kilde: .agents/registry.yaml  (ADR-multi-runtime Accepted 2026-07-09)
-# Roller for alle 4 registries: docs/architecture/registry-reconciliation.md
+# Genereret af .agents/scripts/generate-runtime.py (PR D) fra canonical:
+#   .agents/registry.yaml + .agents/agents/**/profile.md + .agents/skills/
+# Adapter: codex   Genereret: 2026-07-11 17:10
+# Aendringer hoerer hjemme i det canonical .agents/-lag - IKKE her.
 # ============================================================================
 
-# Agent Harness Registry
-# Model-agnostisk: understøtter Codex, Kimi, Qwen Code, Gemini Code
-# Kilde: Iqra-main + Banedanmark domain knowledge
-
-version: "1.0.0"
-last_updated: "2026-05-06"
-
+version: 1.0.0
+last_updated: '2026-07-11'
+generated_by: .agents/scripts/generate-runtime.py
+generated_from: .agents/registry.yaml
 agents:
-  - id: yunus-udbudskonsulent
-    name: Yunus
-    role: Udbudskonsulent
-    category: Udbud og kontrakt
-    accent: blue
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-fagpakkestruktur", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "bbtr-kvalitet-dod", "bdk-legal-mapping", "bbe-dokumenter-platform", "grill-with-docs"]
-    capabilities: ["udbudsanalyse", "kravmatricer", "tilbudsstruktur", "evalueringslogik", "risiko- og gapvurdering"]
-  - id: william-udbudskonsulent
-    name: William
-    role: Udbudskonsulent
-    category: Udbud og kontrakt
-    accent: navy
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-role-justification", "bbtr-indstilling-writer", "bbtr-kvalitet-dod", "bdk-legal-mapping", "edit-article"]
-    capabilities: ["tilbudsoptimering", "konkurrentpositionering", "kvalitetsbeskrivelser", "dokumentationskrav", "forbeholdsreview"]
-  - id: the-game-elektriker
-    name: The Game
-    role: Elektriker
-    category: Teknik og udførelse
-    accent: yellow
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-tvaerfaglig-koordinering", "bbtr-risiko-myndighed", "bbtr-dokumentstyring", "bdk-trafikale-regler-anvendelse"]
-    capabilities: ["elinstallation", "praktisk udførelsesreview", "sikkerhed", "grænseflader", "teknisk afklaring"]
-  - id: sibgha-finance-analytics-specialist
-    name: Sibgha
-    role: Finance Analytics Specialist
-    category: Finans og analyse
-    accent: emerald
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bdk-projektindstilling-og-finansiering", "bdk-gevinststyring-realisering", "bdk-overvaagning-rapportering", "bdk-risk-profile", "bdk-statens-it-projektmodel-compliance"]
-    capabilities: ["business case", "budgetanalyse", "gevinststyring", "KPI-opsamling", "følsomhedsvurdering"]
-  - id: siamak-folkeskolelaerer
-    name: Siamak
-    role: Folkeskolelærer
-    category: Læring og formidling
-    accent: teal
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "edit-article", "grill-me", "write-a-skill"]
-    capabilities: ["læringsdesign", "forklaring", "øvelser", "begrebsafklaring", "niveauopdeling"]
-  - id: sharmarke-maler
-    name: Sharmarke
-    role: Maler
-    category: Byggeri og kvalitet
-    accent: coral
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-kvalitet-dod", "bbtr-dokumentstyring", "bbtr-faseopdelt-ydelser"]
-    capabilities: ["kvalitetskontrol", "finish-review", "arbejdsbeskrivelser", "mangelgennemgang", "praktisk planlægning"]
-  - id: shamso-socialraadgiver
-    name: Shamso
-    role: Socialrådgiver
-    category: Borger, interessent og GDPR
-    accent: purple
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bdk-legal-mapping", "bdk-haendelser-sikkerhedsbrister", "edit-article"]
-    capabilities: ["interessentanalyse", "sagsstruktur", "GDPR-hensyn", "borgerkommunikation", "risikovurdering"]
-  - id: said-anlaegsingenioer
-    name: Said
-    role: Anlægsingeniør
-    category: Anlæg og bane
-    accent: steel
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-risiko-myndighed", "bbtr-tvaerfaglig-koordinering", "bbtr-fagpakkestruktur", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bdk-trafikale-regler-anvendelse"]
-    capabilities: ["anlægsteknik", "myndighedsrisici", "grænseflader", "fagpakker", "projekteringskrav"]
-  - id: sabina-udbudskonsulent-chefkonsulent
-    name: Sabina
-    role: Udbudskonsulent / Chefkonsulent
-    category: Udbud og governance
-    accent: magenta
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bdk-styregruppearbejde", "bdk-portefoljekontor-governance", "bdk-projektindstilling-og-finansiering", "bbtr-indstilling-writer"]
-    capabilities: ["strategisk udbud", "ledelsesoplæg", "governance", "kvalitetssikring", "beslutningsnotater"]
-  - id: qanac-laege
-    name: Qanac
-    role: Læge
-    category: Sundhed og risiko
-    accent: green
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "grill-with-docs", "edit-article"]
-    capabilities: ["klinisk struktur", "risikovurdering", "triage", "patientkommunikation", "evidensafvejning"]
-  - id: mohammad-udbudskonsulent
-    name: Mohammad Abdel-latif
-    role: Udbudskonsulent
-    category: Udbud og kontrakt
-    accent: cyan
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "bdk-legal-mapping"]
-    capabilities: ["compliance-matrix", "kravsporbarhed", "tilbudsgennemgang", "dokumentstruktur", "risikolog"]
-  - id: mehtap-udbudskonsulent
-    name: Mehtap
-    role: Udbudskonsulent
-    category: Udbud og kvalitet
-    accent: rose
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "edit-article", "bbtr-kvalitet-dod"]
-    capabilities: ["tilbudstekst", "kvalitetssvar", "redigering", "win themes", "evaluerbarhed"]
-  - id: liban-sales-specialist
-    name: Liban
-    role: Sales Specialist
-    category: Salg og positionering
-    accent: orange
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "grill-me", "to-prd", "bbtr-role-justification", "bbtr-raadgiver-udbud", "edit-article"]
-    capabilities: ["salgsstrategi", "value proposition", "stakeholder mapping", "pitchstruktur", "forhandlingsforberedelse"]
-  - id: joel-mulongo-udbudsjurist
-    name: Joël Mulongo
-    role: Udbudsjurist
-    category: Udbud og kontrakt
-    accent: indigo
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "to-issues"]
-    capabilities: ["processtyring", "reviewplan", "kravspor", "tilbudsdisposition", "risikoafklaring"]
-  - id: ifrah-farmaceut
-    name: Ifrah
-    role: Farmaceut
-    category: Sundhed og kvalitet
-    accent: mint
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "edit-article"]
-    capabilities: ["faglig kvalitet", "compliance", "risikokommunikation", "dokumentationskrav", "proceskontrol"]
-  - id: hassan-fagprojektleder
-    name: Hassan
-    role: Fagprojektleder
-    category: Projektledelse og fagpakker
-    accent: bluegray
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-produktionssetup", "bbtr-faseopdelt-ydelser", "bbtr-tvaerfaglig-koordinering", "bdk-projektrapportering-frister", "bdk-styregruppearbejde", "bbtr-forbedringsloop"]
-    capabilities: ["fagpakkeledelse", "leveranceplan", "risikostyring", "fremdriftsrapportering", "beslutningsoplæg"]
-  - id: hassan-anlaegsingenioer
-    name: Hassan
-    role: Anlægsingeniør
-    category: Anlæg og bane
-    accent: brown
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-risiko-myndighed", "bbtr-tvaerfaglig-koordinering", "bbtr-kvalitet-dod", "bdk-bkp-v17-overview", "bdk-trafikale-regler-anvendelse"]
-    capabilities: ["anlægsreview", "grænseflader", "faglige forudsætninger", "teknisk risiko", "kvalitetssikring"]
-  - id: hamsa-afloebsingenioer
-    name: Hamsa
-    role: Afløbsingeniør
-    category: Anlæg og forsyning
-    accent: aqua
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-tvaerfaglig-koordinering", "bbtr-risiko-myndighed", "bbtr-dokumentstyring", "bbtr-faseopdelt-ydelser"]
-    capabilities: ["afløbsteknik", "dræn", "kapacitet", "anlægsgrænseflader", "teknisk dokumentation"]
-  - id: bojang-fodboldagent
-    name: Bojang
-    role: Fodboldagent
-    category: Forhandling og talent
-    accent: lime
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "grill-me", "edit-article", "bdk-legal-mapping"]
-    capabilities: ["talentprofil", "forhandling", "kontraktlogik", "karriereplan", "markedspositionering"]
-  - id: bodjo-fodboldagent
-    name: Bodjo
-    role: Fodboldagent
-    category: Forhandling og talent
-    accent: forest
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "grill-me", "to-prd", "edit-article"]
-    capabilities: ["transferstrategi", "karrierevalg", "forhandlingsforberedelse", "scoutingbrief", "risikolog"]
-  - id: bamse-paedagog
-    name: Bamse
-    role: Pædagog
-    category: Pædagogik og trivsel
-    accent: amber
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "edit-article", "grill-me"]
-    capabilities: ["pædagogisk plan", "trivselsvurdering", "forældredialog", "struktur", "konfliktnedtrapning"]
-  - id: ali-jobraadgiver
-    name: Ali
-    role: Jobrådgiver
-    category: Karriere og rådgivning
-    accent: sky
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "edit-article", "grill-me"]
-    capabilities: ["CV", "ansøgning", "jobmatch", "samtaleforberedelse", "kompetenceafklaring"]
-  - id: abdullahi-data-engineer
-    name: Abdullahi
-    role: Data Engineer
-    category: Data og automation
-    accent: green
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bdk-tilsynsapp-leverance-operations", "bdk-overvaagning-rapportering", "bdk-risk-profile", "bdk-audit-findings", "bbe-dokumenter-platform", "tdd", "diagnose"]
-    capabilities: ["datamodel", "pipeline", "datakvalitet", "rapportering", "automation"]
-  - id: abdisalam-staerkstroemsingenioer
-    name: Abdisalam
-    role: Stærkstrømsingeniør
-    category: Teknik og bane
-    accent: gold
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-csm-tsi-compliance", "bbtr-risiko-myndighed", "bbtr-tvaerfaglig-koordinering", "bdk-trafikale-regler-anvendelse", "bdk-bkp-v17-overview"]
-    capabilities: ["stærkstrøm", "sikkerhed", "teknisk compliance", "grænseflader", "driftsrisiko"]
-  - id: abdi-asis-produkt-manager
-    name: Abdi Asis
-    role: Technical Product Manager
-    category: Produkt og prioritering
-    accent: violet
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "to-prd", "to-issues", "grill-with-docs", "bdk-forretningsprojektmodel-gates", "bdk-statens-it-projektmodel-compliance", "bdk-gevinststyring-realisering"]
-    capabilities: ["PRD", "roadmap", "acceptkriterier", "prioritering", "stakeholderbehov"]
-  - id: ahmad-el-wali
-    name: Ahmad El-Wali
-    role: Strategic Engineering Leader / Head of Sourcing, Contracts & Interface Management
-    category: Ledelse og governance
-    accent: emerald
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-fagpakkestruktur", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "bbtr-kvalitet-dod", "bdk-legal-mapping", "bdk-styregruppearbejde", "bdk-portefoljekontor-governance", "bdk-projektindstilling-og-finansiering", "bdk-risk-profile", "grill-with-docs"]
-    capabilities: ["strategisk engineering-ledelse", "sourcing- og procurement-strategi", "contract management framework", "interface management model", "governance og beslutningsoplæg"]
-  - id: hassan-dahir
-    name: Hassan Dahir
-    role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
-    category: Teknik og udførelse
-    accent: orange
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-tvaerfaglig-koordinering", "bbtr-fagpakkestruktur", "bbtr-leverance-mapping", "bbtr-dokumentstyring", "bbtr-risiko-myndighed", "bbtr-kvalitet-dod", "bbtr-csm-tsi-compliance", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bdk-trafikale-regler-anvendelse", "bdk-projektrapportering-frister", "bdk-styregruppearbejde", "bdk-forbedringsloop"]
-    capabilities: ["fagprojektledelse", "fagtilsyn og kvalitetskontrol", "byggeledelse og udførelse", "afløbsteknik og kloak", "product ownership BaneByg", "interface management", "tværfaglig koordinering"]
-  - id: interface-manager-project-level
-    name: Interface Manager
-    role: Interface Manager, Project Level
-    category: Projektledelse og grænseflader
-    accent: teal
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-tvaerfaglig-koordinering", "bbtr-fagpakkestruktur", "bbtr-leverance-mapping", "bbtr-dokumentstyring", "bbtr-risiko-myndighed", "bdk-styregruppearbejde", "bdk-portefoljekontor-governance", "grill-with-docs"]
-    capabilities: ["interface register og mapping", "grænsefladestyring", "afhængighedshåndtering", "dokumentation af interfaces", "eskalation og beslutningsstøtte"]
-  - id: contract-manager-project-level
-    name: Contract Manager
-    role: Contract Manager, Project Level
-    category: Kontrakt og compliance
-    accent: indigo
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-raadgiver-udbud", "bbtr-dokumentstyring", "bbtr-leverance-mapping", "bdk-legal-mapping", "bbtr-kvalitet-dod", "bdk-styregruppearbejde", "grill-with-docs"]
-    capabilities: ["kontraktadministration", "kontraktopfølgning", "ændringshåndtering", "leverandørdialog", "risikolog"]
-  - id: document-manager-project-level
-    name: Document Manager
-    role: Document Manager, Project Level
-    category: Dokumentation og kvalitet
-    accent: sky
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-dokumentstyring", "bbtr-kvalitet-dod", "bbtr-faseopdelt-ydelser", "bbtr-leverance-mapping", "bdk-bkp-v17-overview", "grill-with-docs"]
-    capabilities: ["dokumentkontrol", "versionsstyring", "leverancedokumentation", "review og godkendelse", "sporbarhed"]
-  - id: configuration-manager-project-level
-    name: Configuration Manager
-    role: Configuration Manager, Project Level
-    category: Teknik og konfiguration
-    accent: violet
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-dokumentstyring", "bbtr-kvalitet-dod", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bbtr-tvaerfaglig-koordinering", "bbtr-csm-tsi-compliance", "diagnose"]
-    capabilities: ["konfigurationsstyring", "baseline-håndtering", "ændringskontrol", "versionshåndtering", "sporbarhed"]
-  - id: test-manager-project-level
-    name: Test Manager
-    role: Test Manager, Project Level
-    category: Test og verifikation
-    accent: lime
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-kvalitet-dod", "bbtr-csm-tsi-compliance", "bbtr-risiko-myndighed", "bdk-bkp-v17-overview", "bdk-trafikale-regler-anvendelse", "diagnose", "tdd"]
-    capabilities: ["testplanlægning", "acceptkriterier", "verifikation og validering", "fejlhåndtering", "sikkerhedsgodkendelse"]
-  - id: incident-manager
-    name: Incident Manager
-    role: Incident Manager
-    category: Drift og hændelser
-    accent: red
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bdk-haendelser-sikkerhedsbrister", "bdk-risk-profile", "bdk-overvaagning-rapportering", "bbtr-risiko-myndighed", "diagnose"]
-    capabilities: ["hændelseshåndtering", "eskalation og koordinering", "root cause analyse", "rapportering og læring", "beredskab"]
-  - id: si-manager-csm-interoperabilitet
-    name: S&I Manager
-    role: S&I Manager CSM og Interoperabilitet
-    category: Sikkerhed og interoperabilitet
-    accent: navy
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-csm-tsi-compliance", "bbtr-risiko-myndighed", "bdk-bkp-v17-overview", "bdk-trafikale-regler-anvendelse", "bbtr-tvaerfaglig-koordinering", "bdk-risk-profile", "diagnose"]
-    capabilities: ["CSM-compliance", "TSI-overensstemmelse", "sikkerhedsgodkendelse", "interoperabilitetsvurdering", "myndighedsgrænseflader"]
-  - id: projekteringsleder
-    name: Projekteringsleder
-    role: Projekteringsleder
-    category: Projektering og design
-    accent: blue
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-fagpakkestruktur", "bbtr-tvaerfaglig-koordinering", "bbtr-dokumentstyring", "bbtr-kvalitet-dod", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bdk-projektrapportering-frister", "bbtr-leverance-mapping", "grill-with-docs"]
-    capabilities: ["designledelse", "projekteringsplan", "fagkoordinering", "tegnings- og modelstyring", "kvalitetssikring af design"]
-  - id: bro-inspektoer
-    name: Bro-inspektør
-    role: Bro-inspektør
-    category: Teknik og bane
-    accent: steel
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bbtr-risiko-myndighed", "bbtr-kvalitet-dod", "bbtr-dokumentstyring", "bdk-bkp-v17-overview", "diagnose"]
-    capabilities: ["broinspektion", "tilstandsvurdering", "vedligeholdelsesplan", "sikkerhedsvurdering", "teknisk dokumentation"]
-  - id: gis-specialist
-    name: GIS-specialist
-    role: GIS-specialist
-    category: Data og geografisk information
-    accent: green
-    status: active
-    skills: ["karpathy-guidelines", "shared-quality", "shared-docx", "bdk-brand-governance", "bdk-gdpr-praksis", "bdk-bkp-v17-overview", "bdk-bkp-v17-data-model", "bbtr-dokumentstyring", "bdk-overvaagning-rapportering", "diagnose"]
-    capabilities: ["GIS-analyse", "geografisk databehandling", "kortproduktion", "infrastrukturdata", "spatiale grænseflader"]
-
-# Skills Catalog
-skills:
-  - id: bbe-dokumenter-platform
-    name: BBE Dokumenter Platform
-    category: Platform
-    description: Document platform integration
-  - id: bbtr-csm-tsi-compliance
-    name: BBTR CSM TSI Compliance
-    category: Sikkerhed
-    description: CSM and TSI compliance assessment
-  - id: bbtr-dokumentstyring
-    name: BBTR Dokumentstyring
-    category: Dokumentation
-    description: Document control and management
-  - id: bbtr-fagpakkestruktur
-    name: BBTR Fagpakkestruktur
-    category: Fagpakker
-    description: Package structure and discipline organization
-  - id: bbtr-faseopdelt-ydelser
-    name: BBTR Faseopdelt Ydelser
-    category: Faser
-    description: Phased service delivery
-  - id: bbtr-forbedringsloop
-    name: BBTR Forbedringsloop
-    category: Kvalitet
-    description: Continuous improvement loop
-  - id: bbtr-indstilling-writer
-    name: BBTR Indstilling Writer
-    category: Udbud
-    description: Tender submission writer
-  - id: bbtr-kvalitet-dod
-    name: BBTR Kvalitet DoD
-    category: Kvalitet
-    description: Definition of Done and quality criteria
-  - id: bbtr-leverance-mapping
-    name: BBTR Leverance Mapping
-    category: Leverance
-    description: Delivery mapping and traceability
-  - id: bbtr-produktionssetup
-    name: BBTR Produktionssetup
-    category: Produktion
-    description: Production setup and configuration
-  - id: bbtr-risiko-myndighed
-    name: BBTR Risiko Myndighed
-    category: Risiko
-    description: Authority risk assessment and mitigation
-  - id: bbtr-role-justification
-    name: BBTR Role Justification
-    category: Roller
-    description: Role justification and competency mapping
-  - id: bbtr-raadgiver-udbud
-    name: BBTR Rådgiver Udbud
-    category: Udbud
-    description: Advisor tender process and requirements
-  - id: bbtr-tvaerfaglig-koordinering
-    name: BBTR Tværfaglig Koordinering
-    category: Koordinering
-    description: Cross-disciplinary coordination
-  - id: bdk-audit-findings
-    name: BDK Audit Findings
-    category: Audit
-    description: Audit findings management
-  - id: bdk-bkp-v17-data-model
-    name: BDK BKP v17 Data Model
-    category: Bane
-    description: BaneByg Kvalifikationsordning v17 data model
-  - id: bdk-bkp-v17-overview
-    name: BDK BKP v17 Overview
-    category: Bane
-    description: BaneByg Kvalifikationsordning v17 overview
-  - id: bdk-brand-governance
-    name: BDK Brand Governance
-    category: Generelle
-    description: Brand governance and compliance
-  - id: bdk-forbedringsloop
-    name: BDK Forbedringsloop
-    category: Kvalitet
-    description: Banedanmark continuous improvement framework
-  - id: bdk-forretningsprojektmodel-gates
-    name: BDK Forretningsprojektmodel Gates
-    category: Projekt
-    description: Business project model gates
-  - id: bdk-gdpr-praksis
-    name: BDK GDPR Praksis
-    category: Generelle
-    description: GDPR compliance and data protection practices
-  - id: bdk-gevinststyring-realisering
-    name: BDK Gevinststyring Realisering
-    category: Gevinst
-    description: Benefit management and realization
-  - id: bdk-haendelser-sikkerhedsbrister
-    name: BDK Hændelser Sikkerhedsbrister
-    category: Sikkerhed
-    description: Incident and security breach management
-  - id: bdk-legal-mapping
-    name: BDK Legal Mapping
-    category: Jura
-    description: Legal requirement mapping and compliance
-  - id: bdk-overvaagning-rapportering
-    name: BDK Overvågning Rapportering
-    category: Overvågning
-    description: Monitoring and reporting framework
-  - id: bdk-portefoljekontor-governance
-    name: BDK Porteføljekontor Governance
-    category: Governance
-    description: Portfolio office governance
-  - id: bdk-projektindstilling-og-finansiering
-    name: BDK Projektindstilling og Finansiering
-    category: Finans
-    description: Project setup and financing
-  - id: bdk-projektrapportering-frister
-    name: BDK Projektrapportering Frister
-    category: Rapportering
-    description: Project reporting and deadlines
-  - id: bdk-risk-profile
-    name: BDK Risk Profile
-    category: Risiko
-    description: Risk profiling and assessment
-  - id: bdk-statens-it-projektmodel-compliance
-    name: BDK Statens IT-projektmodel Compliance
-    category: Compliance
-    description: State IT project model compliance
-  - id: bdk-styregruppearbejde
-    name: BDK Styregruppearbejde
-    category: Governance
-    description: Steering group work and governance
-  - id: bdk-tilsynsapp-leverance-operations
-    name: BDK Tilsynsapp Leverance Operations
-    category: Tilsyn
-    description: Supervision app delivery and operations
-  - id: bdk-trafikale-regler-anvendelse
-    name: BDK Trafikale Regler Anvendelse
-    category: Trafik
-    description: Traffic rule application and compliance
-  - id: diagnose
-    name: Diagnose
-    category: Teknik
-    description: Diagnostic analysis and troubleshooting
-  - id: edit-article
-    name: Edit Article
-    category: Generelle
-    description: Article editing and refinement
-  - id: grill-me
-    name: Grill Me
-    category: Generelle
-    description: Interactive grilling and challenge mode
-  - id: grill-with-docs
-    name: Grill with Docs
-    category: Dokumentation
-    description: Interactive document review and grilling
-  - id: karpathy-guidelines
-    name: Karpathy Guidelines
-    category: Generelle
-    description: Code quality and engineering best practices
-  - id: shared-docx
-    name: Shared DOCX
-    category: Generelle
-    description: Document generation and manipulation
-  - id: shared-quality
-    name: Shared Quality
-    category: Generelle
-    description: Common quality assurance patterns
-  - id: tdd
-    name: TDD
-    category: Teknik
-    description: Test-driven development practices
-  - id: to-issues
-    name: To Issues
-    category: Produkt
-    description: Issue extraction and tracking
-  - id: to-prd
-    name: To PRD
-    category: Produkt
-    description: Product requirement document conversion
-  - id: write-a-skill
-    name: Write a Skill
-    category: Generelle
-    description: Skill authoring and creation
-
-# Categories
+- id: yunus-udbudskonsulent
+  name: Yunus
+  role: Udbudskonsulent
+  category: Udbud og kontrakt
+  accent: blue
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bbtr-fagpakkestruktur
+  - bbtr-dokumentstyring
+  - bbtr-leverance-mapping
+  - bbtr-kvalitet-dod
+  - bdk-legal-mapping
+  - bbe-dokumenter-platform
+  - grill-with-docs
+  capabilities:
+  - udbudsanalyse
+  - kravmatricer
+  - tilbudsstruktur
+  - evalueringslogik
+  - risiko- og gapvurdering
+- id: william-udbudskonsulent
+  name: William
+  role: Udbudskonsulent
+  category: Udbud og kontrakt
+  accent: navy
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bbtr-role-justification
+  - bbtr-indstilling-writer
+  - bbtr-kvalitet-dod
+  - bdk-legal-mapping
+  - edit-article
+  capabilities:
+  - tilbudsoptimering
+  - konkurrentpositionering
+  - kvalitetsbeskrivelser
+  - dokumentationskrav
+  - forbeholdsreview
+- id: the-game-elektriker
+  name: The Game
+  role: Elektriker
+  category: Teknik og udførelse
+  accent: yellow
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-risiko-myndighed
+  - bbtr-dokumentstyring
+  - bdk-trafikale-regler-anvendelse
+  capabilities:
+  - elinstallation
+  - praktisk udførelsesreview
+  - sikkerhed
+  - grænseflader
+  - teknisk afklaring
+- id: sibgha-finance-analytics-specialist
+  name: Sibgha
+  role: Finance Analytics Specialist
+  category: Finans og analyse
+  accent: emerald
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bdk-projektindstilling-og-finansiering
+  - bdk-gevinststyring-realisering
+  - bdk-overvaagning-rapportering
+  - bdk-risk-profile
+  - bdk-statens-it-projektmodel-compliance
+  capabilities:
+  - business case
+  - budgetanalyse
+  - gevinststyring
+  - KPI-opsamling
+  - følsomhedsvurdering
+- id: siamak-folkeskolelaerer
+  name: Siamak
+  role: Folkeskolelærer
+  category: Læring og formidling
+  accent: teal
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - edit-article
+  - grill-me
+  - write-a-skill
+  capabilities:
+  - læringsdesign
+  - forklaring
+  - øvelser
+  - begrebsafklaring
+  - niveauopdeling
+- id: sharmarke-maler
+  name: Sharmarke
+  role: Maler
+  category: Byggeri og kvalitet
+  accent: coral
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-kvalitet-dod
+  - bbtr-dokumentstyring
+  - bbtr-faseopdelt-ydelser
+  capabilities:
+  - kvalitetskontrol
+  - finish-review
+  - arbejdsbeskrivelser
+  - mangelgennemgang
+  - praktisk planlægning
+- id: shamso-socialraadgiver
+  name: Shamso
+  role: Socialrådgiver
+  category: Borger, interessent og GDPR
+  accent: purple
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bdk-legal-mapping
+  - bdk-haendelser-sikkerhedsbrister
+  - edit-article
+  capabilities:
+  - interessentanalyse
+  - sagsstruktur
+  - GDPR-hensyn
+  - borgerkommunikation
+  - risikovurdering
+- id: said-anlaegsingenioer
+  name: Said
+  role: Anlægsingeniør
+  category: Anlæg og bane
+  accent: steel
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-risiko-myndighed
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-fagpakkestruktur
+  - bdk-bkp-v17-overview
+  - bdk-bkp-v17-data-model
+  - bdk-trafikale-regler-anvendelse
+  capabilities:
+  - anlægsteknik
+  - myndighedsrisici
+  - grænseflader
+  - fagpakker
+  - projekteringskrav
+- id: sabina-udbudskonsulent-chefkonsulent
+  name: Sabina
+  role: Udbudskonsulent / Chefkonsulent
+  category: Udbud og governance
+  accent: magenta
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bdk-styregruppearbejde
+  - bdk-portefoljekontor-governance
+  - bdk-projektindstilling-og-finansiering
+  - bbtr-indstilling-writer
+  capabilities:
+  - strategisk udbud
+  - ledelsesoplæg
+  - governance
+  - kvalitetssikring
+  - beslutningsnotater
+- id: qanac-laege
+  name: Qanac
+  role: Læge
+  category: Sundhed og risiko
+  accent: green
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - grill-with-docs
+  - edit-article
+  capabilities:
+  - klinisk struktur
+  - risikovurdering
+  - triage
+  - patientkommunikation
+  - evidensafvejning
+- id: mohammad-udbudskonsulent
+  name: Mohammad Abdel-latif
+  role: Udbudskonsulent
+  category: Udbud og kontrakt
+  accent: cyan
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bbtr-dokumentstyring
+  - bbtr-leverance-mapping
+  - bdk-legal-mapping
+  capabilities:
+  - compliance-matrix
+  - kravsporbarhed
+  - tilbudsgennemgang
+  - dokumentstruktur
+  - risikolog
+- id: mehtap-udbudskonsulent
+  name: Mehtap
+  role: Udbudskonsulent
+  category: Udbud og kvalitet
+  accent: rose
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - edit-article
+  - bbtr-kvalitet-dod
+  capabilities:
+  - tilbudstekst
+  - kvalitetssvar
+  - redigering
+  - win themes
+  - evaluerbarhed
+- id: liban-sales-specialist
+  name: Liban
+  role: Sales Specialist
+  category: Salg og positionering
+  accent: orange
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - grill-me
+  - to-prd
+  - bbtr-role-justification
+  - bbtr-raadgiver-udbud
+  - edit-article
+  capabilities:
+  - salgsstrategi
+  - value proposition
+  - stakeholder mapping
+  - pitchstruktur
+  - forhandlingsforberedelse
+- id: joel-mulongo-udbudsjurist
+  name: Joël Mulongo
+  role: Udbudsjurist
+  category: Udbud og kontrakt
+  accent: indigo
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bbtr-dokumentstyring
+  - bbtr-leverance-mapping
+  - to-issues
+  capabilities:
+  - processtyring
+  - reviewplan
+  - kravspor
+  - tilbudsdisposition
+  - risikoafklaring
+- id: ifrah-farmaceut
+  name: Ifrah
+  role: Farmaceut
+  category: Sundhed og kvalitet
+  accent: mint
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - edit-article
+  capabilities:
+  - faglig kvalitet
+  - compliance
+  - risikokommunikation
+  - dokumentationskrav
+  - proceskontrol
+- id: hassan-fagprojektleder
+  name: Hassan
+  role: Fagprojektleder
+  category: Projektledelse og fagpakker
+  accent: bluegray
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-produktionssetup
+  - bbtr-faseopdelt-ydelser
+  - bbtr-tvaerfaglig-koordinering
+  - bdk-projektrapportering-frister
+  - bdk-styregruppearbejde
+  - bbtr-forbedringsloop
+  capabilities:
+  - fagpakkeledelse
+  - leveranceplan
+  - risikostyring
+  - fremdriftsrapportering
+  - beslutningsoplæg
+- id: hassan-anlaegsingenioer
+  name: Hassan
+  role: Anlægsingeniør
+  category: Anlæg og bane
+  accent: brown
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-risiko-myndighed
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-kvalitet-dod
+  - bdk-bkp-v17-overview
+  - bdk-trafikale-regler-anvendelse
+  capabilities:
+  - anlægsreview
+  - grænseflader
+  - faglige forudsætninger
+  - teknisk risiko
+  - kvalitetssikring
+- id: hamsa-afloebsingenioer
+  name: Hamsa
+  role: Afløbsingeniør
+  category: Anlæg og forsyning
+  accent: aqua
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-risiko-myndighed
+  - bbtr-dokumentstyring
+  - bbtr-faseopdelt-ydelser
+  capabilities:
+  - afløbsteknik
+  - dræn
+  - kapacitet
+  - anlægsgrænseflader
+  - teknisk dokumentation
+- id: bojang-fodboldagent
+  name: Bojang
+  role: Fodboldagent
+  category: Forhandling og talent
+  accent: lime
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - grill-me
+  - edit-article
+  - bdk-legal-mapping
+  capabilities:
+  - talentprofil
+  - forhandling
+  - kontraktlogik
+  - karriereplan
+  - markedspositionering
+- id: bodjo-fodboldagent
+  name: Bodjo
+  role: Fodboldagent
+  category: Forhandling og talent
+  accent: forest
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - grill-me
+  - to-prd
+  - edit-article
+  capabilities:
+  - transferstrategi
+  - karrierevalg
+  - forhandlingsforberedelse
+  - scoutingbrief
+  - risikolog
+- id: bamse-paedagog
+  name: Bamse
+  role: Pædagog
+  category: Pædagogik og trivsel
+  accent: amber
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - edit-article
+  - grill-me
+  capabilities:
+  - pædagogisk plan
+  - trivselsvurdering
+  - forældredialog
+  - struktur
+  - konfliktnedtrapning
+- id: ali-jobraadgiver
+  name: Ali
+  role: Jobrådgiver
+  category: Karriere og rådgivning
+  accent: sky
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - edit-article
+  - grill-me
+  capabilities:
+  - CV
+  - ansøgning
+  - jobmatch
+  - samtaleforberedelse
+  - kompetenceafklaring
+- id: abdullahi-data-engineer
+  name: Abdullahi
+  role: Data Engineer
+  category: Data og automation
+  accent: green
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bdk-tilsynsapp-leverance-operations
+  - bdk-overvaagning-rapportering
+  - bdk-risk-profile
+  - bdk-audit-findings
+  - bbe-dokumenter-platform
+  - tdd
+  - diagnose
+  capabilities:
+  - datamodel
+  - pipeline
+  - datakvalitet
+  - rapportering
+  - automation
+- id: abdisalam-staerkstroemsingenioer
+  name: Abdisalam
+  role: Stærkstrømsingeniør
+  category: Teknik og bane
+  accent: gold
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-csm-tsi-compliance
+  - bbtr-risiko-myndighed
+  - bbtr-tvaerfaglig-koordinering
+  - bdk-trafikale-regler-anvendelse
+  - bdk-bkp-v17-overview
+  capabilities:
+  - stærkstrøm
+  - sikkerhed
+  - teknisk compliance
+  - grænseflader
+  - driftsrisiko
+- id: abdi-asis-produkt-manager
+  name: Abdi Asis
+  role: Technical Product Manager
+  category: Produkt og prioritering
+  accent: violet
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - to-prd
+  - to-issues
+  - grill-with-docs
+  - bdk-forretningsprojektmodel-gates
+  - bdk-statens-it-projektmodel-compliance
+  - bdk-gevinststyring-realisering
+  capabilities:
+  - PRD
+  - roadmap
+  - acceptkriterier
+  - prioritering
+  - stakeholderbehov
+- id: ahmad-el-wali
+  name: Ahmad El-Wali
+  role: Strategic Engineering Leader / Head of Sourcing, Contracts & Interface Management
+  category: Ledelse og governance
+  accent: emerald
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-raadgiver-udbud
+  - bbtr-fagpakkestruktur
+  - bbtr-dokumentstyring
+  - bbtr-leverance-mapping
+  - bbtr-kvalitet-dod
+  - bdk-legal-mapping
+  - bdk-styregruppearbejde
+  - bdk-portefoljekontor-governance
+  - bdk-projektindstilling-og-finansiering
+  - bdk-risk-profile
+  - grill-with-docs
+  capabilities:
+  - strategisk engineering-ledelse
+  - sourcing- og procurement-strategi
+  - contract management framework
+  - interface management model
+  - governance og beslutningsoplæg
+- id: hassan-dahir
+  name: Hassan Dahir
+  role: Technical Interface & Product Owner / Fagprojektleder / Byggeleder / Fagtilsyn
+  category: Teknik og udførelse
+  accent: orange
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-fagpakkestruktur
+  - bbtr-leverance-mapping
+  - bbtr-dokumentstyring
+  - bbtr-risiko-myndighed
+  - bbtr-kvalitet-dod
+  - bbtr-csm-tsi-compliance
+  - bdk-bkp-v17-overview
+  - bdk-bkp-v17-data-model
+  - bdk-trafikale-regler-anvendelse
+  - bdk-projektrapportering-frister
+  - bdk-styregruppearbejde
+  capabilities:
+  - fagprojektledelse
+  - fagtilsyn og kvalitetskontrol
+  - byggeledelse og udførelse
+  - afløbsteknik og kloak
+  - product ownership BaneByg
+  - interface management
+  - tværfaglig koordinering
+- id: council-chairman
+  name: Council Chairman
+  role: LLM Council Orchestrator
+  category: Meta og deliberation
+  accent: purple
+  status: active
+  skills:
+  - llm-council
+  - karpathy-guidelines
+  - shared-quality
+  capabilities:
+  - multi-model deliberation
+  - peer review orchestration
+  - answer synthesis
+  - quality cross-validation
+  meta_agent: true
+  roster_exempt: true
+- id: bd-bro-og-anlaeg
+  name: Bro- og Anlægsspecialist
+  role: Bro- og Anlægsspecialist (Bro-inspektør m.fl.)
+  category: Bro og Anlæg
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bdk-overvaagning-rapportering
+  - bdk-haendelser-sikkerhedsbrister
+  - bdk-risk-profile
+  - bbtr-kvalitet-dod
+  - bbtr-risiko-myndighed
+  - bdk-tilsynsapp-leverance-operations
+  roster_exempt: true
+  agent_model: role
+- id: bd-dokumentcontroller
+  name: Dokumentcontroller
+  role: Dokumentcontroller
+  category: Dokumentstyring og kvalitet
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bdk-brand-governance
+  - bdk-gdpr-praksis
+  - bbtr-dokumentstyring
+  - bbtr-kvalitet-dod
+  - bbtr-leverance-mapping
+  - bbe-dokumenter-platform
+  - bdk-bkp-v17-overview
+  capabilities:
+  - dokumentkontrol
+  - versionsstyring
+  - leveranceafstemning
+  - BKP-dokumentation
+  - BBE-platform compliance
+  - metadata og sporbarhed
+  roster_exempt: true
+  agent_model: role
+- id: bd-fagansvarlig-spor
+  name: Fagansvarlig Spor og Jord/Anlaeg
+  role: Fagansvarlig Spor og Jord/Anlaeg
+  category: Bygge og Anlaeg
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  capabilities:
+  - sporarbejde
+  - sikringsanlæg
+  - kørestrømssystemer
+  - telesystemer
+  - fagtilsyn
+  - TSI-compliance
+  - driftskompatibilitet
+  roster_exempt: true
+  agent_model: role
+- id: bd-ibrugtagning
+  name: Ibrugtagning
+  role: Ibrugtagningsansvarlig / Commissioning Manager
+  category: Test og Validering
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-kvalitet-dod
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  capabilities:
+  - ibrugtagningsplaner
+  - afprøvning og test
+  - overdragelse til drift
+  - sikkerhedsgodkendelser
+  - myndighedsinddragelse
+  - driftsinstruktioner
+  roster_exempt: true
+  agent_model: role
+- id: bd-kontraktmanager
+  name: Kontraktmanager
+  role: Contract Manager / Kontraktholder
+  category: Kontrakt og Jura
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - kontraktadministration
+  - kontraktændringer
+  - kravhåndtering
+  - leverandøropfølgning
+  - eskalation og disputes
+  - økonomisk kontraktkontrol
+  roster_exempt: true
+  agent_model: role
+- id: bd-kvalitetsspecialist
+  name: Kvalitetsspecialist
+  role: Kvalitetsspecialist / S&I Koordinator
+  category: Kvalitet og Dokumentation
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-kvalitet-dod
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bbtr-csm-tsi-compliance
+  - bdk-brand-governance
+  capabilities:
+  - kvalitetsplanlægning
+  - ISO 9001 compliance
+  - kravsporbarhed
+  - inspektionsplaner
+  - afvigelseshåndtering
+  - CSM/TSI-kvalitetssikring
+  roster_exempt: true
+  agent_model: role
+- id: bd-materielkoordinator
+  name: Materielkoordinator
+  role: Materielkoordinator / Rullende Materiel
+  category: Materiel og Teknik
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  roster_exempt: true
+  agent_model: role
+- id: bd-miljoekoordinator
+  name: Miljoekoordinator
+  role: Miljoekoordinator
+  category: Sikkerhed og Miljo
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - miljøvurdering
+  - miljøtilladelser
+  - støj- og vibrationskontrol
+  - jord- og grundvandshåndtering
+  - affaldshåndtering
+  - naturbeskyttelse
+  roster_exempt: true
+  agent_model: role
+- id: bd-oekonomi-controller
+  name: Oekonomi-controller
+  role: Oekonomi-controller
+  category: Oekonomi og Forvaltning
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - budgetstyring
+  - økonomisk rapportering
+  - forecasting
+  - omkostningskontrol
+  - økonomisk risikovurdering
+  - porteføljestyring
+  roster_exempt: true
+  agent_model: role
+- id: bd-planlaegningskoordinator
+  name: Planlaegningskoordinator
+  role: Planlaegningskoordinator
+  category: Projekt og Programme
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - tidsplanlægning
+  - ressourcekoordinering
+  - fremdriftsrapportering
+  - kritiske veje
+  - milestone-tracking
+  - planlægningsværktøjer
+  roster_exempt: true
+  agent_model: role
+- id: bd-projekteringsleder
+  name: Projekteringsleder
+  role: Projekteringsleder / Design Manager
+  category: Projektering og Design
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-csm-tsi-compliance
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - projekteringsledelse
+  - designkoordinering
+  - teknisk dokumentation
+  - fagpakkestruktur
+  - BKP-data
+  - tegningshåndtering
+  roster_exempt: true
+  agent_model: role
+- id: bd-sikkerhedskoordinator
+  name: Sikkerhedskoordinator
+  role: Sikkerhedskoordinator / S&I Manager
+  category: Sikkerhed og Beredskab
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-csm-tsi-compliance
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  capabilities:
+  - arbejdsmiljøkoordinering
+  - sikkerhedsplaner
+  - APV og risikovurdering
+  - hændelseshåndtering
+  - beredskabsplaner
+  - jernbanesikkerhed
+  roster_exempt: true
+  agent_model: role
+- id: bd-systemadministrator
+  name: Systemadministrator
+  role: Systemadministrator / IT Infrastruktur
+  category: IT og System
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-gdpr-praksis
+  - bdk-brand-governance
+  roster_exempt: true
+  agent_model: role
+- id: bd-trafikleder
+  name: Trafikleder
+  role: Trafikleder / Togleder
+  category: Trafik og Drift
+  status: active
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-csm-tsi-compliance
+  - bbtr-leverance-mapping
+  - bdk-bkp-v17-overview
+  - bdk-brand-governance
+  roster_exempt: true
+  agent_model: role
+- id: byggeleder-tilsyn
+  name: Byggeleder / Tilsyn
+  role: Byggeleder (Infrastrukturprojekter) med fagtilsyn
+  category: Teknik og udførelse
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-kvalitet-dod
+  - bdk-tilsynsapp-leverance-operations
+  - bdk-haendelser-sikkerhedsbrister
+  - bbtr-fagpakkestruktur
+  capabilities:
+  - byggeledelse og entreprenørstyring
+  - styring af kvalitet/tid/økonomi/miljø/arbejdsmiljø
+  - jernbanesikkerhed og togdriftens regularitet
+  - fagtilsyn og kvalitetskontrol
+  - dokumentation og sporbarhed
+  roster_exempt: true
+  agent_model: role
+- id: interface-manager
+  name: Interface Manager
+  role: Interface Manager, Project Level
+  category: Projektledelse og grænseflader
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-ipm-konsistens
+  - bbtr-risiko-myndighed
+  - bdk-trace-processer
+  capabilities:
+  - grænsefladestyring
+  - tværfaglig koordinering på projektniveau
+  - status- og fremdriftsovervågning
+  - risiko- og eskaleringshåndtering
+  - ændringshåndtering og sporbarhed
+  roster_exempt: true
+  agent_model: role
+- id: projektleder
+  name: Projektleder
+  role: Projektleder for infrastrukturprojekter
+  category: Projektledelse og grænseflader
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bdk-forretningsprojektmodel-gates
+  - bdk-styregruppearbejde
+  - bdk-projektrapportering-frister
+  - bbtr-produktionssetup
+  capabilities:
+  - jernbaneprojektledelse
+  - styring inden for ledelsessystem og styregrupperammer
+  - interessent- og styregruppehåndtering
+  - risikostyring og eskalering
+  - strategisk alignment
+  roster_exempt: true
+  agent_model: role
+- id: udbudskonsulent
+  name: Udbudskonsulent
+  role: Udbudskonsulent
+  category: Udbud og kontrakt
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bbtr-raadgiver-udbud
+  - bdk-styringsdokumenter-skabeloner
+  - bdk-legal-mapping
+  capabilities:
+  - udbudsstrategi og udbudsform
+  - udbudsmateriale, ydelsesbeskrivelser og tilbudslister
+  - tilbudsevaluering og tildeling
+  - kontraktforberedelse og overdragelse
+  - udbudsjura og compliance
+  roster_exempt: true
+  agent_model: role
+- id: interface-manager-banebyg
+  name: Interface Manager
+  role: Interface Manager
+  category: Banedanmark / BaneByg
+  status: draft
+  skills:
+  - karpathy-guidelines
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-fagpakkestruktur
+  - bbtr-leverance-mapping
+  - bbtr-dokumentstyring
+  - bbtr-risiko-myndighed
+  - bbtr-csm-tsi-compliance
+  - bbe-dokumenter-platform
+  - bdk-bkp-v17-overview
+  - bdk-bkp-v17-data-model
+  - bdk-trafikale-regler-anvendelse
+  - shared-quality
+  roster_exempt: true
+  agent_model: role
 categories:
-  - id: anlaeg-bane
-    name: Anlæg og bane
-    agents: ["said-anlaegsingenioer", "hassan-anlaegsingenioer"]
-  - id: anlaeg-forsyning
-    name: Anlæg og forsyning
-    agents: ["hamsa-afloebsingenioer"]
-  - id: borger-interessent-gdpr
-    name: Borger, interessent og GDPR
-    agents: ["shamso-socialraadgiver"]
-  - id: byggeri-kvalitet
-    name: Byggeri og kvalitet
-    agents: ["sharmarke-maler"]
-  - id: data-automation
-    name: Data og automation
-    agents: ["abdullahi-data-engineer"]
-  - id: data-geografisk-information
-    name: Data og geografisk information
-    agents: ["gis-specialist"]
-  - id: dokumentation-kvalitet
-    name: Dokumentation og kvalitet
-    agents: ["document-manager-project-level"]
-  - id: drift-haendelser
-    name: Drift og hændelser
-    agents: ["incident-manager"]
-  - id: finans-analyse
-    name: Finans og analyse
-    agents: ["sibgha-finance-analytics-specialist"]
-  - id: forhandling-talent
-    name: Forhandling og talent
-    agents: ["bojang-fodboldagent", "bodjo-fodboldagent"]
-  - id: karriere-raadgivning
-    name: Karriere og rådgivning
-    agents: ["ali-jobraadgiver"]
-  - id: kontrakt-compliance
-    name: Kontrakt og compliance
-    agents: ["contract-manager-project-level"]
-  - id: laering-formidling
-    name: Læring og formidling
-    agents: ["siamak-folkeskolelaerer"]
-  - id: ledelse-governance
-    name: Ledelse og governance
-    agents: ["ahmad-el-wali"]
-  - id: paedagogik-trivsel
-    name: Pædagogik og trivsel
-    agents: ["bamse-paedagog"]
-  - id: produkt-prioritering
-    name: Produkt og prioritering
-    agents: ["abdi-asis-produkt-manager"]
-  - id: projektering-design
-    name: Projektering og design
-    agents: ["projekteringsleder"]
-  - id: projektledelse-fagpakker
-    name: Projektledelse og fagpakker
-    agents: ["hassan-fagprojektleder"]
-  - id: projektledelse-graenseflader
-    name: Projektledelse og grænseflader
-    agents: ["interface-manager-project-level"]
-  - id: salg-positionering
-    name: Salg og positionering
-    agents: ["liban-sales-specialist"]
-  - id: sikkerhed-interoperabilitet
-    name: Sikkerhed og interoperabilitet
-    agents: ["si-manager-csm-interoperabilitet"]
-  - id: sundhed-kvalitet
-    name: Sundhed og kvalitet
-    agents: ["ifrah-farmaceut"]
-  - id: sundhed-risiko
-    name: Sundhed og risiko
-    agents: ["qanac-laege"]
-  - id: teknik-bane
-    name: Teknik og bane
-    agents: ["abdisalam-staerkstroemsingenioer", "bro-inspektoer"]
-  - id: teknik-konfiguration
-    name: Teknik og konfiguration
-    agents: ["configuration-manager-project-level"]
-  - id: teknik-udfoerelse
-    name: Teknik og udførelse
-    agents: ["the-game-elektriker"]
-  - id: teknik-udf-relse
-    name: Teknik og udførelse
-    agents: ["hassan-dahir"]
-  - id: test-verifikation
-    name: Test og verifikation
-    agents: ["test-manager-project-level"]
-  - id: udbud-governance
-    name: Udbud og governance
-    agents: ["sabina-udbudskonsulent-chefkonsulent"]
-  - id: udbud-kontrakt
-    name: Udbud og kontrakt
-    agents: ["yunus-udbudskonsulent", "william-udbudskonsulent", "mohammad-udbudskonsulent", "joel-mulongo-udbudsjurist"]
-  - id: udbud-kvalitet
-    name: Udbud og kvalitet
-    agents: ["mehtap-udbudskonsulent"]
-
-# Subagents (Banedanmark-specific roles)
+- id: anlaeg-og-bane
+  name: Anlæg og bane
+  agents:
+  - said-anlaegsingenioer
+  - hassan-anlaegsingenioer
+- id: anlaeg-og-forsyning
+  name: Anlæg og forsyning
+  agents:
+  - hamsa-afloebsingenioer
+- id: banedanmark-banebyg
+  name: Banedanmark / BaneByg
+  agents:
+  - interface-manager-banebyg
+- id: borger-interessent-og-gdpr
+  name: Borger, interessent og GDPR
+  agents:
+  - shamso-socialraadgiver
+- id: bro-og-anlaeg
+  name: Bro og Anlæg
+  agents:
+  - bd-bro-og-anlaeg
+- id: bygge-og-anlaeg
+  name: Bygge og Anlaeg
+  agents:
+  - bd-fagansvarlig-spor
+- id: byggeri-og-kvalitet
+  name: Byggeri og kvalitet
+  agents:
+  - sharmarke-maler
+- id: data-og-automation
+  name: Data og automation
+  agents:
+  - abdullahi-data-engineer
+- id: dokumentstyring-og-kvalitet
+  name: Dokumentstyring og kvalitet
+  agents:
+  - bd-dokumentcontroller
+- id: finans-og-analyse
+  name: Finans og analyse
+  agents:
+  - sibgha-finance-analytics-specialist
+- id: forhandling-og-talent
+  name: Forhandling og talent
+  agents:
+  - bojang-fodboldagent
+  - bodjo-fodboldagent
+- id: it-og-system
+  name: IT og System
+  agents:
+  - bd-systemadministrator
+- id: karriere-og-raadgivning
+  name: Karriere og rådgivning
+  agents:
+  - ali-jobraadgiver
+- id: kontrakt-og-jura
+  name: Kontrakt og Jura
+  agents:
+  - bd-kontraktmanager
+- id: kvalitet-og-dokumentation
+  name: Kvalitet og Dokumentation
+  agents:
+  - bd-kvalitetsspecialist
+- id: laering-og-formidling
+  name: Læring og formidling
+  agents:
+  - siamak-folkeskolelaerer
+- id: ledelse-og-governance
+  name: Ledelse og governance
+  agents:
+  - ahmad-el-wali
+- id: materiel-og-teknik
+  name: Materiel og Teknik
+  agents:
+  - bd-materielkoordinator
+- id: meta-og-deliberation
+  name: Meta og deliberation
+  agents:
+  - council-chairman
+- id: oekonomi-og-forvaltning
+  name: Oekonomi og Forvaltning
+  agents:
+  - bd-oekonomi-controller
+- id: paedagogik-og-trivsel
+  name: Pædagogik og trivsel
+  agents:
+  - bamse-paedagog
+- id: produkt-og-prioritering
+  name: Produkt og prioritering
+  agents:
+  - abdi-asis-produkt-manager
+- id: projekt-og-programme
+  name: Projekt og Programme
+  agents:
+  - bd-planlaegningskoordinator
+- id: projektering-og-design
+  name: Projektering og Design
+  agents:
+  - bd-projekteringsleder
+- id: projektledelse-og-fagpakker
+  name: Projektledelse og fagpakker
+  agents:
+  - hassan-fagprojektleder
+- id: projektledelse-og-graenseflader
+  name: Projektledelse og grænseflader
+  agents:
+  - interface-manager
+  - projektleder
+- id: salg-og-positionering
+  name: Salg og positionering
+  agents:
+  - liban-sales-specialist
+- id: sikkerhed-og-beredskab
+  name: Sikkerhed og Beredskab
+  agents:
+  - bd-sikkerhedskoordinator
+- id: sikkerhed-og-miljo
+  name: Sikkerhed og Miljo
+  agents:
+  - bd-miljoekoordinator
+- id: sundhed-og-kvalitet
+  name: Sundhed og kvalitet
+  agents:
+  - ifrah-farmaceut
+- id: sundhed-og-risiko
+  name: Sundhed og risiko
+  agents:
+  - qanac-laege
+- id: teknik-og-bane
+  name: Teknik og bane
+  agents:
+  - abdisalam-staerkstroemsingenioer
+- id: teknik-og-udfoerelse
+  name: Teknik og udførelse
+  agents:
+  - the-game-elektriker
+  - hassan-dahir
+  - byggeleder-tilsyn
+- id: test-og-validering
+  name: Test og Validering
+  agents:
+  - bd-ibrugtagning
+- id: trafik-og-drift
+  name: Trafik og Drift
+  agents:
+  - bd-trafikleder
+- id: udbud-og-governance
+  name: Udbud og governance
+  agents:
+  - sabina-udbudskonsulent-chefkonsulent
+- id: udbud-og-kontrakt
+  name: Udbud og kontrakt
+  agents:
+  - yunus-udbudskonsulent
+  - william-udbudskonsulent
+  - mohammad-udbudskonsulent
+  - joel-mulongo-udbudsjurist
+  - udbudskonsulent
+- id: udbud-og-kvalitet
+  name: Udbud og kvalitet
+  agents:
+  - mehtap-udbudskonsulent
 subagents:
-  - id: interface-manager-project-level
-    source: Funktionsbeskrivelser/FB
-    domain: Projektledelse og grænseflader
-  - id: contract-manager-project-level
-    source: Funktionsbeskrivelser/FB
-    domain: Kontrakt og compliance
-  - id: document-manager-project-level
-    source: Funktionsbeskrivelser/FB
-    domain: Dokumentation og kvalitet
-  - id: configuration-manager-project-level
-    source: Funktionsbeskrivelser/FB
-    domain: Teknik og konfiguration
-  - id: test-manager-project-level
-    source: Funktionsbeskrivelser/FB
-    domain: Test og verifikation
-  - id: incident-manager
-    source: Funktionsbeskrivelser/FB
-    domain: Drift og hændelser
-  - id: si-manager-csm-interoperabilitet
-    source: Funktionsbeskrivelser/FB
-    domain: Sikkerhed og interoperabilitet
-  - id: projekteringsleder
-    source: Funktionsbeskrivelser/FB
-    domain: Projektering og design
-  - id: bro-inspektoer
-    source: Funktionsbeskrivelser/FB
-    domain: Teknik og bane
-  - id: gis-specialist
-    source: Funktionsbeskrivelser/FB
-    domain: Data og geografisk information
+- id: interface-manager-project-level
+  source: Funktionsbeskrivelser/FB
+  domain: Projektledelse og grænseflader
+- id: contract-manager-project-level
+  source: Funktionsbeskrivelser/FB
+  domain: Kontrakt og compliance
+- id: document-manager-project-level
+  source: Funktionsbeskrivelser/FB
+  domain: Dokumentation og kvalitet
+- id: configuration-manager-project-level
+  source: Funktionsbeskrivelser/FB
+  domain: Teknik og konfiguration
+- id: test-manager-project-level
+  source: Funktionsbeskrivelser/FB
+  domain: Test og verifikation
+- id: incident-manager
+  source: Funktionsbeskrivelser/FB
+  domain: Drift og hændelser
+- id: si-manager-csm-interoperabilitet
+  source: Funktionsbeskrivelser/FB
+  domain: Sikkerhed og interoperabilitet
+- id: projekteringsleder
+  source: Funktionsbeskrivelser/FB
+  domain: Projektering og design
+- id: bro-inspektoer
+  source: Funktionsbeskrivelser/FB
+  domain: Teknik og bane
+- id: gis-specialist
+  source: Funktionsbeskrivelser/FB
+  domain: Data og geografisk information
+skills:
+- id: banebyg
+  name: banebyg
+  description: Router/index-skill for BaneByg-platformen (BBE, BKP v17, BBTR, YB, TBL, Tilsynsappen).
+    Dirigerer til de dedikerede detalje-skills. Brug når brugeren arbejder med Banedanmarks byggeplatform
+    og skal finde det rette fagområde.
+- id: bbe-dokumenter-platform
+  name: bbe-dokumenter-platform
+  description: 'Samlet skill til BaneByg Enterprise dokumenter og platformstyring. Dækker: (1) Ydelsesbeskrivelsen
+    (YB/SABTAG) med to-kolonne format og 17 fagposter, (2) Tilbudslisten (TBL) Excel-generering med fagpost-faner
+    og CO2-beregning, (3) Bilag og BKP-integration, (4) UI-design og videreudvikling fra Interface Manager-perspektiv,
+    (5) Brugervejledninger til de 4 brugerroller, (6) Normer og standarder (AAB, SAB, Banenormer, TekDok).
+    Brug ved arbejde med BBE-dokumenter, platformoptimering, brugerguides eller standardreferencer. For
+    selve BKP-sammenskrivning: se separat bkp-v17-overview skill.'
+- id: bbtr-csm-tsi-compliance
+  name: bbtr-csm-tsi-compliance
+  description: Ensures compliance with Common Safety Method for Risk Evaluation and Assessment (CSM-RA)
+    and Technical Specifications for Interoperability (TSI). Use this skill when identifying, documenting
+    or verifying regulatory requirements in BBTR projects.
+- id: bbtr-dokumentstyring
+  name: bbtr-dokumentstyring
+  description: Applies BBTR document and template management standards to ensure consistency and version
+    control. Use this skill when creating, naming and handling project documents.
+- id: bbtr-fagpakkestruktur
+  name: bbtr-fagpakkestruktur
+  description: Applies the standard BBTR structure for fagpakker with clear sections for deliverables,
+    ATR, staffing, appendices and cross-disciplinary requirements. Use this when defining or reviewing
+    fagpakker.
+- id: bbtr-faseopdelt-ydelser
+  name: bbtr-faseopdelt-ydelser
+  description: Splits BaneByg advisory deliverables into phases (scoping, detail design, execution and
+    completion). Use when planning and following up on phase-specific deliverables in BBTR projects.
+- id: bbtr-forbedringsloop
+  name: bbtr-forbedringsloop
+  description: Manages changes and continuous improvements in a version‑controlled manner. Use this skill
+    to capture lessons learned and implement iterative improvements in BBTR projects.
+- id: bbtr-indstilling-writer
+  name: bbtr-indstilling-writer
+  description: Writes formal decision memoranda (indstillingsnotater) in Banedanmark format. Use when
+    drafting proposals for leadership requesting funding, approval or strategic decisions for BBTR.
+- id: bbtr-ipm-konsistens
+  name: bbtr-ipm-konsistens
+  description: Ensures alignment between the Integrated Project Model (IPM), production setup and actual
+    project activities. Use this skill to verify consistency across plans, schedules and deliverables.
+- id: bbtr-kvalitet-dod
+  name: bbtr-kvalitet-dod
+  description: Verifies Definition of Done (DoD), performs reception control and ensures deliverable quality.
+    Use this skill to check that deliverables meet acceptance criteria before handover.
+- id: bbtr-leverance-mapping
+  name: bbtr-leverance-mapping
+  description: Maps each deliverable to the correct document and drawing lists without ad‑hoc references.
+    Use this to create or verify deliverable schedules and document lists.
+- id: bbtr-presentation-builder
+  name: bbtr-presentation-builder
+  description: Builds leadership presentations for BBTR with Banedanmark visual identity, audience-adapted
+    messaging and data-driven storytelling. Use when creating PowerPoint decks for management or board
+    presentations.
+- id: bbtr-produktionssetup
+  name: bbtr-produktionssetup
+  description: Applies BBTR production setup standards, including project plan, job instructions, meeting
+    structures and continuous improvement loops. Use this skill when establishing or auditing the production
+    setup for a project.
+- id: bbtr-raadgiver-udbud
+  name: bbtr-raadgiver-udbud
+  description: Supports the preparation and execution of advisory tenders and mini‑tenders in BBTR projects.
+    Use this skill to draft requirements, evaluate consultants and manage the tender process.
+- id: bbtr-risiko-myndighed
+  name: bbtr-risiko-myndighed
+  description: Supports risk screening, environmental assessments and authority processes in BBTR projects.
+    Use this skill to identify risks, obtain permits and ensure compliance with regulatory requirements.
+- id: bbtr-role-justification
+  name: bbtr-role-justification
+  description: Justifies the Interface Manager role in BBTR by mapping concrete value creation across
+    cross-disciplinary coordination, data quality, compliance and platform improvement. Use when presenting
+    or defending the role to leadership.
+- id: bbtr-tvaerfaglig-koordinering
+  name: bbtr-tvaerfaglig-koordinering
+  description: Identifies interfaces, dependencies and responsibilities across disciplines. Use this skill
+    for cross‑disciplinary coordination and integration in BBTR projects.
+- id: bbtr-webdesign
+  name: bbtr-webdesign
+  description: 'Web design skill for BaneByg Teknisk Rådgivning (BBTR) platformen. Dækker: (1) Banedanmarks
+    officielle designguide (farver, typografi, logo), (2) UI-komponentbibliotek for alle 4 platformsektioner
+    (Poster, Udbud, ATR & Bemanding, Bilag), (3) Formularer og modale vinduer, (4) Navigationsmønstre
+    og filtrering, (5) Rollebaseret UI (Ejer, Bruger, Ekstern, Admin), (6) Responsivt design og tilgængelighed,
+    (7) SharePoint-integration og tekniske constraints. Brug denne skill ved al frontend-udvikling, UI-redesign,
+    komponent-oprettelse, prototyping eller style-guide arbejde for BBTR-platformen.'
+- id: bdk-ansoegning-om-midler-end-to-end
+  name: bdk-ansoegning-om-midler-end-to-end
+  description: Gennemfør en komplet ansøgning om midler til Porteføljekontoret fra projektidé til indstillingspakke,
+    gate-parathed og indsendelsesplan.
+- id: bdk-audit-findings
+  name: bdk-audit-findings
+  description: Planlæg og vurder Banedanmarks auditaktiviteter samt håndtering af findings i interne,
+    leverandør- og 3.-parts audits.
+- id: bdk-bkp-v17-data-model
+  name: bdk-bkp-v17-data-model
+  description: Ekspert-skill til forståelse, anvendelse og videreudvikling af BKP v17-datamodellen. Dækker
+    felter, værdilister, hierarki, KPID-opbygning, roller, kontroltyper, statusser og sporbarhed mellem
+    TKP, KP og BKP.
+- id: bdk-bkp-v17-overview
+  name: bdk-bkp-v17-overview
+  description: Ekspert-skill til sammenskrivning, kvalitetssikring og videreudvikling af BKP v17 (Brutto
+    Kontrolplan), baseret på TKP og KP efter Banedanmarks BaneByg-standarder.
+- id: bdk-brand-governance
+  name: bdk-brand-governance
+  description: Styr korrekt anvendelse af Banedanmarks brand-assets på tværs af kanaler, med valg af logo,
+    regler og preflight.
+- id: bdk-brand-preflight-leverance
+  name: bdk-brand-preflight-leverance
+  description: Gennemfør preflight af brand-assets før levering, inkl. farverum, filvalg, navngivning
+    og oprydning af støjfiler.
+- id: bdk-brand-regler-anvendelse
+  name: bdk-brand-regler-anvendelse
+  description: Anvend og kvalitetssikr brandregler fra BDK designguiden ved brug af logo i kommunikationsmateriale.
+- id: bdk-forretningsprojektmodel-gates
+  name: bdk-forretningsprojektmodel-gates
+  description: Anvend Banedanmarks forretningsprojektmodel med korrekt gateforståelse, faseskift og dokumentkrav.
+- id: bdk-gdpr-praksis
+  name: bdk-gdpr-praksis
+  description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus på korrekt systembrug, dataminimering
+    og håndtering af personoplysninger.
+- id: bdk-gevinststyring-realisering
+  name: bdk-gevinststyring-realisering
+  description: Strukturér gevinststyring og opfølgning på realisering i forretningsprojekter.
+- id: bdk-haendelser-sikkerhedsbrister
+  name: bdk-haendelser-sikkerhedsbrister
+  description: Støt korrekt klassifikation og håndtering af sikkerhedsmæssige hændelser og administrative
+    sikkerhedsbrister.
+- id: bdk-legal-mapping
+  name: bdk-legal-mapping
+  description: Kortlæg Banedanmarks lov- og regelkrav til intern implementering og proceskontekst i jernbanesikkerhed.
+- id: bdk-logo-asset-valg
+  name: bdk-logo-asset-valg
+  description: Vælg korrekt Banedanmark-logo-asset ud fra kanal, farverum, baggrund og layoutbehov.
+- id: bdk-lokalinstruktion-opslag
+  name: bdk-lokalinstruktion-opslag
+  description: Find og afgræns relevante lokale instruktioner for strækning/station og kobling til ORS/ORF-regler.
+- id: bdk-overvaagning-rapportering
+  name: bdk-overvaagning-rapportering
+  description: Analyser overvågningsdata for jernbanesikkerhed og udarbejd struktureret kvartals-/årsrapportering
+    med kobling til risikoprofil og sikkerhedsindikatorer.
+- id: bdk-portefoljekontor-governance
+  name: bdk-portefoljekontor-governance
+  description: Vejled i porteføljestyring af forretningsprojekter, herunder roller, behandling, grænseflader
+    og beslutningsforløb.
+- id: bdk-powerpoint-praesentationsskills
+  name: bdk-powerpoint-praesentationsskills
+  description: Skab kreative, BDK-brandede PowerPoint-præsentationer og projektværktøjer, baseret på BDK
+    Designguide 2021 og analyse af 15 Banedanmark-decks (338 slides).
+- id: bdk-projektindstilling-og-finansiering
+  name: bdk-projektindstilling-og-finansiering
+  description: Støt korrekt udarbejdelse af projektindstilling og afklaring af finansierings- og behandlingsspor
+    i porteføljekontoret.
+- id: bdk-projektrapportering-frister
+  name: bdk-projektrapportering-frister
+  description: Planlæg projektets rapportering og frister til porteføljekontor, direktion og eventuelle
+    eksterne fora.
+- id: bdk-risk-profile
+  name: bdk-risk-profile
+  description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer, risikoejeransvar og
+    sammenhæng til SRAC.
+- id: bdk-roller-kompetencer
+  name: bdk-roller-kompetencer
+  description: Uddrag og sammenfat ansvar, beføjelser og kompetencekrav fra funktions- og stillingsbeskrivelser
+    i jernbanesikkerhedsorganisationen.
+- id: bdk-ssb-styring
+  name: bdk-ssb-styring
+  description: Identificér, sammenfat og strukturér arbejde med supplerende sikkerhedsbestemmelser (SSB)
+    på tværs af SR/ORS/ORF.
+- id: bdk-statens-it-projektmodel-compliance
+  name: bdk-statens-it-projektmodel-compliance
+  description: Vurder krav efter Statens it-projektmodel, herunder tærskler, It-råd, baseline og rapporteringsforpligtelser.
+- id: bdk-styregruppearbejde
+  name: bdk-styregruppearbejde
+  description: Understøt etablering og drift af styregruppearbejdet med fokus på aftaler, beslutningsgrundlag
+    og ledelsesstøtte.
+- id: bdk-styringsdokumenter-skabeloner
+  name: bdk-styringsdokumenter-skabeloner
+  description: Vælg og anvend relevante styringsdokumentskabeloner til forretningsprojekter.
+- id: bdk-tilsynsapp-leverance-operations
+  name: bdk-tilsynsapp-leverance-operations
+  description: Analyserer og producerer Tilsynsappen-relaterede leverancer (traening, governance, drift,
+    onboarding, workshop) med fil-for-fil sporbarhed. Brug ved opgaver i 14_Tilsynsappen, isaer ved PPTX/XLSX
+    konsolidering, statusmateriale og AI-stoettet dokumentproduktion.
+- id: bdk-trace-processer
+  name: bdk-trace-processer
+  description: Navigér og anvend Tracé-processer for udvikling, ændring og udfasning af jernbanesikkerhedsbærende
+    processer og dokumenter.
+- id: bdk-trafikale-blanketter
+  name: bdk-trafikale-blanketter
+  description: Identificér og vejled i brug af korrekte ORS/ORF-blanketter til drifts- og sikkerhedsrelaterede
+    situationer.
+- id: bdk-trafikale-regelinfo-aendringer
+  name: bdk-trafikale-regelinfo-aendringer
+  description: Sammenlign trafikal regelinformation på tværs af udgaver og identificér ændringer med betydning
+    for drift og opfølgning.
+- id: bdk-trafikale-regler-anvendelse
+  name: bdk-trafikale-regler-anvendelse
+  description: Vurder hvilket trafikal regelsæt (SR, ORS, ORF) der gælder i en konkret driftssituation,
+    og peg på relevante dokumenttyper.
+- id: bdk-trafikcirkulaere-udkast
+  name: bdk-trafikcirkulaere-udkast
+  description: Udarbejd udkast til trafikcirkulærer (TC) med korrekt brug af ORS/ORF-skabeloner og tilhørende
+    vejledning.
+- id: caveman
+  name: caveman
+  description: Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles,
+    and pleasantries while keeping full technical accuracy. Use when user says "caveman mode", "talk like
+    caveman", "use caveman", "less tokens", "be brief", or invokes /caveman.
+- id: design-an-interface
+  name: design-an-interface
+  description: Generate multiple radically different interface designs for a module using parallel sub-agents.
+    Use when user wants to design an API, explore interface options, compare module shapes, or mentions
+    "design it twice".
+- id: diagnose
+  name: diagnose
+  description: Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise
+    → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this",
+    reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+- id: edit-article
+  name: edit-article
+  description: Edit and improve articles by restructuring sections, improving clarity, and tightening
+    prose. Use when user wants to edit, revise, or improve an article draft.
+- id: git-guardrails-claude-code
+  name: git-guardrails-claude-code
+  description: Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch
+    -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git
+    safety hooks, or block git push/reset in Claude Code.
+- id: grill-me
+  name: grill-me
+  description: Interview the user relentlessly about a plan or design until reaching shared understanding,
+    resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled
+    on their design, or mentions "grill me".
+- id: grill-with-docs
+  name: grill-with-docs
+  description: Grilling session that challenges your plan against the existing domain model, sharpens
+    terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when
+    user wants to stress-test a plan against their project's language and documented decisions.
+- id: higgsfield-generate
+  name: higgsfield-generate
+  description: 'Generate images/videos/3D assets/audio via Higgsfield AI. Defaults:
 
+    GPT Image 2 for image/design/text, Seedance 2.0 for video, Nano Banana
+
+    2/Pro for character/reference images, Marketing Studio for ads,
+
+    Sonilo/Mirelo for audio, plus Soul models and Kling 3.0.
+
+    Use when the user wants to generate, edit, animate or remix images,
+
+    video, 3D meshes or audio (image-to-image, image-to-video, image-to-3D,
+
+    text-to-audio/music), build a workflow, reframe a video, use references,
+
+    or Marketing Studio (ads, avatars, product demos, brand/presenter/UGC
+
+    video), or score video virality.
+
+    Chain with higgsfield-soul-id for face/identity consistency.
+
+    NOT for: Soul Character training (use higgsfield-soul-id), product
+
+    photoshoots, marketplace listing cards, or text/chat/TTS tasks.'
+- id: higgsfield-marketplace-cards
+  name: higgsfield-marketplace-cards
+  description: 'Generate marketplace product image cards through Higgsfield: compliant
+
+    main image, secondary product images, and A+ style content modules. Use when
+
+    the user asks for marketplace listing images, product detail cards,
+
+    secondary product images, product infographics, lifestyle listing shots,
+
+    A+ style content, marketplace image sets, or sales-ready product visuals.
+
+    Backend owns marketplace compliance references and prompt templates; this skill
+
+    only routes user intent to the CLI.
+
+    NOT for generic brand product photography without marketplace/listing context
+
+    (use higgsfield-product-photoshoot), video generation or UGC ads (use
+
+    higgsfield-generate), or Soul Character training (use higgsfield-soul-id).'
+- id: higgsfield-product-photoshoot
+  name: higgsfield-product-photoshoot
+  description: 'Generate brand-quality product images through Higgsfield product-photoshoot
+
+    prompt enhancement on GPT Image 2 / gpt_image_2. Entry point for professional
+
+    brand/product visuals.
+
+    Use when: "product photo", "studio shot", "lifestyle image", "Pinterest pin",
+
+    "hero/banner", "carousel", "ad creative", "Meta ads", "virtual try-on",
+
+    "model wearing", "person holding product", "closeup with hands",
+
+    "levitating/floating/splash product", "CGI/surreal product", "restyle",
+
+    "seasonal/aesthetic variation", or any product, brand, or paid-social creative.
+
+    Modes: product_shot, lifestyle_scene, closeup_product_with_person,
+
+    moodboard_pin, hero_banner, social_carousel, ad_creative_pack,
+
+    virtual_model_tryout, conceptual_product, restyle. Backend assembles the final
+
+    prompt; never freehand it.
+
+    NOT for: no-product text-to-image (use higgsfield-generate), branded avatar
+
+    video (use higgsfield-generate Marketing Studio), marketplace listing cards
+
+    (use higgsfield-marketplace-cards), Soul Character training (use
+
+    higgsfield-soul-id).'
+- id: higgsfield-soul-id
+  name: higgsfield-soul-id
+  description: 'Train a Soul Character — a personalized model on a person''s face that
+
+    Higgsfield uses for identity-faithful image and video generation.
+
+    Use when: "create my Soul", "train my face", "make my digital twin",
+
+    "build me an avatar", "learn my appearance", "create a character of me",
+
+    "set up identity for video", "I want my face in generated images".
+
+    Chain: train Soul (one-time, returns reference_id) → use in
+
+    higgsfield-generate via `--soul-id <id>` with models like
+
+    `text2image_soul_v2` or `soul_cinema_studio`.
+
+    NOT for: one-shot face swaps (use higgsfield-generate with --image),
+
+    named-character / non-photo avatars (use higgsfield-generate with prompt).'
+- id: improve-codebase-architecture
+  name: improve-codebase-architecture
+  description: Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md
+    and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring
+    opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
+- id: karpathy-guidelines
+  name: karpathy-guidelines
+  description: Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing,
+    or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define
+    verifiable success criteria.
+- id: llm-council
+  name: llm-council
+  description: 3-stage LLM deliberation — multiple models answer, review each other (anonymized), and
+    a Chairman synthesizes a final answer. Use when user says "council", "råde", "flere modeller", "bedøm
+    hinanden", or wants a higher-quality answer by cross-checking multiple LLMs.
+- id: migrate-to-shoehorn
+  name: migrate-to-shoehorn
+  description: Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user
+    mentions shoehorn, wants to replace `as` in tests, or needs partial test data.
+- id: obsidian-vault
+  name: obsidian-vault
+  description: Search, create, and manage notes in the Obsidian vault with wikilinks and index notes.
+    Use when user wants to find, create, or organize notes in Obsidian.
+- id: qa
+  name: qa
+  description: Interactive QA session where user reports bugs or issues conversationally, and the agent
+    files GitHub issues. Explores the codebase in the background for context and domain language. Use
+    when user wants to report bugs, do QA, file issues conversationally, or mentions "QA session".
+- id: request-refactor-plan
+  name: request-refactor-plan
+  description: Create a detailed refactor plan with tiny commits via user interview, then file it as a
+    GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor
+    into safe incremental steps.
+- id: scaffold-exercises
+  name: scaffold-exercises
+  description: Create exercise directory structures with sections, problems, solutions, and explainers
+    that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new
+    course section.
+- id: setup-matt-pocock-skills
+  name: setup-matt-pocock-skills
+  description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering
+    skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain
+    doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`,
+    or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels,
+    or domain docs.
+- id: setup-pre-commit
+  name: setup-pre-commit
+  description: Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in
+    the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged,
+    or add commit-time formatting/typechecking/testing.
+- id: shared-docx
+  name: shared-docx
+  description: Fælles projektskill for dokumentarbejde i Word- og Office-filer. Bruges når opgaven handler
+    om .docx, dokumentstruktur, redigering, review, skabeloner eller dokumentgenerering i dette projekt.
+- id: shared-quality
+  name: shared-quality
+  description: Fælles projektskill for QA, preflight, leverancekontrol og strukturel kvalitet i dette
+    Codex-første setup. Bruges ved ændringer i skills, prompts, hooks, dokumenter og agent-konfiguration.
+- id: tdd
+  name: tdd
+  description: Test-driven development with red-green-refactor loop. Use when user wants to build features
+    or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first
+    development.
+- id: to-issues
+  name: to-issues
+  description: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker
+    using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation
+    tickets, or break down work into issues.
+- id: to-prd
+  name: to-prd
+  description: Turn the current conversation context into a PRD and publish it to the project issue tracker.
+    Use when user wants to create a PRD from the current context.
+- id: triage
+  name: triage
+  description: Triage issues through a state machine driven by triage roles. Use when user wants to create
+    an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent,
+    or manage issue workflow.
+- id: ubiquitous-language
+  name: ubiquitous-language
+  description: Extract a DDD-style ubiquitous language glossary from the current conversation, flagging
+    ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to
+    define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions
+    "domain model" or "DDD".
+- id: write-a-skill
+  name: write-a-skill
+  description: Create new agent skills with proper structure, progressive disclosure, and bundled resources.
+    Use when user wants to create, write, or build a new skill.
+- id: zoom-out
+  name: zoom-out
+  description: Tell the agent to zoom out and give broader context or a higher-level perspective. Use
+    when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.

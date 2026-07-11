@@ -10,6 +10,19 @@ primary_models:
   - Kimi
   - Qwen Code
   - Gemini Code
+skills:
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-ipm-konsistens
+  - bbtr-risiko-myndighed
+  - bdk-trace-processer
+capabilities:
+  - grænsefladestyring
+  - tværfaglig koordinering på projektniveau
+  - status- og fremdriftsovervågning
+  - risiko- og eskaleringshåndtering
+  - ændringshåndtering og sporbarhed
 ---
 
 # Profil: Interface Manager, Project Level

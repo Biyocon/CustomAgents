@@ -21,6 +21,20 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] PR F LEVERET: RUNTIME AKTIVERET — roadmap A–F fuldført
+
+- **Beslutning (P0, projektejer):** Eksplicit aktiveringsordre givet og eksekveret.
+  `.vscode/.codex/agents/` (registry + 19 rolleagenter) genereres nu fra canonical
+  `.agents/` af `generate-runtime.py`; håndholdte runtime-filer afviklet (git-historik
+  bevaret). `--check` = exit 0 (reproducerbart); loader-test 47 agenter.
+- **Gate:** `docs/qa/RELEASE-runtime-activation-gate.md` = **GODKENDT** med evidens +
+  rollback-plan. **Ticket #1 lukket** → docs/done/ — `docs/active/` er tom.
+- **Deprecations:** rod-`registry.yaml` + tom scaffold formelt DEPRECATED.
+  README/AGENTS.md/systemkort opdateret konsistent (ingen modstrid tilbage).
+- **Prioritet fremad:** ADR-roadmappen er FULDFØRT. Tilbageværende er valgfrit:
+  Brain-fysisk-erstatning, deprecated-filsletning, `.codex`-rodflytning, fence-regex-fix.
+  KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet — arkivér/opdatér ved lejlighed.
+
 ### [2026-07-11] PR E LEVERET: memory-governance — runtime-Brain frosset
 
 - **Beslutning (P1):** Tre memory-klasser fastlagt i `docs/architecture/memory-governance.md`:

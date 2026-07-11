@@ -6,9 +6,10 @@
 # promotion_target_global_path) er STALE og skal ikke bruges.
 #
 # CANONICAL kilde er:  .agents/registry.yaml
-# Aktiv runtime-registry er:  .vscode/.codex/agents/registry.yaml
+# Aktiv runtime-registry er:  .vscode/.codex/agents/registry.yaml (GENERERET, PR F)
 # Roller: docs/architecture/registry-reconciliation.md
-# Deprecate-kandidat: slet ikke uden ordre; ryddes formelt ved PR F.
+# FORMELT DEPRECATED ved PR F-aktiveringen 2026-07-11; kan slettes ved naeste
+# oprydning (bevaret for historik-referencer).
 # ============================================================================
 
 version: 1
