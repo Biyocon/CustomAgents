@@ -1,5 +1,10 @@
 # Brain
 
+> **FROSSET (PR E, 2026-07-11):** Dette runtime-Brain er transitional legacy og må IKKE længere
+> bruges til at gemme varig viden. Canonical hukommelse er `.agents/brain/`; politik:
+> `docs/architecture/memory-governance.md`. Unikke artefakter herfra er landet i canonical.
+> Laget læses fortsat af den aktive runtime, men erstattes/genereres ved PR F.
+
 `Brain` er projektets fælles hukommelses- og beslutningslag for agent-harnesset.
 
 ## Principper

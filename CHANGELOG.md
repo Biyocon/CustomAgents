@@ -21,6 +21,18 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] PR E LEVERET: memory-governance — runtime-Brain frosset
+
+- **Beslutning (P1):** Tre memory-klasser fastlagt i `docs/architecture/memory-governance.md`:
+  CANONICAL (`.agents/brain/`, levende), RUNTIME-LOKAL (`.vscode/.codex/Brain/`, **FROSSET**
+  2026-07-11) og SNAPSHOT (`memory/`/`diary/`/`reports/`, append-only). Al ny varig viden
+  lander i canonical.
+- **Landing:** 3 runtime-unikke artefakter landet i canonical (session-2026-06-17,
+  session-history-loggen, source-map med Kombi/Iqra-proveniens) — runtime-Brain har derefter
+  ingen unik varig viden. Perplexity/orchestrator-open-decision dispositioneret.
+- **Prioritet fremad:** kun PR F (aktivering) tilbage på roadmappen; den omfatter nu også
+  runtime-Brain-erstatningen.
+
 ### [2026-07-11] PR D LEVERET: runtime-generator + sync-validering
 
 - **Roadmap-status:** PR D (export/generering) er leveret samme dag som role-vs-persona-

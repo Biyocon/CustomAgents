@@ -12,10 +12,10 @@ supported_artifact_types:
 prompt_rendering: "System prompt fra profile.md's text-blok injiceres som Codex system-instruktion; AGENTS.md læses som projektkontekst ved opstart."
 skill_loading: "Skills læses fra .agents/skills/<id>/SKILL.md (canonical). Codex aktiverer skill ved at læse SKILL.md og følge instruktionerne."
 registry_rendering: "Aktiv runtime-registry .vscode/.codex/agents/registry.yaml er i dag håndholdt; skal på sigt genereres fra .agents/registry.yaml (PR D/F)."
-memory_behavior: "Brain læses fra .vscode/.codex/Brain/ (aktiv) og .agents/brain/ (canonical). Konsolideres ved PR E."
+memory_behavior: "PR E-politik (docs/architecture/memory-governance.md): .agents/brain/ er CANONICAL og eneste sted varig viden landes; .vscode/.codex/Brain/ er FROSSET transitional legacy (læses stadig af runtimen, håndredigeres aldrig; erstattes ved PR F). Sessionslogs er append-only snapshots i .agents/brain/memory/."
 constraints:
   - "Eneste 'active' adapter i dag — backer .vscode/.codex/."
-  - "Runtime-registry og Brain er endnu ikke genereret fra canonical."
+  - "Runtime-registry og Brain er endnu ikke genereret fra canonical (generator findes: generate-runtime.py; aktivering = PR F)."
 notes: "config.toml i .vscode/.codex/ sætter model/reasoning-effort. Primær målplatform, jf. registry primary_models."
 ---
 

@@ -73,7 +73,10 @@ output, så et regenereret rod-registry forbliver selv-dokumenterende.
 - **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
 - **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**
 - ~~**Cursor runtime adapter** — adapter-kandidat. Ejer: PR C.~~ **LEVERET 2026-07-11:** `.agents/model-adapters/cursor.md` (status planned, kandidat), afledt af source-library-referencen.
-- **Perplexity / orchestrator governance** — informerer skill-loading/subagent/memory/scheduling. **Ejer: PR E.**
+- ~~**Perplexity / orchestrator governance** — informerer skill-loading/subagent/memory/scheduling. Ejer: PR E.~~
+  **DISPOSITIONERET 2026-07-11 (PR E):** memory-delen er dækket af `docs/architecture/memory-governance.md`
+  (orchestrator-referencer = kilde-materiale, aldrig runtime-memory). Skill-loading/subagent/scheduling-mønstrene
+  er noteret i politikken som input til et evt. senere orchestrator-spor — uden for roadmap A–F, ingen ejer-PR.
 - **vendor strategy** — `.agents/vendor/mattpocock-skills/skills-main/**` track vs gitignore. **Ejer: separat vendor-PR** (foreløbig: tracked, committet 2026-07-09).
 - **validation false positives** — `archived_avatarless_agents` flages evt. af validate-harness. **Ejer: validation-hygiene-spor** (council-chairman-delen er allerede løst 2026-07-09).
 

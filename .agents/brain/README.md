@@ -48,6 +48,13 @@ brain/
     +-- how-to-promote-project-harness-to-global.md
 ```
 
+## Memory-governance (PR E)
+
+Politikken for hukommelsesklasser (CANONICAL / RUNTIME-LOKAL / SNAPSHOT), landing-regler og
+dispositionen af det gamle runtime-Brain (`.vscode/.codex/Brain/`, frosset 2026-07-11) står i
+`docs/architecture/memory-governance.md`. Kort: al ny varig viden lander HER; sessionslogs er
+append-only snapshots i `memory/`; runtime-Brain håndredigeres aldrig.
+
 ## Vedligeholdelsesregler
 
 1. **Laes foerst**: Naar en agent starter paa en kompleks opgave, skal den laese `context.md` og relevante ADRs.
