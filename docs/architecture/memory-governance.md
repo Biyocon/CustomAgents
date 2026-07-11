@@ -39,9 +39,13 @@ hvad der er sandhed, hvor nye indsigter lander, og hvad der er frossent.
 | `memory/session-2026-06-10-audit.md` | snapshot | `.agents/brain/memory/session-2026-06-10.md` (fyldigere) | Dækket |
 | `memory/session-2026-06-17-agent-system-shutdown.md` | snapshot | **manglede** → **LANDET** som `.agents/brain/memory/session-2026-06-17-agent-system-shutdown.md` |
 
-Efter disse tre landinger indeholder runtime-Brain **ingen unik varig viden**. Ved PR F erstattes
-`.vscode/.codex/Brain/`-indholdet af genereret/minimalt indhold (beslutning tages i PR F sammen med
-resten af aktiveringen; rollback-plan påkrævet).
+Efter disse tre landinger indeholder runtime-Brain **ingen unik varig viden**.
+
+**UDFØRT (post-PR F-oprydning, 2026-07-11, på eksplicit ordre):** hele `.vscode/.codex/Brain/`-
+indholdet (de 10 legacy-filer i tabellen ovenfor) er slettet (git-historik bevaret) og erstattet
+af ÉN genereret pointer, `Brain/AGENTS.md`, som emitteres af `generate-runtime.py` og er dækket
+af `--check` (afvigelse fra genereret pointer = drift, exit 1). RUNTIME-LOKAL-klassen er dermed
+reduceret til pointer-filen; alt andet er CANONICAL eller SNAPSHOT.
 
 ## Registry-felter
 

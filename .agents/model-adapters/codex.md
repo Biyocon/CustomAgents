@@ -12,10 +12,10 @@ supported_artifact_types:
 prompt_rendering: "System prompt fra profile.md's text-blok injiceres som Codex system-instruktion; AGENTS.md læses som projektkontekst ved opstart."
 skill_loading: "Skills læses fra .agents/skills/<id>/SKILL.md (canonical). Codex aktiverer skill ved at læse SKILL.md og følge instruktionerne."
 registry_rendering: "Aktiv runtime-registry .vscode/.codex/agents/registry.yaml GENERERES fra .agents/registry.yaml + profiler af generate-runtime.py (PR F aktiveret 2026-07-11). Håndredigeres aldrig; sync verificeres med --check (exit 0)."
-memory_behavior: "PR E-politik (docs/architecture/memory-governance.md): .agents/brain/ er CANONICAL og eneste sted varig viden landes; .vscode/.codex/Brain/ er FROSSET transitional legacy (læses stadig af runtimen, håndredigeres aldrig; erstattes ved PR F). Sessionslogs er append-only snapshots i .agents/brain/memory/."
+memory_behavior: "PR E-politik (docs/architecture/memory-governance.md): .agents/brain/ er CANONICAL og eneste sted varig viden landes; .vscode/.codex/Brain/ er reduceret til én GENERERET pointer (AGENTS.md, emitteret af generate-runtime.py, --check-dækket; oprydning 2026-07-11). Sessionslogs er append-only snapshots i .agents/brain/memory/."
 constraints:
   - "Eneste 'active' adapter i dag — backer .vscode/.codex/."
-  - "Agents-laget (registry + rolleagenter) er GENERERET fra canonical (PR F, 2026-07-11). Brain forbliver frosset legacy in-place (fysisk erstatning udskudt, jf. memory-governance)."
+  - "Agents-laget (registry + rolleagenter) OG Brain-pointeren er GENERERET fra canonical (PR F + oprydning, 2026-07-11). Intet i .vscode/.codex/agents/ eller Brain/ håndredigeres."
 notes: "config.toml i .vscode/.codex/ sætter model/reasoning-effort. Primær målplatform, jf. registry primary_models."
 ---
 

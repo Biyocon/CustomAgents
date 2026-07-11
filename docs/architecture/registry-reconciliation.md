@@ -47,15 +47,16 @@ De 4 registry-filer er nu **utvetydige**: hver fil har en selv-dokumenterende
 header-kommentar der angiver dens rolle og forholdet til de andre. Ingen risikabel
 omdøbning eller data-merge (den hører til PR D/F). Roller:
 
-| Fil | Header-markering |
+| Fil | Status (efter PR F + oprydning 2026-07-11) |
 |---|---|
 | `.agents/registry.yaml` | **CANONICAL SOURCE OF TRUTH** |
-| `.vscode/.codex/agents/registry.yaml` | **AKTIV RUNTIME** (transitional; må ikke håndredigeres som datakilde) |
-| `registry.yaml` (rod) | **LEGACY / genereret build-output** (deprecate-kandidat) |
-| `.vscode/.codex/registry.yaml` | **TOM SCAFFOLD** (deprecated) |
+| `.vscode/.codex/agents/registry.yaml` | **GENERERET runtime** (generate-runtime.py; håndredigeres aldrig) |
+| `registry.yaml` (rod) | **SLETTET** ved post-PR F-oprydning (var deprecated legacy build-output; git-historik bevaret) |
+| `.vscode/.codex/registry.yaml` | **SLETTET** ved post-PR F-oprydning (var deprecated tom scaffold; git-historik bevaret) |
 
-`scripts/Export-Registry.ps1` emitterer nu også en provenance-header/`_note` i sit
-output, så et regenereret rod-registry forbliver selv-dokumenterende.
+`scripts/Export-Registry.ps1` er ligeledes **slettet** ved oprydningen (dens output-fil findes
+ikke længere; generate-runtime.py er den eneste registry-generator). Landskabet er dermed
+reduceret fra 4 registries til **2: én canonical + én genereret**.
 
 ## Open decisions (ikke afgjort — hver har eksplicit ejer-PR)
 

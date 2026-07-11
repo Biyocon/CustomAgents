@@ -17,7 +17,7 @@
 - Aktive prompts ligger i `.vscode/.codex/prompts/`
 - Aktive projektskills ligger i `.agents/skills/` (flyttet 2026-07-09)
 - Aktive subagents ligger i `.vscode/.codex/agents/` (genereret fra `.agents/agents/`)
-- Projektets hukommelse er `.agents/brain/` (canonical); `.vscode/.codex/Brain/` er frosset legacy (jf. `docs/architecture/memory-governance.md`)
+- Projektets hukommelse er `.agents/brain/` (canonical); `.vscode/.codex/Brain/` er kun en genereret pointer (jf. `docs/architecture/memory-governance.md`)
 - Delte hooks ligger i `.vscode/hooks/`
 - Klientadaptere ligger i `.vscode/settings/`
 - Arkiveret eller upstream materiale ligger i `.vscode/archive/`
@@ -31,7 +31,7 @@
 - Kimi, Qwen Code og Gemini Code skal pege mod samme `AGENTS.md`, `.vscode/.codex/prompts/`, `.agents/skills/` (skills flyttet hertil 2026-07-09) og `.vscode/.codex/agents/`
 - Opret ikke aktive klientfiler som `CLAUDE.md`, `GEMINI.md`, `CODEX.md` eller `KIMI.md`; brug `AGENTS.md`
 - Læs `.vscode/.codex/prompts/master-system.md` ved opsætning af nye agentarbejdsgange
-- Læs `.vscode/.codex/Brain/AGENTS.md` ved komplekse eller flertrinsopgaver
+- Læs `primer.md` + `.agents/brain/context.md` ved komplekse eller flertrinsopgaver (runtime-Brain er reduceret til en genereret pointer, post-PR F-oprydning 2026-07-11)
 - **Invoke-agent system**: `.vscode/.codex/scripts/invoke-agent.ps1 -l` lister de aktive agenter (kør for aktuelt antal); se `.vscode/.codex/AGENTS.md` for detaljer
 - NEVER delete files you didn't create
 - ALWAYS use `uv run` to execute Python scripts
@@ -50,11 +50,13 @@ Standardlabel-mapping er `needs-triage`, `needs-info`, `ready-for-agent`, `ready
 
 ### Domain docs
 
-Projektet bruger single-context Brain-layout under `.vscode/.codex/Brain/`. Se `docs/agents/domain.md`.
+Projektet bruger single-context Brain-layout under `.agents/brain/` (canonical; runtime-Brain er en genereret pointer siden 2026-07-11). Se `docs/agents/domain.md`.
 
-## Fremtidig runtime: .agents/ (model-agnostisk harness)
+## Canonical runtime: .agents/ (model-agnostisk harness)
 
-> Denne sektion beskriver den nye ".agents/"-struktur som fremtidens model-agnostiske runtime. Strukturen er under opbygning og validering. Indtil videre bevares ".vscode/.codex/" som aktiv runtime.
+> Denne sektion beskriver ".agents/"-strukturen. Siden PR F-aktiveringen (2026-07-11) er den
+> IKKE længere "fremtidig": `.agents/` er canonical, og `.vscode/.codex/agents/` + Brain-pointeren
+> genereres derfra. Tabellen nedenfor læses nu som "genereret output" vs. "canonical kilde".
 
 ### Overblik
 

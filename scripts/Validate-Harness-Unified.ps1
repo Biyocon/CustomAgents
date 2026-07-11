@@ -34,9 +34,10 @@
          NB: B og C har forskellige filter (alle .md vs. kun bd-*.md) og kan derfor
          give forskellige resultater - begge bevares uaendret jf. konsolideringskravet.
 
-      D. Root/registry.yaml eksistens + .vscode/.codex/Brain/{glossary,open-questions,
-         source-map}.md eksistens (fra scripts/validate-harness.ps1 - ingen
-         tilsvarende tjek findes i de to andre originaler)
+      D. Canonical registry/brain + genereret Brain-pointer eksistens. Opdateret ved
+         post-PR F-oprydningen 2026-07-11; foer da: Root/registry.yaml +
+         .vscode/.codex/Brain/{glossary,open-questions,source-map}.md eksistens
+         (fra scripts/validate-harness.ps1 - ingen tilsvarende tjek i de to andre originaler)
 
       E. .agents/scripts/audit-harness.ps1 som sub-fase (fra .agents/scripts/validate-harness.ps1)
 
@@ -315,20 +316,20 @@ if (Test-Path $baneDir) {
 # =====================================================================
 # SEKTION D: Root/registry.yaml + Brain-filer (scripts/validate-harness.ps1)
 # =====================================================================
-Write-SectionHeader -Letter "D" -Title "Root/registry.yaml + .vscode/.codex/Brain/*.md eksistens" `
+Write-SectionHeader -Letter "D" -Title "Canonical registry + brain + genereret Brain-pointer eksistens" `
     -SourceScript "scripts/validate-harness.ps1"
 
-$regPath = Join-Path $Root "registry.yaml"
-if (Test-Path $regPath) {
-    Add-Finding "INFO" "D" "registry.yaml findes"
-    Write-Status "INFO" "registry.yaml findes"
-} else {
-    Add-Finding "WARN" "D" "registry.yaml mangler"
-    Write-Status "WARN" "registry.yaml mangler"
-}
-
-$brainFiles = @(".vscode/.codex/Brain/glossary.md", ".vscode/.codex/Brain/open-questions.md", ".vscode/.codex/Brain/source-map.md")
-foreach ($bf in $brainFiles) {
+# Post-oprydning (2026-07-11): rod-registry.yaml er SLETTET (deprecated ved PR F);
+# canonical registry + brain er sandheden, og runtime-Brain er en genereret pointer.
+$dFiles = @(
+    ".agents/registry.yaml",
+    ".agents/brain/context.md",
+    ".agents/brain/glossary.md",
+    ".agents/brain/open-questions.md",
+    ".agents/brain/source-map.md",
+    ".vscode/.codex/Brain/AGENTS.md"
+)
+foreach ($bf in $dFiles) {
     $p = Join-Path $Root $bf
     if (Test-Path $p) {
         Add-Finding "INFO" "D" "$bf findes"

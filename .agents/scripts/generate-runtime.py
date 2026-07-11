@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Generate runtime output from the canonical .agents/ layer (PR D).
+"""Generate runtime output from the canonical .agents/ layer (PR D; activated PR F).
 
 ADR-multi-runtime (Accepted 2026-07-09): .agents/ is canonical; runtime layers
-are generated. This script implements PR D — generation + sync-validation.
-It NEVER writes into an adapter's live target_paths; actual activation
-(replacing the hand-maintained runtime with generated output) is PR F and
-requires an explicit activation decision.
+are generated. Since the PR F activation (2026-07-11) the live runtime
+(.vscode/.codex/agents/ + Brain pointer) is produced by this script — edit
+canonical, run --apply, verify --check exit 0. Never hand-edit generated files.
 
 What it does per adapter with status 'active' (today: codex → .vscode/.codex/):
   1. Builds the runtime registry (rich entries) from canonical sources:
@@ -14,14 +13,16 @@ What it does per adapter with status 'active' (today: codex → .vscode/.codex/)
        - .agents/agents/<id>/skills.yaml  persona fallback for skills/capabilities
        - .agents/skills/*/SKILL.md        frontmatter: rich skill entries
   2. Copies role-agent profiles (agents/banedanmark/<id>/profile.md) through.
-  3. Writes everything to a BUILD directory (default .agents/build/runtime/<adapter>/,
-     gitignored via the global 'build/' pattern).
+  3. Renders the runtime Brain pointer (Brain/AGENTS.md → canonical .agents/brain/;
+     legacy Brain content was landed in canonical at PR E and removed at the
+     post-PR F cleanup).
 
 Modes:
-  generate (default)  write build output
-  --check             also diff build output against the live runtime and print a
-                      drift report; exit 1 on drift. Drift is EXPECTED until PR F
-                      activation — the report quantifies what activation will change.
+  generate (default)  write build output (.agents/build/runtime/<adapter>/, gitignored)
+  --check             diff generated output against the live runtime; exit 1 on drift
+                      (post-activation this is the ongoing sync guard)
+  --apply             write generated output directly into the adapter's live
+                      target_path (activation/refresh; PR F gate is approved)
 
 Run:
   uv run --with pyyaml python .agents/scripts/generate-runtime.py [--adapter codex]
@@ -211,6 +212,34 @@ def render_registry(model, adapter_id):
     return GENERATED_HEADER.format(adapter=adapter_id, ts=ts) + "\n" + body
 
 
+BRAIN_POINTER = """\
+# Brain (GENERERET pointer)
+
+> **GENERERET af `.agents/scripts/generate-runtime.py`** — håndredigeres aldrig.
+> Adapter: {adapter}
+
+Projektets hukommelse er **canonical**: `.agents/brain/` (context, glossary, assumptions,
+open-questions, decisions/, maps/, runbooks/, memory/-snapshots, source-map).
+
+Dette runtime-Brain er reduceret til denne pointer ved post-PR F-oprydningen (2026-07-11):
+det tidligere indhold var frosset legacy uden unik varig viden — alt blev landet i canonical
+ved PR E (se `docs/architecture/memory-governance.md`, mapping-tabellen) og filerne er
+bevaret i git-historik.
+
+Læserækkefølge ved komplekse opgaver:
+1. `primer.md` (rod)
+2. `.agents/brain/context.md`
+3. `.agents/brain/open-questions.md` + `.agents/brain/assumptions.md`
+4. Relevant agentprofil + skills
+
+Ny varig viden landes ALTID i `.agents/brain/` — aldrig her.
+"""
+
+
+def render_brain_pointer(adapter_id):
+    return BRAIN_POINTER.format(adapter=adapter_id)
+
+
 def generate(root, model, adapter_id, out_root, apply=False):
     adapter = model["adapters"].get(adapter_id)
     if adapter is None:
@@ -237,6 +266,10 @@ def generate(root, model, adapter_id, out_root, apply=False):
         dst = os.path.join(out, "agents", ROLE_CONTAINER, aid, "profile.md")
         write_text(dst, read_text(prof["path"]))
         written.append(dst)
+
+    brain_dst = os.path.join(out, "Brain", "AGENTS.md")
+    write_text(brain_dst, render_brain_pointer(adapter_id))
+    written.append(brain_dst)
     return out, written
 
 
@@ -301,6 +334,17 @@ def check_skill_refs(model):
     return findings
 
 
+def check_brain_pointer(root, adapter, adapter_id):
+    for tp in adapter.get("target_paths", []):
+        live = os.path.join(root, tp.strip("/").replace("/", os.sep), "Brain", "AGENTS.md")
+        if not os.path.exists(live):
+            return [f"brain: pointer {tp}Brain/AGENTS.md mangler i live runtime"]
+        if norm(read_text(live)) != norm(render_brain_pointer(adapter_id)):
+            return ["brain: live Brain/AGENTS.md afviger fra genereret pointer"]
+        return []
+    return []
+
+
 def check_role_profiles(model, root, adapter):
     findings = []
     base = None
@@ -359,7 +403,8 @@ def main():
         if args.check:
             adapter = model["adapters"][aid]
             findings = (check_skill_refs(model) + check_registry(model, root, adapter)
-                        + check_role_profiles(model, root, adapter))
+                        + check_role_profiles(model, root, adapter)
+                        + check_brain_pointer(root, adapter, aid))
             if findings:
                 exit_code = 1
                 print(f"[{aid}] SYNC-DRIFT ({len(findings)} fund) — forventet indtil PR F-aktivering:")

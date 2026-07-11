@@ -21,6 +21,16 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] Post-PR F-oprydning UDFØRT (gate-issues P2+P3 lukket)
+
+- **Beslutning (ejer, eksplicit ordre):** den valgfrie oprydning fra gaten er udført.
+  Runtime-Brain (10 legacy-filer, ingen unik viden efter PR E-landing) erstattet af ÉN
+  genereret pointer `Brain/AGENTS.md` — emitteres af `generate-runtime.py`, dækket af
+  `--check`. Rod-`registry.yaml`, tom scaffold og `Export-Registry.ps1` slettet;
+  registry-landskabet er nu **2** (canonical + genereret). Git-historik bevaret for alt.
+- **Bevidst IKKE gjort:** `.codex`-rodflytningen (afhænger af eksternt Codex-værktøjs
+  søgesti; egen beslutning). Harness Sektion D omskrevet til post-oprydnings-virkeligheden.
+
 ### [2026-07-11] PR F LEVERET: RUNTIME AKTIVERET — roadmap A–F fuldført
 
 - **Beslutning (P0, projektejer):** Eksplicit aktiveringsordre givet og eksekveret.

@@ -35,11 +35,12 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
   19 rolleagenter genereres af `.agents/scripts/generate-runtime.py`. Håndredigeres ALDRIG.
   Ændringer: redigér canonical → `--apply` → verificér `--check` (exit 0).
 - Skills (79) i `.agents/skills/` (canonical); Brain: `.agents/brain/` canonical,
-  `.vscode/.codex/Brain/` frosset legacy (memory-governance). Gate GODKENDT:
-  `docs/qa/RELEASE-runtime-activation-gate.md` (inkl. rollback-plan).
-- **4 registries, alle med rolle-headers** (#2 lukket): `.agents/registry.yaml`=CANONICAL,
-  `.vscode/.codex/agents/registry.yaml`=aktiv runtime, rod-`registry.yaml`=legacy
-  build-output, `.vscode/.codex/registry.yaml`=død scaffold.
+  `.vscode/.codex/Brain/` = KUN en genereret pointer (post-PR F-oprydning 2026-07-11;
+  legacy-indholdet slettet, git-historik bevaret). Gate GODKENDT:
+  `docs/qa/RELEASE-runtime-activation-gate.md` (inkl. rollback-plan + oprydnings-annotering).
+- **Registry-landskab = 2** (efter oprydning 2026-07-11): `.agents/registry.yaml`=CANONICAL,
+  `.vscode/.codex/agents/registry.yaml`=GENERERET. Rod-registry, tom scaffold og
+  Export-Registry.ps1 er SLETTET (var deprecated; git-historik bevaret).
 
 ## ADR-roadmap-status (PR A–F)
 
@@ -104,9 +105,10 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 1. **Løbende disciplin:** nye agenter/skills laves i `.agents/`, aktiveres med
    `generate-runtime.py --apply`, verificeres med `--check` (exit 0). Genererede filer røres aldrig.
-2. Valgfri oprydning (bevidst udskudt, dokumenteret i gaten): fysisk erstatning af frosset
-   runtime-Brain; sletning af deprecated rod-registry + scaffold + Export-Registry.ps1; evt. flyt
-   af `.codex` til rod (repo-map.md). Kræver eksplicit ordre.
+2. ~~Valgfri oprydning fra gaten~~ **UDFØRT 2026-07-11 på eksplicit ordre:** runtime-Brain erstattet
+   af genereret pointer (--check-dækket); rod-registry + scaffold + Export-Registry.ps1 slettet.
+   Tilbage af valgfrit: evt. flyt af `.codex` til rod (repo-map.md) — bevidst IKKE gjort
+   (afhænger af hvor det eksterne Codex-værktøj leder; egen beslutning).
 3. Valgfrit vedligehold: fix fence-regex-buggen (27 falske advarsler); opret `planned_skills`
    on-demand (30 refs venter); KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet af A–F — kunne
    arkiveres/opdateres ved lejlighed.

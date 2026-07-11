@@ -1,33 +1,20 @@
-# Brain
+# Brain (GENERERET pointer)
 
-> **FROSSET (PR E, 2026-07-11):** Dette runtime-Brain er transitional legacy og må IKKE længere
-> bruges til at gemme varig viden. Canonical hukommelse er `.agents/brain/`; politik:
-> `docs/architecture/memory-governance.md`. Unikke artefakter herfra er landet i canonical.
-> Laget læses fortsat af den aktive runtime, men erstattes/genereres ved PR F.
+> **GENERERET af `.agents/scripts/generate-runtime.py`** — håndredigeres aldrig.
+> Adapter: codex
 
-`Brain` er projektets fælles hukommelses- og beslutningslag for agent-harnesset.
+Projektets hukommelse er **canonical**: `.agents/brain/` (context, glossary, assumptions,
+open-questions, decisions/, maps/, runbooks/, memory/-snapshots, source-map).
 
-## Principper
+Dette runtime-Brain er reduceret til denne pointer ved post-PR F-oprydningen (2026-07-11):
+det tidligere indhold var frosset legacy uden unik varig viden — alt blev landet i canonical
+ved PR E (se `docs/architecture/memory-governance.md`, mapping-tabellen) og filerne er
+bevaret i git-historik.
 
-- `AGENTS.md` er fælles instruktion for alle LLM-klienter.
-- `.vscode/.codex/` er lokal kilde til sandhed.
-- Karpathy-principperne bruges som basisadfærd: tænk før handling, hold løsningen simpel, ændr kirurgisk, verificér mod succeskriterier.
-- Brain må indeholde projektviden, begreber, beslutninger og mønstre.
-- Brain må ikke indeholde adgangskoder, tokens, personfølsomme oplysninger eller fortroligt materiale uden klar hjemmel.
+Læserækkefølge ved komplekse opgaver:
+1. `primer.md` (rod)
+2. `.agents/brain/context.md`
+3. `.agents/brain/open-questions.md` + `.agents/brain/assumptions.md`
+4. Relevant agentprofil + skills
 
-## Læsning
-
-Ved komplekse opgaver læses i denne rækkefølge:
-1. Root `AGENTS.md`
-2. `.vscode/.codex/AGENTS.md`
-3. `.vscode/.codex/Brain/context.md`
-4. Relevant agentprofil
-5. Relevante skills
-
-## Skrivning
-
-Gem varig projektviden her:
-- `context.md` for domænesprog og begreber
-- `operating-principles.md` for arbejdsregler
-- `source-map.md` for kildetyper og referenceplacering
-- `adr/` for beslutninger
+Ny varig viden landes ALTID i `.agents/brain/` — aldrig her.

@@ -5,10 +5,10 @@
 # Besluttet 2026-07-09: ADR-multi-runtime-agent-system.md = Accepted
 # (se .agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md).
 #
-# De ovrige 3 registries er afledte/deprecate:
-#   .vscode/.codex/agents/registry.yaml = aktiv runtime (genereres herfra ved PR D/F)
-#   registry.yaml (rod)                 = legacy build-output (Export-Registry.ps1)
-#   .vscode/.codex/registry.yaml        = tom scaffold (deprecated)
+# Registry-landskabet efter PR F + oprydning (2026-07-11):
+#   .vscode/.codex/agents/registry.yaml = GENERERET runtime (generate-runtime.py; haandredigeres aldrig)
+#   registry.yaml (rod)                 = SLETTET (deprecated legacy build-output; git-historik)
+#   .vscode/.codex/registry.yaml        = SLETTET (deprecated tom scaffold; git-historik)
 # Fuld plan: docs/architecture/registry-reconciliation.md
 # ============================================================================
 

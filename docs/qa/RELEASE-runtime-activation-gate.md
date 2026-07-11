@@ -49,8 +49,8 @@
 
 | Severity | Issue | Workaround | Plan |
 |---|---|---|---|
-| P2 | `.vscode/.codex/Brain/` er frosset legacy in-place (fysisk erstatning bevidst udskudt — laget læses stadig af runtimen og indeholder ingen unik varig viden efter PR E-landingen) | Frossen-banner + memory-governance-politik forhindrer håndredigering | Fysisk erstatning ved evt. senere `.codex`-rodflytning (åbent, ikke akut, jf. repo-map.md) |
-| P3 | Rod-`registry.yaml` + `Export-Registry.ps1` + tom scaffold er DEPRECATED men ikke slettet | Headers gør status utvetydig | Kan slettes ved næste oprydning på eksplicit ordre |
+| ~~P2~~ | ~~`.vscode/.codex/Brain/` er frosset legacy in-place~~ **LØST 2026-07-11 (oprydning på eksplicit ordre):** Brain erstattet af genereret pointer `Brain/AGENTS.md` (emitteres af generate-runtime.py, dækket af --check); de 10 legacy-filer slettet, git-historik bevaret | — | Udført |
+| ~~P3~~ | ~~Rod-`registry.yaml` + `Export-Registry.ps1` + tom scaffold er DEPRECATED men ikke slettet~~ **LØST 2026-07-11 (samme oprydning):** alle tre slettet; registry-landskab = 2 (canonical + genereret) | — | Udført |
 | P3 | `planned_skills:` i profiler (30 refs) er intentioner uden skill-implementering | Adskilt fra operationelle `skills:`; --check har integritetsvagt | Oprettes on-demand når domænebehov opstår |
 
 > Det oprindelige P1-issue ("36 agentmapper i `.agents/agents/` er ufuldstændige") er løst
