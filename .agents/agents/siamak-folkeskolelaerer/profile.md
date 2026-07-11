@@ -13,6 +13,8 @@ skills:
   - write-a-skill
 category: Læring og formidling
 role: Folkeskolelærer
+name: Siamak
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Siamak (Digital Folkeskolelærer)

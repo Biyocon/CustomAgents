@@ -18,6 +18,7 @@ skills:
   - bbe-dokumenter-platform
   - tdd
   - diagnose
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt for Abdullahi

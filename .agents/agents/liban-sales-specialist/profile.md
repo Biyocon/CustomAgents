@@ -16,6 +16,7 @@ skills:
   - bbtr-role-justification
   - bbtr-raadgiver-udbud
   - edit-article
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt for Liban

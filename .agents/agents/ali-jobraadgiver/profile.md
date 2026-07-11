@@ -13,6 +13,7 @@ skills:
   - bdk-gdpr-praksis
   - edit-article
   - grill-me
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt for Ali

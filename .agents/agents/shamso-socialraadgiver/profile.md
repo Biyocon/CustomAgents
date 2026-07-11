@@ -13,6 +13,8 @@ skills:
   - edit-article
 category: Borger, interessent og GDPR
 role: Socialrådgiver
+name: Shamso
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Shamso (Digital Socialrådgiver)

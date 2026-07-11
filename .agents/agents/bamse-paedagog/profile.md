@@ -12,6 +12,8 @@ skills:
   - grill-me
 category: Pædagogik og trivsel
 role: Pædagog
+name: Bamse
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Bamse (Digital Pædagog)

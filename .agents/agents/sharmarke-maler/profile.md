@@ -13,6 +13,8 @@ skills:
   - bbtr-faseopdelt-ydelser
 category: Byggeri og kvalitet
 role: Maler
+name: Sharmarke
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Sharmarke (Digital Maler)

@@ -13,6 +13,8 @@ skills:
   - bdk-legal-mapping
 category: Forhandling og talent
 role: Fodboldagent
+name: Bojang
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Bojang (Digital Fodboldagent)

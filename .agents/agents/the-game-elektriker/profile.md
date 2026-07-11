@@ -15,6 +15,7 @@ skills:
   - bbtr-risiko-myndighed
   - bbtr-dokumentstyring
   - bdk-trafikale-regler-anvendelse
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt for The Game

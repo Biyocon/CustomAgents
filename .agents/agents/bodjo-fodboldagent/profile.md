@@ -13,6 +13,8 @@ skills:
   - edit-article
 category: Forhandling og talent
 role: Fodboldagent
+name: Bodjo
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt — Bodjo (Digital Fodboldagent)

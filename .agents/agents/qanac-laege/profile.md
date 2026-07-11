@@ -13,6 +13,7 @@ skills:
   - bdk-gdpr-praksis
   - grill-with-docs
   - edit-article
+source: "Iqra-main/lib/agents/src/index.ts (persona system prompt)"
 ---
 
 # System Prompt for Qanac

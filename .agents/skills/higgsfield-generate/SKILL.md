@@ -3,28 +3,17 @@ version: 0.3.0
 name: higgsfield-generate
 description: |
   Generate images/videos/3D assets/audio via Higgsfield AI. Defaults:
-  GPT Image 2 for image/design/text, Seedance 2.0 for
-  video, Nano Banana 2/Pro for character/reference images,
-  Marketing Studio for ads, Sonilo/Mirelo for audio, plus
-  Soul models and Kling 3.0.
-  Use when: "generate an image", "make a video", "animate
-  this photo", "image-to-video", "edit/stylize/remix this
-  image", "produce a clip", "reframe this video", "edit
-  this video from a sketch", "create a 3D model", "make a
-  GLB/mesh", "create a sound effect", "make music",
-  "text-to-audio", "create an ad", "make a UGC video",
-  "product demo", "unboxing", "brand video", "presenter
-  video", "import product from URL", "create avatar for ad",
-  or "analyze video virality". Supports image-to-image,
-  image-to-video, image-to-3D (`multi_image_to_3d`),
-  text-to-audio (`mirelo_text_to_audio`), text-to-music
-  (`sonilo_music`), workflow generation (`draw_to_video`,
-  `reframe`), references, job/upload IDs, Marketing Studio,
-  and Virality Predictor (`brain_activity`).
+  GPT Image 2 for image/design/text, Seedance 2.0 for video, Nano Banana
+  2/Pro for character/reference images, Marketing Studio for ads,
+  Sonilo/Mirelo for audio, plus Soul models and Kling 3.0.
+  Use when the user wants to generate, edit, animate or remix images,
+  video, 3D meshes or audio (image-to-image, image-to-video, image-to-3D,
+  text-to-audio/music), build a workflow, reframe a video, use references,
+  or Marketing Studio (ads, avatars, product demos, brand/presenter/UGC
+  video), or score video virality.
   Chain with higgsfield-soul-id for face/identity consistency.
-  NOT for: Soul Character training (use higgsfield-soul-id),
-  product photoshoots, marketplace listing cards,
-  text/chat/TTS tasks.
+  NOT for: Soul Character training (use higgsfield-soul-id), product
+  photoshoots, marketplace listing cards, or text/chat/TTS tasks.
 argument-hint: "[prompt-or-analysis-request] [--model <name>] [--image|--video <path-or-id>]"
 allowed-tools: Bash
 ---
