@@ -22,7 +22,7 @@ Definere vejen fra det nuværende fragmenterede registry-landskab (4 registries,
 - **root `registry.yaml` + `.vscode/.codex/registry.yaml` = deprecate** (dokumentér; slet ikke uden ordre).
 
 ## Reconciliation-strategi (4 → 1)
-1. **PR B (nu):** definér schemas + denne plan. Ingen data rørt.
+1. ~~**PR B (nu):** definér schemas + denne plan. Ingen data rørt.~~ **LEVERET + modnet 2026-07-10:** de 5 schemas findes (2026-07-02), er nu *validérbare* via `.agents/scripts/validate-schemas.py`, og det canonical `.agents/`-lag validerer 100% rent (0 overtrædelser). Se `.agents/schema/README.md`.
 2. **Senere:** udvid `.agents/registry.yaml` til canonical-schema (felt-merge fra runtime). Stadig ingen runtime-ændring.
 3. **PR D:** export/validation-scripts der *genererer* runtime-registry fra canonical + validerer sync.
 4. **PR F:** runtime activation — `.vscode/.codex/` genereres fra canonical; manuel dobbeltvedligehold afvikles; root + scaffold-registry deprecates formelt.
@@ -56,7 +56,7 @@ output, så et regenereret rod-registry forbliver selv-dokumenterende.
 > Alle punkter nedenfor er bevidst **udskudt** til en senere PR (ejer = den angivne PR).
 > Ingen af dem blokerer #2's registry-klarhed, som er lukket ovenfor.
 
-- **name vs trigger** — 6 skills har `trigger:` uden `name:`. **Ejer: PR B/skill-normalisering.**
+- ~~**name vs trigger** — 6 skills har `trigger:` uden `name:`. Ejer: PR B/skill-normalisering.~~ **LØST 2026-07-10:** alle 79 skills har nu `name:` (banebyg fik det; øvrige via .codex-versionerne). Verificeret via validate-schemas.py.
 - **role vs persona** — rolle-baseret (`.codex/agents/banedanmark/`) vs persona (`.agents/agents/`). Hvilken canonical agent-model? **Ejer: PR D/F (runtime-generering).**
 - **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
 - **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
