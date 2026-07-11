@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://customagents/.agents/schema/skill.schema.json",
   "title": "Canonical skill",
-  "description": "Target contract for .agents/skills/<id>/SKILL.md frontmatter. DEFINITION ONLY — not enforced in PR B. Three frontmatter variants currently exist across 33 .agents skills: 'name+description' (27), 'trigger+description' with NO name (6: banebyg, bdk-brand-governance, bdk-legal-mapping, bdk-gdpr-praksis, shared-quality, shared-docx), and 'version+name+description' (Higgsfield skills). Normalizing the 6 trigger-only skills to carry name is a LATER migration, not PR B.",
+  "description": "Target contract for .agents/skills/<id>/SKILL.md frontmatter. Validérbar via .agents/scripts/validate-schemas.py (PR B schema-modning, 2026-07-10). Opdateret status: .agents/skills har nu 79 skills (efter skills-flytningen 2026-07-09), og name-vs-trigger-normaliseringen er LØST — alle skills bærer nu et 'name'-felt (banebyg fik name 2026-07-10; de øvrige via .codex-versionerne). 'trigger' er nu et valgfrit supplement, ikke en erstatning for name.",
   "type": "object",
   "required": ["name", "description"],
   "additionalProperties": true,
@@ -54,5 +54,5 @@
     "owner": { "type": "string" },
     "maintenance": { "type": "string" }
   },
-  "$comment": "Scope note: 33 .agents/skills, 73 .vscode/.codex/skills, 35 root skills/ (legacy), plus vendor read-only copies under .agents/vendor/. This schema targets the .agents curated layer. Source-library capability CANDIDATES (not active skills yet): design-artifacts (claude-design.md), visual-explainer (visualize.md), deep-research (research_instructions.md) — see docs/agents/sources/. 73-vs-33 reconciliation and name-vs-trigger normalization are OPEN DECISIONS."
+  "$comment": "Scope note (opdateret 2026-07-10): .agents/skills = 79 skills (canonical efter flytning 2026-07-09); .vscode/.codex/skills er tømt til kun 'banebyg'; root skills/ er slettet; vendor read-only copies ligger under .agents/vendor/. Denne schema targeter det canonical .agents-lag. AFGJORTE (tidligere åbne) beslutninger: 73-vs-33 skill-reconciliation er LØST (.agents canonical, 79 skills); name-vs-trigger-normalisering er LØST (alle skills har name). STADIG ÅBNE: source-library capability CANDIDATES (design-artifacts, visual-explainer, deep-research — se docs/agents/sources/) er ejer PR C."
 }

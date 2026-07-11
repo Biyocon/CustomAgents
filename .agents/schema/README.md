@@ -1,15 +1,35 @@
 # Canonical schemas (`.agents/schema/`)
 
-## Status: definition only — NOT enforced
+## Status: definerede + VALIDÉRBARE (ikke-gating) — opdateret 2026-07-10 (PR B schema-modning)
 
-Disse JSON Schema-filer er **canonical schema-definitioner** for det fremtidige model-agnostiske `.agents/`-lag. De er **ikke håndhævet** af nogen validator endnu, og de **ændrer ikke** eksisterende data.
+Disse JSON Schema-filer er **canonical schema-definitioner** for det model-agnostiske `.agents/`-lag.
+Siden 2026-07-10 er de **validérbare** mod den faktiske canonical data via
+`.agents/scripts/validate-schemas.py` — men **ikke gating** (valideringen blokerer ikke commits endnu;
+den er opt-in og kan senere kobles på CI).
 
-PR B (som tilføjede denne mappe) er **additivt, docs+schema-only**:
-- Ingen eksisterende registry, agent, skill eller runtime ændres.
+```bash
+uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py
+```
+
+### Nuværende conformance (kørt 2026-07-10)
+- `.agents/registry.yaml` → **OK** (validerer mod registry.schema.json).
+- `.agents/skills/` (79) → **78 OK**, 1 afvigelse (`higgsfield-generate` description > 1024 tegn).
+- `.agents/agents/` (28) → **17 OK**, 11 afvigelser (persona-profiler mangler `name` og/eller `source`).
+
+De 11+1 afvigelser er **kendte data-huller** som valideringen nu synliggør — rettelse er separat
+conformance-opfølgning (ændring af data, uden for PR B's "kun schema+docs"-scope).
+
+PR B (som tilføjede denne mappe) var **additivt, docs+schema-only**:
+- Ingen eksisterende registry, agent, skill eller runtime **data** ændres af PR B.
 - Schemaerne beskriver **target-kontrakter** for fremtidig canonicalisering.
-- Faktisk migration (registry-merge, skill-normalisering, skills.yaml fold-in, System_Prompt-dedup) sker **senere i særskilte PRs**.
+- Faktisk migration (registry-merge, skills.yaml fold-in, System_Prompt-dedup) sker **senere i særskilte PRs**.
 - Runtime-output (fx `.vscode/.codex/`) skal **senere genereres/valideres fra canonical**, ikke håndvedligeholdes.
 - **Åbne beslutninger** (se nedenfor + `docs/architecture/registry-reconciliation.md`) må **ikke** behandles som afgjort.
+
+### Modnet 2026-07-10 (schema-modning)
+- Tilføjet `.agents/scripts/validate-schemas.py` (validérbarhed).
+- `agent-profile.schema.json`: status-enum udvidet med `draft` (den faktisk anvendte mellemstatus).
+- `skill.schema.json`: opdaterede scope-noter (79 skills; name-vs-trigger og 73-vs-33 nu LØST).
 
 ## Schema-filer
 | Fil | Beskriver |
@@ -26,7 +46,8 @@ PR B (som tilføjede denne mappe) er **additivt, docs+schema-only**:
 - **`registry.yaml`** (rod) = legacy pointer-manifest, **deprecate-kandidat** — ikke slettet.
 - **`.vscode/.codex/registry.yaml`** = tom scaffold, **deprecate-kandidat** — ikke slettet.
 
-## Åbne beslutninger (ikke afgjort)
-73 vs 33 skills · name-vs-trigger frontmatter · rolle-vs-persona agent-model · system-prompt canonical placering · skills.yaml deprecation/generated · source-library capability-kandidater · Cursor runtime-adapter · Perplexity/orchestrator-governance · vendor-strategi · validate-harness false-positives.
+## Beslutningsstatus
+**Afgjort:** ~~73 vs 33 skills~~ (LØST: .agents = 79 canonical) · ~~name-vs-trigger frontmatter~~ (LØST: alle skills har name) · ~~registry-klarhed~~ (LØST via #2, headers).
+**Stadig åbne:** rolle-vs-persona agent-model · system-prompt canonical placering · skills.yaml deprecation/generated · source-library capability-kandidater · Cursor runtime-adapter · Perplexity/orchestrator-governance · vendor-strategi · validate-harness false-positives.
 
 Se `docs/architecture/registry-reconciliation.md` for fuld kontekst.

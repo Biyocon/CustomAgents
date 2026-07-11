@@ -17,8 +17,8 @@
     "category": { "type": "string", "description": "Grouping category." },
     "status": {
       "type": "string",
-      "enum": ["active", "planned", "FORELOEBIG", "deprecated", "archived"],
-      "description": "Lifecycle status. FORELOEBIG = placeholder/provisional (Danish 'FORELØBIG'); spelled ASCII here for tooling-safety."
+      "enum": ["active", "draft", "planned", "FORELOEBIG", "deprecated", "archived"],
+      "description": "Lifecycle status. 'draft' = udkast (den faktisk anvendte mellemstatus for Banedanmark-rolleagenter; tilføjet 2026-07-10 så skemaet matcher realiteten). FORELOEBIG = placeholder/provisional (Danish 'FORELØBIG'); spelled ASCII here for tooling-safety."
     },
     "source": {
       "type": "string",
