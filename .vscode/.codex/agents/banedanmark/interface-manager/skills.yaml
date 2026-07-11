@@ -1,12 +1,14 @@
 skills:
-  - bbtr-tv�rfaglig-koordinering
-  - bbtr-fagpakkestruktur
-  - bbtr-leverance-mapping
-  - bbtr-dokumentstyring
+  - karpathy-guidelines
+  - shared-quality
+  - bbtr-tvaerfaglig-koordinering
+  - bbtr-ipm-konsistens
   - bbtr-risiko-myndighed
+  - bdk-trace-processer
 
 capabilities:
-  - gr�nsefladestyring
-  - teknisk koordinering
-  - kontraktuelle interfaces
-  - risikovurdering
+  - grænsefladestyring
+  - tværfaglig koordinering på projektniveau
+  - status- og fremdriftsovervågning
+  - risiko- og eskaleringshåndtering
+  - ændringshåndtering og sporbarhed

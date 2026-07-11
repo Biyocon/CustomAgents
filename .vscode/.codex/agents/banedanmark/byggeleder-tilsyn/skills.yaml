@@ -1,10 +1,14 @@
 skills:
+  - karpathy-guidelines
+  - shared-quality
   - bbtr-kvalitet-dod
-  - bbtr-csm-tsi-compliance
-  - bbtr-risiko-myndighed
+  - bdk-tilsynsapp-leverance-operations
+  - bdk-haendelser-sikkerhedsbrister
+  - bbtr-fagpakkestruktur
 
 capabilities:
-  - byggeledelse
-  - fagtilsyn
-  - kvalitetskontrol p� pladsen
-  - sikkerhedskoordinering
+  - byggeledelse og entreprenørstyring
+  - styring af kvalitet/tid/økonomi/miljø/arbejdsmiljø
+  - jernbanesikkerhed og togdriftens regularitet
+  - fagtilsyn og kvalitetskontrol
+  - dokumentation og sporbarhed

@@ -117,7 +117,7 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 |-----------|--------|----------|
 | Brain | ✅ Komplet | 9 filer — kontekst, glossary, antagelser, spørgsmål, ADR, kort, runbooks |
 | Registry | ✅ Komplet | `registry.yaml` v1 — agenter, skills, model adapters, scripts |
-| Agenter | ✅ Komplet | 14 Banedanmark-agenter — 10 DRAFT, 4 FORELØBIG |
+| Agenter | ✅ Komplet | 14 Banedanmark-agenter — alle DRAFT (de 4 tidligere FORELØBIG komplettéret fra FB-PDF'er 2026-07-10, ticket #5) |
 | Skills | ✅ Komplet | Kør `scripts/Validate-Harness-Unified.ps1` for aktuelt antal (metrik-linjen "Aktive skills"); alle skills ligger nu i `.agents/skills/` efter flytning 2026-07-09 |
 | Model adapters | ✅ Komplet | Codex, Kimi, Qwen Code, Gemini Code |
 | Scripts | ✅ Komplet | 4 PowerShell-scripts — audit, install, generate-index, validate |
@@ -127,7 +127,7 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 ### Kendte mangler
 
 - **23 avatarer mangler** — 11 Banedanmark-roller + 12 IQRA-agenter (dokumenteret i `reports/inventory/`)
-- **4 agenter er FORELØBIG** — `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` — afventer kilde-materiale
+- ~~**4 agenter er FORELØBIG** — `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` — afventer kilde-materiale~~ **Komplettéret 2026-07-10 (ticket #5):** alle 4 opgraderet til DRAFT med profiler (86–101 linjer) grundet i Banedanmark-funktionsbeskrivelser (FB-PDF'er); `udbudskonsulent` har ingen dedikeret FB-PDF og er grundet i IQRA-persona-laget + tilstødende kontraktroller (dokumenteret i profilen).
 - **6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality` — struktur oprettet, indhold afventer kilde-dokumenter
 - **Vendor-strategi er afklaret** — `.agents/vendor/mattpocock-skills` er vendored copy; fremtidige upstream-opdateringer skal ske i separat vendor-PR
 

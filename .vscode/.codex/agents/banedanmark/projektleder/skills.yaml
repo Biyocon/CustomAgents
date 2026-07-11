@@ -1,10 +1,14 @@
 skills:
-  - bbtr-tværfaglig-koordinering
+  - karpathy-guidelines
+  - shared-quality
+  - bdk-forretningsprojektmodel-gates
   - bdk-styregruppearbejde
-  - bdk-risk-profile
+  - bdk-projektrapportering-frister
+  - bbtr-produktionssetup
 
 capabilities:
-  - projektledelse
-  - styregruppearbejde
-  - risikostyring
-  - økonomisk overblik
+  - jernbaneprojektledelse
+  - styring inden for ledelsessystem og styregrupperammer
+  - interessent- og styregruppehÃ¥ndtering
+  - risikostyring og eskalering
+  - strategisk alignment

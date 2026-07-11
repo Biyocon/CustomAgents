@@ -1,9 +1,14 @@
 skills:
-  - bbtr-rådgiver-udbud
+  - karpathy-guidelines
+  - shared-quality
+  - shared-docx
+  - bbtr-raadgiver-udbud
+  - bdk-styringsdokumenter-skabeloner
   - bdk-legal-mapping
 
 capabilities:
-  - udbudsplanlægning
-  - tilbudsbedømmelse
-  - kontraktforberedelse
-  - ABR18/AB18 compliance
+  - udbudsstrategi og udbudsform
+  - udbudsmateriale, ydelsesbeskrivelser og tilbudslister
+  - tilbudsevaluering og tildeling
+  - kontraktforberedelse og overdragelse
+  - udbudsjura og compliance
