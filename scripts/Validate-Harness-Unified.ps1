@@ -174,10 +174,13 @@ if ($roster) {
         $content = $mdProfiles[$expectedFile]
 
         # -- ```text fence (fra scripts/validate-harness.ps1) --
-        # (NB: literal fence-label bygges via variabel for at undgaa at PowerShell
-        # fortolker backticks som escape-tegn i en double-quoted streng)
-        if ($content -notmatch "```text") {
-            $fenceLabel = '```text'
+        # BUGFIX 2026-07-11: matchet brugte en DOUBLE-quoted "```text", hvor PowerShell
+        # fortolker backticks som escapes (`` -> literal `, `t -> TAB) — regexen blev
+        # reelt '`<TAB>ext' og matchede aldrig, saa ALLE filer fik falsk advarsel
+        # (dokumenteret i be03741c). Nu bygges labelen single-quoted (literal) og
+        # regex-escapes eksplicit. Residual-advarsler herefter er AEGTE fund.
+        $fenceLabel = '```text'
+        if ($content -notmatch [regex]::Escape($fenceLabel)) {
             Add-Finding "WARN" "A" "${filePath}: mangler $fenceLabel fence" $id
             Write-Status "WARN" "${filePath}: mangler $fenceLabel fence"
         }

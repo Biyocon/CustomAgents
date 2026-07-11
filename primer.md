@@ -84,9 +84,12 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 ## Kendte, bevidst uløste forhold
 
-- **Fence-regex-buggen** i Validate-Harness-Unified.ps1 Sektion A (nedarvet fra original
-  scripts/validate-harness.ps1): PowerShell-backtick-escaping gør at ```text-tjekket aldrig matcher
-  korrekt → 27 falske "mangler fence"-advarsler. Dokumenteret i commit be03741c; fix er redesign, ikke sket.
+- ~~Fence-regex-buggen~~ **FIXET 2026-07-11:** matchet i Sektion A brugte double-quoted `"``` + `text"`
+  hvor backticks blev PowerShell-escapes (regex reelt `` `<TAB>ext ``) — fyrede altid. Nu single-quoted
+  label + `[regex]::Escape`. Afsløring: kun 15/27 avatar-promptfiler HAR ```text-fence; **de 12
+  residual-advarsler er ÆGTE** (12 filer bruger struktureret markdown-format uden fence — indholdsmæssigt
+  fine, følger bare ikke fence-konventionen). Ny advarsels-baseline: 12 ægte (før: 27 falske).
+  Evt. normalisering af de 12 filer er en separat indholdsbeslutning.
 - ~~Role-vs-persona~~ **AFGJORT 2026-07-11: begge modeller er canonical.** 19 rolleagenter migreret til
   `.agents/agents/banedanmark/` (`agent_model: role`, roster-undtagne); runtime-kopien genereres.
   (De 29+1 dangling skill-refs er LØST samme dag: remap/`planned_skills`; --check har integritetsvagt.)
