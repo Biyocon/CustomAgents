@@ -86,8 +86,8 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
   scripts/validate-harness.ps1): PowerShell-backtick-escaping gør at ```text-tjekket aldrig matcher
   korrekt → 27 falske "mangler fence"-advarsler. Dokumenteret i commit be03741c; fix er redesign, ikke sket.
 - ~~Role-vs-persona~~ **AFGJORT 2026-07-11: begge modeller er canonical.** 19 rolleagenter migreret til
-  `.agents/agents/banedanmark/` (`agent_model: role`, roster-undtagne); runtime-kopien er generation-target.
-  Restpunkt for PR D sync-validation: 29 dangling skill-refs i de gamle bd-*-profiler (præeksisterende).
+  `.agents/agents/banedanmark/` (`agent_model: role`, roster-undtagne); runtime-kopien genereres.
+  (De 29+1 dangling skill-refs er LØST samme dag: remap/`planned_skills`; --check har integritetsvagt.)
 - `.vscode/.codex/`-placeringen af `.codex` er dokumenteret som åbent punkt i
   `docs/architecture/repo-map.md` (bør flyttes til rod-`.codex/` via PR F's generator, ikke akut).
 - Kompetencekrav-K-tabeller i alle nye agent-profiler er markeret "verificér mod PDF før
