@@ -441,8 +441,9 @@ vendor_sources:
   - mattpocock-skills
   - andrej-karpathy-skills
 
-# Runtime-adaptere (PR C 2026-07-11). Se .agents/model-adapters/ + README.
-# Core (ADR): codex(active), claude-code, kimi, ollama, gemini. Kandidat: cursor. Sekundær: qwen-code.
+# Runtime-adaptere (PR C 2026-07-11; claude-code AKTIVERET 2026-07-12 som adapter #2).
+# Se .agents/model-adapters/ + README. Core (ADR): codex(active), claude-code(active),
+# kimi, ollama, gemini. Kandidat: cursor. Sekundær: qwen-code.
 model_adapters:
   - codex
   - claude-code

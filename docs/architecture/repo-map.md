@@ -33,7 +33,7 @@ Kortlægger repoets mapper, registries, runtimes, memory og arkiv samt beslutnin
 | Runtime | Indgang | Status 2026-07-11 |
 |---|---|---|
 | **Codex / VS Code** | `AGENTS.md` + `.vscode/.codex/` | ✅ aktiv, GENERERET fra canonical (adapter: codex, active) |
-| **Claude Code** | `CLAUDE.md` (pointer) + `.claude/` | adapter `claude-code` (aktiveres som adapter #2 — se model-adapters/) |
+| **Claude Code** | `CLAUDE.md` (pointer) + `.claude/` | ✅ AKTIVERET 2026-07-12 (adapter #2): 47 subagent-filer i `.claude/agents/` genereres af generate-runtime.py; --check-vagtet |
 | **Kimi** | `AGENTS.md` + adapter-note | planned |
 | **Ollama** | Modelfile | planned (mest begrænsede runtime) |
 | **Gemini / Gemini CLI** | `GEMINI.md`-target + `gemini.json` | planned |

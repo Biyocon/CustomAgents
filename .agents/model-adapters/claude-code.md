@@ -1,26 +1,23 @@
 ---
 id: claude-code
-status: planned
+status: active
 entrypoint: CLAUDE.md
 target_paths:
   - .claude/
   - CLAUDE.md
 supported_artifact_types:
   - agents
-  - skills
-  - prompts
-  - registry
-prompt_rendering: "Agentens system prompt (text-blok i profile.md) renderes til en Claude Code subagent-definition eller en CLAUDE.md-sektion. AGENTS.md kan genbruges direkte som CLAUDE.md (Claude Code læser begge)."
-skill_loading: "Skills eksponeres via .claude/skills/<id>/SKILL.md (Claude Codes native skill-format matcher SKILL.md-konventionen 1:1). Kan genereres som kopi eller symlink fra .agents/skills/."
-registry_rendering: "Ingen native registry; agenter renderes til .claude/agents/<id>.md subagent-filer og/eller en oversigt i CLAUDE.md. Genereres fra .agents/registry.yaml (PR D/F)."
-memory_behavior: "Claude Code har filbaseret memory (~/.claude/ + projekt-.claude/). Canonical Brain (.agents/brain/) mappes til projekt-memory ved generering (PR E)."
+prompt_rendering: "Agentens canonical prompt (```text-blok i profile.md; rolleagenter: hele profil-body'en) renderes til en Claude Code subagent-definition .claude/agents/<id>.md (frontmatter name/description + body = system prompt) af generate-runtime.py."
+skill_loading: "Skills laeses canonical fra .agents/skills/<id>/SKILL.md. Kopiering til .claude/skills/ er BEVIDST udskudt: 79 trackede dubletter er uoenskede, og SKILL.md-formatet kan laeses direkte naar det refereres."
+registry_rendering: "Ingen native registry; alle 47 canonical agenter renderes til .claude/agents/<id>.md subagent-filer af generate-runtime.py (--apply). Sync vagtes af --check (check_claude_agents: manglende/afvigende/foraeldreloese genererede filer = drift)."
+memory_behavior: "Claude Code har filbaseret memory (~/.claude/ + projekt-.claude/). Canonical hukommelse er .agents/brain/ (memory-governance, PR E); Claude laeser den direkte — ingen kopi genereres."
 constraints:
-  - "Ikke implementeret endnu (planned). Ingen generator findes."
-  - "SKILL.md-formatet er allerede Claude-kompatibelt, så skill-mapping er den letteste del."
-notes: "Dette er den runtime QA/udvikling ofte køres i (Claude Code). .claude/ findes allerede i repoet på rod-niveau (korrekt mønster). ADR-multi-runtime kræver eksplicit denne adapter (Claude manglede tidligere)."
+  - "AKTIVERET 2026-07-12 som adapter #2 (efter codex): agents-artefakten genereres; skills/prompts-artefakter bevidst udskudt."
+  - "Haandskrevne .claude/agents/-filer (uden GENERERET-markoer) er tilladt og ignoreres af --check."
+notes: "Dette er den runtime QA/udvikling ofte køres i (Claude Code). .claude/ ligger på rod-niveau (korrekt mønster). ADR-multi-runtime kræver eksplicit denne adapter."
 ---
 
-# Claude Adapter (`id: claude-code`, status: **planned**)
+# Claude Adapter (`id: claude-code`, status: **active** — aktiveret 2026-07-12)
 
 ## Hvad det er
 Anthropic **Claude Code** (CLI / IDE). ADR-multi-runtime-agent-system.md kræver eksplicit en Claude-adapter

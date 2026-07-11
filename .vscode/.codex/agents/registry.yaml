@@ -3,12 +3,12 @@
 # ----------------------------------------------------------------------------
 # Genereret af .agents/scripts/generate-runtime.py (PR D) fra canonical:
 #   .agents/registry.yaml + .agents/agents/**/profile.md + .agents/skills/
-# Adapter: codex   Genereret: 2026-07-11 17:43
+# Adapter: codex   Genereret: 2026-07-12 00:09
 # Aendringer hoerer hjemme i det canonical .agents/-lag - IKKE her.
 # ============================================================================
 
 version: 1.0.0
-last_updated: '2026-07-11'
+last_updated: '2026-07-12'
 generated_by: .agents/scripts/generate-runtime.py
 generated_from: .agents/registry.yaml
 agents:

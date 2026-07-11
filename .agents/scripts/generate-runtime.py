@@ -240,20 +240,57 @@ def render_brain_pointer(adapter_id):
     return BRAIN_POINTER.format(adapter=adapter_id)
 
 
+def strip_frontmatter(txt):
+    m = re.match(r"^﻿?---\s*\n.*?\n---\s*\n", txt, re.S)
+    return txt[m.end():] if m else txt
+
+
+def extract_prompt(txt):
+    """Canonical prompt = foerste ```text-blok; fallback = hele body (rolleagenter
+    har instruktions-struktureret body uden fence)."""
+    fence = chr(96) * 3
+    m = re.search(re.escape(fence) + r"text\n(.*?)\n" + re.escape(fence), txt, re.S)
+    return m.group(1).strip() if m else strip_frontmatter(txt).strip()
+
+
+def render_claude_agent(aid, prof):
+    """Claude Code subagent-definition (.claude/agents/<id>.md): frontmatter
+    name/description + body = system prompt fra canonical profile.md."""
+    fm = prof["fm"]
+    kind = "rolleagent" if prof["is_role"] else "persona"
+    role = str(fm.get("role", "")).replace('"', "'")
+    cat = str(fm.get("category", "")).replace('"', "'")
+    desc = (f"{role} — {cat}. Banedanmark-harness {kind}, genereret fra canonical "
+            f".agents/. Brug ved opgaver inden for {cat}.")
+    prompt = extract_prompt(read_text(prof["path"]))
+    rel = os.path.relpath(prof["path"]).replace(os.sep, "/")
+    return (f"---\nname: {aid}\ndescription: \"{desc}\"\n---\n\n"
+            f"<!-- GENERERET af .agents/scripts/generate-runtime.py (adapter: claude-code) — "
+            f"haandredigeres aldrig. Canonical kilde: {rel} -->\n\n"
+            f"{prompt}\n")
+
+
 def generate(root, model, adapter_id, out_root, apply=False):
     adapter = model["adapters"].get(adapter_id)
     if adapter is None:
         sys.exit(f"Ukendt adapter: {adapter_id}")
     if apply:
-        # AKTIVERING (PR F): skriv direkte ind i adapterens live target_path.
-        # Kraever eksplicit --apply; brug kun efter aktiveringsbeslutning
-        # (docs/qa/RELEASE-runtime-activation-gate.md).
+        # AKTIVERING: skriv direkte ind i adapterens live target_path.
+        # Kraever eksplicit --apply (gate: docs/qa/RELEASE-runtime-activation-gate.md).
         tp = (adapter.get("target_paths") or [None])[0]
         if not tp:
             sys.exit(f"Adapter {adapter_id} har ingen target_paths — kan ikke --apply.")
         out = os.path.join(root, tp.strip("/").replace("/", os.sep))
     else:
         out = os.path.join(out_root, adapter_id)
+
+    if adapter_id == "claude-code":
+        written = []
+        for aid, prof in sorted(model["profiles"].items()):
+            dst = os.path.join(out, "agents", f"{aid}.md")
+            write_text(dst, render_claude_agent(aid, prof))
+            written.append(dst)
+        return out, written
 
     written = []
     reg_path = os.path.join(out, "agents", "registry.yaml")
@@ -331,6 +368,44 @@ def check_skill_refs(model):
         dangling = [s for s in (a.get("skills") or []) if s not in known]
         if dangling:
             findings.append(f"skill-refs: '{a['id']}' refererer ukendte skills: {', '.join(dangling)}")
+    return findings
+
+
+def check_skills_leftover(root):
+    """Codex-runtime: .vscode/.codex/skills/ maa KUN indeholde 'banebyg' (bevidst
+    leftover fra skills-flytningen 2026-07-09). Alt andet = genopstaaet dublet."""
+    d = os.path.join(root, ".vscode", ".codex", "skills")
+    if not os.path.isdir(d):
+        return []
+    extras = sorted(x for x in os.listdir(d)
+                    if os.path.isdir(os.path.join(d, x)) and x != "banebyg")
+    if extras:
+        return [f"skills-leftover: uventede skill-mapper i .vscode/.codex/skills/: {', '.join(extras)} "
+                f"(canonical er .agents/skills/ — dubletter maa ikke genopstaa)"]
+    return []
+
+
+def check_claude_agents(model, root, adapter):
+    """claude-code-runtime: hver canonical agent skal have en identisk genereret
+    .claude/agents/<id>.md; genererede filer uden canonical modpart = drift.
+    Haandskrevne agent-filer (uden GENERERET-markoer) ignoreres."""
+    findings = []
+    tp = (adapter.get("target_paths") or [".claude/"])[0]
+    base = os.path.join(root, tp.strip("/").replace("/", os.sep), "agents")
+    for aid, prof in sorted(model["profiles"].items()):
+        live = os.path.join(base, f"{aid}.md")
+        if not os.path.exists(live):
+            findings.append(f"claude-agent: '{aid}' mangler i {tp}agents/")
+        elif norm(read_text(live)) != norm(render_claude_agent(aid, prof)):
+            findings.append(f"claude-agent: '{aid}' afviger fra genereret output")
+    if os.path.isdir(base):
+        known = set(model["profiles"])
+        for f in sorted(os.listdir(base)):
+            if not f.endswith(".md") or f[:-3] in known:
+                continue
+            txt = read_text(os.path.join(base, f))
+            if "GENERERET af .agents/scripts/generate-runtime.py" in txt:
+                findings.append(f"claude-agent: '{f}' er genereret men har ingen canonical modpart (slet eller regenerér)")
     return findings
 
 
@@ -430,10 +505,14 @@ def main():
         print(f"\n[{aid}] {len(written)} {mode} -> {os.path.relpath(out, root)}")
         if args.check:
             adapter = model["adapters"][aid]
-            findings = (check_skill_refs(model) + check_registry(model, root, adapter)
-                        + check_role_profiles(model, root, adapter)
-                        + check_brain_pointer(root, adapter, aid)
-                        + check_avatar_prompts(model, root))
+            if aid == "claude-code":
+                findings = check_skill_refs(model) + check_claude_agents(model, root, adapter)
+            else:  # codex (referenceimplementeringen)
+                findings = (check_skill_refs(model) + check_registry(model, root, adapter)
+                            + check_role_profiles(model, root, adapter)
+                            + check_brain_pointer(root, adapter, aid)
+                            + check_avatar_prompts(model, root)
+                            + check_skills_leftover(root))
             if findings:
                 exit_code = 1
                 print(f"[{aid}] SYNC-DRIFT ({len(findings)} fund) — forventet indtil PR F-aktivering:")

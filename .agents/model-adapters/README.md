@@ -18,7 +18,7 @@ uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.p
 | Fil | id | Status | Rolle | Entrypoint | Runtime-mål |
 |---|---|---|---|---|---|
 | `codex.md` | codex | **active** | core (primary) | AGENTS.md | `.vscode/.codex/` |
-| `claude-code.md` | claude-code | planned | core | CLAUDE.md | `.claude/` |
+| `claude-code.md` | claude-code | **active** (2026-07-12) | core | CLAUDE.md | `.claude/` (47 subagent-filer, genereret) |
 | `kimi.md` | kimi | planned | core (primary) | AGENTS.md | `.kimi/` |
 | `ollama.md` | ollama | planned | core | Modelfile | `ollama/` |
 | `gemini.md` | gemini | planned | core | GEMINI.md | `.gemini/` |
