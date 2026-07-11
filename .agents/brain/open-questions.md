@@ -1,16 +1,21 @@
 # Uafklarede spoergsmaal
 
-> Liste over forhold der endnu ikke er besluttet. Disse skal afklares foer harnesset betragtes som produktionsklart.
+> Liste over forhold der endnu ikke er besluttet. Disse skal afklares foer harnesset betragtes
+> som produktionsklart. Kurateret 2026-07-11 efter fuldfoert ADR-roadmap A-F: spoergsmaal 7-8
+> (runtime-migration og single-source-of-truth) er BESVARET af PR F-aktiveringen og fjernet;
+> dublet-nummerering rettet. Lukkede spoergsmaal dokumenteres i ADR'er/docs, ikke her.
 
 ## Antal og typer agenter
 
 1. **Skal der vaere flere agenter?**
-   - Hvor mange specialiserede agenter er optimalt? 5? 15? 50?
+   - Hvor mange specialiserede agenter er optimalt? Harnesset har i dag 47 (28 personaer + 19 rolleagenter).
    - Skal hver fagdisciplin (staerkstroem, signal, bane, bro, miljoe) have sin egen agent?
 
 2. **Skal der vaere en "orkestrator"-agent?**
    - En meta-agent der fordeler opgaver til specialister og samler resultater?
-   - Eller skal brugeren selv vaelge agent per opgave?
+   - Eller skal brugeren selv vaelge agent per opgave (som i dag via invoke-agent)?
+   - Note 2026-07-11: Perplexity-orchestrator-moenstrene er dispositioneret som input i
+     `docs/architecture/memory-governance.md` (uden for roadmap A-F; kraever ny ADR).
 
 ## Domaeneindhold i skills
 
@@ -19,46 +24,38 @@
    - Hvordan haandteres opdateringer naar dokumenter aendres?
 
 4. **Skal domaeneskills vaere statiske prompts eller dynamiske queries?**
-   - Statisk: Al viden er skrevet direkte i `SKILL.md`.
-   - Dynamisk: Skills henter data fra `Kombi/` eller eksterne kilder ved koersel.
+   - Statisk: Al viden er skrevet direkte i `SKILL.md` (nuvaerende model).
+   - Dynamisk: Skills henter data fra eksterne kilder ved koersel.
+   - Note 2026-07-11: den tidligere reference til `Kombi/` er droppet — mappen findes ikke i
+     repoet (jf. PROJEKT_PLAN-oenskelisten: importeres eller fjernes fra planer).
 
 ## Test og kvalitet
 
 5. **Hvordan testes harnesset optimalt?**
    - Skal vi have et automatiseret test-suite der verificerer at agenter og skills loader korrekt?
    - Skal der vaere "gyldne" testcases — kendte input/output-par — for hver agent?
+   - Note 2026-07-11: strukturel validering ER nu daekket (validate-schemas.py = 0 overtraedelser,
+     Validate-Harness-Unified, generate-runtime --check). Spoergsmaalet gaelder ADFAERDS-test.
 
 6. **Hvordan maaler vi agent-kvalitet?**
-   - Noejagtighed af svar?
-   - Overholdelse af arbejdsregler?
-   - Tid til opgaveloesning?
+   - Noejagtighed af svar? Overholdelse af arbejdsregler? Tid til opgaveloesning?
 
-## Migration og drift
+## Drift
 
-7. **Hvornaar migreres `.vscode/.codex/` fuldt til `.agents/`?** (opdateret 2026-07-09)
-   - Hvilke kriterier skal vaere opfyldt foer den gamle struktur kan nedlaegges?
-   - Skal der vaere en "soft launch" periode hvor begge strukturer koerer sideloebende?
-   - **Status efter beslutning 2026-07-09**: Retningen er nu afgjort — `docs/architecture/ADR-multi-runtime-agent-system.md`
-     er Accepted (se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
-     `.agents/` skal modnes til canonical source of truth; `.vscode/.codex/` forbliver aktiv
-     runtime indtil PR B-F (schema, adapters, export/validation-scripts, aktivering) er
-     gennemført. **"Hvornår" og de konkrete kriterier er stadig ikke fastlagt** — kun retningen
-     er besluttet, ikke tidsplanen eller de tekniske forudsætninger. Spørgsmålet forbliver derfor
-     åbent, men er ikke længere modstridende med ADR-0002 (se ADR-0003).
-
-8. **Hvordan sikres single source of truth under dual-runtime?** (nyt spørgsmål 2026-06-10)
-   - Hvordan undgår vi at agenter/skills bruger forskellige versioner af registry, roster, brain og skills?
-   - Skal der være en master + sync-mekanisme, eller skal `.agents/` kun være tynd reference indtil aktivering?
-
-9. **Hvordan haandteres samtidige opdateringer af Brain?**
+7. **Hvordan haandteres samtidige opdateringer af Brain?**
    - Hvis to agenter samtidig forsoger at opdatere `assumptions.md`, hvordan undgaar vi konflikter?
    - Skal der indfoeres en laasemekanisme eller et review-flow?
+   - Note 2026-07-11: reglen "een skribent ad gangen" (OneDrive-laeren) gaelder og blev bekraeftet
+     ved en near-miss 2026-07-11 (to sessioner, ingen skade — den ene stoppede korrekt). En
+     teknisk laasemekanisme er fortsat uafklaret.
 
 ## Sikkerhed og compliance
 
-9. **Maa agent-output gemmes i projektet?**
+8. **Maa agent-output gemmes i projektet?**
    - Hvis agenter arbejder med fortrolige Banedanmark-data, skal output saa logges?
    - Skal der vaere en "slet alt"-mekanisme?
 
-10. **Hvordan sikres vi at skills ikke hallucinerer domaeneviden?**
-    - Skal kritiske skills (f.eks. CSM-RA-compliance) have en "menneskelig godkendelse"-gate?
+9. **Hvordan sikres vi at skills ikke hallucinerer domaeneviden?**
+   - Skal kritiske skills (f.eks. CSM-RA-compliance) have en "menneskelig godkendelse"-gate?
+   - Note: K-kompetencetabeller i rolleagenter baerer allerede eksplicit "verificer mod PDF
+     foer operationel/sikkerhedskritisk brug"-markering som konservativ vagt.

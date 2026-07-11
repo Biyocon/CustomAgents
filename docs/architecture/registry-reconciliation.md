@@ -91,8 +91,16 @@ reduceret fra 4 registries til **2: én canonical + én genereret**.
 - **vendor strategy** — `.agents/vendor/mattpocock-skills/skills-main/**` track vs gitignore. **Ejer: separat vendor-PR** (foreløbig: tracked, committet 2026-07-09).
 - **validation false positives** — `archived_avatarless_agents` flages evt. af validate-harness. **Ejer: validation-hygiene-spor** (council-chairman-delen er allerede løst 2026-07-09).
 
-## Separate senere spor (IKKE PR B)
-- **Validation-hygiene:** archived false-positives, stale `project_root` i rapporter, report-output-path.
-- **`.claude/settings.json` gitignore-beslutning** (benign lokal Claude Code permissions-config) — separat mikro-beslutning, ikke PR B.
-- vendor/temp cleanup, branch cleanup, orphan-branch-beslutning, full-verbatim source-prompt expansion.
-- faktisk migration: registry-merge, skill-normalisering, skills.yaml fold-in, System_Prompt-dedup, runtime generation (PR D/F), adapter-impl (PR C), memory-governance (PR E).
+## Separate senere spor (status 2026-07-11)
+- ~~Validation-hygiene~~ **LØST 2026-07-11:** vendor-advarslen nedjusteret til INFO (bevidst
+  vendored indhold), .bak-rotation tilføjet (beholder 5 nyeste), fence-regex fixet, false-positive-
+  kilderne (archived/council-chairman/banedanmark-container) har eksplicitte undtagelser.
+- ~~`.claude/settings.json` gitignore-beslutning~~ **AFGJORT 2026-07-11: forbliver tracked.**
+  Claude Code-konventionen er netop at `.claude/settings.json` er delte PROJEKT-indstillinger
+  (mens `settings.local.json` er lokal og ignoreres) — tracking er korrekt.
+- vendor-strategi (track vs gitignore, licensklassifikation) — fortsat åben, separat vendor-PR.
+- ~~temp cleanup~~ delvist: recovery-fil (lukket incident) + test-write.txt slettet 2026-07-11;
+  logopakken forbliver bevidst (eneste kopi). Branch/orphan-branch-beslutning fortsat åben.
+- ~~faktisk migration~~: registry-merge ✅ (PR D/F), skill-normalisering ✅, runtime generation ✅,
+  adapter-plan ✅ (PR C), memory-governance ✅ (PR E). Udestår: skills.yaml fold-in (personaer) +
+  System_Prompt-dedup — se Open decisions.

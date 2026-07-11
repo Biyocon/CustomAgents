@@ -134,13 +134,12 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 - ~~**6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality`~~ **Løst 2026-07-10 (ticket #7):** 5 fik reelt indhold via skills-flytningen (2026-07-09); `banebyg` omskrevet til router-skill der peger på de dedikerede detalje-skills.
 - **Vendor-strategi er afklaret** — `.agents/vendor/mattpocock-skills` er vendored copy; fremtidige upstream-opdateringer skal ske i separat vendor-PR
 
-### Migrationstilstand (opdateret 2026-07-09)
+### Migrationstilstand (opdateret 2026-07-11 — FULDFØRT)
 
-> **Runtime-retningen er afgjort:** ADR-multi-runtime-agent-system.md er **Accepted** (2026-07-09).
-> `.agents/` er canonical source of truth; `.vscode/.codex/` er transitional runtime.
-> Se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`.
+> **Runtime-aktiveringen er gennemført:** ADR-multi-runtime = Accepted (2026-07-09), roadmap
+> PR A–F fuldført og aktiveret 2026-07-11 (gate GODKENDT). Se ADR-0003 + `docs/qa/RELEASE-runtime-activation-gate.md`.
 
 - **Fase 1 (opbygning):** ✅ FÆRDIG — `.agents/` er strukturelt komplet
-- **Fase 2 (validering):** kør `scripts/Validate-Harness-Unified.ps1` (afløste de tre gamle scripts)
-- **Fase 3 (aktivering):** 🔄 DELVIST — skills er flyttet til `.agents/skills/` (canonical nu); agenter/registry/Brain kører fortsat fra `.vscode/.codex/` indtil generatorer (PR B–F) findes, jf. `docs/qa/RELEASE-runtime-activation-gate.md`
-- **Hybrid-tilstand:** skill-laget = `.agents/`; agent/registry/Brain-runtime = `.vscode/.codex/`. Rør ikke agent/registry/Brain-laget manuelt før den formelle aktivering — dokumentér altid hvilken sti du bruger.
+- **Fase 2 (validering):** ✅ `scripts/Validate-Harness-Unified.ps1` + `validate-schemas.py` + `generate-runtime.py --check`
+- **Fase 3 (aktivering):** ✅ FÆRDIG (PR F, 2026-07-11) — `.vscode/.codex/agents/` + Brain-pointer genereres fra canonical
+- **Arbejdsregel:** redigér kun `.agents/`; aktivér med `generate-runtime.py --apply`; bekræft `--check` exit 0. Genererede filer håndredigeres aldrig.

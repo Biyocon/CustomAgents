@@ -1,67 +1,60 @@
-# AgentSkills — Custom AI Agent Harness — System Map (opdateret 2026-07-01)
+# AgentSkills — Custom AI Agent Harness — System Map (opdateret 2026-07-11, post-PR F)
 
 > Autoritativ arkitekturreference. Læs denne FØR arkitekturbeslutninger træffes.
-> Hvert komponent bærer en reel runtime-status (✅ aktiv / ⚠️ delvis-kun-kode / ⬜ planlagt),
+> Hvert komponent bærer en reel runtime-status (✅ aktiv / ⚠️ delvis / ⬜ planlagt),
 > ikke en ambition. Denne fil erstatter ikke `docs/architecture/repo-map.md` — den
 > er det korte, autoritative resumé; repo-map.md har den fulde detalje.
 
 ---
 
-## Core-distinktion: RUNTIME-RETNINGEN ER AFGJORT (2026-07-09) ✅
+## Core-distinktion: RUNTIME ER AKTIVERET (2026-07-11) ✅
 
-**Den tidligere P0-modsigelse er løst.** `docs/architecture/ADR-multi-runtime-agent-system.md`
-er nu **Accepted** (2026-07-09, se `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
+**ADR-multi-runtime-roadmappen PR A–F er FULDFØRT.** ADR'en er Accepted (2026-07-09,
+ADR-0003); aktiveringen er gennemført og gated (`docs/qa/RELEASE-runtime-activation-gate.md`
+= GODKENDT 2026-07-11). Ticket #1 (den historiske P0-modsigelse) er lukket → `docs/done/`.
 
-| Lag | Rolle efter beslutningen |
+| Lag | Rolle |
 |---|---|
-| `.agents/` | **Canonical source of truth** — det model-agnostiske kildelag. Skill-laget (`.agents/skills/`) er allerede canonical efter flytning 2026-07-09. |
-| `.vscode/.codex/` | **Transitional aktiv runtime** for agenter/registry/Brain — skal på sigt genereres fra `.agents/` via PR B–F. |
+| `.agents/` | **CANONICAL source of truth** — eneste redigeringssted for agenter, skills, registry og brain. |
+| `.vscode/.codex/` | **Aktiv runtime.** Agents-laget (registry + 19 rolleagenter) og Brain-pointeren **GENERERES** af `.agents/scripts/generate-runtime.py`. Håndredigeres ALDRIG. |
 
-**Hybrid-tilstand (vigtig):** Skills er flyttet til `.agents/skills/` og er canonical nu.
-Agenter, roster, registry og Brain kører fortsat fra `.vscode/.codex/` indtil den formelle
-aktivering (`docs/qa/RELEASE-runtime-activation-gate.md`). Rør ikke agent/registry/Brain-laget
-i `.vscode/.codex/` manuelt før aktivering — sync-garantien mistes ellers.
-
-**Historik:** Modstriden var åben som P0 (`docs/active/#1-los-runtime-modsigelse.md`,
-`docs/audit/AUDIT-2026-07-01-runtime-og-registry.md`) fra 2026-06-17 (ADR "Proposed") til
-2026-07-09 (ADR "Accepted"). Ticket #1 forbliver `active` for de resterende sync-punkter
-(README/AGENTS.md/systemkort er opdateret; RELEASE-gaten afventer selve aktiveringen).
+**Arbejdsregel:** redigér canonical → `generate-runtime.py --apply` → bekræft `--check`
+(exit 0 = i sync). Historik: modstriden var åben som P0 fra 2026-06-17 til beslutningen
+2026-07-09 og aktiveringen 2026-07-11; se `docs/done/#1-los-runtime-modsigelse.md`.
 
 ---
 
 ## Andre kerne-distinktioner
 
-- **Vendor vs. Kurateret vs. Domæne** (fra `README.md`): `.agents/vendor/` = read-only
-  open source. `.agents/skills/` = udvalgte/tilpassede skills. `.agents/agents/` +
-  `.agents/brain/` = Banedanmark-specifik domæneviden. Redigér aldrig vendor direkte.
-- **Agent-rolle vs. Avatar-persona:** De 14 Banedanmark-subagenter (`.agents/agents/`)
-  er *faglige roller* med skills.yaml. Avatar-mappen indeholder 26+ *visuelle personaer*
-  med systemprompts — delvist overlappende, delvist separate (sport/pædagogik/sundhed-avatarer
-  har intet Banedanmark-fagligt modstykke).
-- **Registry (root) vs. Registry (.agents):** `registry.yaml` (repo-rod) og
-  `.agents/registry.yaml` er to **forskellige, ikke-synkroniserede** filer (241 vs. 223
-  linjer, forskellige skill-sæt, næsten uden overlap), selvom navnet antyder samme kilde.
-  Se `docs/active/#2-reconciliér-registry.md`.
+- **Vendor vs. Kurateret vs. Domæne:** `.agents/vendor/` = read-only open source.
+  `.agents/skills/` = udvalgte/tilpassede skills (79). `.agents/agents/` + `.agents/brain/`
+  = Banedanmark-specifik domæneviden. Redigér aldrig vendor direkte.
+- **Persona vs. rolleagent (AFGJORT 2026-07-11 — begge canonical):** 28 personaer
+  (navngivne, avatar-backed + council-chairman) i `.agents/agents/<id>/`; 19 Banedanmark-
+  **rolleagenter** (`agent_model: role`, roster-undtagne) i `.agents/agents/banedanmark/<id>/`.
+- **Registry-landskab = 2:** `.agents/registry.yaml` (CANONICAL) + `.vscode/.codex/agents/registry.yaml`
+  (GENERERET). Rod-registry, tom scaffold og Export-Registry.ps1 blev slettet ved
+  post-PR F-oprydningen (git-historik bevaret).
 
 ---
 
 ## Layer overview
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  Instruktionslag:  AGENTS.md (eneste fælles instruksfil)     │
-│  Operationelt lag: PROMPT.md, model-adapters/                │
-├─────────────────────────────────────────────────────────────┤
-│  Runtime A (påstået aktiv):   .vscode/.codex/                │
-│  Runtime B (påstået canonical): .agents/         ← MODSTRID  │
-├─────────────────────────────────────────────────────────────┤
-│  Agent-lag:    14 Banedanmark-subagenter + 26+ avatar-personaer│
-│  Skill-lag:    vendor / kurateret / domæne (antal uafklaret) │
+┌──────────────────────────────────────────────────────────────┐
+│  Instruktionslag:  AGENTS.md (eneste fælles instruksfil)      │
+│  Operationelt lag: PROMPT.md, .agents/model-adapters/         │
+├──────────────────────────────────────────────────────────────┤
+│  CANONICAL:  .agents/  (agents, skills, registry, brain)   ✅ │
+│  GENERERET:  .vscode/.codex/agents/ + Brain-pointer        ✅ │
+│              (generate-runtime.py --apply / --check)          │
+├──────────────────────────────────────────────────────────────┤
+│  Agent-lag:    28 personaer + 19 BDK-rolleagenter (47)        │
+│  Skill-lag:    vendor / kurateret (79) / planned_skills (30)  │
 │  Brain-lag:    context, glossary, assumptions, open-questions,│
-│                decisions (ADR), maps, memory, runbooks       │
-│  Registry-lag: registry.yaml (rod) ≠ .agents/registry.yaml   │
-│  Automation:   scripts/*.ps1 (rod) + .agents/scripts/*.ps1   │
-└─────────────────────────────────────────────────────────────┘
+│                decisions (ADR), maps, memory, runbooks        │
+│  Automation:   scripts/ (rod) + .agents/scripts/              │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -70,9 +63,9 @@ i `.vscode/.codex/` manuelt før aktivering — sync-garantien mistes ellers.
 
 | Komponent | Hvad den gør | Runtime-status |
 |---|---|---|
-| `AGENTS.md` | Eneste fælles instruktionsfil for alle LLM'er (Codex, Kimi, Qwen, Gemini) | ✅ |
+| `AGENTS.md` | Eneste fælles instruktionsfil for alle LLM'er (Codex, Kimi, Qwen, Gemini, Claude) | ✅ |
 | `PROMPT.md` | Operationelle prompts til Codex/Kimi i VS Code | ✅ |
-| `.agents/model-adapters/*.md` | Model-specifikke noter (codex, kimi, qwen-code, gemini-code) | ✅ |
+| `.agents/model-adapters/*.md` | 7 skema-konforme adaptere: codex (**active**), claude-code, kimi, ollama, gemini, cursor, qwen-code (planned) | ✅ plan-lag; 1/7 aktiv |
 
 ---
 
@@ -80,12 +73,12 @@ i `.vscode/.codex/` manuelt før aktivering — sync-garantien mistes ellers.
 
 | Komponent | Rolle | Runtime-status |
 |---|---|---|
-| `.agents/` | **Canonical source of truth** (ADR-multi-runtime **Accepted** 2026-07-09; PR A–F fuldført 2026-07-11). Skills (79), agenter (28 personaer + 19 rolleagenter), registry og brain er canonical. | ✅ Canonical (eneste redigeringssted) |
-| `.vscode/.codex/` | **Aktiv runtime — agents-laget GENERERET** fra canonical af `.agents/scripts/generate-runtime.py`. Brain frosset legacy (memory-governance). | ✅ Aktiv runtime (genereret; håndredigeres aldrig) |
+| `.agents/` | **Canonical source of truth** (ADR Accepted 2026-07-09; PR A–F fuldført 2026-07-11). Skills (79), agenter (28+19), registry og brain er canonical. | ✅ Canonical (eneste redigeringssted) |
+| `.vscode/.codex/` | **Aktiv runtime — agents-laget + Brain-pointer GENERERET** af `generate-runtime.py`. | ✅ Genereret; håndredigeres aldrig |
 
-**Ét entydigt ✅:** `.agents/` er canonical, runtime genereres. Aktiveringen er gennemført og
-gaten `docs/qa/RELEASE-runtime-activation-gate.md` er GODKENDT (2026-07-11). Sync verificeres
-løbende med `generate-runtime.py --check` (exit 0 = i sync).
+**Ét entydigt ✅:** aktiveringen er gennemført, gaten GODKENDT, sync vagtes løbende af
+`generate-runtime.py --check` (exit 0 = i sync; exit 1 = drift → nogen har håndredigeret
+runtime eller glemt `--apply`).
 
 ---
 
@@ -93,9 +86,10 @@ løbende med `generate-runtime.py --check` (exit 0 = i sync).
 
 | Komponent | Hvad den gør | Runtime-status |
 |---|---|---|
-| 14 Banedanmark-subagenter (`.agents/agents/` + `.vscode/.codex/agents/`) | Faglige roller (Interface Manager, Udbudskonsulent, Projektleder, m.fl.) | ⚠️ 4/14 FORELØBIG (udbudskonsulent, projektleder, byggeleder-tilsyn, interface-manager); 10/14 DRAFT |
-28 mapper i `.agents/agents/` | Non-Banedanmark personaer (Yunus, William, Ahmad, Qanac, osv.) | ⚠️ 0 af 28 mapper har fuld filpakke — alle har profile.md+skills.yaml (2/4), ingen har AGENTS.md/avatar.md (verificeret 2026-07-01, korrigerer tidligere "1 af 37") |
-| `Avatar/` (26+ personaer) | Visuelle profiler + systemprompts | ⚠️ README/AGENTS.md's påstand om "23 mangler" er forældet — faktisk optælling viser 27 eksisterende systemprompts i `Avatar/agents/` (verificeret direkte 2026-07-01). Tallet skal rettes, ikke opgaverne genskabes. |
+| 28 personaer (`.agents/agents/<id>/`) | Navngivne fagpersonaer (27 avatar-backed + council-chairman meta-agent) | ✅ Alle med profile.md; skema-validerede (0 overtrædelser) |
+| 19 BDK-rolleagenter (`.agents/agents/banedanmark/<id>/`) | Faglige roller (Dokumentcontroller, Trafikleder, Bro/Anlæg m.fl.), `agent_model: role` | ✅ Skema-validerede; ⚠️ indholdsmodning: K-tabeller markeret "verificér mod PDF", 4 draft-FB-agenter, 30 planned_skills venter |
+| `Avatar/` (27 personaer) | Visuelle profiler + systemprompts (27 ↔ 27 ↔ 27, 1:1 verificeret 2026-07-10) | ✅ |
+| Loader: `invoke-agent.py` | Læser Avatar + runtime-rolleagenter + canonical | ✅ 47 agenter, testet post-aktivering |
 
 ---
 
@@ -103,23 +97,23 @@ løbende med `generate-runtime.py --check` (exit 0 = i sync).
 
 | Komponent | Hvad den gør | Runtime-status |
 |---|---|---|
-| `.agents/vendor/mattpocock-skills`, `.agents/vendor/andrej-karpathy-skills` | Read-only upstream-referencer | ✅ tracked som almindeligt vendored indhold |
-| `.agents/skills/` (kurateret) | Tilpassede skills, model-agnostiske | ⚠️ Skill-antal er internt modstridende: README/AGENTS.md siger 29, `docs/architecture/registry-reconciliation.md` siger 73 vs. 33, faktisk filoptælling giver 188 relevante SKILL.md på tværs af tre lokationer (plus 1101 arkiverede). **Intet af disse tal er pt. verificeret som "det rigtige".** |
-| 6 domæne-skills (banebyg, bdk-brand-governance, bdk-gdpr-praksis, bdk-legal-mapping, shared-docx, shared-quality) | Banedanmark-specifik fagviden | ⬜ Struktur oprettet, indhold mangler (FORELØBIG) |
+| `.agents/vendor/` (mattpocock + karpathy) | Read-only upstream-referencer | ✅ tracked vendored indhold |
+| `.agents/skills/` (kurateret, **79 skills**) | Model-agnostiske + BDK/BBTR-domæneskills; kanonisk tal = harness-validatorens METRIKKER-sektion | ✅ 79/79 skema-valideret |
+| `planned_skills:` i profiler (30 refs) | Bevarede intentioner fra gap-analysen 2026-05-06 — endnu ikke oprettet som skills | ⬜ oprettes efter behov (--check har integritetsvagt) |
 
 ---
 
-## Layer 5: Brain-lag (`.agents/brain/`)
+## Layer 5: Brain-lag (`.agents/brain/` = CANONICAL)
 
 | Komponent | Rolle | Runtime-status |
 |---|---|---|
-| `context.md` | Stabil projektkontekst | ✅ |
-| `glossary.md` | Domænesprog/forkortelser | ✅ |
-| `assumptions.md` | Ikke-verificerede antagelser | ✅ men indhold bør krydstjekkes mod denne systemkort-fils fund |
-| `open-questions.md` | Uafklarede forhold | ⚠️ 11 åbne spørgsmål, inkl. hvornår `.vscode/.codex/` migreres fuldt til `.agents/` — direkte relateret til P0-modstriden ovenfor |
-| `decisions/ADR-*.md` | Arkitekturbeslutninger | ⚠️ ADR-0002 (multi-runtime) har status "Proposed" — ikke besluttet |
-| `maps/agent-map.md`, `maps/skill-map.md` | Relationer/trigger-scope | ✅ |
-| `runbooks/*.md` | Driftsguides | ✅ |
+| `context.md`, `glossary.md` | Stabil kontekst/domænesprog | ✅ |
+| `assumptions.md`, `open-questions.md` | Levende usikkerheds-log | ✅ (kurateret post-PR F 2026-07-11) |
+| `decisions/ADR-*.md` | ADR-0001..0003 — alle Accepted | ✅ |
+| `maps/`, `runbooks/`, `memory/` (snapshots), `source-map.md` | Navigation, drift, historik | ✅ |
+| `.vscode/.codex/Brain/` | KUN en genereret pointer (AGENTS.md) til canonical brain | ✅ genereret, --check-dækket |
+
+Memory-klasser (CANONICAL / RUNTIME-LOKAL / SNAPSHOT): `docs/architecture/memory-governance.md`.
 
 ---
 
@@ -127,37 +121,30 @@ løbende med `generate-runtime.py --check` (exit 0 = i sync).
 
 | Komponent | Hvad den gør | Runtime-status |
 |---|---|---|
-| `registry.yaml` (repo-rod) | Central konfiguration — 241 linjer | ⚠️ Diverget fra `.agents/registry.yaml` |
-| `.agents/registry.yaml` | Central konfiguration — 223 linjer | ⚠️ Diverget fra rod-versionen — næsten uden overlap i skill-sæt |
-| `scripts/*.ps1` (rod) | Activate-Agent, Export-Registry, Invoke-Council, New-AgentProfile, Sync-Skills, Validate-AgentHarness | ✅ |
-| `.agents/scripts/*.ps1` | audit-harness, install-skills, generate-agent-index, validate-harness | ✅ (kun beregnet til `.agents/`-laget) |
+| `.agents/registry.yaml` | CANONICAL registry (47 agenter, 79 skills, adaptere, brain-paths) | ✅ skema-valideret |
+| `.vscode/.codex/agents/registry.yaml` | GENERERET runtime-registry | ✅ genereret af generate-runtime.py |
+| `.agents/scripts/generate-runtime.py` | Generator + sync-vagt (`--apply`/`--check`) | ✅ |
+| `.agents/scripts/validate-schemas.py` | Skema-conformance (registry+profiler+skills+adaptere) | ✅ 0 overtrædelser |
+| `scripts/Validate-Harness-Unified.ps1` | Samlet harness-validering (Sektion A–H) | ✅ 0 fejl; kendt baseline: 12 ægte fence-advarsler (12 avatar-prompts uden ```text-fence) |
+| Øvrige `scripts/*.ps1` | Activate-Agent, Invoke-Council, New-AgentProfile, Sync-Skills m.fl. | ✅ (Export-Registry.ps1 slettet ved oprydningen) |
 
 ---
 
-## Kendte QA/sikkerhedsfund (kræver handling)
+## Kendte forhold (accepteret tilstand pr. 2026-07-11)
 
-- **(2026-07-01, uafhængig QA-krydstjek)** `.vscode/.codex/scripts/invoke-agent.py` indlæser allerede fra 3 kilder (Avatar/agents, .vscode/.codex/agents/banedanmark, .agents/agents) — runtimen er de facto hybrid ved brug.
-- **(2026-07-01)** 10 arkiverede agenter optræder stadig i den aktive `agent-roster.json` (37 total, 10 arkiv-duplikater) — se `docs/active/#11`.
-- **(2026-07-01)** `council-chairman` fejlplaceret som arkiveret i `.agents/registry.yaml` selvom mappen er aktiv.
-- **(2026-07-01)** 4 Higgsfield-skills findes på disk men i ingen registry.
-- Defekt vendor-gitlink uden tilhørende `.gitmodules` (QA_2026-06-07, finding).
-- Tracked temp-fil med API-nøgle-placeholder — bør fjernes/roteres af forsigtighed
-  selvom det "kun" er en placeholder (QA_2026-06-07, finding).
-- To versioner af `validation_report.md` med modstridende konklusioner: ældre
-  (2026-05-06) viser "3 PASS/2 PARTIAL/4 FAIL", nyere (`.agents/reports/`, 2026-06-17)
-  viser "69 OK, 0 fejl" — uden forklaring på forbedringen.
-- Rolledækning (AUDIT_2026-05-06_Banedanmark_Roles.md): ca. 65% samlet; Bro og Anlæg
-  0%, Trafik og Drift 10%.
+- 12 avatar-promptfiler bruger struktureret markdown uden ```text-fence (ægte
+  advarsler efter fence-regex-fixet; normalisering = indholdsbeslutning).
+- K-kompetencetabeller i nye rolleagenter er markeret "verificér mod PDF før
+  operationel/sikkerhedskritisk brug" (bevidst konservativt).
+- `.vscode/.codex/`-placeringen (vs. rod-`.codex/`) er dokumenteret åben i repo-map.md;
+  flyt kræver verifikation af det eksterne Codex-værktøjs søgesti.
+- Alle historiske QA-fund fra 2026-07-01-listen er lukket via tickets #2–#13 (docs/done/).
 
 ---
 
-## Seneste tilføjelser
+## Seneste større ændringer
 
-- 2026-07-01: Denne systemkort.md oprettet som del af nyt PM-dokumentationssystem
-  (kombination af `docs/kilde/docs` task-skabeloner og `docs/kilde/project-docs`
-  hukommelsesskabeloner).
-
-## Planlagte udvidelser
-
-- Når `docs/active/#1-los-runtime-modsigelse.md` er done: opdatér Layer 2-tabellen
-  til at vise ÉN ✅ runtime i stedet for to ⚠️.
+- 2026-07-11: PR D+E+F leveret samme dag — generator, memory-governance, AKTIVERING.
+  Role-vs-persona afgjort (begge canonical). Post-oprydning: Brain-pointer, registry-
+  landskab 4→2. KØREPLAN/FORBEDRINGSNOTAT arkiveret til `docs/plans/arkiv/`.
+- 2026-07-09/10: ADR Accepted; 48-agent dybdeaudit; skills-flytning; tickets #2–#13 lukket.

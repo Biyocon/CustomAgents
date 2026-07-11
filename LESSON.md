@@ -59,7 +59,65 @@ konsolideret system (`KØREPLAN.md`, `DEPS.md`, `systemkort.md`, audit/QA-gates)
 
 ### Næste lesson skrives ved
 
-Afslutning af Fase A — Runtime- og registry-konsolidering (se `KØREPLAN.md`)
+~~Afslutning af Fase A — Runtime- og registry-konsolidering~~ Skrevet 2026-07-11 (se nedenfor).
+
+---
+
+## Fase: ADR-roadmap PR A–F — Runtime-konsolidering og aktivering — Afsluttet 2026-07-11
+
+**Varighed:** 2026-06-17 (ADR Proposed) → 2026-07-09 (Accepted) → 2026-07-11 (PR D+E+F
+leveret, aktiveret, gated og post-oprydning samme dag).
+**Status ved start → slut:** To konkurrerende runtime-lag med dokumenteret P0-modsigelse →
+ét canonical lag (`.agents/`) + ét genereret runtime-lag, sync-vagtet af `--check` (exit 0),
+gate GODKENDT, alle tickets #1–#13 lukket, registry-landskab 4→2.
+
+### Hvad gik godt
+
+- **Gated single-purpose-PR-flowet skalerede:** D, E og F kunne leveres på én dag fordi
+  hver PR havde ét formål, egne verifikationskriterier og eksplicit ejer-godkendelse
+  mellem dem. Beslutningen (role-vs-persona) blev taget FØR generatoren blev designet —
+  ingen re-work.
+- **"Verificér før completion-claims" fangede reelle fejl:** uafhængig krydsverifikation
+  mellem to sessioner fandt en stale --check-footer, en stale primer-HEAD og bekræftede
+  alle load-bearing claims. Fence-regex-fixet afslørede at 12 af 27 "falske" advarsler
+  faktisk var ægte fund som den brækkede regex havde camoufleret.
+- **Sync-validering som aktiverings-gate virkede:** `--check` exit 0 var et objektivt,
+  reproducerbart bestå-kriterie — gaten kunne godkendes på evidens, ikke skøn.
+- **Mojibake-vagten betalte sig igen:** fandt CP1252 i 9 runtime-skills.yaml og
+  '?'-korruption i 2 personas capabilities FØR indholdet blev canonical.
+
+### Hvad gik skidt
+
+- **Dokumentations-efterslæbet voksede hurtigere end det blev betalt:** aktiveringen
+  gjorde README/systemkort/brain/PM-docs stale på 6+ punkter samme dag som de var
+  opdateret — post-F-sandhedsoprydningen skulle have været en eksplicit del af PR F's
+  definition-of-done, ikke et opfølgningsstep.
+- **To skrivende sessioner kørte samtidig på samme working tree** (near-miss 2026-07-11).
+  Ingen skade — men kun fordi den ene stoppede korrekt og filerne var disjunkte.
+- **Volatile tal i instruktionsfiler rådnede igen** (HEAD-hash i primer): reglen fandtes
+  allerede i global CLAUDE.md, men blev først håndhævet efter anden påmindelse.
+
+### Hvad vi ændrer fremover
+
+- **Definition-of-done for arkitekturændringer udvides:** "alle berørte statusdokumenter
+  opdateret i SAMME commit-serie" — tjekliste: README, AGENTS.md, systemkort, primer,
+  brain (open-questions/assumptions), PM-docs (PROJEKT_PLAN/DEPS), berørte README'er i
+  undermapper. (Denne lesson's fase betalte gælden 2026-07-11.)
+- **Én skrivende session ad gangen håndhæves som procedure,** ikke kun som regel: ny
+  session skal tjekke `git status` for fremmede uncommittede ændringer FØR første skriv
+  og stoppe hvis de findes (dokumenteret i memory + open-questions #7).
+- **Aldrig aktuel HEAD-hash i vedvarende dokumenter** — kun stabile milepæls-hashes;
+  aktuel tilstand verificeres med `git status -sb` (håndhævet i primer 2026-07-11).
+
+### Estimat vs. faktisk
+
+| Aktivitet | Estimeret | Faktisk | Delta | Årsag til afvigelse |
+|---|---|---|---|---|
+| PR D–F (generator → aktivering) | "første kode-tunge PR" + F = "højeste risiko" (ingen tidsestimat) | Én dag (2026-07-11) inkl. beslutning, drift-oprydning og gate | N/A | Forarbejdet (PR A–C, skemaer, adaptere, audit) havde fjernet al usikkerhed fra den kritiske sti |
+
+### Næste lesson skrives ved
+
+Afslutning af Fase G (global promovering) eller næste alvorlige bloker.
 
 ---
 

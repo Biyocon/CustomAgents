@@ -1,56 +1,37 @@
 # Dependency Map: AgentSkills — Custom AI Agent Harness
-**Opdateret:** 2026-07-01
-**Ref:** `KØREPLAN.md` | `docs/active/` | `docs/drafts/`
+**Opdateret:** 2026-07-11 (post-PR F + oprydning)
+**Ref:** `primer.md` | `docs/done/` | `docs/drafts/`
 
 > Change-impact-systemets hjerne. Opdatér ALTID når en ny task oprettes, en task
-> flyttes til `docs/done/`, eller en PRD/KØREPLAN-ændring sker (kør proceduren
-> nedenfor). Hvis du ikke kan se konsekvensen af en ændring ved at læse denne fil,
-> er filen forældet.
+> flyttes til `docs/done/`, eller en plan-ændring sker (kør proceduren nedenfor).
+> Hvis du ikke kan se konsekvensen af en ændring ved at læse denne fil, er filen forældet.
 
 ---
 
 ## Blokerings-relationer
 
-| Task / Fase | Blokeres af | Blokerer | Note |
+**ALLE historiske tickets (#1–#13) er LUKKET** → `docs/done/` (2026-07-09→11); den gamle
+blokeringstabel er dermed afviklet og bevaret i git-historik + docs/done/-ticketernes
+frontmatter (`deps`/`blocks`). Nuværende åbne arbejdsstrømme og deres afhængigheder:
+
+| Arbejdsstrøm | Blokeres af | Blokerer | Note |
 |---|---|---|---|
-| #1 — Løs runtime-modsigelse | _(ingen)_ | #2, #3, #4, #6, alle Fase B–E-tasks | Roden til alt andet arbejde — se `FORBEDRINGSNOTAT.md` §1 |
-| #2 — Reconciliér registry.yaml | #1 (delvist — kan starte parallelt, men skal lande efter runtime-beslutning) | #3, #6 | Scripts der læser registry skal pege på reconcilieret fil |
-| #3 — Afklar skill-antal | #1, #2 | #6, #7, Fase B-gate | Kræver ét reconcilieret registry at tælle imod |
-| #4 — Reconciliér validation_report | #1 | Fase B-gate | Uafhængig af #2/#3, men samme fase |
-| #5 — Komplettér 4 FORELØBIG subagenter | #1 | Fase C-gate | Kan køre parallelt med #6 |
-| #6 — Komplettér 36 agentmapper | #1, #2 | Fase C-gate, #10 | Stor batch-task — se `docs/plans/runtime-konsolidering-plan.md` for rækkefølge |
-| #7 — Udfyld 6 domæne-skills | #1 | Fase D-gate | Uafhængig af agent-komplettering |
-| #8 — Ret avatar-systemprompt-tal | _(ingen)_ | _(ingen)_ | Isoleret dokumentationsrettelse, kan laves når som helst |
-| #9 — QA-sikkerhedsoprydning (vendor-gitlink, API-nøgle-placeholder) | _(ingen)_ | _(ingen)_ | Isoleret — bør prioriteres højt trods ingen tekniske afhængigheder (sikkerhed) |
-| #10 — Forbedr rolledækning Bro/Anlæg + Trafik/Drift | #5, #6 | Fase E-gate | Kræver at agentstrukturen er komplet før nyt fagindhold giver mening |
-| #11 — Ryd op i roster/registry-fejl (arkiv-mismatch, council-chairman, Higgsfield) | #1 | #3 | Fundet ved uafhængig QA-krydstjek 2026-07-01; blokerer #3 fordi skill-/agent-antal ikke kan låses før disse fejl er rettet |
+| Domænemodning (K-tabel-verifikation, planned_skills, DRAFT→verified) | _(ingen — FB-PDF'er + pdftotext tilgængelige)_ | Operationel/sikkerhedskritisk brug af rolleagenterne | Se primer "Næste skridt" |
+| Adapter-aktivering #2+ (claude-code, kimi, gemini, …) | _(ingen — generator + skemaer findes)_ | Fuld model-agnostisk vision | codex er referenceimplementering |
+| Fase G — global promovering | A–F ✅ (OPFYLDT 2026-07-11) + scope-beslutning + kollisionsfri målsti (MasterBrain optager `C:\Users\Biyocon\.agents\`) | _(slutmål)_ | Runbook: `brain/runbooks/how-to-promote-project-harness-to-global.md` |
+| `.codex`-rodflytning | Ekstern verifikation af Codex-værktøjets søgesti | _(ingen)_ | Besluttet udskudt — se repo-map.md |
+| Vendor-strategi (track vs gitignore) | Licensklassifikation + ejer-beslutning | _(ingen)_ | Separat vendor-PR |
 
 ---
 
 ## Kritisk sti
 
-**Kritisk sti (minimum tid til "konsolideret harness"):**
+**Historisk kritisk sti FULDFØRT 2026-07-11:** `#1 → #2 → #11 → #3 → #6 → #10` er lukket
+via ADR-roadmappen PR A–F (aktivering + gate GODKENDT). Tilbage af den oprindelige sti:
 
 ```
-#1 → #2 → #11 → #3 → #6 → #10 → Fase G (global promovering)
+Domænemodning → Fase G (global promovering)
 ```
-
-**Parallelle spor der ikke er på kritisk sti:** #4 (validation_report), #5 (4
-FORELØBIG-agenter kan startes så snart #1 er løst), #7 (domæne-skills), #8
-(dokumentationsrettelse), #9 (QA/sikkerhed — bør dog ikke reelt udskydes pga. alvor).
-
-**Estimeret minimumstid:** Afhænger af hvor hurtigt runtime-beslutningen (#1)
-kan træffes — dette er et beslutnings-, ikke et implementeringsproblem, og bør
-kunne lukkes inden for én arbejdssession givet at researchen allerede foreligger
-i `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md`.
-
----
-
-## Isolerede tasks
-
-- #8 — Ret avatar-systemprompt-tal _(ingen deps, ingen blokerede tasks)_
-- #9 — QA-sikkerhedsoprydning _(ingen deps, ingen blokerede tasks — men høj alvor)_
-- Dokumentations-opdateringer i sig selv er altid isolerede fra kode-/strukturtasks
 
 ---
 
@@ -58,8 +39,9 @@ i `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md`.
 
 | Afhængighed | Afventer | Frist |
 |---|---|---|
-| Fase G (global promovering) | Alle øvrige faser (A–F) skal være ✅ | Ikke fastsat — afhænger af Fase A-beslutning |
-| #10 (rolledækning) | Nyt kildemateriale for Bro/Anlæg og Trafik/Drift — ekstern afhængighed, ikke kun intern strukturering | Ikke fastsat |
+| Fase G (global promovering) | Scope-beslutning (hvad promoveres) + kollisionsfri målsti | Ikke fastsat |
+| Domænemodning (K-tabeller) | Krydstjek mod FB-PDF'er (værktøj OK: pdftotext) | Ikke fastsat |
+| planned_skills (30 refs) | Konkret domænebehov pr. skill (bevidst on-demand) | Løbende |
 
 ---
 

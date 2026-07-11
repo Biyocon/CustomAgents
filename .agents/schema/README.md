@@ -11,13 +11,14 @@ den er opt-in og kan senere kobles på CI).
 uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py
 ```
 
-### Nuværende conformance (kørt 2026-07-10)
-- `.agents/registry.yaml` → **OK** (validerer mod registry.schema.json).
-- `.agents/skills/` (79) → **78 OK**, 1 afvigelse (`higgsfield-generate` description > 1024 tegn).
-- `.agents/agents/` (28) → **17 OK**, 11 afvigelser (persona-profiler mangler `name` og/eller `source`).
+### Nuværende conformance (kørt 2026-07-11, post-PR F)
+- `.agents/registry.yaml` → **OK**.
+- `.agents/skills/` (79) → **79 OK**.
+- `.agents/agents/` (47 = 28 personaer + 19 rolleagenter) → **47 OK**.
+- `.agents/model-adapters/` (7) → **7 OK**.
 
-De 11+1 afvigelser er **kendte data-huller** som valideringen nu synliggør — rettelse er separat
-conformance-opfølgning (ændring af data, uden for PR B's "kun schema+docs"-scope).
+**0 skema-overtrædelser i alt.** (De historiske "11+1 afvigelser" fra 2026-07-10-kørslen blev
+rettet undervejs i PR C–F-arbejdet; denne sektion var stale indtil 2026-07-11.)
 
 PR B (som tilføjede denne mappe) var **additivt, docs+schema-only**:
 - Ingen eksisterende registry, agent, skill eller runtime **data** ændres af PR B.
@@ -40,14 +41,16 @@ PR B (som tilføjede denne mappe) var **additivt, docs+schema-only**:
 | `runtime-adapter.schema.json` | Runtime-adapter-beskrivelser (codex/claude/kimi/ollama/gemini/cursor) |
 | `archive-entry.schema.json` | Arkiverede/avatarløse agenter (`archive/avatarless-agents/`) |
 
-## Registry-status (vigtigt for PR B)
-- **`.agents/registry.yaml`** = **canonical-kandidat** (target for `registry.schema.json`). Ikke rørt i PR B.
-- **`.vscode/.codex/agents/registry.yaml`** = **aktiv runtime** — må **IKKE røres i PR B**; bliver et generation-target senere (PR D/F).
-- **`registry.yaml`** (rod) = legacy pointer-manifest, **deprecate-kandidat** — ikke slettet.
-- **`.vscode/.codex/registry.yaml`** = tom scaffold, **deprecate-kandidat** — ikke slettet.
+## Registry-status (opdateret post-PR F + oprydning, 2026-07-11)
+- **`.agents/registry.yaml`** = **CANONICAL** (validerer mod registry.schema.json).
+- **`.vscode/.codex/agents/registry.yaml`** = **GENERERET** af `generate-runtime.py` — håndredigeres aldrig.
+- Rod-registry + tom scaffold = **SLETTET** ved post-PR F-oprydningen (git-historik bevaret).
 
-## Beslutningsstatus
-**Afgjort:** ~~73 vs 33 skills~~ (LØST: .agents = 79 canonical) · ~~name-vs-trigger frontmatter~~ (LØST: alle skills har name) · ~~registry-klarhed~~ (LØST via #2, headers).
-**Stadig åbne:** rolle-vs-persona agent-model · system-prompt canonical placering · skills.yaml deprecation/generated · source-library capability-kandidater · Cursor runtime-adapter · Perplexity/orchestrator-governance · vendor-strategi · validate-harness false-positives.
+## Beslutningsstatus (opdateret 2026-07-11)
+**Afgjort:** 73-vs-33 skills (79 canonical) · name-vs-trigger · registry-klarhed · rolle-vs-persona
+(BEGGE canonical) · Cursor-adapter (planned, leveret PR C) · Perplexity/orchestrator (dispositioneret PR E)
+· fence-regex-buggen (fixet; baseline 12 ægte advarsler).
+**Stadig åbne:** system-prompt canonical placering + dedup · skills.yaml deprecation/fold-in ·
+source-library capability-kandidater · vendor-strategi · validation-hygiene-sporet.
 
 Se `docs/architecture/registry-reconciliation.md` for fuld kontekst.

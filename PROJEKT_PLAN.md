@@ -1,11 +1,11 @@
 # Projektplan & Ønskeliste: AgentSkills — Custom AI Agent Harness
 
 > Idébank. Svarer på "hvad bygger vi og hvorfor?" — designbeslutninger, rationale,
-> ønskeliste og changelog. Tematisk, ikke sekventiel. Den sekventielle plan lever i
-> `KØREPLAN.md`. Peg på §-sektioner fra andre dokumenter (fx `primer.md`) i stedet
-> for at forvente en fuld gennemlæsning.
+> ønskeliste og changelog. Tematisk, ikke sekventiel. (Den tidligere sekventielle plan
+> `KØREPLAN.md` er ARKIVERET 2026-07-11 til `docs/plans/arkiv/` — overhalet af den
+> fuldførte ADR-roadmap A–F; aktuel tilstand står i `primer.md` + `systemkort.md`.)
 
-**Sidst opdateret:** 2026-07-01
+**Sidst opdateret:** 2026-07-11 (post-PR F + oprydning)
 
 ---
 
@@ -14,27 +14,29 @@
 - **Er:** En model-agnostisk, genbrugelig AI-agent-harness (subagenter, skills,
   Brain-kontekst, registry) bygget med udgangspunkt i Banedanmark-kompetencer, men
   designet til at genbruges i alle fremtidige projekter uanset LLM (Codex, Kimi,
-  Qwen Code, Gemini Code).
+  Qwen Code, Gemini Code, Claude).
 - **Er ikke:** Et produkt med eksterne slutbrugere, betalingsvilje eller
   personas i klassisk PRD-forstand. Det er intern infrastruktur til AI-assisteret
   projektstyring.
 - **Kerneloop:** Vælg agent → indlæs profil + skills → arbejd med Brain-kontekst →
-  opdatér Brain/registry → (fremtidigt) promovér færdigt harness til global skabelon.
-- **Differentiator:** De tre-lags-adskillelse (Vendor / Kurateret / Domæne) og
-  Karpathy-inspirerede adfærdsregler (surgical changes, verificerbare succeskriterier).
+  opdatér Brain/registry (canonical) → generér runtime (`--apply`/`--check`) →
+  (fremtidigt) promovér færdigt harness til global skabelon.
+- **Differentiator:** De tre-lags-adskillelse (Vendor / Kurateret / Domæne),
+  canonical→genereret runtime-arkitekturen, og Karpathy-inspirerede adfærdsregler
+  (surgical changes, verificerbare succeskriterier).
 
 ---
 
-## §GAP. Status vs. erklæret vision [2026-07-01]
+## §GAP. Status vs. erklæret vision [opdateret 2026-07-11]
 
 | Kapabilitet | Status nu | Erklæret vision | Beslutning |
 |---|---|---|---|
-| Én aktiv runtime | To modstridende kandidater (`.vscode/.codex/`, `.agents/`) | Én kanonisk runtime alle LLM'er peger på | Skal afgøres — se `docs/active/#1` |
-| Model-agnostisk adapter-lag | 4 adaptere findes (codex, kimi, qwen, gemini) | Alle primære/sekundære modeller dækket | Behold — allerede opfyldt |
-| Central registry | To divergerende `registry.yaml`-filer | Én central konfiguration | Reconciliér — se `docs/active/#2` |
-| Fuld agent-filpakke | 1 af 37 mapper i `.agents/agents/` komplet | Alle subagenter har profile.md+skills.yaml+AGENTS.md+avatar.md | Komplettér batch-vis — se `docs/active/#6` |
-| Domænedækning | ~65% samlet, 0% Bro/Anlæg, 10% Trafik/Drift | Fuld dækning af Banedanmark-fagroller | Prioritér i Fase E |
-| Verificerbare metrikker | Skill-antal og validation-status modsiger sig selv på tværs af filer | "Verificerbare succeskriterier" (Karpathy-princip) | Ét script som eneste kilde — se `docs/active/#3`, `#4` |
+| Én aktiv runtime | ✅ `.agents/` canonical; `.vscode/.codex/agents/` GENERERET (PR F 2026-07-11, gate GODKENDT) | Én kanonisk runtime alle LLM'er peger på | LUKKET (ticket #1 → done) |
+| Model-agnostisk adapter-lag | 7 skema-konforme adaptere; 1 aktiv (codex) | Alle primære/sekundære modeller dækket af AKTIVE adaptere | Næste: claude-code som adapter #2 |
+| Central registry | ✅ 1 canonical + 1 genereret (var 4) | Én central konfiguration | LUKKET (PR D/F + oprydning) |
+| Fuld agent-filpakke | ✅ 47 agenter skema-valideret (0 overtrædelser) | Alle subagenter komplette | LUKKET (target-kontrakt: profile.md er kernen) |
+| Domænedækning | Bro/Anlæg + Trafik/Drift lukket strukturelt (bd-bro-og-anlaeg, bd-trafikleder); indholdsmodning udestår (K-tabel-verifikation, planned_skills) | Fuld dækning af Banedanmark-fagroller | Igangværende — se "Næste steps" i primer |
+| Verificerbare metrikker | ✅ Harness-validatorens METRIKKER-sektion = kanonisk kilde for tal | "Verificerbare succeskriterier" | LUKKET (#3) |
 
 ---
 
@@ -43,82 +45,93 @@
 > Tunge beslutninger ligger fuldt ud i `docs/architecture/ADR-*.md` og
 > `.agents/brain/decisions/ADR-*.md`. Denne log er kun resuméet + kobling.
 
-### Tre-lags-adskillelse: Vendor / Kurateret / Domæne [oprindelig dato ukendt, dokumenteret i README]
-- **Kontekst:** Behov for at undgå at blande rå open source, tilpassede skills og
-  Banedanmark-specifik viden sammen.
+### Tre-lags-adskillelse: Vendor / Kurateret / Domæne [dokumenteret i README]
 - **Valg:** `.agents/vendor/` (read-only), `.agents/skills/` (kurateret),
   `.agents/agents/` + `.agents/brain/` (domæne).
-- **Konsekvenser:** Klar ansvarsfordeling, men kræver disciplin ved skill-oprettelse
-  (kopiér, redigér aldrig vendor direkte).
+- **Konsekvenser:** Klar ansvarsfordeling; kopiér, redigér aldrig vendor direkte.
 
-### Multi-runtime-arkitektur [2026-06-17, Status: Proposed — IKKE besluttet]
-- **Kontekst:** `.agents/` blev bygget som fremtidigt model-agnostisk lag sideløbende
-  med den aktive `.vscode/.codex/`-runtime.
-- **Valg (foreslået, ikke vedtaget):** `.agents/` skal blive canonical.
-- **Konsekvens af IKKE at beslutte:** Se `FORBEDRINGSNOTAT.md` §1 — dette er
-  projektets P0-risiko lige nu. Se `docs/plans/runtime-konsolidering-plan.md` for
-  det fulde løsningsdesign.
+### Multi-runtime-arkitektur [Accepted 2026-07-09; FULDFØRT 2026-07-11]
+- **Valg:** `.agents/` er canonical source of truth; runtime-lag genereres
+  (`generate-runtime.py --apply`, sync-vagt `--check`). Roadmap PR A–F leveret.
+- **Konsekvenser:** Dobbeltvedligehold afviklet; genererede filer håndredigeres aldrig;
+  gate: `docs/qa/RELEASE-runtime-activation-gate.md` (GODKENDT).
+
+### Role-vs-persona agent-model [Afgjort 2026-07-11]
+- **Valg:** BEGGE modeller er canonical — 28 personaer + 19 rolleagenter
+  (`.agents/agents/banedanmark/`, `agent_model: role`, roster-undtagne).
+
+### Memory-governance [Afgjort 2026-07-11, PR E]
+- **Valg:** CANONICAL (`.agents/brain/`) / RUNTIME-LOKAL (genereret pointer) /
+  SNAPSHOT (append-only). Se `docs/architecture/memory-governance.md`.
 
 ---
 
 ## §INTEGRATION. Integrationsdybde for eksterne kilder
 
 > Regel: kopiér aldrig tredjeparts-kildekode direkte ind i det kuraterede lag —
-> behold den i `.agents/vendor/` (read-only) og tilpas en tynd kopi i
-> `.agents/skills/`.
+> behold den i `.agents/vendor/` (read-only) og tilpas en tynd kopi i `.agents/skills/`.
 
 | Komponent | Måldybde | Status | Noter |
 |---|---|---|---|
-| `mattpocock-skills` (engineering-workflows: TDD, PRD, issue-slicing, debugging) | L3 — tilpasset kopi i kurateret lag | ⚠️ Vendor tracked, men gitlink-fejl uden `.gitmodules` (QA-finding) | Ret vendor-link før videre kuratering |
-| `andrej-karpathy-skills` (adfærdsregler) | L4 — fuldt integreret i `AGENTS.md` og som skill | ✅ | Allerede operationelt princip i README |
-| IQRA-avatar-familie (26+ personaer) | L2 — status + visuel profil | ⚠️ | Systemprompt-optælling skal rettes (26 findes, ikke "23 mangler") |
+| `mattpocock-skills` | L3 — tilpasset kopi i kurateret lag | ✅ tracked vendored copy | Vendor-strategi (track vs gitignore) fortsat åben — separat vendor-PR |
+| `andrej-karpathy-skills` | L4 — fuldt integreret i `AGENTS.md` og som skill | ✅ | Operationelt princip |
+| IQRA-avatar-familie (27 personaer) | L2 — status + visuel profil | ✅ 27↔27↔27 verificeret 1:1 (2026-07-10) | |
 
 ---
 
 ## 🌟 Ønskeliste (features & visioner)
 
-- [ ] Ét autoritativt valideringsscript der eneste kilde til skill-/agent-tal (fjerner §GAP-rækken om metrikker)
-- [ ] Global promovering: flyt færdigt harness til `C:\Users\Biyocon` som skabelon til fremtidige projekter (nævnt i README's "Kendte mangler")
-- [ ] Kombi-map scan/import — `Kombi/` findes ikke i nuværende repo, skal enten importeres eller fjernes fra planer
+- [x] Ét autoritativt valideringsscript som eneste kilde til skill-/agent-tal
+      (løst: harness-validatorens METRIKKER-sektion + validate-schemas.py)
+- [ ] Global promovering: flyt færdigt harness til global skabelon under `C:\Users\Biyocon`
+      (Fase G — forudsætning A–F er nu opfyldt; NB: `C:\Users\Biyocon\.agents\` er optaget
+      af MasterBrain, målsti afgøres ved eksekvering)
+- [ ] Kombi-map scan/import — `Kombi/` findes ikke i nuværende repo; skal enten importeres
+      eller referencer fjernes fra planer (ejer-beslutning)
+- [ ] Aktivér øvrige runtime-adaptere (kimi, gemini, ollama, cursor, qwen-code)
+- [ ] Adfærds-test-suite med gyldne testcases (open-questions #5–#6)
 
 ---
 
 ## ✅ To-Do (nuværende overordnede intentioner)
 
-- [ ] Løs runtime-modsigelsen formelt (ADR-0002 → Accepted/Rejected)
-- [ ] Reconciliér de to `registry.yaml`-filer
-- [ ] Komplettér de 4 FORELØBIG Banedanmark-subagenter
-- [ ] Udfyld de 6 domæne-skills
+- [x] ~~Løs runtime-modsigelsen formelt~~ (ADR Accepted 2026-07-09; aktiveret 2026-07-11)
+- [x] ~~Reconciliér registry-filerne~~ (4→2: canonical + genereret)
+- [x] ~~Komplettér de 4 FORELØBIG Banedanmark-subagenter~~ (ticket #5, 2026-07-10)
+- [x] ~~Udfyld de 6 domæne-skills~~ (ticket #7, 2026-07-10)
+- [ ] Domænemodning: K-tabel-verifikation mod FB-PDF'er + planned_skills efter behov
+- [ ] Fase G: global promovering (scope-beslutning + eksekvering jf. runbook)
 
 ---
 
 ## 🚀 Changelog (afsluttet arbejde, nyeste først)
 
+### 2026-07-11 — ADR-roadmap A–F FULDFØRT + post-oprydning
+- PR D (generator + --check), PR E (memory-governance), PR F (AKTIVERING, gate GODKENDT,
+  ticket #1 lukket). Role-vs-persona afgjort (begge canonical, 19 rolleagenter migreret).
+- Oprydning: runtime-Brain → genereret pointer; rod-registry + scaffold + Export-Registry.ps1
+  slettet; KØREPLAN + FORBEDRINGSNOTAT arkiveret til `docs/plans/arkiv/`.
+- Fence-regex-buggen fixet (advarsels-baseline 27 falske → 12 ægte).
+- Detaljer: `CHANGELOG.md` (aktive entries) + ADR-multi-runtime (Roadmap).
+
+### 2026-07-09/10 — Beslutning + backlog-lukning
+- ADR Accepted; 48-agent dybdeaudit; skills flyttet til `.agents/skills/` (79);
+  tickets #2–#13 lukket.
+
 ### 2026-07-01 — Nyt PM-dokumentationssystem introduceret
-- Kombination af `docs/kilde/docs` (task-livscyklus, dependency-mapping, audit/QA-gates)
-  og `docs/kilde/project-docs` (primer, systemkort, forbedringsnotat) skabeloner,
-  tilpasset dette repos faktiske indhold og huller.
-- Se `KØREPLAN.md`, `systemkort.md`, `FORBEDRINGSNOTAT.md`, `DEPS.md`, `LESSON.md`,
-  `CHANGELOG.md`, `primer.md`, samt `docs/active/`, `docs/drafts/`, `docs/audit/`,
-  `docs/qa/`, `docs/plans/`.
-
-### 2026-06-17 — `.agents/` erklæret "canonical source target" (Proposed, ikke Accepted)
-- Se `docs/architecture/ADR-multi-runtime-agent-system.md`.
-
-### 2026-06-12 — Runtime-status konsolideret (README-version)
-- `docs/agents/runtime-status-2026-06-12.md` udpeger `.vscode/.codex/` som aktiv.
+- primer/systemkort/DEPS/CHANGELOG/LESSON + docs/active-ticketmodel.
 
 ---
 
-## 🗂️ Mappestatus (rodniveau, udvalgt)
+## 🗂️ Mappestatus (rodniveau, udvalgt — opdateret 2026-07-11)
 
 | Sti | Formål | Status |
 |---|---|---|
-| `.vscode/.codex/` | Påstået aktiv runtime | active (omstridt) |
-| `.agents/` | Påstået fremtidig canonical runtime | active (omstridt) |
-| `Avatar/` | 26+ visuelle agentpersonaer + systemprompts | active |
-| `docs/` | Dokumentation, ADR'er, ny PM-struktur | active |
-| `reports/` | Historiske audits/QA/validering | active (historisk arkiv, ikke aktiveringsbeslutninger) |
+| `.agents/` | CANONICAL source of truth | active |
+| `.vscode/.codex/` | Genereret aktiv runtime | active (genereret — håndredigeres aldrig) |
+| `Avatar/` | 27 visuelle agentpersonaer + systemprompts | active |
+| `docs/` | Dokumentation, ADR'er, PM-struktur, arkiv | active (`docs/active/` tom — alle tickets lukket) |
+| `reports/` | Historiske audits/QA | historisk arkiv |
 | `scripts/` | PowerShell-automatisering (rod) | active |
-| `Task/` | Ældre opgavesporing/roadmap | active — erstattes gradvist af `docs/active/` |
-| `.qodo/`, `.scratch/`, `temp/` | Midlertidigt arbejde | planned for oprydning |
+| `Task/` | Ældre opgavesporing | legacy — erstattet af docs/-ticketmodellen |
+| `temp/` | Parkeret materiale (logopakke = eneste kopi, bevidst) | parkeret |

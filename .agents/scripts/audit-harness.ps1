@@ -192,17 +192,13 @@ if (Test-Path $vendorDir) {
     Write-AuditLine -Severity "INFO" -Message "Vendor-mappe findes: .agents/vendor/"
     Add-ReportLine -Severity "INFO" -Message "Vendor-mappe findes"
 
-    # Tjek at der ikke er redigerede filer i vendor (simpel tjek: ingen .md ændringer)
-    $vendorMdFiles = Get-ChildItem $vendorDir -Recurse -Filter "*.md" -ErrorAction SilentlyContinue
-    if ($vendorMdFiles) {
-        Write-AuditLine -Severity "WARN" -Message "$($vendorMdFiles.Count) .md-fil(er) i vendor/. Overvej at flytte til .agents/skills/"
-        Add-ReportLine -Severity "WARN" -Message "$($vendorMdFiles.Count) .md-filer i vendor/"
-        $warnCount++
-    } else {
-        Write-AuditLine -Severity "OK" -Message "Vendor ser isoleret ud (ingen .md filer)"
-        Add-ReportLine -Severity "OK" -Message "Vendor er isoleret"
-        $okCount++
-    }
+    # Vendor SKAL indeholde upstream .md-filer (read-only vendored kopier, jf.
+    # tre-lags-modellen) — antallet er informativt, ikke en advarsel. Den gamle
+    # WARN her var permanent stoej (nedjusteret til INFO 2026-07-11, hygiejne-spor).
+    $vendorMdFiles = @(Get-ChildItem $vendorDir -Recurse -Filter "*.md" -ErrorAction SilentlyContinue)
+    Write-AuditLine -Severity "INFO" -Message "Vendor indeholder $($vendorMdFiles.Count) .md-fil(er) (read-only upstream; forventet)"
+    Add-ReportLine -Severity "INFO" -Message "Vendor: $($vendorMdFiles.Count) .md-filer (read-only upstream)"
+    $okCount++
 } else {
     Write-AuditLine -Severity "WARN" -Message "Vendor-mappe mangler: .agents/vendor/"
     Add-ReportLine -Severity "WARN" -Message "Vendor-mappe .agents/vendor/ mangler"
@@ -269,11 +265,18 @@ if (-not (Test-Path $reportDir)) {
 
 $reportPath = Join-Path $reportDir "validation_report.md"
 
-# Sikkerhed: backup før overskrivning
+# Sikkerhed: backup før overskrivning + rotation (behold de 5 nyeste .bak;
+# ophobning paa 35+ .bak-filer var et kendt hygiejne-fund 2026-07-11)
 if (Test-Path $reportPath) {
     $backupPath = "$reportPath.bak-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
     Copy-Item $reportPath $backupPath -Force
     Write-AuditLine -Severity "INFO" -Message "Backup oprettet: $backupPath"
+    $oldBaks = @(Get-ChildItem -Path $reportDir -Filter "validation_report.md.bak-*" -File -ErrorAction SilentlyContinue |
+        Sort-Object Name -Descending | Select-Object -Skip 5)
+    foreach ($ob in $oldBaks) { Remove-Item $ob.FullName -Force -Confirm:$false }
+    if ($oldBaks.Count -gt 0) {
+        Write-AuditLine -Severity "INFO" -Message "Backup-rotation: $($oldBaks.Count) gamle .bak fjernet (beholder 5 nyeste)"
+    }
 }
 
 $reportLines | Out-File $reportPath -Encoding UTF8

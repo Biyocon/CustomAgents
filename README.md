@@ -28,15 +28,13 @@ Nyt PM-system, læs i denne rækkefølge:
 
 ---
 
-## Runtime Status (opdateret: 2026-07-09)
+## Runtime Status (opdateret: 2026-07-11 — PR F AKTIVERET)
 
-Se `docs/agents/runtime-status-2026-06-12.md` for den historiske konsoliderede runtime-status. Ældre QA- og valideringsrapporter er historiske snapshots, ikke aktiveringsbeslutninger.
+**Canonical source of truth:** `.agents/` (ADR-multi-runtime Accepted 2026-07-09; roadmap PR A–F fuldført 2026-07-11).
 
-**Canonical source of truth:** `.agents/` (besluttet 2026-07-09, ADR-multi-runtime-agent-system.md = Accepted)
+**Aktiv runtime:** `.vscode/.codex/` — agents-laget (registry + 19 rolleagenter) og Brain-pointeren **GENERERES** fra canonical af `.agents/scripts/generate-runtime.py`. Gate: `docs/qa/RELEASE-runtime-activation-gate.md` = GODKENDT.
 
-**Aktiv runtime (transitional):** `.vscode/.codex/` — for agenter/registry/Brain, indtil generatorer (PR B–F) findes.
-
-**Bemærk hybrid-tilstand:** Skills er allerede flyttet til `.agents/skills/` (permanent, 2026-07-09), så skill-laget er canonical nu. Agenter, roster, registry og Brain kører fortsat fra `.vscode/.codex/` indtil den formelle aktivering (jf. `docs/qa/RELEASE-runtime-activation-gate.md`). `.agents/`-strukturen skal modnes til fuldt canonical via PR B–F; røres agenter/registry/Brain manuelt før da, mistes sync-garantien.
+**Arbejdsregel:** redigér kun `.agents/` → `generate-runtime.py --apply` → bekræft `--check` (exit 0 = i sync). Genererede runtime-filer håndredigeres aldrig. Hybrid-tilstanden er afsluttet — der er ét canonical lag og ét genereret runtime-lag. (Historisk snapshot: `docs/agents/runtime-status-2026-06-12.md` — beskriver pre-aktiverings-tilstanden.)
 
 **Snapshot-branch:** `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`. Den er ikke en backup af lokale ignored/temp/vendor-filer uden for normal Git-tracking.
 
@@ -355,7 +353,7 @@ Scriptet kontrollerer `.agents/`-strukturen:
 ## Regler
 
 - Behandl `AGENTS.md` som **eneste fælles instruktionsfil** for alle LLM'er.
-- Behandl `.vscode/.codex/` som den **eneste lokale kilde til sandhed** for aktiv drift (indtil `.agents/` promoveres).
+- Behandl `.agents/` som **canonical kilde til sandhed**; `.vscode/.codex/agents/` + Brain-pointeren er GENERERET output (`generate-runtime.py`) og håndredigeres aldrig (PR F, 2026-07-11).
 - Brug ikke `.vscode/archive/` som aktiv runtime uden bevidst reaktivering.
 - Slet aldrig filer du ikke selv har oprettet.
 - Opdater `source-map.md` ved nye kilder.

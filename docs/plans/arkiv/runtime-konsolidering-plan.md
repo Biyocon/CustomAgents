@@ -1,7 +1,13 @@
 # Plan: Runtime-konsolidering (.vscode/.codex/ vs. .agents/)
 **Oprettet:** 2026-07-01
-**Ref:** `docs/active/#1-los-runtime-modsigelse.md` | `PROJEKT_PLAN.md` §DESIGN
-**Status:** DESIGN
+**Ref:** `docs/done/#1-los-runtime-modsigelse.md` | `PROJEKT_PLAN.md` §DESIGN
+**Status:** ARKIVERET (var: DESIGN)
+
+> **⚠️ ARKIVERET 2026-07-11 — historisk dokument, vedligeholdes ikke.**
+> Problemet blev løst via ADR-multi-runtime-roadmappen PR A–F (Accepted 2026-07-09,
+> aktiveret 2026-07-11, gate GODKENDT, ticket #1 lukket). **Aktuel sandhed:**
+> `primer.md` + `docs/architecture/ADR-multi-runtime-agent-system.md`.
+> Bevaret som designhistorik; læs ikke som gældende plan.
 
 > Skrevet FØR implementering, fordi denne beslutning påvirker langt flere end 3
 > filer, introducerer en reel arkitekturændring (hvilket lag er "sandheden"), og

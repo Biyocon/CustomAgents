@@ -1,5 +1,10 @@
 # Runtime Status 2026-06-12
 
+> **⚠️ HISTORISK SNAPSHOT — OVERHALET.** Beskriver tilstanden pr. 2026-06-12. Siden da:
+> ADR-multi-runtime Accepted (2026-07-09) og PR F-aktivering gennemført (2026-07-11) —
+> `.agents/` er nu CANONICAL og `.vscode/.codex/agents/` GENERERES derfra. Læs `primer.md`,
+> `systemkort.md` og rod-`AGENTS.md` for aktuel tilstand. Denne fil vedligeholdes ikke.
+
 ## Beslutning
 
 `.vscode/.codex/` er aktiv runtime og eneste lokale kilde til sandhed for drift.

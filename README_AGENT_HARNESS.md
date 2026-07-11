@@ -1,16 +1,21 @@
 # Agent Harness - Kvalifikationsordning Entreprenør
 
+> **OPDATERET 2026-07-11 (PR F):** `.agents/` er CANONICAL source of truth; `.vscode/.codex/agents/`
+> + Brain-pointeren GENERERES af `.agents/scripts/generate-runtime.py`. Beskrivelser af
+> `.vscode/.codex/` som kilde nedenfor er runtime-VISNING, ikke redigeringssted. Redigér altid
+> `.agents/` → `--apply` → `--check` exit 0. Se `systemkort.md` + rod-`AGENTS.md`.
+
 Genbrugelig agent-harness-skabelon til Banedanmark-orienterede projekter og andre professionelle VS Code-agentprojekter.
 
-## Aktiv runtime
+## Aktiv runtime (genereret fra canonical `.agents/`)
 
-- **Runtime-kerne:** `.vscode/.codex/`
+- **Canonical kilde:** `.agents/` (agents, skills, registry, brain)
 - **Prompts:** `.vscode/.codex/prompts/`
-- **Skills:** `.vscode/.codex/skills/`
-- **Subagents:** `.vscode/.codex/agents/`
-- **Brain:** `.vscode/.codex/Brain/`
+- **Skills:** `.agents/skills/` (canonical, 79; flyttet 2026-07-09)
+- **Subagents:** `.vscode/.codex/agents/` (GENERERET)
+- **Brain:** `.agents/brain/` (canonical); `.vscode/.codex/Brain/` = genereret pointer
 - **Delte hooks:** `.vscode/hooks/`
-- **Klientadaptere:** `.vscode/settings/`
+- **Klientadaptere:** `.vscode/settings/` + `.agents/model-adapters/`
 
 ## Struktur
 

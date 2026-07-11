@@ -1,83 +1,75 @@
 # Repo map: CustomAgents multi-runtime architecture
 
-Ledsagedokument til [ADR-multi-runtime-agent-system.md](ADR-multi-runtime-agent-system.md). Kortlægger repoets mapper, registries, runtimes, memory og arkiv samt de åbne beslutninger.
+Ledsagedokument til [ADR-multi-runtime-agent-system.md](ADR-multi-runtime-agent-system.md).
+Kortlægger repoets mapper, registries, runtimes, memory og arkiv samt beslutningsstatus.
+**Opdateret 2026-07-11 efter PR A–F-fuldførelse + post-oprydning.**
 
 ## Current folders
 
-| Folder | Current role | Classification | Future role | Notes |
-|---|---|---|---|---|
-| `.agents/` | model-agnostisk reference (agents, skills, brain, vendor, model-adapters) | source | **canonical source of truth** | skal modnes; har 27 persona-agenter + 79 skills (opdateret 2026-07-09, se note) |
-| `.vscode/.codex/` | aktiv runtime (codex/VS Code) | runtime | **generated runtime** (transitional nu) | 14 rolle-agenter, kun 1 skill (`banebyg`, bevidst) — resten flyttet 2026-07-09, se note; aktiv registry, aktiv Brain |
-| `Avatar/` | persona-prompts (System_Prompt_Agent_*.md) + portrætbilleder | source | canonical persona-input | 27 avatar-backed agenter |
-| `archive/avatarless-agents/` | arkiv for 10 avatarløse agenter | archive | versioneret arkiv | ikke aktiv runtime |
-| `scripts/` | PowerShell-automatisering | tooling | ~~konsolidér til ét script-sæt~~ konsolideret 2026-07-09 | `validate-harness.ps1`/`Validate-AgentHarness.ps1` er nu tynde wrappers om `scripts/Validate-Harness-Unified.ps1` |
-| `.agents/scripts/` | PowerShell-automatisering | tooling | ~~konsolidér til ét script-sæt~~ konsolideret 2026-07-09 | `validate-harness.ps1` er nu tynd wrapper om `scripts/Validate-Harness-Unified.ps1` |
-| `docs/` | dokumentation (agents, architecture, runtime-status) | docs | versioneret dokumentation | denne ADR bor her |
-| root `skills/` | ældre skill-lag (~35 dirs) | legacy | konsolidér/arkivér | forgænger til `.agents/skills/` |
-| `temp/` | midlertidige scripts + scratch | scratch | dels ignored, dels slettes | helper-scripts parkeret |
-| `Funktions- og stillingsbeskrivelser/` | kildemateriale (213+ FB-PDF'er) | source/archive | flyt til kilde/arkiv (tidligere besluttet, ikke eksekveret) | provenans-grundlag for agenter |
-| validation reports | `validation-report.json` (untracked/ignored), `.agents/reports/validation_report.md` (tracked) | generated | generated artifact | JSON allerede untracket via PR #12 |
-| Brain/memory/session-filer | `.vscode/.codex/Brain/session-history.md`, `Brain/memory/**`, `docs/agents/end-of-day-memory-*.md` | runtime-local / snapshot | afgøres i PR E | se Memory map |
+| Folder | Current role | Classification | Notes |
+|---|---|---|---|
+| `.agents/` | **CANONICAL source of truth** (agents, skills, registry, brain, vendor, model-adapters, schema, scripts) | source | 28 personaer + 19 rolleagenter (banedanmark/), 79 skills, 7 adaptere; 0 skema-overtrædelser |
+| `.vscode/.codex/` | aktiv runtime | **generated runtime** | agents-laget (registry + 19 rolleagenter) + Brain-pointer genereres af `generate-runtime.py`; `skills/` har kun `banebyg` (bevidst leftover); `prompts/`, `config.toml`, scripts er runtime-egne |
+| `Avatar/` | persona-prompts (System_Prompt_Agent_*.md) + portrætbilleder | source | 27 avatar-backed personaer, 1:1 med roster |
+| `archive/avatarless-agents/` | arkiv for 10 avatarløse agenter | archive | versioneret, ikke aktiv runtime; eksponeres som `subagents` i genereret registry |
+| `scripts/` | PowerShell-automatisering | tooling | konsolideret om `Validate-Harness-Unified.ps1` (gamle validatorer = wrappers); Export-Registry.ps1 SLETTET 2026-07-11 |
+| `.agents/scripts/` | generator + validering | tooling | `generate-runtime.py` (--apply/--check), `validate-schemas.py`, audit-harness |
+| `docs/` | dokumentation (architecture, qa, audit, done-tickets, plans/arkiv) | docs | `docs/active/` er tom — alle tickets lukket |
+| `temp/` | parkeret materiale | scratch | tracked: Banedanmark logopakke 2021 (eneste kopi, bevidst parkeret) + verify_agent_harness.py (legacy verifikationsscript) |
+| `Funktions- og stillingsbeskrivelser/` | kildemateriale (213+ FB-PDF'er) | source/archive | provenans-grundlag for rolleagenter; flyt-til-arkiv tidligere besluttet, ikke eksekveret (lav prioritet) |
+| validation reports | `.agents/reports/validation_report.md` (tracked snapshot, regenereres af værktøj) | generated | .bak-kopier er gitignored |
 
-## Registry map
+## Registry map (efter oprydning 2026-07-11: 4 → 2)
 
-| Registry | Størrelse/rolle | Fremtid |
-|---|---|---|
-| `registry.yaml` (root) | ældre top-level registry | konsolidér/afvikl |
-| `.agents/registry.yaml` | reference-registry (agents + archived_avatarless_agents + skills) | **ENESTE canonical på sigt** |
-| `.vscode/.codex/registry.yaml` | tom scaffold (~946 B) | afvikl/konsolidér |
-| `.vscode/.codex/agents/registry.yaml` | reel aktiv registry (~29.9 KB) | **generated** fra canonical |
-
-**Beslutning:** kun `.agents/registry.yaml` skal være canonical på sigt. Runtime-registries skal **genereres eller valideres** fra canonical, ikke vedligeholdes i hånden.
+| Registry | Rolle |
+|---|---|
+| `.agents/registry.yaml` | **CANONICAL** (agents + archived + skills + adaptere + brain-paths) |
+| `.vscode/.codex/agents/registry.yaml` | **GENERERET** af `generate-runtime.py` — håndredigeres aldrig |
+| ~~`registry.yaml` (root)~~ | SLETTET (deprecated legacy build-output; git-historik) |
+| ~~`.vscode/.codex/registry.yaml`~~ | SLETTET (deprecated tom scaffold; git-historik) |
 
 ## Runtime map
 
-| Runtime | Indgang | Status i dag | Target |
-|---|---|---|---|
-| **Codex / VS Code** | `AGENTS.md` + `.vscode/.codex/` | ✅ aktiv runtime | generated runtime fra canonical |
-| **Claude** | `CLAUDE.md` (pointer → AGENTS.md) | ⚠️ ad-hoc (`.vscode/claude.md`, `claude.json`) | adapter target — `.claude/` + skills |
-| **Kimi** | adapter-prompt | ⚠️ kun adapter-note + integrations-doc | adapter target |
-| **Ollama** | Modelfile (`SYSTEM` baked in) | ❌ findes ikke | adapter target — Modelfiles |
-| **Gemini / Gemini CLI** | `GEMINI.md` | ⚠️ kun `gemini.json` + adapter-note | adapter target |
+| Runtime | Indgang | Status 2026-07-11 |
+|---|---|---|
+| **Codex / VS Code** | `AGENTS.md` + `.vscode/.codex/` | ✅ aktiv, GENERERET fra canonical (adapter: codex, active) |
+| **Claude Code** | `CLAUDE.md` (pointer) + `.claude/` | adapter `claude-code` (aktiveres som adapter #2 — se model-adapters/) |
+| **Kimi** | `AGENTS.md` + adapter-note | planned |
+| **Ollama** | Modelfile | planned (mest begrænsede runtime) |
+| **Gemini / Gemini CLI** | `GEMINI.md`-target + `gemini.json` | planned |
+| **Cursor / Qwen Code** | `AGENTS.md` | planned (kandidat/sekundær) |
 
 Fælles indgang er `AGENTS.md`; hver runtime får en adapter der mapper canonical → runtime-format.
 
-## Memory map
+## Memory map (afgjort i PR E — se `memory-governance.md`)
 
-| Type | Filer | Behandling |
+| Klasse | Placering | Behandling |
 |---|---|---|
-| **Canonical memory** | `.vscode/.codex/Brain/context.md`, `glossary.md`, `operating-principles.md`, `source-map.md`, `adr/` | varig, kurateret, in-place, versioneret |
-| **Runtime-local memory** | `.vscode/.codex/Brain/session-history.md` (append-log), aktiv Brain working state | runtime-lokal; commit-policy afgøres i PR E |
-| **Session-history** | `session-history.md` | manuel/agent-vedligeholdt append-log med auditværdi |
-| **Snapshots / end-of-day** | `docs/agents/end-of-day-memory-*.md`, `.vscode/.codex/Brain/memory/session-*-audit.md` | audit/handoff-snapshots; versioneres hvis klar auditværdi |
-
-**Skal besluttes i PR E:** om session-history committes periodisk vs holdes lokal; hvor snapshots bor canonical; hvordan canonical Brain deles på tværs af runtimes.
+| **CANONICAL** | `.agents/brain/` | levende sandhed; redigeres in-place; én skribent; UTF-8-vagt |
+| **RUNTIME-LOKAL** | `.vscode/.codex/Brain/AGENTS.md` | KUN genereret pointer (legacy-indholdet landet i canonical og slettet) |
+| **SNAPSHOT** | `.agents/brain/memory/`, `diary/`, `.agents/reports/` | append-only, dateret, redigeres aldrig retroaktivt |
 
 ## Archive map
 
-- `archive/avatarless-agents/` indeholder de **10 arkiverede avatarless agents** (flyttet via `git mv` i PR #14, historik bevaret).
-- Arkivet er **versioneret, men ikke aktiv runtime**.
-- Indeholder spejlet struktur: `Avatar/agents/System_Prompt_Agent_<id>.md` + `.agents/agents/<id>/**` + en README der dokumenterer årsag ("no matching avatar image").
+- `archive/avatarless-agents/`: de 10 arkiverede avatarless agents (git mv, historik bevaret);
+  spejlet struktur + README med årsag.
 
-## Open decisions
+## Beslutningsstatus (tidligere "Open decisions")
 
-- **Agent schema** — canonical struktur for `profile.md` + `skills.yaml` (+ System_Prompt-felt).
-- **Skill schema** — canonical struktur for `SKILL.md`.
-- **Registry reconciliation** — de 4 registries → én canonical.
-- ~~**73 vs 29 skills** — hvilket skill-sæt er sandheden (aktiv `.codex` vs kurateret `.agents`)?~~
-  **Afgjort 2026-07-09:** `.agents/skills` (79 skills) — se `docs/architecture/registry-reconciliation.md`.
-- **Role-agents vs persona-agents** — hvilken agent-model er canonical (rolle `.codex/banedanmark` vs persona `.agents/agents`)? (Stadig åbent — kun skills er afklaret, ikke agents.)
-- **Claude/Ollama adapter implementation** — mangler helt; Codex/Kimi/Gemini findes kun som noter.
-- **Memory governance** — canonical vs runtime-local vs snapshot (PR E).
-- **Vendor/temp/audit handling** — vendor `skills-main`, temp helper-scripts, `MULTI_AGENT_AUDIT_*.md` afventer separat beslutning.
-- **`.vscode/.codex/` burde formentlig ligge i roden som `.codex/`, ikke nested under `.vscode/`** (tilføjet 2026-07-09).
-  `.vscode/` er VS Code's eget workspace-config-rum (settings.json, extensions.json); `.codex/` er
-  Codex-værktøjets egne, editor-uafhængige instruktioner (`config.toml` matcher OpenAI Codex' egen
-  config-konvention, ikke en VS Code-extension). Ingen teknisk grund til nesting fundet — projektet
-  følger allerede det korrekte mønster for `.claude/` (rod-niveau, side om side med `.vscode/`), kun
-  `.codex/` afviger. Ikke rettet nu: `.vscode/.codex/` er i dag den aktive runtime, og alt (det
-  samlede `Validate-Harness-Unified.ps1`, `agent-roster.json`, `registry.yaml`, banedanmark-agenter,
-  `invoke-agent.py`) har stien hardkodet — en ren flytning nu ville knække alt dette uden reel
-  gevinst. Naturligt tidspunkt at rette det: når PR F (generator der bygger runtime-output fra
-  `.agents/`, jf. `ADR-multi-runtime-agent-system.md`) alligevel bygges — generatoren kan lige så
-  nemt outputte til rod-`.codex/` i stedet for `.vscode/.codex/`.
+- ~~Agent schema / Skill schema~~ — **leveret** (PR B, `.agents/schema/`, validérbare, 0 overtrædelser).
+- ~~Registry reconciliation 4→1~~ — **fuldført** (PR D/F + oprydning: 1 canonical + 1 genereret).
+- ~~73 vs 29 skills~~ — afgjort 2026-07-09 (79 canonical).
+- ~~Role-agents vs persona-agents~~ — **afgjort 2026-07-11: BEGGE canonical** (personaer i
+  `.agents/agents/<id>/`, rolleagenter i `.agents/agents/banedanmark/<id>/`, `agent_model: role`).
+- ~~Claude/Ollama adapter-beskrivelser mangler~~ — leveret i PR C (7 skema-konforme adaptere).
+- ~~Memory governance~~ — leveret i PR E (`memory-governance.md`).
+- **Vendor-strategi** (mattpocock track vs gitignore) — fortsat åben; ejer: separat vendor-PR.
+- **System-prompt canonical placering + dedup** (profile.md vs Avatar/) — åben; se registry-reconciliation.
+- **`.vscode/.codex/` vs rod-`.codex/`** — **BESLUTTET 2026-07-11: forbliver under `.vscode/`
+  indtil videre.** Analysen (nedenfor) er fortsat gyldig — rod-`.codex/` er det rigtige mønster —
+  men flytningen udføres IKKE før det er eksternt verificeret hvor Codex-værktøjet faktisk leder
+  efter sin config (kan ikke afgøres indefra repoet). Generatoren gør selve flytningen mekanisk
+  (skift target_paths i codex-adapteren + `--apply`), så beslutningen kan genåbnes når
+  verifikationen foreligger. Oprindelig analyse: `.vscode/` er VS Codes eget config-rum;
+  `.codex/` er editor-uafhængig (config.toml følger OpenAI Codex-konvention); projektet følger
+  allerede rod-mønstret for `.claude/`.
