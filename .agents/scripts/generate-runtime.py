@@ -370,9 +370,15 @@ def main():
 
     if args.check:
         print(f"\n=== RESUME: {'DRIFT (exit 1)' if exit_code else 'SYNC OK (exit 0)'} ===")
-        print("Drift er forventet indtil PR F (runtime-aktivering). Rapporten kvantificerer")
-        print("hvad aktivering vil aendre. Gaten docs/qa/RELEASE-runtime-activation-gate.md")
-        print("maa foerst markeres GODKENDT naar --check giver exit 0 efter bevidst aktivering.")
+        if exit_code:
+            print("DRIFT: live runtime matcher IKKE canonical. Efter PR F-aktivering (2026-07-11)")
+            print("skal --check altid give exit 0. Drift betyder enten at genereret runtime er")
+            print("blevet haandredigeret (forbudt), eller at canonical er aendret uden efterfoelgende")
+            print("'--apply'. Ret ved: redigér kun .agents/ -> koer --apply -> verificér --check exit 0.")
+        else:
+            print("Runtime er i sync med canonical (PR F aktiveret 2026-07-11, gate GODKENDT).")
+            print("Dette er den loebende drift-vagt: redigér kun .agents/, koer --apply, og")
+            print("bekraeft at --check fortsat giver exit 0. Genererede runtime-filer haandredigeres aldrig.")
     return exit_code
 
 
