@@ -11,9 +11,6 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 3. `.agents/brain/open-questions.md` og `.agents/brain/assumptions.md`
 4. `AGENTS.md` (eneste fælles instruktionsfil — IKKE `CLAUDE.md`/`GEMINI.md`/`CODEX.md`/`KIMI.md` som hovedfil, jf. projektets egen regel)
 
-Anvend `.agents/brain/assumptions.md` og `open-questions.md` som varige
-driftsregler før kode/dokumenter rettes.
-
 ---
 
 ## Projekt
@@ -22,68 +19,91 @@ driftsregler før kode/dokumenter rettes.
   AI-agent-infrastruktur til projektstyring, udviklet med Banedanmark som domæne.
 - **Rod:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom`
 - **Stack:** Markdown-baserede agent-profiler/skills + YAML-registries +
-  PowerShell-automatisering. Ingen traditionel applikationskode.
-- **Git:** Tracked repo, snapshot-branch `snapshot/local-pc-2026-06-07` (auditmarkør,
-  ikke backup af ignored/temp/vendor-filer)
+  PowerShell/Python-automatisering. Ingen traditionel applikationskode.
+- **Git:** main synkron med `origin/main` (GitHub Biyocon/CustomAgents), HEAD `d4334c42`
+  pr. 2026-07-11. Working tree rent.
 - **Planlægningsdokumenter:** `KØREPLAN.md`, `PROJEKT_PLAN.md`, `systemkort.md`,
-  `FORBEDRINGSNOTAT.md`, `DEPS.md`, `AGENTS.md`
+  `FORBEDRINGSNOTAT.md`, `DEPS.md`, `AGENTS.md` — alle git-trackede.
 
 ---
 
-## Nuværende fokus (2026-07-02)
+## Arkitektur-tilstand (afgjort 2026-07-09, ADR Accepted)
 
-- Løse P0-modsigelsen om hvilken runtime der er aktiv: `.vscode/.codex/`
-  (README/AGENTS.md, 2026-06-12) vs. `.agents/` (ADR-0002 "Proposed", 2026-06-17)
-- Reconciliere de to divergerende `registry.yaml`-filer (rod vs. `.agents/`)
-- **Lukket siden sidst:** Natlig filkorruptions-hændelse (5 filer) + `.gitattributes`-
-  regression (tabt LFS-regel) — begge genoprettet og verificeret. 3 nye commits:
-  `1ea48fba`, `2be73f02`, `c6a68cce`. Se `LESSON.md` og `docs/drafts/#12`/`#13`.
+- **`.agents/` = CANONICAL source of truth** (ADR-multi-runtime Accepted; se
+  `.agents/brain/decisions/ADR-0003-2026-07-09-multi-runtime-accepted.md`).
+- **`.vscode/.codex/` = transitional aktiv runtime** for agenter/registry/Brain —
+  må IKKE håndredigeres som datakilde; genereres fra canonical ved PR D/F.
+- **Hybrid-tilstand:** skills er ALLEREDE flyttet permanent til `.agents/skills/`
+  (79 skills; `.codex/skills/` har kun `banebyg` tilbage, bevidst).
+- **4 registries, alle med rolle-headers** (#2 lukket): `.agents/registry.yaml`=CANONICAL,
+  `.vscode/.codex/agents/registry.yaml`=aktiv runtime, rod-`registry.yaml`=legacy
+  build-output, `.vscode/.codex/registry.yaml`=død scaffold.
 
-## Verificeret denne session
+## ADR-roadmap-status (PR A–F)
 
-> Kun ting faktisk bekræftet (dokument på disk + krydstjekket mod mindst én anden kilde).
-
-- `.vscode/.codex/` har 272 filer med reelt indhold; agent-profiler 16–79 linjer
-- `.agents/` har 329 filer; agent-profiler 120–178 linjer; kun 1 af 37 agentmapper
-  har fuld filpakke (profile.md+skills.yaml+AGENTS.md+avatar.md)
-- Avatar-mappen indeholder faktisk 27 systemprompts — README's "23 mangler" er forældet
-- To modstridende `validation_report.md`-versioner findes (2026-05-06: 3 PASS/2
-  PARTIAL/4 FAIL; nyere i `.agents/reports/`: 69 OK/0 fejl) uden forklaring på forskellen
-- **(2026-07-01, uafhængig QA)** `invoke-agent.py` læser allerede fra 3 kilder — runtime er de facto hybrid. 10 arkiverede agenter optræder stadig i aktiv roster. `council-chairman` fejlplaceret som arkiveret. 4 Higgsfield-skills uregistreret. 0 af 28 `.agents/agents/`-mapper har fuld filpakke (rettet fra "1 af 37")
-
-## Statusoverblik
-
-| Emne | Status | Resumé |
+| PR | Status | Indhold |
 |---|---|---|
-| Runtime-beslutning | ⬜ | Skal træffes — se `docs/active/#1-los-runtime-modsigelse.md` |
-| Registry-reconciliation | ⬜ | Se `docs/active/#2-reconciliér-registry.md` |
-| Skill-antal | ⬜ | Modstridende tal (29/73/33/188) — se `docs/active/#3-afklar-skill-antal.md` |
-| 4 FORELØBIG subagenter | ⬜ | udbudskonsulent, projektleder, byggeleder-tilsyn, interface-manager |
-| 28 ufuldstændige agentmapper (0/28 komplette) | ⬜ | Se `docs/active/#6-komplettér-agentmapper.md` |
-| Roster/registry-fejl (arkiv-mismatch, council-chairman, Higgsfield) | ⬜ | Se `docs/active/#11-ryd-op-i-roster-og-registry-fejl.md` |
-| QA-sikkerhedsfund | ⬜ | Vendor-gitlink uden `.gitmodules`, tracked API-nøgle-placeholder |
-| CRLF-støj (~180 falske "M") | ✅ | Lukket via `#12` — `.gitattributes` + renormalize, commits `2be73f02`/`c6a68cce` |
-| Filkorruptions-hændelse (5 filer) | ✅ | Genoprettet og committet (`1ea48fba`) — rodårsag stadig åben, se `#13` |
+| A — ADR + repo-map | ✅ | Accepted 2026-07-09 |
+| B — Canonical schema | ✅ | 5 skemaer + `validate-schemas.py`; canonical validerer **0 overtrædelser** |
+| C — Adapter-plan | ✅ 2026-07-11 | 7 skema-konforme adaptere i `.agents/model-adapters/` (codex=active; claude-code/kimi/ollama/gemini/cursor/qwen-code=planned) |
+| D — Export/generering | ⬜ NÆSTE | Generatorer: canonical → runtime-output. Første kode-tunge PR |
+| E — Memory-governance | ⬜ | canonical vs runtime-local vs snapshot |
+| F — Runtime-aktivering | ⬜ | Genererer `.vscode/.codex/` fra canonical; lukker #1 + RELEASE-gate |
+
+## Ticket-status
+
+- **`docs/done/` = 12+ lukkede tickets** (#2–#13 alle lukket 2026-07-09/10).
+- **Kun #1 er åben** (`docs/active/#1-los-runtime-modsigelse.md`): retning afgjort,
+  men fuld aktivering + `docs/qa/RELEASE-runtime-activation-gate.md` afventer PR D–F.
+  Gaten må IKKE markeres GODKENDT før faktisk aktivering.
+
+## Verificeret (2026-07-09→11-sessionerne)
+
+- 48-agent dybdeaudit kørt (39 agenter, rapport: `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`);
+  alle 10 handlingspunkter i §9 er udført.
+- Validérbar canonical: `uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py`
+  → **0 overtrædelser** (registry + 28 profiler + 79 skills + 7 adaptere).
+- Harness-validering: `scripts/Validate-Harness-Unified.ps1` (afløste 3 gamle scripts, som nu er
+  wrappers) → 0 Fejl; ~27 kendte advarsler (fence-regex-bug fra original, dokumenteret; bevidst urørt).
+- 4 FORELØBIG-agenter komplettéret fra FB-PDF'er (**pdftotext virker** — tidligere "PDF kan ikke
+  parses" var manglende værktøj). Ny `bd-bro-og-anlaeg`-agent lukker Bro/Anlæg-dækningshul.
+- Avatar-tal: 27 systemprompts ↔ 27 billeder ↔ 27 roster-entries, 1:1. council-chairman er bevidst
+  roster-undtaget meta-agent (`meta_agent: true` i registry; validator giver INFO, ikke WARN).
+- temp/ ryddet (217→2 filer); rod-`skills/` slettet (reconciled); logopakke flyttet til temp/.
+
+## Kendte, bevidst uløste forhold
+
+- **Fence-regex-buggen** i Validate-Harness-Unified.ps1 Sektion A (nedarvet fra original
+  scripts/validate-harness.ps1): PowerShell-backtick-escaping gør at ```text-tjekket aldrig matcher
+  korrekt → 27 falske "mangler fence"-advarsler. Dokumenteret i commit be03741c; fix er redesign, ikke sket.
+- **Role-vs-persona canonical agent-model** er stadig ÅBEN (ejer: PR D/F). De 14 Banedanmark-rolleagenter
+  bor i `.vscode/.codex/agents/banedanmark/`; de 28 personaer i `.agents/agents/`.
+- `.vscode/.codex/`-placeringen af `.codex` er dokumenteret som åbent punkt i
+  `docs/architecture/repo-map.md` (bør flyttes til rod-`.codex/` via PR F's generator, ikke akut).
+- Kompetencekrav-K-tabeller i alle nye agent-profiler er markeret "verificér mod PDF før
+  operationel/sikkerhedskritisk brug" — bevidst konservativt.
 
 ## Vigtige filer
 
-- `systemkort.md` — autoritativ arkitektur, viser den uafklarede runtime-modstrid
-- `FORBEDRINGSNOTAT.md` — dyb kritik + roadmap
-- `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` — konsolideret fund-liste
-- `docs/architecture/ADR-multi-runtime-agent-system.md` — status: Proposed
-
-## Blokerings
-
-- Runtime-beslutningen (#1) blokerer stort set alt andet strukturelt arbejde —
-  se `DEPS.md` for fuld graf.
+- `docs/architecture/ADR-multi-runtime-agent-system.md` — **Accepted**, roadmap PR A–F med status
+- `docs/architecture/registry-reconciliation.md` — registry-roller + open decisions med ejer-PR
+- `.agents/schema/README.md` — skema-status + conformance
+- `.agents/model-adapters/README.md` — adapter-sæt (PR C)
+- `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md` — dybdeaudit med alle rettelses-annoteringer
 
 ## Næste skridt
 
-1. Gennemfør `docs/active/#1-los-runtime-modsigelse.md`
-2. Gennemfør `docs/active/#2-reconciliér-registry.md`
-3. Kør et samlet valideringsscript og lås metrikkerne (#3, #4)
+1. **PR D — Export/genererings-scripts:** generator der producerer `.vscode/.codex/`-runtime-output
+   fra `.agents/` canonical + sync-validering. Første kode-tunge PR. Adapternes frontmatter
+   (target_paths/prompt_rendering/skill_loading) er designet som generator-input.
+2. Derefter PR E (memory-governance) og PR F (aktivering → lukker #1).
+3. Valgfrit vedligehold: fix fence-regex-buggen; afgør role-vs-persona (kræves senest ved PR D).
 
 ## Noter
 
-- Skriv på dansk i alle projektdokumenter, medmindre tekniske standarder kræver engelsk (projektregel, jf. `README.md`).
-- Slet aldrig filer du ikke selv har oprettet.
+- Skriv på dansk i alle projektdokumenter, medmindre tekniske standarder kræver engelsk.
+- Slet aldrig filer du ikke selv har oprettet. Commit ofte; én skribent ad gangen (OneDrive-lære).
+- Efter HVER filredigering: verificér ren UTF-8 (`chr(0xFFFD) not in` …) — repoet har gentagen
+  mojibake-historik, og flere agenter (inkl. AI) har selv introduceret encoding-fejl undervejs.
+- Adapter-filen for Claude hedder `claude-code.md` — IKKE `claude.md` (Windows case-kollision med
+  CLAUDE.md, som Claude Code auto-læser som instruktioner).

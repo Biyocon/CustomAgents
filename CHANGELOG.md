@@ -21,6 +21,23 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-09→11] Runtime-retning afgjort, backlog lukket, PR A–C leveret
+
+Tre sammenhængende sessioner (48-agent dybdeaudit → oprydning → arkitektur):
+
+- **Beslutning (P0):** ADR-multi-runtime-agent-system.md = **Accepted** (ADR-0003).
+  `.agents/` er canonical; `.vscode/.codex/` transitional runtime. Hybrid: skills
+  allerede flyttet til `.agents/skills/` (79); resten afventer PR D–F.
+- **Backlog:** tickets #2–#13 alle lukket → `docs/done/` (12+). Kun #1 åben
+  (afventer faktisk aktivering, PR F). KØREPLAN's fase-tabel er dermed reelt
+  overhalet for Fase A–C-indhold; ny prioritering = ADR-roadmap PR D→E→F.
+- **DEPS-effekt:** #1's blokeringer (#2/#3/#4/#6) er alle løst — kritisk sti er nu
+  udelukkende PR D→F-kæden.
+- **Leveret:** PR B (skemaer validérbare, canonical = 0 overtrædelser) + PR C
+  (7 runtime-adaptere inkl. de manglende Claude/Ollama). Unified validate-script
+  afløste de 3 gamle. Se git-log 7c090376..d4334c42 for detaljer.
+- **Prioritet fremad:** PR D (export/generering) er næste — første kode-tunge PR.
+
 ### [2026-07-01] Initial: Projektstyrings-dokumentationssystem oprettet
 
 **Type:** tilføjelse
