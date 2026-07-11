@@ -334,6 +334,34 @@ def check_skill_refs(model):
     return findings
 
 
+def check_avatar_prompts(model, root):
+    """Dedup-vagt (system-prompt-placering afgjort 2026-07-12): profile.md's
+    ```text-blok er CANONICAL prompt; Avatar/agents-filen er afledt visnings-/
+    roster-lag og SKAL vaere identisk (normaliseret whitespace)."""
+    findings = []
+    fence = chr(96) * 3
+
+    def block(path):
+        txt = read_text(path)
+        m = re.search(re.escape(fence) + r"text\n(.*?)\n" + re.escape(fence), txt, re.S)
+        return re.sub(r"\s+", " ", m.group(1)).strip() if m else None
+
+    for aid, prof in sorted(model["profiles"].items()):
+        if prof["is_role"]:
+            continue
+        av = os.path.join(root, "Avatar", "agents", f"System_Prompt_Agent_{aid}.md")
+        if not os.path.exists(av):
+            continue  # meta-agenter (council-chairman) har ingen avatar-fil
+        b1, b2 = block(prof["path"]), block(av)
+        if b1 is None:
+            findings.append(f"avatar-sync: '{aid}' mangler ```text-promptblok i canonical profile.md")
+        elif b2 is None:
+            findings.append(f"avatar-sync: '{aid}' mangler ```text-promptblok i Avatar-filen")
+        elif b1 != b2:
+            findings.append(f"avatar-sync: '{aid}' prompt divergerer mellem profile.md (canonical) og Avatar-filen")
+    return findings
+
+
 def check_brain_pointer(root, adapter, adapter_id):
     for tp in adapter.get("target_paths", []):
         live = os.path.join(root, tp.strip("/").replace("/", os.sep), "Brain", "AGENTS.md")
@@ -404,7 +432,8 @@ def main():
             adapter = model["adapters"][aid]
             findings = (check_skill_refs(model) + check_registry(model, root, adapter)
                         + check_role_profiles(model, root, adapter)
-                        + check_brain_pointer(root, adapter, aid))
+                        + check_brain_pointer(root, adapter, aid)
+                        + check_avatar_prompts(model, root))
             if findings:
                 exit_code = 1
                 print(f"[{aid}] SYNC-DRIFT ({len(findings)} fund) — forventet indtil PR F-aktivering:")

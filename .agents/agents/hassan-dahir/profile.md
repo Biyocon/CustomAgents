@@ -35,8 +35,15 @@ skills:
 # ved PR F-forberedelse 2026-07-11 (intention bevaret; bbtr-forbedringsloop er en ANDEN skill).
 planned_skills:
   - bdk-forbedringsloop
+capabilities:
+  - fagprojektledelse
+  - fagtilsyn og kvalitetskontrol
+  - byggeledelse og udførelse
+  - afløbsteknik og kloak
+  - product ownership BaneByg
+  - interface management
+  - tværfaglig koordinering
 ---
-
 # Agent: Hassan Dahir – Technical Interface & Product Owner
 
 ## System Prompt

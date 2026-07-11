@@ -22,8 +22,13 @@ skills:
   - bbtr-risiko-myndighed
   - bbtr-dokumentstyring
   - bbtr-faseopdelt-ydelser
+capabilities:
+  - afløbsteknik
+  - dræn
+  - kapacitet
+  - anlægsgrænseflader
+  - teknisk dokumentation
 ---
-
 # Agent: Hamsa – Afløbsingeniør
 
 ## System Prompt

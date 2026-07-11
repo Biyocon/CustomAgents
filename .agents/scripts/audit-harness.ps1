@@ -122,27 +122,26 @@ if (Test-Path $agentsDir) {
             continue
         }
 
+        # Target-kontrakt (skills.yaml-fold-in udfoert 2026-07-12): skills+capabilities
+        # bor i profile.md-frontmatter; sidecars er afviklet. En tilbagevaerende
+        # skills.yaml er nu en FEJL (genopstaaet dobbeltkilde).
         $profilePath = Join-Path $dir.FullName "profile.md"
         $skillsPath  = Join-Path $dir.FullName "skills.yaml"
 
-        $hasProfile = Test-Path $profilePath
-        $hasSkills  = Test-Path $skillsPath
-
-        if ($hasProfile -and $hasSkills) {
-            Write-AuditLine -Severity "OK" -Message "Agent '$($dir.Name)' har profile.md og skills.yaml"
-            Add-ReportLine -Severity "OK" -Message "Agent '$($dir.Name)' komplet"
-            $okCount++
+        if (Test-Path $profilePath) {
+            if (Test-Path $skillsPath) {
+                Write-AuditLine -Severity "ERROR" -Message "Agent '$($dir.Name)' har genopstaaet skills.yaml-sidecar (deprecated - fold ind i frontmatter)"
+                Add-ReportLine -Severity "ERROR" -Message "Agent '$($dir.Name)': deprecated skills.yaml-sidecar"
+                $errorCount++
+            } else {
+                Write-AuditLine -Severity "OK" -Message "Agent '$($dir.Name)' har profile.md (target-kontrakt)"
+                Add-ReportLine -Severity "OK" -Message "Agent '$($dir.Name)' komplet"
+                $okCount++
+            }
         } else {
-            if (-not $hasProfile) {
-                Write-AuditLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler profile.md"
-                Add-ReportLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler profile.md"
-                $errorCount++
-            }
-            if (-not $hasSkills) {
-                Write-AuditLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler skills.yaml"
-                Add-ReportLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler skills.yaml"
-                $errorCount++
-            }
+            Write-AuditLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler profile.md"
+            Add-ReportLine -Severity "ERROR" -Message "Agent '$($dir.Name)' mangler profile.md"
+            $errorCount++
         }
     }
 } else {

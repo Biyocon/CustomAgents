@@ -24,8 +24,13 @@ skills:
   - bdk-forretningsprojektmodel-gates
   - bdk-statens-it-projektmodel-compliance
   - bdk-gevinststyring-realisering
+capabilities:
+  - PRD
+  - roadmap
+  - acceptkriterier
+  - prioritering
+  - stakeholderbehov
 ---
-
 # Agent: Abdi Asis – Technical Product Manager
 
 ## System Prompt

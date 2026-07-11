@@ -24,8 +24,13 @@ skills:
   - bdk-projektrapportering-frister
   - bdk-styregruppearbejde
   - bbtr-forbedringsloop
+capabilities:
+  - fagpakkeledelse
+  - leveranceplan
+  - risikostyring
+  - fremdriftsrapportering
+  - beslutningsoplæg
 ---
-
 # Agent: Hassan – Fagprojektleder
 
 ## System Prompt

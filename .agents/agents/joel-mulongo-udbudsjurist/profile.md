@@ -22,8 +22,13 @@ skills:
   - bbtr-dokumentstyring
   - bbtr-leverance-mapping
   - to-issues
+capabilities:
+  - processtyring
+  - reviewplan
+  - kravspor
+  - tilbudsdisposition
+  - risikoafklaring
 ---
-
 # Agent: Joël Mulongo – Udbudsjurist
 
 ## System Prompt

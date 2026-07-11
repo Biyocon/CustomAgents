@@ -80,8 +80,17 @@ reduceret fra 4 registries til **2: én canonical + én genereret**.
   Samtidig: 11 manglende persona-`accent`-felter udfyldt fra live registry (felt-merge-resten), og
   '?'-mojibake i ahmad-el-wali/hassan-dahir-capabilities repareret (canonical + agent-map).
   Driftrapporten viser herefter KUN bevidste forskelle.
-- **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
-- **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
+- ~~**system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. Ejer: PR D/F.~~
+  **AFGJORT 2026-07-12:** `profile.md`'s ```text-blok er CANONICAL (jf. agent-profile-skemaets
+  body-kontrakt); Avatar-filen er afledt visnings-/roster-lag. De 12 personaer der manglede
+  promptblok i BEGGE lag er normaliseret til fence-konventionen (samme split som de 15:
+  prompt-narrativ i fence, meta-sektioner efter). Dedup håndhæves af nyt `--check`-tjek
+  (`check_avatar_prompts`): divergens mellem lagene = drift, exit 1. Verificeret: 0 divergens.
+- ~~**skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. Ejer: PR D.~~
+  **UDFØRT 2026-07-12:** capabilities foldet ind i alle 28 persona-frontmatters (skills lå der
+  allerede; 0 sidecar-only-afvigelser fundet); alle 28 `skills.yaml`-sidecars slettet
+  (git-historik bevaret). audit-harness flager nu en genopstået sidecar som FEJL.
+  Rolleagenterne fulgte target-kontrakten fra migreringen 2026-07-11.
 - **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**
 - ~~**Cursor runtime adapter** — adapter-kandidat. Ejer: PR C.~~ **LEVERET 2026-07-11:** `.agents/model-adapters/cursor.md` (status planned, kandidat), afledt af source-library-referencen.
 - ~~**Perplexity / orchestrator governance** — informerer skill-loading/subagent/memory/scheduling. Ejer: PR E.~~

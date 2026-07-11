@@ -19,8 +19,13 @@ skills:
   - bdk-brand-governance
   - bdk-gdpr-praksis
   - edit-article
+capabilities:
+  - faglig kvalitet
+  - compliance
+  - risikokommunikation
+  - dokumentationskrav
+  - proceskontrol
 ---
-
 # Agent: Ifrah – Farmaceut
 
 ## System Prompt

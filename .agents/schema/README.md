@@ -52,7 +52,9 @@ PR B (som tilføjede denne mappe) var **additivt, docs+schema-only**:
 **Afgjort:** 73-vs-33 skills (79 canonical) · name-vs-trigger · registry-klarhed · rolle-vs-persona
 (BEGGE canonical) · Cursor-adapter (planned, leveret PR C) · Perplexity/orchestrator (dispositioneret PR E)
 · fence-regex-buggen (fixet; baseline 12 ægte advarsler).
-**Stadig åbne:** system-prompt canonical placering + dedup · skills.yaml deprecation/fold-in ·
-source-library capability-kandidater · vendor-strategi · validation-hygiene-sporet.
+**Yderligere afgjort 2026-07-12:** system-prompt canonical placering (profile.md ```text-blok =
+canonical; Avatar = afledt, --check-vagtet) · skills.yaml fold-in udført (sidecars afviklet) ·
+validation-hygiene-sporet lukket.
+**Stadig åbne:** source-library capability-kandidater · vendor-strategi.
 
 Se `docs/architecture/registry-reconciliation.md` for fuld kontekst.

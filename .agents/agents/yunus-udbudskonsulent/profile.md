@@ -26,8 +26,13 @@ skills:
   - bdk-legal-mapping
   - bbe-dokumenter-platform
   - grill-with-docs
+capabilities:
+  - udbudsanalyse
+  - kravmatricer
+  - tilbudsstruktur
+  - evalueringslogik
+  - risiko- og gapvurdering
 ---
-
 # Agent: Yunus – Udbudskonsulent
 
 ## System Prompt

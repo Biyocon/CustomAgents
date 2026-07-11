@@ -24,8 +24,13 @@ skills:
   - bbtr-kvalitet-dod
   - bdk-legal-mapping
   - edit-article
+capabilities:
+  - tilbudsoptimering
+  - konkurrentpositionering
+  - kvalitetsbeskrivelser
+  - dokumentationskrav
+  - forbeholdsreview
 ---
-
 # Agent: William – Udbudskonsulent
 
 ## System Prompt

@@ -16,8 +16,12 @@ skills:
   - llm-council
   - karpathy-guidelines
   - shared-quality
+capabilities:
+  - multi-model deliberation
+  - peer review orchestration
+  - answer synthesis
+  - quality cross-validation
 ---
-
 # Agent: Council Chairman
 
 ## System Prompt

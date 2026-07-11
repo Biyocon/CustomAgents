@@ -21,8 +21,13 @@ skills:
   - bbtr-raadgiver-udbud
   - edit-article
   - bbtr-kvalitet-dod
+capabilities:
+  - tilbudstekst
+  - kvalitetssvar
+  - redigering
+  - win themes
+  - evaluerbarhed
 ---
-
 # Agent: Mehtap – Udbudskonsulent
 
 ## System Prompt

@@ -23,8 +23,13 @@ skills:
   - bdk-overvaagning-rapportering
   - bdk-risk-profile
   - bdk-statens-it-projektmodel-compliance
+capabilities:
+  - business case
+  - budgetanalyse
+  - gevinststyring
+  - KPI-opsamling
+  - følsomhedsvurdering
 ---
-
 # Agent: Sibgha – Finance Analytics Specialist
 
 ## System Prompt

@@ -23,8 +23,13 @@ skills:
   - bdk-portefoljekontor-governance
   - bdk-projektindstilling-og-finansiering
   - bbtr-indstilling-writer
+capabilities:
+  - strategisk udbud
+  - ledelsesoplæg
+  - governance
+  - kvalitetssikring
+  - beslutningsnotater
 ---
-
 # Agent: Sabina – Udbudskonsulent / Chefkonsulent
 
 ## System Prompt

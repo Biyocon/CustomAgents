@@ -22,8 +22,13 @@ skills:
   - bbtr-dokumentstyring
   - bbtr-leverance-mapping
   - bdk-legal-mapping
+capabilities:
+  - compliance-matrix
+  - kravsporbarhed
+  - tilbudsgennemgang
+  - dokumentstruktur
+  - risikolog
 ---
-
 # Agent: Mohammad Abdel-latif – Udbudskonsulent
 
 ## System Prompt
