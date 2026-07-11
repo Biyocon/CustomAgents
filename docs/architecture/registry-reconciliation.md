@@ -61,7 +61,7 @@ output, så et regenereret rod-registry forbliver selv-dokumenterende.
 - **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
 - **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
 - **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**
-- **Cursor runtime adapter** — adapter-kandidat. **Ejer: PR C.**
+- ~~**Cursor runtime adapter** — adapter-kandidat. Ejer: PR C.~~ **LEVERET 2026-07-11:** `.agents/model-adapters/cursor.md` (status planned, kandidat), afledt af source-library-referencen.
 - **Perplexity / orchestrator governance** — informerer skill-loading/subagent/memory/scheduling. **Ejer: PR E.**
 - **vendor strategy** — `.agents/vendor/mattpocock-skills/skills-main/**` track vs gitignore. **Ejer: separat vendor-PR** (foreløbig: tracked, committet 2026-07-09).
 - **validation false positives** — `archived_avatarless_agents` flages evt. af validate-harness. **Ejer: validation-hygiene-spor** (council-chairman-delen er allerede løst 2026-07-09).

@@ -9,8 +9,8 @@
   "properties": {
     "id": {
       "type": "string",
-      "enum": ["codex", "claude", "claude-code", "kimi", "ollama", "gemini", "cursor"],
-      "description": "Runtime id. Future candidates (visual/design/research host-runtimes) may extend this enum later — not implemented."
+      "enum": ["codex", "claude", "claude-code", "kimi", "ollama", "gemini", "cursor", "qwen-code"],
+      "description": "Runtime id. Core-targets (ADR): codex, claude-code, kimi, ollama, gemini. Kandidat: cursor. Sekundær: qwen-code (registry secondary_models). Future candidates (visual/design/research host-runtimes) may extend this enum later — not implemented."
     },
     "status": {
       "type": "string",

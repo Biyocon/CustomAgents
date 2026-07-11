@@ -299,14 +299,20 @@ vendor_sources:
   - mattpocock-skills
   - andrej-karpathy-skills
 
+# Runtime-adaptere (PR C 2026-07-11). Se .agents/model-adapters/ + README.
+# Core (ADR): codex(active), claude-code, kimi, ollama, gemini. Kandidat: cursor. Sekundær: qwen-code.
 model_adapters:
   - codex
+  - claude-code
   - kimi
+  - ollama
+  - gemini
+  - cursor
   - qwen-code
-  - gemini-code
 
 validation_commands:
   - "powershell .agents/scripts/validate-harness.ps1"
+  - "uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py"
 
 # Operationelt lag overført fra Sharmake-template (2026-07-01)
 # Se docs/audit/integration-plan-sharmake-patterns.md for detaljer.

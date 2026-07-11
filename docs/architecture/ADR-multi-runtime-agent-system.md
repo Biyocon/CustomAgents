@@ -125,7 +125,7 @@ PR-sekvens (denne ADR er PR A):
 
 - **PR A — ADR + repo map** (denne PR): fastslår target architecture og kortlægger repoet. Kun dokumentation.
 - **PR B — Canonical schema:** ✅ **LEVERET (2026-07-02) + modnet (2026-07-10).** JSON Schema for agent `profile`, `skill`, `registry` (+ archive-entry, runtime-adapter) i `.agents/schema/`. Modning: validérbar via `.agents/scripts/validate-schemas.py`; canonical `.agents/`-lag validerer 0 overtrædelser; status-enum + scope-noter opdateret. Registry-klarhed (4→utvetydige) leveret separat i #2.
-- **PR C — Adapter plan:** README + settings-templates pr. runtime (Claude/Codex/Kimi/Ollama/Gemini).
+- **PR C — Adapter plan:** ✅ **LEVERET (2026-07-11).** 7 skema-konforme adapter-beskrivelser i `.agents/model-adapters/` (codex=active, claude-code, kimi, ollama, gemini, cursor, qwen-code) + README + settings-templates pr. runtime. De tidligere manglende **Claude** og **Ollama** er tilføjet. Adaptere validérbare via `validate-schemas.py` (0 overtrædelser). Ingen generatorer (det er PR D/F). Cursor tilføjet som kandidat fra source-library.
 - **PR D — Export/validation scripts:** generér runtime fra canonical; sync-validation; konsolidér de eksisterende script-sæt.
 - **PR E — Memory governance:** policy for canonical vs runtime-local vs snapshot; landing af memory-artefakter.
 - **PR F — Runtime activation/migration:** generér `.vscode/.codex/` fra canonical; afvikl manuel dobbeltvedligehold. Højeste risiko — kræver rollback-plan og eksplicit aktiveringsbeslutning.

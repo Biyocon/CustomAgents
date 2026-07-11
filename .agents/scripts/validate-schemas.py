@@ -9,9 +9,10 @@ It is ADDITIVE and read-only: it changes no data, only reports. Fixing reported
 gaps is separate follow-up work (canonical conformance).
 
 Scope:
-  - .agents/registry.yaml            vs registry.schema.json
-  - .agents/agents/<id>/profile.md   vs agent-profile.schema.json (frontmatter)
-  - .agents/skills/<id>/SKILL.md      vs skill.schema.json (frontmatter)
+  - .agents/registry.yaml               vs registry.schema.json
+  - .agents/agents/<id>/profile.md      vs agent-profile.schema.json (frontmatter)
+  - .agents/skills/<id>/SKILL.md         vs skill.schema.json (frontmatter)
+  - .agents/model-adapters/<id>.md      vs runtime-adapter.schema.json (frontmatter, PR C)
 
 Run:
   uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py [ROOT]
@@ -100,6 +101,22 @@ def main():
             total_errors += len(errs)
             print(f"    {skill}: {'; '.join(errs)}")
     print(f"    -> {sk_bad} med fejl, {len(skills) - sk_bad} OK")
+
+    # 4. Runtime-adapters (PR C)
+    ad_v = Draft202012Validator(load_schema("runtime-adapter.schema.json"))
+    adapters = sorted(glob.glob(os.path.join(ROOT, ".agents", "model-adapters", "*.md")))
+    adapters = [a for a in adapters if os.path.basename(a).upper() != "README.MD"]
+    ad_bad = 0
+    print(f"\n[runtime-adapters] {len(adapters)} model-adapters")
+    for p in adapters:
+        name = os.path.basename(p)[:-3]
+        fm = frontmatter(p)
+        errs = ["ingen frontmatter"] if fm is None else validate_one(ad_v, fm)
+        if errs:
+            ad_bad += 1
+            total_errors += len(errs)
+            print(f"    {name}: {'; '.join(errs)}")
+    print(f"    -> {ad_bad} med fejl, {len(adapters) - ad_bad} OK")
 
     print(f"\n=== RESUME: {total_errors} skema-overtraedelser i alt ===")
     return 1 if total_errors else 0
