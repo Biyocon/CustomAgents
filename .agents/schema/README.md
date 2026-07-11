@@ -1,11 +1,13 @@
 # Canonical schemas (`.agents/schema/`)
 
-## Status: definerede + VALIDÉRBARE (ikke-gating) — opdateret 2026-07-10 (PR B schema-modning)
+## Status: definerede + validérbare + **GATING** — opdateret 2026-07-12
 
-Disse JSON Schema-filer er **canonical schema-definitioner** for det model-agnostiske `.agents/`-lag.
-Siden 2026-07-10 er de **validérbare** mod den faktiske canonical data via
-`.agents/scripts/validate-schemas.py` — men **ikke gating** (valideringen blokerer ikke commits endnu;
-den er opt-in og kan senere kobles på CI).
+Disse JSON Schema-filer er **canonical schema-definitioner** for det model-agnostiske `.agents/`-lag,
+validérbare via `.agents/scripts/validate-schemas.py`. Siden 2026-07-12 er valideringen **gating**:
+- **Pre-commit:** `.githooks/pre-commit` kører validate-schemas + `generate-runtime.py --check`
+  og blokerer commits ved overtrædelser/drift. Aktivering pr. maskine (engangs):
+  `git config core.hooksPath .githooks`. Bevidst nødudgang: `SKIP_HARNESS_GATE=1`.
+- **CI:** `.github/workflows/validate.yml` kører de samme to vagter på push/PR.
 
 ```bash
 uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py

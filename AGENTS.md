@@ -5,6 +5,7 @@
 - **CANONICAL source of truth:** `.agents/` (ADR-multi-runtime Accepted 2026-07-09; roadmap PR A–F fuldført 2026-07-11)
 - **Aktiv runtime:** `.vscode/.codex/` — agents-laget (registry + rolleagenter) **GENERERES** nu fra canonical af `.agents/scripts/generate-runtime.py`; håndredigér aldrig genererede filer. Gate: `docs/qa/RELEASE-runtime-activation-gate.md` (GODKENDT). Sync-verifikation: `uv run --with pyyaml python .agents/scripts/generate-runtime.py --check` (exit 0 = i sync)
 - Nye agenter/skills/ændringer laves i `.agents/` og aktiveres via generatoren (`--apply`)
+- **Gating (2026-07-12):** pre-commit-hook (`.githooks/pre-commit`; aktivér med `git config core.hooksPath .githooks`) + CI (`.github/workflows/validate.yml`) blokerer commits/push med skema-overtrædelser eller runtime-drift
 - `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`; den er ikke en backup af ignored/temp/vendor-filer uden for normal Git-tracking
 - Vendor-status: `.agents/vendor/mattpocock-skills` er almindeligt tracked vendored copy, ikke submodule; bevar vendor-indhold som read-only upstream-reference
 - `snapshot/local-pc-2026-06-07` er en auditmarkør for tracked Git-state på commit `7626c697afd6b5950cb976b62ee67d97bf35f0ed`; den er ikke en backup af ignored/temp/vendor-filer uden for normal Git-tracking

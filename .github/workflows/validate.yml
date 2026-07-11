@@ -1,0 +1,27 @@
+name: harness-validation
+
+# Gating-validering (step 5, 2026-07-12): samme to vagter som .githooks/pre-commit,
+# koert i CI saa drift heller ikke kan lande via push fra maskiner uden hook.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install jsonschema pyyaml
+
+      - name: Schema conformance (0 violations required)
+        run: python .agents/scripts/validate-schemas.py
+
+      - name: Runtime sync (generate-runtime --check, exit 0 required)
+        run: python .agents/scripts/generate-runtime.py --check

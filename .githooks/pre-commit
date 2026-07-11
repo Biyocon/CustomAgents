@@ -1,0 +1,37 @@
+#!/bin/sh
+# Gating-validering (step 5, 2026-07-12): blokerer commits der bryder canonical-kontrakten.
+# Aktivering (engangs, pr. maskine):  git config core.hooksPath .githooks
+# Nodudgang (brug kun bevidst):       SKIP_HARNESS_GATE=1 git commit ...
+#
+# Koerer:
+#   1) validate-schemas.py       -> 0 skema-overtraedelser kraevet
+#   2) generate-runtime.py --check -> exit 0 (runtime i sync med canonical) kraevet
+
+if [ "$SKIP_HARNESS_GATE" = "1" ]; then
+    echo "[gate] SKIP_HARNESS_GATE=1 - validering sprunget over (bevidst nodudgang)."
+    exit 0
+fi
+
+if ! command -v uv >/dev/null 2>&1; then
+    echo "[gate] FEJL: 'uv' ikke fundet i PATH - kan ikke koere gating-validering."
+    echo "[gate] Installer uv, eller brug SKIP_HARNESS_GATE=1 som bevidst nodudgang."
+    exit 1
+fi
+
+echo "[gate] 1/2 validate-schemas.py ..."
+if ! uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py > /tmp/gate-schemas.log 2>&1; then
+    tail -n 20 /tmp/gate-schemas.log
+    echo "[gate] BLOKERET: skema-overtraedelser i canonical-laget. Ret dem og prov igen."
+    exit 1
+fi
+
+echo "[gate] 2/2 generate-runtime.py --check ..."
+if ! uv run --with pyyaml python .agents/scripts/generate-runtime.py --check > /tmp/gate-check.log 2>&1; then
+    tail -n 30 /tmp/gate-check.log
+    echo "[gate] BLOKERET: runtime er ude af sync med canonical (drift)."
+    echo "[gate] Har du redigeret canonical uden --apply, eller haandredigeret genererede filer?"
+    exit 1
+fi
+
+echo "[gate] OK: 0 skema-overtraedelser + runtime i sync."
+exit 0
