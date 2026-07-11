@@ -34,7 +34,8 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - **`.vscode/.codex/` = transitional aktiv runtime** for agenter/registry/Brain —
   må IKKE håndredigeres som datakilde; genereres fra canonical ved PR D/F.
 - **Hybrid-tilstand:** skills er ALLEREDE flyttet permanent til `.agents/skills/`
-  (79 skills; `.codex/skills/` har kun `banebyg` tilbage, bevidst).
+  (79 skills; `.codex/skills/` har kun `banebyg` tilbage, bevidst). Rolleagenterne er
+  2026-07-11 ligeledes migreret til canonical: `.agents/agents/banedanmark/` (19 stk.).
 - **4 registries, alle med rolle-headers** (#2 lukket): `.agents/registry.yaml`=CANONICAL,
   `.vscode/.codex/agents/registry.yaml`=aktiv runtime, rod-`registry.yaml`=legacy
   build-output, `.vscode/.codex/registry.yaml`=død scaffold.
@@ -62,7 +63,7 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - 48-agent dybdeaudit kørt (39 agenter, rapport: `docs/audit/AUDIT-2026-07-09-48-agent-dybdeaudit.md`);
   alle 10 handlingspunkter i §9 er udført.
 - Validérbar canonical: `uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py`
-  → **0 overtrædelser** (registry + 28 profiler + 79 skills + 7 adaptere).
+  → **0 overtrædelser** (registry + 47 profiler [28 personaer + 19 rolleagenter] + 79 skills + 7 adaptere).
 - Harness-validering: `scripts/Validate-Harness-Unified.ps1` (afløste 3 gamle scripts, som nu er
   wrappers) → 0 Fejl; ~27 kendte advarsler (fence-regex-bug fra original, dokumenteret; bevidst urørt).
 - 4 FORELØBIG-agenter komplettéret fra FB-PDF'er (**pdftotext virker** — tidligere "PDF kan ikke
@@ -76,8 +77,9 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - **Fence-regex-buggen** i Validate-Harness-Unified.ps1 Sektion A (nedarvet fra original
   scripts/validate-harness.ps1): PowerShell-backtick-escaping gør at ```text-tjekket aldrig matcher
   korrekt → 27 falske "mangler fence"-advarsler. Dokumenteret i commit be03741c; fix er redesign, ikke sket.
-- **Role-vs-persona canonical agent-model** er stadig ÅBEN (ejer: PR D/F). De 14 Banedanmark-rolleagenter
-  bor i `.vscode/.codex/agents/banedanmark/`; de 28 personaer i `.agents/agents/`.
+- ~~Role-vs-persona~~ **AFGJORT 2026-07-11: begge modeller er canonical.** 19 rolleagenter migreret til
+  `.agents/agents/banedanmark/` (`agent_model: role`, roster-undtagne); runtime-kopien er generation-target.
+  Restpunkt for PR D sync-validation: 29 dangling skill-refs i de gamle bd-*-profiler (præeksisterende).
 - `.vscode/.codex/`-placeringen af `.codex` er dokumenteret som åbent punkt i
   `docs/architecture/repo-map.md` (bør flyttes til rod-`.codex/` via PR F's generator, ikke akut).
 - Kompetencekrav-K-tabeller i alle nye agent-profiler er markeret "verificér mod PDF før
@@ -97,7 +99,7 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
    fra `.agents/` canonical + sync-validering. Første kode-tunge PR. Adapternes frontmatter
    (target_paths/prompt_rendering/skill_loading) er designet som generator-input.
 2. Derefter PR E (memory-governance) og PR F (aktivering → lukker #1).
-3. Valgfrit vedligehold: fix fence-regex-buggen; afgør role-vs-persona (kræves senest ved PR D).
+3. Valgfrit vedligehold: fix fence-regex-buggen. (Role-vs-persona er afgjort 2026-07-11 — begge i canonical.)
 
 ## Noter
 

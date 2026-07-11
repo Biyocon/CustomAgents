@@ -57,7 +57,15 @@ output, så et regenereret rod-registry forbliver selv-dokumenterende.
 > Ingen af dem blokerer #2's registry-klarhed, som er lukket ovenfor.
 
 - ~~**name vs trigger** — 6 skills har `trigger:` uden `name:`. Ejer: PR B/skill-normalisering.~~ **LØST 2026-07-10:** alle 79 skills har nu `name:` (banebyg fik det; øvrige via .codex-versionerne). Verificeret via validate-schemas.py.
-- **role vs persona** — rolle-baseret (`.codex/agents/banedanmark/`) vs persona (`.agents/agents/`). Hvilken canonical agent-model? **Ejer: PR D/F (runtime-generering).**
+- ~~**role vs persona** — rolle-baseret (`.codex/agents/banedanmark/`) vs persona (`.agents/agents/`). Hvilken canonical agent-model? Ejer: PR D/F (runtime-generering).~~
+  **AFGJORT 2026-07-11 (brugerbeslutning): BEGGE modeller er canonical.** De 19 Banedanmark-rolleagenter
+  (14 `bd-*` + byggeleder-tilsyn/interface-manager/projektleder/udbudskonsulent + interface-manager-banebyg)
+  er migreret til `.agents/agents/banedanmark/<id>/profile.md` (skema-konforme, skills/capabilities i
+  frontmatter jf. target-kontrakt) og registreret i `.agents/registry.yaml` med `agent_model: role` +
+  `roster_exempt: true`. Runtime-kopien i `.vscode/.codex/agents/banedanmark/` er urørt (generation-target,
+  PR D/F). 9 afledte runtime-`skills.yaml` var CP1252 og er normaliseret til UTF-8 i canonical.
+  **Kendt restpunkt (ejer: PR D sync-validation):** de gamle bd-*-profiler refererer 29 skill-id'er der
+  ikke findes i `.agents/skills/` (dangling refs, præeksisterende i runtime-kilden — ikke opfundet væk).
 - **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
 - **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
 - **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**

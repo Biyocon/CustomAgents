@@ -415,7 +415,13 @@ if (Test-Path $agentsAgentsDir) {
             $rosterIdsG = @($rosterG | ForEach-Object { $_.id })
 
             foreach ($dir in $agentDirs) {
-                if ($dir.Name -in $rosterExemptMetaAgents) {
+                if ($dir.Name -eq 'banedanmark') {
+                    # Container for rolleagenter (role-vs-persona afgjort 2026-07-11):
+                    # rolleagenter er roster-undtagne (ingen avatar-persona), jf.
+                    # agent_model: role / roster_exempt i .agents/registry.yaml.
+                    Add-Finding "INFO" "G" "Rolleagent-container 'banedanmark' er bevidst roster-undtaget (agent_model: role)"
+                    Write-Status "INFO" "Rolleagent-container 'banedanmark' er bevidst roster-undtaget (agent_model: role)"
+                } elseif ($dir.Name -in $rosterExemptMetaAgents) {
                     Add-Finding "INFO" "G" "Meta-agent '$($dir.Name)' er bevidst roster-undtaget (avatarløs)"
                     Write-Status "INFO" "Meta-agent '$($dir.Name)' er bevidst roster-undtaget (avatarløs)"
                 } elseif ($dir.Name -notin $rosterIdsG) {

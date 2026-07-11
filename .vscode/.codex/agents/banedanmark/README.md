@@ -1,5 +1,10 @@
 # Banedanmark Agent Profiles
 
+> **CANONICAL FLYTTET (2026-07-11):** Rolleagenterne i dette katalog er migreret til
+> `.agents/agents/banedanmark/<id>/profile.md` (role-vs-persona afgjort: begge modeller
+> i canonical). Dette katalog er nu **generation-target** (PR D/F) ligesom resten af
+> `.vscode/.codex/` — håndredigér IKKE filerne her som datakilde; redigér canonical.
+
 Dette katalog indeholder draft/placeholder agentprofiler for Banedanmark/BaneByg-projekter.
 
 ## Profiloversigt

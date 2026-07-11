@@ -101,6 +101,27 @@ if (Test-Path $agentsDir) {
     Add-ReportLine -Severity "INFO" -Message "$($agentDirs.Count) agent-mapper fundet"
 
     foreach ($dir in $agentDirs) {
+        # banedanmark/ er en CONTAINER for rolleagenter (role-vs-persona afgjort
+        # 2026-07-11: begge modeller i canonical). Rolleagenter har profile.md med
+        # skills i frontmatter (target-kontrakt) - skills.yaml kraeves ikke.
+        if ($dir.Name -eq 'banedanmark') {
+            $roleDirs = Get-ChildItem $dir.FullName -Directory -ErrorAction SilentlyContinue
+            Write-AuditLine -Severity "INFO" -Message "Rolleagent-container 'banedanmark' med $($roleDirs.Count) rolleagenter"
+            Add-ReportLine -Severity "INFO" -Message "Rolleagent-container 'banedanmark': $($roleDirs.Count) rolleagenter"
+            foreach ($rd in $roleDirs) {
+                if (Test-Path (Join-Path $rd.FullName "profile.md")) {
+                    Write-AuditLine -Severity "OK" -Message "Rolleagent 'banedanmark/$($rd.Name)' har profile.md"
+                    Add-ReportLine -Severity "OK" -Message "Rolleagent 'banedanmark/$($rd.Name)' komplet"
+                    $okCount++
+                } else {
+                    Write-AuditLine -Severity "ERROR" -Message "Rolleagent 'banedanmark/$($rd.Name)' mangler profile.md"
+                    Add-ReportLine -Severity "ERROR" -Message "Rolleagent 'banedanmark/$($rd.Name)' mangler profile.md"
+                    $errorCount++
+                }
+            }
+            continue
+        }
+
         $profilePath = Join-Path $dir.FullName "profile.md"
         $skillsPath  = Join-Path $dir.FullName "skills.yaml"
 

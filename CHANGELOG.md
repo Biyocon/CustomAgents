@@ -21,6 +21,18 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] Role-vs-persona AFGJORT: begge agent-modeller i canonical
+
+- **Beslutning (P0, bruger):** Canonical agent-model er hverken kun persona eller kun
+  rolle — **begge**. Personaer bliver i `.agents/agents/<id>/`; de 19 Banedanmark-
+  rolleagenter er migreret til `.agents/agents/banedanmark/<id>/` (`agent_model: role`,
+  roster-undtagne). Runtime-kopien i `.vscode/.codex/agents/banedanmark/` er nu rent
+  generation-target (PR D/F) og må ikke håndredigeres som datakilde.
+- **Effekt på kritisk sti:** sidste design-blokering for PR D (generatoren) er væk;
+  generatoren har nu ét utvetydigt canonical input. Restpunkt overdraget til PR D
+  sync-validation: 29 dangling skill-refs i gamle bd-*-profiler.
+- Detaljer: `docs/architecture/registry-reconciliation.md` (Open decisions → afgjort).
+
 ### [2026-07-09→11] Runtime-retning afgjort, backlog lukket, PR A–C leveret
 
 Tre sammenhængende sessioner (48-agent dybdeaudit → oprydning → arkitektur):

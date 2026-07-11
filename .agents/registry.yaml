@@ -144,6 +144,148 @@ agents:
     meta_agent: true          # avatarløs; roster-undtaget
     roster_exempt: true
 
+  # ------------------------------------------------------------------------
+  # Banedanmark-ROLLEAGENTER (agent_model: role) — migreret til canonical
+  # 2026-07-11 (role-vs-persona AFGJORT: begge modeller i canonical).
+  # Profiler: .agents/agents/banedanmark/<id>/profile.md
+  # Runtime-kopien i .vscode/.codex/agents/banedanmark/ er generation-target
+  # (PR D/F) og må ikke håndredigeres som datakilde.
+  # Rolleagenter er roster-undtagne (ingen avatar-persona; jf. council-chairman).
+  # ------------------------------------------------------------------------
+  - id: bd-bro-og-anlaeg
+    name: Bro- og Anlægsspecialist
+    role: Bro- og Anlægsspecialist (Bro-inspektør m.fl.)
+    category: Bro og Anlæg
+    status: draft
+    agent_model: role
+    roster_exempt: true
+  - id: bd-dokumentcontroller
+    name: Dokumentcontroller
+    role: Dokumentcontroller
+    category: Dokumentstyring og kvalitet
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-fagansvarlig-spor
+    name: Fagansvarlig Spor og Jord/Anlaeg
+    role: Fagansvarlig Spor og Jord/Anlaeg
+    category: Bygge og Anlaeg
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-ibrugtagning
+    name: Ibrugtagning
+    role: Ibrugtagningsansvarlig / Commissioning Manager
+    category: Test og Validering
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-kontraktmanager
+    name: Kontraktmanager
+    role: Contract Manager / Kontraktholder
+    category: Kontrakt og Jura
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-kvalitetsspecialist
+    name: Kvalitetsspecialist
+    role: Kvalitetsspecialist / S&I Koordinator
+    category: Kvalitet og Dokumentation
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-materielkoordinator
+    name: Materielkoordinator
+    role: Materielkoordinator / Rullende Materiel
+    category: Materiel og Teknik
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-miljoekoordinator
+    name: Miljoekoordinator
+    role: Miljoekoordinator
+    category: Sikkerhed og Miljo
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-oekonomi-controller
+    name: Oekonomi-controller
+    role: Oekonomi-controller
+    category: Oekonomi og Forvaltning
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-planlaegningskoordinator
+    name: Planlaegningskoordinator
+    role: Planlaegningskoordinator
+    category: Projekt og Programme
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-projekteringsleder
+    name: Projekteringsleder
+    role: Projekteringsleder / Design Manager
+    category: Projektering og Design
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-sikkerhedskoordinator
+    name: Sikkerhedskoordinator
+    role: Sikkerhedskoordinator / S&I Manager
+    category: Sikkerhed og Beredskab
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-systemadministrator
+    name: Systemadministrator
+    role: Systemadministrator / IT Infrastruktur
+    category: IT og System
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: bd-trafikleder
+    name: Trafikleder
+    role: Trafikleder / Togleder
+    category: Trafik og Drift
+    status: active
+    agent_model: role
+    roster_exempt: true
+  - id: byggeleder-tilsyn
+    name: Byggeleder / Tilsyn
+    role: Byggeleder (Infrastrukturprojekter) med fagtilsyn
+    category: Teknik og udførelse
+    status: draft
+    agent_model: role
+    roster_exempt: true
+  - id: interface-manager
+    name: Interface Manager
+    role: Interface Manager, Project Level
+    category: Projektledelse og grænseflader
+    status: draft
+    agent_model: role
+    roster_exempt: true
+  - id: projektleder
+    name: Projektleder
+    role: Projektleder for infrastrukturprojekter
+    category: Projektledelse og grænseflader
+    status: draft
+    agent_model: role
+    roster_exempt: true
+  - id: udbudskonsulent
+    name: Udbudskonsulent
+    role: Udbudskonsulent
+    category: Udbud og kontrakt
+    status: draft
+    agent_model: role
+    roster_exempt: true
+  - id: interface-manager-banebyg
+    name: Interface Manager
+    role: Interface Manager
+    category: Banedanmark / BaneByg
+    status: draft
+    agent_model: role
+    roster_exempt: true
+
 # Arkiverede avatarløse agenter — flyttet til archive/avatarless-agents/.
 # Årsag: intet matchende avatar-billede. Indhold + historik bevaret.
 # Aktiv runtime (.vscode/.codex/**) er bevidst urørt; projekteringsleder har en separat aktiv runtime-kopi der ikke arkiveres.

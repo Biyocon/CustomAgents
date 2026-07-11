@@ -4,7 +4,7 @@
 > gaeldende valideringsrapport, auto-genereret ved hver koersel. Den aeldre
 > `reports/validation_report.md` (2026-05-06) er markeret HISTORISK/SUPERSEDED.
 
-Genereret: 2026-07-11 14:35:31
+Genereret: 2026-07-11 16:13:27
 Projektrod: C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom
 
 Genereret af scripts/Validate-Harness-Unified.ps1 - konsolidering af
@@ -15,7 +15,7 @@ hvilken sektion (A-H) der stammer fra hvilket oprindeligt script.
 ## Resultat
 
 - OK: 109
-- Info: 8
+- Info: 9
 - Advarsler: 27
 - Fejl: 0
 - Kritiske: 0

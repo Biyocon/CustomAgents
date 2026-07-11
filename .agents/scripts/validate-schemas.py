@@ -72,9 +72,13 @@ def main():
     for e in reg_errs:
         print(f"    - {e}")
 
-    # 2. Agent profiles
+    # 2. Agent profiles — personas at .agents/agents/<id>/ plus role agents at
+    # .agents/agents/banedanmark/<id>/ (role-vs-persona afgjort 2026-07-11: begge canonical)
     ap_v = Draft202012Validator(load_schema("agent-profile.schema.json"))
-    profiles = sorted(glob.glob(os.path.join(ROOT, ".agents", "agents", "*", "profile.md")))
+    profiles = sorted(
+        glob.glob(os.path.join(ROOT, ".agents", "agents", "*", "profile.md"))
+        + glob.glob(os.path.join(ROOT, ".agents", "agents", "banedanmark", "*", "profile.md"))
+    )
     ap_bad = 0
     print(f"\n[agent-profiler] {len(profiles)} profile.md")
     for p in profiles:
