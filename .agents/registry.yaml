@@ -455,6 +455,8 @@ model_adapters:
 validation_commands:
   - "powershell .agents/scripts/validate-harness.ps1"
   - "uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py"
+  # PR D sync-validation: exit 1 = drift mod live runtime (forventet indtil PR F-aktivering)
+  - "uv run --with pyyaml python .agents/scripts/generate-runtime.py --check"
 
 # Operationelt lag overført fra Sharmake-template (2026-07-01)
 # Se docs/audit/integration-plan-sharmake-patterns.md for detaljer.

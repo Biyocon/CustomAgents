@@ -47,9 +47,9 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 | A — ADR + repo-map | ✅ | Accepted 2026-07-09 |
 | B — Canonical schema | ✅ | 5 skemaer + `validate-schemas.py`; canonical validerer **0 overtrædelser** |
 | C — Adapter-plan | ✅ 2026-07-11 | 7 skema-konforme adaptere i `.agents/model-adapters/` (codex=active; claude-code/kimi/ollama/gemini/cursor/qwen-code=planned) |
-| D — Export/generering | ⬜ NÆSTE | Generatorer: canonical → runtime-output. Første kode-tunge PR |
-| E — Memory-governance | ⬜ | canonical vs runtime-local vs snapshot |
-| F — Runtime-aktivering | ⬜ | Genererer `.vscode/.codex/` fra canonical; lukker #1 + RELEASE-gate |
+| D — Export/generering | ✅ 2026-07-11 | `generate-runtime.py`: canonical → build-output + `--check` sync-drift |
+| E — Memory-governance | ⬜ NÆSTE | canonical vs runtime-local vs snapshot |
+| F — Runtime-aktivering | ⬜ | Anvender PR D-generatoren på `.vscode/.codex/`; lukker #1 + RELEASE-gate |
 
 ## Ticket-status
 
@@ -95,11 +95,13 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 ## Næste skridt
 
-1. **PR D — Export/genererings-scripts:** generator der producerer `.vscode/.codex/`-runtime-output
-   fra `.agents/` canonical + sync-validering. Første kode-tunge PR. Adapternes frontmatter
-   (target_paths/prompt_rendering/skill_loading) er designet som generator-input.
-2. Derefter PR E (memory-governance) og PR F (aktivering → lukker #1).
-3. Valgfrit vedligehold: fix fence-regex-buggen. (Role-vs-persona er afgjort 2026-07-11 — begge i canonical.)
+1. **PR E — Memory-governance:** policy for canonical vs runtime-local vs snapshot Brain/memory.
+2. **PR F — Runtime-aktivering:** anvend `generate-runtime.py`-output på `.vscode/.codex/` (kræver
+   eksplicit aktiveringsbeslutning + rollback-plan; gate: `--check` → exit 0). Lukker #1.
+3. Kendt drift til PR F (fra `--check` 2026-07-11): 20 agenter kun canonical / 10 kun live (arkiverede),
+   12 personaer mangler `accent` i canonical (felt-merge), 1 skill kun i live (`bdk-forbedringsloop`),
+   29 dangling skill-refs i bd-*-profiler.
+4. Valgfrit vedligehold: fix fence-regex-buggen. (Role-vs-persona afgjort 2026-07-11 — begge i canonical.)
 
 ## Noter
 

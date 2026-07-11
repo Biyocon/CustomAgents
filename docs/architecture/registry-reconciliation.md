@@ -24,7 +24,10 @@ Definere vejen fra det nuværende fragmenterede registry-landskab (4 registries,
 ## Reconciliation-strategi (4 → 1)
 1. ~~**PR B (nu):** definér schemas + denne plan. Ingen data rørt.~~ **LEVERET + modnet 2026-07-10:** de 5 schemas findes (2026-07-02), er nu *validérbare* via `.agents/scripts/validate-schemas.py`, og det canonical `.agents/`-lag validerer 100% rent (0 overtrædelser). Se `.agents/schema/README.md`.
 2. **Senere:** udvid `.agents/registry.yaml` til canonical-schema (felt-merge fra runtime). Stadig ingen runtime-ændring.
-3. **PR D:** export/validation-scripts der *genererer* runtime-registry fra canonical + validerer sync.
+3. ~~**PR D:** export/validation-scripts der *genererer* runtime-registry fra canonical + validerer sync.~~
+   **LEVERET 2026-07-11:** `.agents/scripts/generate-runtime.py` (generering til `.agents/build/runtime/<adapter>/`
+   + `--check`-driftrapport mod live runtime). Live runtime stadig urørt; aktivering = PR F.
+   `--check` kvantificerer også trin 2's felt-merge-rest (12 personaer mangler `accent` i canonical).
 4. **PR F:** runtime activation — `.vscode/.codex/` genereres fra canonical; manuel dobbeltvedligehold afvikles; root + scaffold-registry deprecates formelt.
 
 Ingen big-bang. Aktiv runtime brydes ikke før generator + validation findes og en eksplicit aktiveringsbeslutning er taget.

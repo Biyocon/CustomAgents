@@ -21,6 +21,16 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] PR D LEVERET: runtime-generator + sync-validering
+
+- **Roadmap-status:** PR D (export/generering) er leveret samme dag som role-vs-persona-
+  beslutningen. `generate-runtime.py` producerer runtime-output fra canonical til build-dir
+  og `--check` giver driftrapport mod live runtime (exit 1 ved drift = aktiverings-gate).
+  Live runtime er urørt.
+- **Prioritet fremad:** PR E (memory-governance) er næste; PR F (aktivering) er nu rent
+  "anvend generatorens output + godkend gate" — driftbilledet er kvantificeret på forhånd.
+- Detaljer: ADR-multi-runtime (Roadmap, PR D) + registry-reconciliation trin 3.
+
 ### [2026-07-11] Role-vs-persona AFGJORT: begge agent-modeller i canonical
 
 - **Beslutning (P0, bruger):** Canonical agent-model er hverken kun persona eller kun
