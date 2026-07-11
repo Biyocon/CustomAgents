@@ -21,6 +21,15 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
 
 ## Aktive entries
 
+### [2026-07-11] KØREPLAN + FORBEDRINGSNOTAT ARKIVERET
+
+- **Beslutning (ejer, eksplicit ordre):** de to plandokumenter er overhalet af den fuldførte
+  ADR-multi-runtime-roadmap (PR A–F) og flyttet til `docs/plans/arkiv/` (git-rename → historik
+  bevaret). Hver fik en ARKIVERET-banner der peger på `primer.md` + ADR'en som aktuel sandhed.
+- **Reference-oprydning:** README-læserækkefølgen renummereret (fjernet fra aktiv sekvens +
+  arkiv-note; rettede samtidig en dubleret overskriftslinje) og primer's planlægningsdok-liste
+  opdateret. Historiske CHANGELOG-entries, audit-snapshots og `docs/kilde/`-skabeloner bevidst urørt.
+
 ### [2026-07-11] Post-PR F-oprydning UDFØRT (gate-issues P2+P3 lukket)
 
 - **Beslutning (ejer, eksplicit ordre):** den valgfrie oprydning fra gaten er udført.
@@ -43,7 +52,7 @@ docs/plans/changelog-arkiv-{{ÅRSTAL}}.md og behold kun de seneste 10 her.
   README/AGENTS.md/systemkort opdateret konsistent (ingen modstrid tilbage).
 - **Prioritet fremad:** ADR-roadmappen er FULDFØRT. Tilbageværende er valgfrit:
   Brain-fysisk-erstatning, deprecated-filsletning, `.codex`-rodflytning, fence-regex-fix.
-  KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet — arkivér/opdatér ved lejlighed.
+  KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet — **arkiveret 2026-07-11 → `docs/plans/arkiv/`.**
 
 ### [2026-07-11] PR E LEVERET: memory-governance — runtime-Brain frosset
 

@@ -12,19 +12,19 @@
 
 Nyt PM-system, læs i denne rækkefølge:
 
-Nyt PM-system, læs i denne rækkefølge:
-
 1. `primer.md` — kort statuskondensat, læses ved hver sessionsstart
 2. `systemkort.md` — autoritativ arkitektur inkl. runtime-status (modstriden er afgjort 2026-07-09)
-3. `FORBEDRINGSNOTAT.md` — dyb kritik + samlet roadmap
-4. `KØREPLAN.md` — faseopdelt implementeringsplan (Fase A–G)
-5. `PROJEKT_PLAN.md` — idébank, designbeslutninger, ønskeliste
-6. `DEPS.md` — afhængigheder og kritisk sti mellem tasks
-7. `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` — konsolideret fund-liste
-8. `docs/active/`, `docs/drafts/`, `docs/done/` — sporede opgaver med acceptkriterier
-9. `docs/qa/RELEASE-runtime-activation-gate.md` — gate før runtime-beslutning aktiveres
-10. `docs/plans/runtime-konsolidering-plan.md` — løsningsdesign for P0-modstriden
-11. `LESSON.md`, `CHANGELOG.md` — retrospektiv og ændringslog for selve PM-systemet
+3. `PROJEKT_PLAN.md` — idébank, designbeslutninger, ønskeliste
+4. `DEPS.md` — afhængigheder og kritisk sti mellem tasks
+5. `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md` — konsolideret fund-liste
+6. `docs/active/`, `docs/drafts/`, `docs/done/` — sporede opgaver med acceptkriterier
+7. `docs/qa/RELEASE-runtime-activation-gate.md` — gate før runtime-beslutning aktiveres
+8. `docs/plans/runtime-konsolidering-plan.md` — løsningsdesign for P0-modstriden
+9. `LESSON.md`, `CHANGELOG.md` — retrospektiv og ændringslog for selve PM-systemet
+
+> **Arkiveret 2026-07-11:** `FORBEDRINGSNOTAT.md` (dyb kritik + roadmap) og `KØREPLAN.md`
+> (faseplan A–G) er overhalet af den fuldførte ADR-roadmap PR A–F og flyttet til
+> `docs/plans/arkiv/`. Bevaret som historik; ikke længere del af den aktive læserækkefølge.
 
 ---
 

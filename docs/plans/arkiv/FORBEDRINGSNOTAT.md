@@ -1,5 +1,10 @@
 # Forbedringsnotat: AgentSkills — Custom AI Agent Harness
 
+> **⚠️ ARKIVERET 2026-07-11 — historisk dokument, vedligeholdes ikke.**
+> Kritikken og roadmap'et er dispositioneret via den fuldførte ADR-multi-runtime-roadmap (PR A–F, 2026-07-11).
+> **Aktuel sandhed:** `primer.md` + `docs/architecture/ADR-multi-runtime-agent-system.md`.
+> Bevaret som historik; læs ikke som gældende plan.
+
 **Dato:** 2026-07-01
 **Ref:** `systemkort.md` | `docs/architecture/ADR-multi-runtime-agent-system.md` |
 `docs/audit/AUDIT-2026-07-01-runtime-og-registry.md`

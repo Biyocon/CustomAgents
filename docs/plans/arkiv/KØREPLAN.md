@@ -1,5 +1,10 @@
 # KØREPLAN: AgentSkills — Custom AI Agent Harness — Implementeringsplan
 
+> **⚠️ ARKIVERET 2026-07-11 — historisk dokument, vedligeholdes ikke.**
+> Fase-planen (A–G) er overhalet af den fuldførte ADR-multi-runtime-roadmap (PR A–F, 2026-07-11).
+> **Aktuel sandhed:** `primer.md` + `docs/architecture/ADR-multi-runtime-agent-system.md`.
+> Bevaret som historik; læs ikke som gældende plan.
+
 > Den sekventielle udførelsesplan. Svarer på "hvad gør vi nu, og i hvilken rækkefølge?"
 > Hvorfor'et lever i `PROJEKT_PLAN.md`. Læs kun den relevante fase/sprint ved
 > sessionstart — aldrig hele filen. `primer.md` er kondensatet der peger hertil.

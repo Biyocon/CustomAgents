@@ -22,8 +22,9 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
   PowerShell/Python-automatisering. Ingen traditionel applikationskode.
 - **Git:** main synkron med `origin/main` (GitHub Biyocon/CustomAgents), HEAD `904680c0`
   pr. 2026-07-11. Working tree rent. (PR F aktiveret i `509ffa2d`; verificeret + footer-fix i `817e3c31`.)
-- **Planlægningsdokumenter:** `KØREPLAN.md`, `PROJEKT_PLAN.md`, `systemkort.md`,
-  `FORBEDRINGSNOTAT.md`, `DEPS.md`, `AGENTS.md` — alle git-trackede.
+- **Planlægningsdokumenter:** `PROJEKT_PLAN.md`, `systemkort.md`, `DEPS.md`, `AGENTS.md`
+  — alle git-trackede. (`KØREPLAN.md` + `FORBEDRINGSNOTAT.md` er ARKIVERET 2026-07-11 til
+  `docs/plans/arkiv/` — overhalet af den fuldførte ADR-roadmap A–F; historik, ikke aktiv plan.)
 
 ---
 
@@ -110,8 +111,7 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
    Tilbage af valgfrit: evt. flyt af `.codex` til rod (repo-map.md) — bevidst IKKE gjort
    (afhænger af hvor det eksterne Codex-værktøj leder; egen beslutning).
 3. Valgfrit vedligehold: fix fence-regex-buggen (27 falske advarsler); opret `planned_skills`
-   on-demand (30 refs venter); KØREPLAN/FORBEDRINGSNOTAT er reelt overhalet af A–F — kunne
-   arkiveres/opdateres ved lejlighed.
+   on-demand (30 refs venter). (KØREPLAN/FORBEDRINGSNOTAT ARKIVERET 2026-07-11 → `docs/plans/arkiv/`.)
 
 ## Noter
 
