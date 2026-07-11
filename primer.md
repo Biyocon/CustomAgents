@@ -20,8 +20,8 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - **Rod:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom`
 - **Stack:** Markdown-baserede agent-profiler/skills + YAML-registries +
   PowerShell/Python-automatisering. Ingen traditionel applikationskode.
-- **Git:** main synkron med `origin/main` (GitHub Biyocon/CustomAgents), HEAD `d4334c42`
-  pr. 2026-07-11. Working tree rent.
+- **Git:** main synkron med `origin/main` (GitHub Biyocon/CustomAgents), HEAD `904680c0`
+  pr. 2026-07-11. Working tree rent. (PR F aktiveret i `509ffa2d`; verificeret + footer-fix i `817e3c31`.)
 - **Planlægningsdokumenter:** `KØREPLAN.md`, `PROJEKT_PLAN.md`, `systemkort.md`,
   `FORBEDRINGSNOTAT.md`, `DEPS.md`, `AGENTS.md` — alle git-trackede.
 
@@ -51,6 +51,13 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 | D — Export/generering | ✅ 2026-07-11 | `generate-runtime.py`: canonical → build-output + `--check` sync-drift |
 | E — Memory-governance | ✅ 2026-07-11 | `docs/architecture/memory-governance.md`; runtime-Brain FROSSET; 3 artefakter landet |
 | F — Runtime-aktivering | ✅ 2026-07-11 | `--apply` udført; `--check` exit 0; gate GODKENDT; #1 lukket. **ROADMAP FULDFØRT** |
+
+> **Roadmap A–F bekræftet fuldført + uafhængigt verificeret 2026-07-11** (ikke bare påstået): `--check`
+> = SYNC OK/exit 0 reproducerbart · `validate-schemas.py` = 0 overtrædelser (47 profiler + 79 skills + 7
+> adaptere) · harness = 0 fejl/27 kendte advarsler · gate = GODKENDT · `docs/active/` tom. Post-verifikation
+> rettet én stale hjælpetekst: `generate-runtime.py --check`-footeren sagde stadig "Drift er forventet indtil
+> PR F" — nu betinget og korrekt (SYNC OK → drift-vagt-rolle; DRIFT → håndredigeret runtime/manglende `--apply`).
+> Commit `817e3c31`.
 
 ## Ticket-status
 
