@@ -332,9 +332,9 @@ Scriptet kontrollerer `.agents/`-strukturen:
 
 | Manglende element | Status | Næste handling |
 |-------------------|--------|----------------|
-| 23 avatar-systemprompts | ⏳ | Opret `System_Prompt_Agent_<Navn>_<Rolle>.txt` for alle 26+ avatarer |
-| 4 agenter er FORELØBIG | ⏳ | `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` — afventer kilde-materiale |
-| 6 domæne-skills er FORELØBIG | ⏳ | `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality` — struktur oprettet, indhold afventer |
+| ~~23 avatar-systemprompts~~ | ✅ 2026-07-10 (#8) | Forældet tal: 27 systemprompts + 27 avatar-billeder findes, 1:1-match med roster. 10 avatarløse arkiveret (PR #14). Intet hul. |
+| ~~4 agenter er FORELØBIG~~ | ✅ 2026-07-10 (#5) | `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` komplettéret fra FB-PDF'er (draft, 86–101 linjer) |
+| ~~6 domæne-skills er FORELØBIG~~ | ✅ 2026-07-10 (#7) | 5 fik indhold via skills-flytning; `banebyg` omskrevet til router-skill |
 | Kombi-map scan | ⏳ | `Kombi/` findes ikke i nuværende repo — skal importeres eller scannes fra alternativ sti |
 | Global promovering | ⏳ | Flyt færdigt harness til `C:\Users\Biyocon` som skabelon |
 

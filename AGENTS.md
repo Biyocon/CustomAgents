@@ -126,9 +126,9 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 
 ### Kendte mangler
 
-- **23 avatarer mangler** — 11 Banedanmark-roller + 12 IQRA-agenter (dokumenteret i `reports/inventory/`)
+- ~~**23 avatarer mangler** — 11 Banedanmark-roller + 12 IQRA-agenter~~ **Rettet 2026-07-10 (ticket #8):** forældet tal. Faktisk optælling: `Avatar/agents/` har **27 systemprompts** og `Avatar/` har **27 avatar-billeder**, og agent-roster.json's 27 entries har alle et avatar-felt (1:1-match). De 10 avatarløse agenter blev arkiveret til `archive/avatarless-agents/` (PR #14) — ikke "manglende". Ingen reelt avatar-hul. (Optælling: `ls Avatar/agents/System_Prompt_Agent_*.md | wc -l` = 27.)
 - ~~**4 agenter er FORELØBIG** — `udbudskonsulent`, `projektleder`, `byggeleder-tilsyn`, `interface-manager` — afventer kilde-materiale~~ **Komplettéret 2026-07-10 (ticket #5):** alle 4 opgraderet til DRAFT med profiler (86–101 linjer) grundet i Banedanmark-funktionsbeskrivelser (FB-PDF'er); `udbudskonsulent` har ingen dedikeret FB-PDF og er grundet i IQRA-persona-laget + tilstødende kontraktroller (dokumenteret i profilen).
-- **6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality` — struktur oprettet, indhold afventer kilde-dokumenter
+- ~~**6 domæne-skills er FORELØBIG** — `banebyg`, `bdk-brand-governance`, `bdk-gdpr-praksis`, `bdk-legal-mapping`, `shared-docx`, `shared-quality`~~ **Løst 2026-07-10 (ticket #7):** 5 fik reelt indhold via skills-flytningen (2026-07-09); `banebyg` omskrevet til router-skill der peger på de dedikerede detalje-skills.
 - **Vendor-strategi er afklaret** — `.agents/vendor/mattpocock-skills` er vendored copy; fremtidige upstream-opdateringer skal ske i separat vendor-PR
 
 ### Migrationstilstand (opdateret 2026-07-09)
