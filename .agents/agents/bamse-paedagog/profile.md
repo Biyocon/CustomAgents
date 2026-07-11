@@ -1,6 +1,7 @@
 ﻿---
 id: bamse-paedagog
 avatar: Avatar/2_Avatar_Agent_Bamse_Pædagog.png
+accent: amber
 status: active
 skills:
   - karpathy-guidelines

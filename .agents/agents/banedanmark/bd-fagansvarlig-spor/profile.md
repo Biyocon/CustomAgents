@@ -13,11 +13,6 @@ primary_models:
 skills:
 - karpathy-guidelines
 - shared-quality
-- bdk-banebygge-regler
-- bdk-bbr-overblik
-- bbtr-anlaeg
-- bbtr-spor
-- bbtr-sikkerhed-byggeplads
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
 capabilities:
@@ -28,6 +23,14 @@ capabilities:
   - fagtilsyn
   - TSI-compliance
   - driftskompatibilitet
+# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
+# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
+planned_skills:
+  - bdk-banebygge-regler
+  - bdk-bbr-overblik
+  - bbtr-anlaeg
+  - bbtr-spor
+  - bbtr-sikkerhed-byggeplads
 ---
 
 # Agent: Fagansvarlig Spor og Jord/Anlaeg

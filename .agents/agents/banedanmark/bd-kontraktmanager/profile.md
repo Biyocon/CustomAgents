@@ -13,11 +13,8 @@ primary_models:
 skills:
 - karpathy-guidelines
 - shared-quality
-- bbtr-kontraktstyring
-- bbtr-udbud-og-evaluering
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
-- bdk-jura-og-compliance
 - bdk-brand-governance
 capabilities:
   - kontraktadministration
@@ -26,6 +23,12 @@ capabilities:
   - leverandøropfølgning
   - eskalation og disputes
   - økonomisk kontraktkontrol
+# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
+# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
+planned_skills:
+  - bbtr-kontraktstyring
+  - bbtr-udbud-og-evaluering
+  - bdk-jura-og-compliance
 ---
 
 # Agent: Kontraktmanager

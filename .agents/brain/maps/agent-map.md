@@ -142,7 +142,7 @@
   - sourcing- og procurement-strategi
   - contract management framework
   - interface management model
-  - governance og beslutningsopl?g
+  - governance og beslutningsoplæg
 
 ### ali-jobraadgiver
 
@@ -406,11 +406,11 @@
   - bdk-forbedringsloop
   - fagprojektledelse
   - fagtilsyn og kvalitetskontrol
-  - byggeledelse og udf?relse
-  - afl?bsteknik og kloak
+  - byggeledelse og udførelse
+  - afløbsteknik og kloak
   - product ownership BaneByg
   - interface management
-  - tv?rfaglig koordinering
+  - tværfaglig koordinering
 
 ### hassan-fagprojektleder
 

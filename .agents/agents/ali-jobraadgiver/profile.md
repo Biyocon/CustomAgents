@@ -4,6 +4,7 @@ id: ali-jobraadgiver
 name: Ali
 category: Karriere og rådgivning
 role: Jobrådgiver
+accent: sky
 status: active
 skills:
   - karpathy-guidelines

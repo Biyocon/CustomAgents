@@ -16,13 +16,16 @@ skills:
   - bdk-trafikale-regler-anvendelse
   - bdk-projektrapportering-frister
   - bdk-styregruppearbejde
+
+# planned_skills: aldrig oprettet som skill — flyttet fra skills: 2026-07-11, jf. profile.md
+planned_skills:
   - bdk-forbedringsloop
 
 capabilities:
   - fagprojektledelse
   - fagtilsyn og kvalitetskontrol
-  - byggeledelse og udf?relse
-  - afl?bsteknik og kloak
+  - byggeledelse og udførelse
+  - afløbsteknik og kloak
   - product ownership BaneByg
   - interface management
-  - tv?rfaglig koordinering
+  - tværfaglig koordinering

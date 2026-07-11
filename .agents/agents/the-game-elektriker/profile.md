@@ -4,6 +4,7 @@ id: the-game-elektriker
 name: The Game
 category: Teknik og udførelse
 role: Elektriker
+accent: yellow
 status: active
 skills:
   - karpathy-guidelines

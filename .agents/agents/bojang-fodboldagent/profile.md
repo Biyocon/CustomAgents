@@ -1,6 +1,7 @@
 ﻿---
 id: bojang-fodboldagent
 avatar: Avatar/2_Avatar_Agent_Bojang_fodboldagent.png
+accent: lime
 status: active
 skills:
   - karpathy-guidelines

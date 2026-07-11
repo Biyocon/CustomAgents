@@ -4,6 +4,7 @@ id: liban-sales-specialist
 name: Liban
 category: Salg og positionering
 role: Sales Specialist
+accent: orange
 status: active
 skills:
   - karpathy-guidelines

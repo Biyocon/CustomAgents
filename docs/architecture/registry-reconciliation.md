@@ -67,8 +67,15 @@ output, så et regenereret rod-registry forbliver selv-dokumenterende.
   frontmatter jf. target-kontrakt) og registreret i `.agents/registry.yaml` med `agent_model: role` +
   `roster_exempt: true`. Runtime-kopien i `.vscode/.codex/agents/banedanmark/` er urørt (generation-target,
   PR D/F). 9 afledte runtime-`skills.yaml` var CP1252 og er normaliseret til UTF-8 i canonical.
-  **Kendt restpunkt (ejer: PR D sync-validation):** de gamle bd-*-profiler refererer 29 skill-id'er der
-  ikke findes i `.agents/skills/` (dangling refs, præeksisterende i runtime-kilden — ikke opfundet væk).
+  ~~Kendt restpunkt (ejer: PR D sync-validation): de gamle bd-*-profiler refererer 29 skill-id'er der
+  ikke findes i `.agents/skills/` (dangling refs, præeksisterende i runtime-kilden — ikke opfundet væk).~~
+  **LØST 2026-07-11 (PR F-forberedelse):** 3 refs remappet til eksisterende `bbtr-csm-tsi-compliance`
+  (oplagte id-varianter); resten flyttet til `planned_skills:`-frontmatter (intention bevaret, operationel
+  skills-liste ren) — inkl. hassan-dahirs `bdk-forbedringsloop` (aldrig oprettet; ≠ bbtr-forbedringsloop).
+  `generate-runtime.py --check` har nu et skill-ref-integritetstjek så dangling refs ikke kan regrediere.
+  Samtidig: 11 manglende persona-`accent`-felter udfyldt fra live registry (felt-merge-resten), og
+  '?'-mojibake i ahmad-el-wali/hassan-dahir-capabilities repareret (canonical + agent-map).
+  Driftrapporten viser herefter KUN bevidste forskelle.
 - **system prompt canonical placering** — `profile.md` body vs `Avatar/agents/System_Prompt_Agent_*.md`. Dedup. **Ejer: PR D/F.**
 - **skills.yaml deprecation/generated** — fold `skills[]`+`capabilities[]` ind i profile-frontmatter. **Ejer: PR D.**
 - **source-library capability candidates** — design-artifacts, visual-explainer, deep-research. **Ejer: PR C (adapter/source-library).**

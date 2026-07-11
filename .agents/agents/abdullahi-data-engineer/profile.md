@@ -4,6 +4,7 @@ id: abdullahi-data-engineer
 name: Abdullahi
 category: Data og automation
 role: Data Engineer
+accent: green
 status: active
 skills:
   - karpathy-guidelines

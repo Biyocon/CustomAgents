@@ -280,6 +280,18 @@ def check_registry(model, root, adapter):
     return findings
 
 
+def check_skill_refs(model):
+    """Canonical-integritet: alle skills et agent-entry emitterer skal findes i
+    .agents/skills/. Ikke-eksisterende intentioner hoerer i planned_skills:."""
+    findings = []
+    known = {s["id"] for s in model["skills"]}
+    for a in compose_agent_entries(model):
+        dangling = [s for s in (a.get("skills") or []) if s not in known]
+        if dangling:
+            findings.append(f"skill-refs: '{a['id']}' refererer ukendte skills: {', '.join(dangling)}")
+    return findings
+
+
 def check_role_profiles(model, root, adapter):
     findings = []
     base = None
@@ -333,7 +345,8 @@ def main():
         print(f"\n[{aid}] {len(written)} artefakter -> {os.path.relpath(out, root)}")
         if args.check:
             adapter = model["adapters"][aid]
-            findings = check_registry(model, root, adapter) + check_role_profiles(model, root, adapter)
+            findings = (check_skill_refs(model) + check_registry(model, root, adapter)
+                        + check_role_profiles(model, root, adapter))
             if findings:
                 exit_code = 1
                 print(f"[{aid}] SYNC-DRIFT ({len(findings)} fund) — forventet indtil PR F-aktivering:")

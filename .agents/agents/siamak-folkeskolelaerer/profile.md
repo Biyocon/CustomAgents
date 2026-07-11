@@ -1,6 +1,7 @@
 ﻿---
 id: siamak-folkeskolelaerer
 avatar: Avatar/2_Avatar_Agent_Siamak_Folkeskole Lære.png
+accent: teal
 status: active
 skills:
   - karpathy-guidelines

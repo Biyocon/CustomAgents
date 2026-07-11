@@ -14,10 +14,9 @@ skills:
 - karpathy-guidelines
 - shared-quality
 - bbtr-kvalitet-dod
-- bbtr-sikkerhed-og-miljo
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
-- bdk-csm-tsi-compliance
+- bbtr-csm-tsi-compliance
 - bdk-brand-governance
 capabilities:
   - kvalitetsplanlægning
@@ -26,6 +25,10 @@ capabilities:
   - inspektionsplaner
   - afvigelseshåndtering
   - CSM/TSI-kvalitetssikring
+# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
+# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
+planned_skills:
+  - bbtr-sikkerhed-og-miljo
 ---
 
 # Agent: Kvalitetsspecialist

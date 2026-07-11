@@ -1,6 +1,7 @@
 ﻿---
 id: sharmarke-maler
 avatar: Avatar/2_Avatar_Agent_Sharmarke_Maler.png
+accent: coral
 status: active
 skills:
   - karpathy-guidelines

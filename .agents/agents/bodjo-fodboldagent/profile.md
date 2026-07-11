@@ -1,6 +1,7 @@
 ﻿---
 id: bodjo-fodboldagent
 avatar: Avatar/2_Avatar_Agent_Bodjo_fodboldagent.png
+accent: forest
 status: active
 skills:
   - karpathy-guidelines

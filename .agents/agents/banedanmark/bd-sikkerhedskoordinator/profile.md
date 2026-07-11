@@ -13,13 +13,9 @@ primary_models:
 skills:
 - karpathy-guidelines
 - shared-quality
-- bbtr-sikkerhed-og-miljo
-- bbtr-sikkerhed-byggeplads
-- bbtr-haendelseshaandtering
-- bbtr-csm-tsi
+- bbtr-csm-tsi-compliance
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
-- bdk-sikkerhedsprocedurer
 - bdk-brand-governance
 capabilities:
   - arbejdsmiljøkoordinering
@@ -28,6 +24,13 @@ capabilities:
   - hændelseshåndtering
   - beredskabsplaner
   - jernbanesikkerhed
+# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
+# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
+planned_skills:
+  - bbtr-sikkerhed-og-miljo
+  - bbtr-sikkerhed-byggeplads
+  - bbtr-haendelseshaandtering
+  - bdk-sikkerhedsprocedurer
 ---
 
 # Agent: Sikkerhedskoordinator

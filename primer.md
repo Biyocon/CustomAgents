@@ -99,9 +99,11 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
    `.vscode/.codex/` (kræver EKSPLICIT aktiveringsbeslutning + rollback-plan; gate: `--check` → exit 0
    og `docs/qa/RELEASE-runtime-activation-gate.md` godkendes). Lukker #1. Omfatter også: runtime-Brain-
    erstatning (jf. memory-governance), rod-registry deprecation, evt. flyt af `.codex` til rod.
-2. Kendt drift til PR F (fra `--check` 2026-07-11): 20 agenter kun canonical / 10 kun live (arkiverede),
-   12 personaer mangler `accent` i canonical (felt-merge — bør rettes FØR aktivering), 1 skill kun i live
-   (`bdk-forbedringsloop`), 29 dangling skill-refs i bd-*-profiler.
+2. Driftrapporten (`generate-runtime.py --check`) viser nu KUN bevidste forskelle (ryddet 2026-07-11):
+   20 agenter kun canonical (rolle-migreringen + council-chairman), 10 kun live (arkiverede, bevares til
+   PR F), profil-normaliseringer, og stale live-katalogentry `bdk-forbedringsloop` (nu `planned_skills`
+   hos hassan-dahir). Accents udfyldt (11), dangling skill-refs løst (remap/planned_skills, 0 tilbage,
+   integritetstjek i --check), '?'-mojibake i 2 personaer repareret.
 3. Valgfrit vedligehold: fix fence-regex-buggen. (Role-vs-persona afgjort 2026-07-11 — begge i canonical.)
 
 ## Noter

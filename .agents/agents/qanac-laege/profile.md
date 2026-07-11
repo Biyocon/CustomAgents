@@ -4,6 +4,7 @@ id: qanac-laege
 name: Qanac
 category: Sundhed og risiko
 role: Læge
+accent: green
 status: active
 skills:
   - karpathy-guidelines

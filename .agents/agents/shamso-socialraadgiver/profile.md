@@ -1,6 +1,7 @@
 ﻿---
 id: shamso-socialraadgiver
 avatar: Avatar/2_Avatar_Agent_Shamso_Socialrådgiver.png
+accent: purple
 status: active
 skills:
   - karpathy-guidelines

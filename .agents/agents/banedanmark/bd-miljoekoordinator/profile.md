@@ -13,11 +13,8 @@ primary_models:
 skills:
 - karpathy-guidelines
 - shared-quality
-- bbtr-sikkerhed-og-miljo
-- bbtr-anlaeg
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
-- bdk-miljoe-regler
 - bdk-brand-governance
 capabilities:
   - miljøvurdering
@@ -26,6 +23,12 @@ capabilities:
   - jord- og grundvandshåndtering
   - affaldshåndtering
   - naturbeskyttelse
+# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
+# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
+planned_skills:
+  - bbtr-sikkerhed-og-miljo
+  - bbtr-anlaeg
+  - bdk-miljoe-regler
 ---
 
 # Agent: Miljoekoordinator
