@@ -20,8 +20,9 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 - **Rod:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom`
 - **Stack:** Markdown-baserede agent-profiler/skills + YAML-registries +
   PowerShell/Python-automatisering. Ingen traditionel applikationskode.
-- **Git:** main synkron med `origin/main` (GitHub Biyocon/CustomAgents), HEAD `904680c0`
-  pr. 2026-07-11. Working tree rent. (PR F aktiveret i `509ffa2d`; verificeret + footer-fix i `817e3c31`.)
+- **Git:** GitHub Biyocon/CustomAgents, arbejder direkte på `main` (verificér aktuel
+  HEAD/sync med `git status -sb` — skriv ALDRIG aktuel HEAD-hash her, den rådner ved næste
+  commit). Stabile milepæle: PR F-aktivering = `509ffa2d`; post-oprydning = `8f7d2903`.
 - **Planlægningsdokumenter:** `PROJEKT_PLAN.md`, `systemkort.md`, `DEPS.md`, `AGENTS.md`
   — alle git-trackede. (`KØREPLAN.md` + `FORBEDRINGSNOTAT.md` er ARKIVERET 2026-07-11 til
   `docs/plans/arkiv/` — overhalet af den fuldførte ADR-roadmap A–F; historik, ikke aktiv plan.)
