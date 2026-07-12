@@ -17,13 +17,10 @@ skills:
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
 - bdk-brand-governance
-# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
-# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
-planned_skills:
-  - bbtr-trafik-og-drift
-  - bbtr-koeplanlaegning
-  - bbtr-sikkerhed-og-miljo
-  - bdk-sikkerhedsprocedurer
+- bbtr-trafik-og-drift
+- bbtr-koeplanlaegning
+- bbtr-sikkerhed-og-miljo
+- bdk-sikkerhedsprocedurer
 ---
 
 # Agent: Trafikleder

@@ -18,6 +18,7 @@ skills:
 - bdk-bkp-v17-overview
 - bbtr-csm-tsi-compliance
 - bdk-brand-governance
+- bbtr-sikkerhed-og-miljo
 capabilities:
   - kvalitetsplanlægning
   - ISO 9001 compliance
@@ -25,10 +26,6 @@ capabilities:
   - inspektionsplaner
   - afvigelseshåndtering
   - CSM/TSI-kvalitetssikring
-# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
-# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
-planned_skills:
-  - bbtr-sikkerhed-og-miljo
 ---
 
 # Agent: Kvalitetsspecialist

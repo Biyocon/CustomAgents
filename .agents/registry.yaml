@@ -156,7 +156,7 @@ agents:
     name: Bro- og Anlægsspecialist
     role: Bro- og Anlægsspecialist (Bro-inspektør m.fl.)
     category: Bro og Anlæg
-    status: draft
+    status: active
     agent_model: role
     roster_exempt: true
   - id: bd-dokumentcontroller
@@ -254,7 +254,7 @@ agents:
     name: Byggeleder / Tilsyn
     role: Byggeleder (Infrastrukturprojekter) med fagtilsyn
     category: Teknik og udførelse
-    status: draft
+    status: active
     agent_model: role
     roster_exempt: true
   - id: interface-manager
@@ -268,7 +268,7 @@ agents:
     name: Projektleder
     role: Projektleder for infrastrukturprojekter
     category: Projektledelse og grænseflader
-    status: draft
+    status: active
     agent_model: role
     roster_exempt: true
   - id: udbudskonsulent
@@ -421,6 +421,34 @@ skills:
   - id: ubiquitous-language
   - id: write-a-skill
   - id: zoom-out
+  - id: bbtr-anlaeg
+  - id: bbtr-design-management
+  - id: bbtr-gis-og-data
+  - id: bbtr-haendelseshaandtering
+  - id: bbtr-ibrugtagning
+  - id: bbtr-it-systemer
+  - id: bbtr-koeplanlaegning
+  - id: bbtr-kontraktstyring
+  - id: bbtr-materiel-og-teknik
+  - id: bbtr-oekonomi-og-budget
+  - id: bbtr-planlaegning
+  - id: bbtr-projektering
+  - id: bbtr-projektstyring
+  - id: bbtr-sikkerhed-byggeplads
+  - id: bbtr-sikkerhed-og-miljo
+  - id: bbtr-sikring
+  - id: bbtr-spor
+  - id: bbtr-svejsning-og-ndt
+  - id: bbtr-test-og-validering
+  - id: bbtr-trafik-og-drift
+  - id: bbtr-udbud-og-evaluering
+  - id: bbtr-vedligeholdelse
+  - id: bdk-banebygge-regler
+  - id: bdk-bbr-overblik
+  - id: bdk-forbedringsloop
+  - id: bdk-jura-og-compliance
+  - id: bdk-miljoe-regler
+  - id: bdk-sikkerhedsprocedurer
 
 brain_paths:
   readme: brain/README.md

@@ -103,10 +103,10 @@ checks:
   # Kommandoer der SKAL forsøges kørt fra projektroden. Kun faktisk kørt output tæller som evidens.
   typecheck: "N/A (ingen kompileret kode) — skema-conformance træder i stedet: uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py . (forventet: exit 0, 0 overtrædelser)"
   test: "powershell -ExecutionPolicy Bypass -File scripts/Validate-Harness-Unified.ps1 (forventet: 0 fejl; advarsler = kendt baseline, se kendte_problemer)"
-  lint: "UTF-8/mojibake-sweep: python-scan for U+FFFD (chr(0xFFFD)) i alle .md/.yaml — repoet har gentagen mojibake-historik"
+  lint: "UTF-8/mojibake-sweep (kørbar): python -X utf8 -c \"import pathlib,sys; bad=[str(p) for p in pathlib.Path('.').rglob('*') if p.suffix in ('.md','.yaml','.yml') and '.git' not in p.parts and chr(0xFFFD) in p.read_text(encoding='utf-8',errors='replace')]; print('\\n'.join(bad) or 'ren UTF-8'); sys.exit(1 if bad else 0)\""
   migration_verifikation: "uv run --with pyyaml python .agents/scripts/generate-runtime.py --check (forventet: exit 0 = runtime i sync med canonical)"
   route_scan: ".agents/agents/**/profile.md + .agents/skills/*/ + .agents/model-adapters/*.md (agent-/skill-/adapter-fladen)"
-  run_smoke: "uv run --with pyyaml python .agents/scripts/generate-runtime.py (build-mode → .agents/build/runtime/ uden at røre live) + YAML-parse af begge registries"
+  run_smoke: "uv run --with pyyaml python .agents/scripts/generate-runtime.py --out <lokal-temp-sti> (build-mode omdirigeret UDEN FOR repoet via --out-flaget, verificeret i generatorens argparser) + YAML-parse af begge registries"
 
 output:
   rapport_sti: "docs/audit/"
@@ -173,11 +173,11 @@ Skabelonens minimum (koordinator + WS A–D) er skaleret med to ekstra workstrea
 | — | **Koordinator/Orkestrator** | 1 | Problemforståelse, plan, workstream-design, delegation, paralleliseringsstyring, kvalitetsgates, integration af fund, endelig syntese og godkendelse. |
 | A | **Arkitektur & struktur** | 8 | Én pr. logikområde (se allokering). Verificerer lagmodellen mod faktisk kode; finder død kode, forældede moduler, svage grænser, tæt kobling, arkitektoniske hotspots. Read-only. |
 | B | **Logik-dybdeaudit & historik** | 14 | To pr. kerneområde: én **correctness-lens** (holder logikken? invarianter? edge-cases?) og én **konsistens/historik-lens** (git-blame + CHANGELOG + docs/done: blev anmodede ændringer fuldt udrullet? strider to ændringer? efterladt død kode?). Read-only. |
-| C | **Sikkerhed & konfiguration** | 4 | Secrets-scan, entitets-isolation ([BDK] m.fl.), licens-guardrails (AGPL/BUSL/PolyForm i vendor/), config-/env-håndtering, path-traversal i scripts, injection-flader i genereret output. Read-only. |
-| D | **QA & evidenskontrol** | 5 | Krydstjekker ALLE andre workstreams' fund via scratchpad. Finder svage slutninger, overfortolkning, doc-som-kodebevis, testtilstedeværelse-forvekslet-med-testkvalitet. Producerer IKKE egne fund — validerer kun andres. |
+| C | **Sikkerhed & konfiguration** | 4 | Fast fordeling: (1) secrets + persondata (CPR/navne/emails), (2) entitets-isolation ([BDK] m.fl.) + licens-guardrails (AGPL/BUSL/PolyForm i vendor/), (3) config-/env-håndtering + kommando-eksekveringsflader/allowlist-disciplin, (4) path-traversal + injection-flader i scripts og genereret output. Read-only. |
+| D | **QA & evidenskontrol** | 5 | Fast fordeling: én QA-agent pr. fund-producerende workstream (A, B, C, E) + én til tvær-workstream-konsistens. Krydstjekker fund via scratchpad; finder svage slutninger, overfortolkning, doc-som-kodebevis, testtilstedeværelse-forvekslet-med-testkvalitet. Producerer IKKE egne fund — validerer kun andres. |
 | E | **Rehearsal & runtime-validering** | 8 | Én agent pr. opgave: (1) skema-validering, (2) `--check`-driftvagt, (3) harness-validering A–H, (4) build-smoke + registry-loader-parse, (5) adapter-kontrakt + avatar-1:1, (6) UTF-8-sweep, (7) idempotens-test (kør --check to gange → samme resultat?), (8) negativ-test. **Hard whitelist:** kun kommandoer der står ordret i `checks`-blokken; PS1-livscyklus-scripts (Activate-Agent, New-AgentProfile, Sync-Skills, index-generering, council-wrappers) må ALDRIG eksekveres — de muterer live runtime og auditeres kun statisk (WS-A/B). Skrivende kørsler (generator) serialiseres — højst ÉN ad gangen, build-output via `--out` til lokal temp. Negativ-testen udføres KUN mod en fuld repo-kopi i lokal temp uden for OneDrive; kan en isoleret kopi ikke etableres, markeres testen "Not verified — blocked" — det er FORBUDT at indføre drift, selv midlertidigt, i det rigtige arbejdstræ. |
 | F | **Implementering (BAG GATE)** | ≤8 | Koordinatoren klynger gate-godkendte fund i **højst 8 klynger** (prioriteret efter matricen); ved færre forbliver overskydende F-agenter uspawnede, og metodeafsnittet angiver det faktiske antal. Én agent pr. klynge: mindste korrekte rettelse i **egen isoleret worktree uden for OneDrive** — koordinatoren opretter worktrees SEKVENTIELT før dispatch (subagenter kører aldrig selv `git worktree add`); git-kommandoer mod det delte .git serialiseres. Kør relevante checks lokalt (inkl. `--apply`+`--check` i worktree'en), producér diff + evidens. Kodeændringer, kommentarer og evt. commit-beskeder på ENGELSK (Conventional Commits); fundtekst på dansk. Ingen merge, intet på hovedtræet, ingen commit uden anmodning. |
-| | **I alt** | **48** | |
+| | **I alt** | **48** (designkapacitet; WS-F spawner ≤8 efter faktisk klynge-antal) | |
 
 ### Logikområder (for-verificeret ved scout-gennemgang — Fase 0 bekræfter/justerer)
 
@@ -192,7 +192,7 @@ Skabelonens minimum (koordinator + WS A–D) er skaleret med to ekstra workstrea
 9. **Avatar-system + live runtime** — 27 systemprompts ↔ avatarer ↔ roster (1:1) + genereret runtime-træ
 10. **PM-/dokumentsystem** — normativt lag: primer, AGENTS.md, CHANGELOG, docs/-strukturen
 
-Allokering: WS-A's 8 agenter dækker de 10 områder (to agenter tager hver to nærtliggende: 8+10 brain/PM-docs; 7+9 adapter/avatar-runtime). WS-B's 14 agenter = 2 lenses × de 7 mest logik-tunge områder (1–6 + 9); område 8/10's historik dækkes af WS-B-lens på område 1 og 5. Afviger Fase 0's billede, justeres fordelingen — totalen på 48 og forholdet mellem workstreams fastholdes.
+Allokering: WS-A's 8 agenter dækker de 10 områder (to agenter tager hver to nærtliggende: 8+10 brain/PM-docs; 7+9 adapter/avatar-runtime). WS-B's 14 agenter = 2 lenses × de 7 mest logik-tunge områder (1–6 + 9). Område 7's correctness/historik dækkes af WS-B-lens på område 1 (runtime-genereringen omfatter adapter-target-kontrakten); de 6 planned-adaptere statusklassificeres som stubs jf. Operationel Statuskategorisering. Område 8/10's historik dækkes af WS-B-lens på område 1 og 5. Afviger Fase 0's billede, justeres fordelingen — designkapaciteten på 48 og forholdet mellem workstreams fastholdes (WS-F spawner kun det faktisk godkendte antal klynger, ≤8 — det reelt spawnet antal dokumenteres i metodeafsnittet).
 
 ### Struktureret agent-output (alle agenter følger dette skema)
 
@@ -329,13 +329,16 @@ Kør som minimum alle kommandoer i `checks`. For HVER check dokumenteres: komman
 - verificér lagmodellen (canonical → genereret; tre-lags vendor/kurateret/domæne) mod faktisk kode
 - find død kode, forældede filer, efterladte dubletter fra migrationerne
 - vurder laggrænser: redigeres genererede filer nogensinde i praksis (git-historik)?
+- vurder separation of concerns mellem canonical-, genereret- og tooling-lag
+- identificér de vigtigste arkitektoniske risici
 - vurder om `nylige_aendringer` er korrekt og FULDT integreret
 
 ### B. Logik, kvalitet og ændringssporbarhed
 - pr. kerneområde: holder logikken? (correctness-lens)
-- **ændringssporbarheds-tabel**: hver væsentlig anmodet ændring × (Fuldt / Delvist / Død kode efterladt / Modstridende) × evidens × restgæld
+- **ændringssporbarheds-tabel**: hver væsentlig anmodet ændring (jf. Fase 0's væsentlighedskriterium) × (Fuldt / Delvist / Død kode efterladt / Modstridende) × evidens × restgæld
 - find de 5 største kodelugte/strukturlugte
 - vurder valideringsdækning pr. hovedmodul (hvad fanger validatorerne IKKE?)
+- skema-/typedisciplin: JSON-skema-conformance + YAML-strictness træder i stedet for klassisk type-sikkerhed (jf. `checks.typecheck`)
 - find copy-paste/duplikation på tværs af canonical og genereret lag
 
 ### C. Sikkerhed og konfiguration
@@ -343,11 +346,14 @@ Kør som minimum alle kommandoer i `checks`. For HVER check dokumenteres: komman
 - entitets-isolation: krydskontaminering mellem [BDK]/Biyocon/HANTI/Personal?
 - licens-klassifikation af vendor-indhold (AGPL/BUSL/PolyForm-guardrail)
 - persondata-tjek: CPR, navne, arbejdsemails i committede filer?
-- path-/injection-flader i PowerShell- og Python-scripts
+- path-/injection-flader samt kommando-eksekveringsflader og allowlist-disciplin i PowerShell-/Python-scripts
+- verificér de sikkerhedsrelaterede punkter i `kendte_problemer` og find NYE sikkerhedsrisici
+- auth/rate limiting/API-ruter: **N/A** — filbaseret harness uden netværks-/API-flade (eksplicit skabelon-afvigelse)
 
 ### D. Drift og vedligeholdelse
 - generator-sundhed: idempotens, fejlhåndtering, exit-koder
 - valideringsvagternes reelle dækning (negativ-test: fanger de indført drift?)
+- logging-/output-kvalitet i generator, validatorer og PS1-scripts (fejlmeddelelsers klarhed, exit-kode-disciplin)
 - encoding-drift: UTF-8-status i hele repoet (kendt CP1252/mojibake-historik)
 - hardcodede stier/navne der burde være konfiguration
 
@@ -362,7 +368,7 @@ Kør som minimum alle kommandoer i `checks`. For HVER check dokumenteres: komman
 
 ## SKILLS OG PLUGINS
 
-Gennemgå og brug tilgængelige skills/plugins hvis de reelt forbedrer analyse eller QA — overvej især: planlægning, code review, security review, testvurdering, statisk analyse. Følg repoets skill-discovery-regel (lokalt indeks først). Giver et skill ikke reel værdi: sig det eksplicit.
+Gennemgå og brug tilgængelige skills/plugins hvis de reelt forbedrer analyse eller QA — overvej især: planlægning, code review, security review, testvurdering, kodestandarder, entitetsgrænser, statisk analyse. Følg repoets skill-discovery-regel (lokalt indeks først). Giver et skill ikke reel værdi: sig det eksplicit.
 
 ---
 
@@ -389,6 +395,8 @@ WS-D skal eksplicit kontrollere:
 | Evidens | filsti(er)/commit-sha + kort observation |
 | Konsekvens | hvad sker hvis det ikke adresseres |
 | Anbefalet handling | konkret og operationel |
+
+**Redaktionsregel:** Sikkerheds-/persondatafund rapporteres med filsti, linjenummer, kategori og maskeret mønster (fx CPR: `******-****`, nøgle: `sk-…REDACTED`) — ALDRIG den fulde værdi. Rå værdier må hverken stå i scratchpad, rapport eller chat-output.
 
 ## VERIFIKATIONSSTATUS
 
@@ -431,9 +439,9 @@ Leverancen er kun godkendt hvis:
 1. **Executive Summary** — samlet sundhedsvurdering (kort og skarp), 3 vigtigste styrker, 3 vigtigste risici, 3 vigtigste næste skridt
 2. **Metode** — workstreams/agenter brugt, skills/plugins brugt, hvad kørte parallelt, hvordan QA blev udført, hvilke checks der faktisk kørte
 3. **Arkitektur- og strukturanalyse** — verificeret lagmodel, døde moduler, risici, kobling og grænser
-4. **Logik og kvalitet** — vurdering pr. hovedmodul, valideringskvalitet, kodelugte (top 5)
+4. **Logik og kvalitet** — vurdering pr. hovedmodul, valideringskvalitet, kodelugte (top 5), skema-/typedisciplin (substitution for type-sikkerhed, jf. delmål B)
 5. **Ændringssporbarhed** — tabellen: anmodet ændring × udrulningsstatus × evidens × restgæld
-6. **Sikkerheds- og konfigurationsreview** — prioriteret risikoliste med evidens og handlinger
+6. **Sikkerheds- og konfigurationsreview** — prioriteret risikoliste med evidens og handlinger; status på kendte fixes/`kendte_problemer` hvor sikkerhedsrelevante
 7. **Drift og vedligeholdelse** — generator-/validator-sundhed, encoding, fejlhåndtering, hardcodet konfiguration
 8. **Rehearsal-resultater** — hvad blev kørt, hvad blev observeret, afvigelser
 9. **Verifikationsstatus** — Verified / Partially / Not verified pr. hovedområde
@@ -451,7 +459,7 @@ Skriv på dansk (tekniske termer på engelsk hvor det er præcist). Præcist, pr
 
 ## OUTPUTFIL
 
-Skriv rapporten til `docs/audit/AUDIT-<YYYY-MM-DD>-48-agent-logik-audit.md`. Findes en fil for samme dato, må den overskrives. Inkludér commit-sha for sporbarhed. Verificér ren UTF-8 efter skrivning.
+Skriv rapporten til `docs/audit/AUDIT-<YYYY-MM-DD>-48-agent-logik-audit.md`. Findes en fil for samme dato: LÆS den først — er den skrevet af denne audit-session, opdateres den in-place; ellers skrives til `…-logik-audit-2.md` og kollisionen flages til ejeren (overskriv aldrig en anden sessions rapport). Inkludér commit-sha for sporbarhed. Verificér ren UTF-8 efter skrivning.
 
 ---
 

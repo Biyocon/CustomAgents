@@ -16,6 +16,9 @@ skills:
 - bbtr-kvalitet-dod
 - bbtr-leverance-mapping
 - bdk-bkp-v17-overview
+- bbtr-test-og-validering
+- bbtr-ibrugtagning
+- bdk-sikkerhedsprocedurer
 capabilities:
   - ibrugtagningsplaner
   - afprøvning og test
@@ -23,12 +26,6 @@ capabilities:
   - sikkerhedsgodkendelser
   - myndighedsinddragelse
   - driftsinstruktioner
-# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
-# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
-planned_skills:
-  - bbtr-test-og-validering
-  - bbtr-ibrugtagning
-  - bdk-sikkerhedsprocedurer
 ---
 
 # Agent: Ibrugtagning

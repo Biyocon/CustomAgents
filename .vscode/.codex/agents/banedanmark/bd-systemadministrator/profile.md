@@ -17,11 +17,8 @@ skills:
 - bdk-bkp-v17-overview
 - bdk-gdpr-praksis
 - bdk-brand-governance
-# planned_skills: refereret af 2026-05-06-gap-analysen men aldrig oprettet som
-# skills — flyttet fra skills: ved PR F-forberedelse 2026-07-11 (intention bevaret).
-planned_skills:
-  - bbtr-it-systemer
-  - bbtr-gis-og-data
+- bbtr-it-systemer
+- bbtr-gis-og-data
 ---
 
 # Agent: Systemadministrator

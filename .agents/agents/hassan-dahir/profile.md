@@ -30,10 +30,6 @@ skills:
   - bdk-trafikale-regler-anvendelse
   - bdk-projektrapportering-frister
   - bdk-styregruppearbejde
-# planned_skills: 'bdk-forbedringsloop' (Banedanmark continuous improvement framework) var i det
-# gamle runtime-registrys katalog men blev aldrig oprettet som skill — flyttet fra skills:
-# ved PR F-forberedelse 2026-07-11 (intention bevaret; bbtr-forbedringsloop er en ANDEN skill).
-planned_skills:
   - bdk-forbedringsloop
 capabilities:
   - fagprojektledelse
