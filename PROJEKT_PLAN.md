@@ -83,9 +83,9 @@
 
 - [x] Ét autoritativt valideringsscript som eneste kilde til skill-/agent-tal
       (løst: harness-validatorens METRIKKER-sektion + validate-schemas.py)
-- [ ] Global promovering: flyt færdigt harness til global skabelon under `C:\Users\Biyocon`
-      (Fase G — forudsætning A–F er nu opfyldt; NB: `C:\Users\Biyocon\.agents\` er optaget
-      af MasterBrain, målsti afgøres ved eksekvering)
+- [x] Global promovering (Fase G) — **UDFØRT 2026-07-12** til
+      `C:\Users\Biyocon\.agents\templates\customagents-harness\` (kun generiske komponenter;
+      kollisionsfri undermappe i skills-hub'ens templates/-rum). Se ADR-0004.
 - [ ] Kombi-map scan/import — `Kombi/` findes ikke i nuværende repo; skal enten importeres
       eller referencer fjernes fra planer (ejer-beslutning)
 - [ ] Aktivér øvrige runtime-adaptere (kimi, gemini, ollama, cursor, qwen-code)

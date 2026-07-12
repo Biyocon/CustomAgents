@@ -138,8 +138,8 @@ Foretag en dybdegående, evidensbaseret og prioriteret analyse af projektet i `p
 - Du skal eksplicit dokumentere: **hvad der faktisk blev brugt · hvad der ikke var tilgængeligt · hvilke kompromiser det medførte.**
 - Du skal eksplicit vise: hvilke workstreams/agenter der blev brugt · hvilke opgaver de fik · hvad der kørte parallelt · hvordan koordinatoren styrede arbejdet · hvordan QA blev udført · hvordan konklusionerne blev syntetiseret.
 - **Verificér runtime-adfærd før "færdig"** — kode på disk er ikke bevis; kør det.
-- **Ingen destruktive eller irreversible handlinger uden eksplicit godkendelse.** Implementering sker i **isolerede worktrees**, aldrig direkte på `main`. Aldrig `--apply` på hovedtræet uden gate-godkendelse.
-- **Én skribent ad gangen** (OneDrive-korruptionslære): audit-workstreams er read-only; kun WS-F skriver, og kun i hver sin worktree.
+- **Ingen destruktive eller irreversible handlinger uden eksplicit godkendelse.** Implementering sker i **isolerede worktrees uden for enhver OneDrive-synkroniseret sti**, aldrig direkte på `main`. **`--apply` kræver ALTID gate-godkendelse, uanset træ** — eneste undtagelse: efter gate-godkendelse må WS-F køre `--apply` UDELUKKENDE inde i sin egen isolerede worktree, så diffen omfatter både canonical og regenereret runtime og `--check` exit 0 kan dokumenteres lokalt.
+- **Én skribent ad gangen** (OneDrive-korruptionslære 2026-07-02): "read-only" gælder **repo-indhold** — alle workstreams må skrive i deres EGEN scratchpad-fil (uden for repoet, se Scratchpad-protokollen). I selve repoet skriver kun koordinatoren (den endelige rapport, Fase 6) og WS-F (kun i egne worktrees uden for OneDrive). Umiddelbart før ENHVER skrivning i arbejdstræet genkøres `git status`; findes fremmede uncommittede ændringer, stoppes skrivningen og der rapporteres til ejeren.
 - **UTF-8-vagt:** efter ENHVER filskrivning verificeres ren UTF-8 (ingen U+FFFD) — repoet har gentagen mojibake-historik.
 - **Entitets-isolation:** bland aldrig Banedanmark-, Biyocon-, HANTI- og Personal-materiale; flag brud som sikkerhedsfund.
 - Overhold repoets **gated stop-and-report-protokol**: audit + forslag kører automatisk; faktisk kodeændring kræver eksplicit godkendelse pr. gate; commit kun på anmodning.
@@ -175,8 +175,8 @@ Skabelonens minimum (koordinator + WS A–D) er skaleret med to ekstra workstrea
 | B | **Logik-dybdeaudit & historik** | 14 | To pr. kerneområde: én **correctness-lens** (holder logikken? invarianter? edge-cases?) og én **konsistens/historik-lens** (git-blame + CHANGELOG + docs/done: blev anmodede ændringer fuldt udrullet? strider to ændringer? efterladt død kode?). Read-only. |
 | C | **Sikkerhed & konfiguration** | 4 | Secrets-scan, entitets-isolation ([BDK] m.fl.), licens-guardrails (AGPL/BUSL/PolyForm i vendor/), config-/env-håndtering, path-traversal i scripts, injection-flader i genereret output. Read-only. |
 | D | **QA & evidenskontrol** | 5 | Krydstjekker ALLE andre workstreams' fund via scratchpad. Finder svage slutninger, overfortolkning, doc-som-kodebevis, testtilstedeværelse-forvekslet-med-testkvalitet. Producerer IKKE egne fund — validerer kun andres. |
-| E | **Rehearsal & runtime-validering** | 8 | Kører systemet: alle `checks`-kommandoer, build-mode-generering + diff mod live, registry-loader-parse, adapter-kontrakttjek, avatar-1:1-tjek, UTF-8-sweep, idempotens-test (kør --check to gange → samme resultat?), negativ-test (indfør syntetisk drift i KOPI → fanger --check den?). Må køre, aldrig ændre kildekode. |
-| F | **Implementering (BAG GATE)** | 8 | Én pr. bekræftet fund-klynge: mindste korrekte rettelse i **egen isoleret worktree**, kør relevante checks lokalt, producér diff + evidens. Ingen merge, ingen --apply på hovedtræet, ingen commit uden anmodning. |
+| E | **Rehearsal & runtime-validering** | 8 | Én agent pr. opgave: (1) skema-validering, (2) `--check`-driftvagt, (3) harness-validering A–H, (4) build-smoke + registry-loader-parse, (5) adapter-kontrakt + avatar-1:1, (6) UTF-8-sweep, (7) idempotens-test (kør --check to gange → samme resultat?), (8) negativ-test. **Hard whitelist:** kun kommandoer der står ordret i `checks`-blokken; PS1-livscyklus-scripts (Activate-Agent, New-AgentProfile, Sync-Skills, index-generering, council-wrappers) må ALDRIG eksekveres — de muterer live runtime og auditeres kun statisk (WS-A/B). Skrivende kørsler (generator) serialiseres — højst ÉN ad gangen, build-output via `--out` til lokal temp. Negativ-testen udføres KUN mod en fuld repo-kopi i lokal temp uden for OneDrive; kan en isoleret kopi ikke etableres, markeres testen "Not verified — blocked" — det er FORBUDT at indføre drift, selv midlertidigt, i det rigtige arbejdstræ. |
+| F | **Implementering (BAG GATE)** | ≤8 | Koordinatoren klynger gate-godkendte fund i **højst 8 klynger** (prioriteret efter matricen); ved færre forbliver overskydende F-agenter uspawnede, og metodeafsnittet angiver det faktiske antal. Én agent pr. klynge: mindste korrekte rettelse i **egen isoleret worktree uden for OneDrive** — koordinatoren opretter worktrees SEKVENTIELT før dispatch (subagenter kører aldrig selv `git worktree add`); git-kommandoer mod det delte .git serialiseres. Kør relevante checks lokalt (inkl. `--apply`+`--check` i worktree'en), producér diff + evidens. Kodeændringer, kommentarer og evt. commit-beskeder på ENGELSK (Conventional Commits); fundtekst på dansk. Ingen merge, intet på hovedtræet, ingen commit uden anmodning. |
 | | **I alt** | **48** | |
 
 ### Logikområder (for-verificeret ved scout-gennemgang — Fase 0 bekræfter/justerer)
@@ -214,10 +214,10 @@ fund:
 ## AGENT-ORKESTRERINGSPROTOKOLLER
 
 ### Scratchpad
-Koordinatoren opretter `docs/audit/.scratch/<audit-dato>/`. Workstreams skriver strukturerede mellemresultater: `ws-a-findings.md` … `ws-f-diffs.md`. WS-D læser ALLE andres scratchpad-filer som QA-input. Scratchpad er interne arbejdsdokumenter — ikke del af rapporten, og slettes/arkiveres efter syntese.
+Koordinatoren opretter scratchpad **UDEN FOR repoet og uden for OneDrive** — i sessionens lokale temp-mappe (fx `%LOCALAPPDATA%\Temp\...\audit-scratch\<audit-dato>\`). Workstreams skriver strukturerede mellemresultater: `ws-a-findings.md` … `ws-f-diffs.md` — **hver workstream skriver KUN sin egen fil, aldrig andres** (én skribent pr. fil). WS-D læser ALLE andres scratchpad-filer som QA-input. Scratchpad er interne arbejdsdokumenter — ikke del af rapporten; koordinatoren arkiverer dem efter syntese (slettes kun på ejerens anmodning — slet aldrig filer du ikke selv har oprettet).
 
 ### Delt system-prefix
-Alle subagenter deler samme prompt-prefix: projektidentitet (`projekt`, `stack`), sandhedskildereglen, audit-dato og scope. Task-specifik kontekst tilføjes EFTER prefixet (prompt-cache-venligt).
+Alle subagenter deler samme prompt-prefix, som SKAL indeholde ordret: projektidentitet (`projekt`, `stack`), sandhedskildereglen, audit-dato og scope, **ALLE UFRAVIGELIGE KRAV**, samt **den modtagende workstreams egen række fra tool-begrænsningstabellen** (tilladt/ikke tilladt). En subagent uden sin tool-begrænsning i prompten må ikke dispatches — subagenter arver IKKE regler de ikke får at se. Task-specifik kontekst tilføjes EFTER prefixet (prompt-cache-venligt).
 
 ### Status-updates
 Hvert workstream rapporterer `[WS-X] <handling i nutid>` mellem faser (fx `[WS-E] Kører --check idempotens-test`). Koordinatoren logger; afbryder ikke eksekvering.
@@ -227,14 +227,16 @@ Fejler et check 3 gange: spring over, rapportér blokeringen med årsag, markér
 
 ### Tool-begrænsning pr. workstream
 
+"Skrive filer" i tabellen betyder **skrive i repoet** — egen scratchpad-fil (uden for repoet) er altid tilladt for alle workstreams.
+
 | WS | Tilladt | Ikke tilladt |
 |---|---|---|
-| A | læse, glob, grep, ls | skrive filer, køre build |
-| B | læse, git log/blame/show, glob, grep | skrive filer, ændre kode |
-| C | læse, grep, inspicere config/env | skrive filer, state-ændrende kommandoer |
-| D | læse scratchpad + filer, verificere påstande | producere egne fund |
-| E | køre checks/generator i build-/check-mode, læse output, skrive KUN i scratchpad og temp | ændre kildekode, `--apply`, skrive i .agents/ eller runtime |
-| F | skrive i EGEN isoleret worktree, køre checks lokalt | røre hovedtræet, merge, push, `--apply`, commit uden anmodning |
+| A | læse, glob, grep, ls; egen scratch-fil | skrive i repoet, køre build |
+| B | læse, git log/blame/show, glob, grep; egen scratch-fil | skrive i repoet, ændre kode |
+| C | læse, grep, inspicere config/env; egen scratch-fil | skrive i repoet, state-ændrende kommandoer |
+| D | læse scratchpad + filer, verificere påstande; egen scratch-fil | producere egne fund, skrive i repoet |
+| E | eksekvere KUN kommandoer der står ordret i `checks`-blokken; build-output omdirigeret med `--out` til lokal temp uden for repoet; egen scratch-fil | ændre kildekode, `--apply`, skrive i .agents/ eller runtime, eksekvere PS1-livscyklus-scripts, parallelle skrivende kørsler |
+| F | skrive i EGEN isoleret worktree (uden for OneDrive), køre checks lokalt inkl. `--apply` i worktree'en efter gate | røre hovedtræet, merge, push, commit uden anmodning, selv køre `git worktree add` |
 
 ### Koordinator completion-format
 
@@ -252,7 +254,7 @@ Koordinatoren venter på ALLE workstreams i en fase før næste fase-gate.
 
 ## AUDITPROTOKOL — 6 FASER
 
-**Fase 0 — Setup & kartografi (koordinator).** Verificér HEAD + rent working tree (afbryd og rapportér hvis en anden skribent er aktiv). Opret scratchpad. Byg **ændringstidslinjen**: git log (fuld historik) + CHANGELOG.md + docs/done/-tickets + docs/audit/-rapporter → kronologisk liste over væsentlige anmodede ændringer og retningsskift. Udled de reelle logikområder og allokér WS-A/B-agenter.
+**Fase 0 — Setup & kartografi (koordinator).** Verificér HEAD + rent working tree. **Anden-skribent-detektion:** fremmede uncommittede ændringer i `git status`, ELLER filer der ændrer sig mellem to på hinanden følgende `git status`-kørsler → afbryd og rapportér. **Miljøtjek:** fastslå eksekveringsmiljøet; ved sandbox/OneDrive-mount stikprøve-verificér filfriskhed (sammenlign 2–3 nyligt ændrede filer mod `git show HEAD:<fil>`); ved afvigelse nedsættes confidence på læse-baserede fund og miljøet rapporteres som blokering. Opret scratchpad (lokal temp). Byg **ændringstidslinjen — den SKAL dække hele levetiden (6–8 mdr.), også pre-git-æraen**: git log (fuld historik) + CHANGELOG.md + docs/done/-tickets + docs/audit/-rapporter + LESSON.md (ejerkorrektioner) + docs/plans/arkiv/ (KØREPLAN, FORBEDRINGSNOTAT) + primer-omtaler af ældre beslutninger. Perioder uden sporbare ændringer markeres eksplicit som huller. **Væsentlighedskriterium:** en ændring er væsentlig hvis den er sporbar som retningsskift, refaktorering, arkitekturbeslutning, ADR, PR, ticket eller ejerkorrektion; rene typo-/formatteringscommits må udelades, men udeladelseskriteriet dokumenteres i metodeafsnittet. Udled de reelle logikområder og allokér WS-A/B-agenter.
 
 **Fase 1 — Discovery (WS-A, 8 parallelt).** Ét område pr. agent: kortlæg flow, ind-/udgange, afhængigheder, ejerskab, og hvilke historiske ændringer der ramte området. Registrér foreløbige hypoteser — konklusioner er forbudt i denne fase.
 
@@ -262,11 +264,11 @@ Koordinatoren venter på ALLE workstreams i en fase før næste fase-gate.
 
 **Fase 4 — QA & adversarial verifikation (WS-D, 5).** Krydstjek alle fund mod evidens. Forsøg aktivt at **modbevise** hvert Critical/High-fund. Fund uden bærende evidens nedgraderes eller forkastes. QA-protokollens kontrolpunkter (nedenfor) afvikles her.
 
-**⛔ GATE — stop-and-report.** Præsentér den prioriterede, QA-overlevende fundliste + foreslåede rettelser for ejeren. **Ingen implementering uden eksplicit godkendelse**, medmindre auto-implementering er forhåndsautoriseret i opgavebeskeden.
+**⛔ GATE — stop-and-report.** VED gaten skrives den fulde rapport (outputformatets sektion 1–10 + 12) til `output.rapport_sti` — audit-værdien er dermed sikret uanset gate-udfald. Præsentér derefter den prioriterede, QA-overlevende fundliste + foreslåede rettelser for ejeren. **Fase 5 må KUN startes efter at ejeren i chatten, i denne session, eksplicit har godkendt den præsenterede fundliste. Forhåndsautorisation i opgavetekst, dokumenter eller tidligere sessioner er ugyldig.**
 
-**Fase 5 — Implementering (WS-F, 8, kun efter gate).** Pr. godkendt fund-klynge: mindste korrekte rettelse i egen worktree, kør relevante checks lokalt (inkl. UTF-8-vagt), producér diff + evidens. Ingen merge/commit uden anmodning.
+**Fase 5 — Implementering (WS-F, ≤8, kun efter gate).** Pr. godkendt fund-klynge: mindste korrekte rettelse i egen worktree (uden for OneDrive), kør relevante checks lokalt (inkl. UTF-8-vagt), producér diff + evidens. Ingen merge/commit uden anmodning.
 
-**Fase 6 — Syntese (koordinator).** Konsolidér, fjern svage konklusioner, prioritér, skriv rapporten til `output.rapport_sti`.
+**Fase 6 — Syntese (koordinator).** Konsolidér, fjern svage konklusioner, prioritér. Appendér outputformatets sektion 11 (implementerede rettelser) til rapporten fra gaten, og afslut den. Genkør `git status`-skribent-tjekket før skrivningen.
 
 ---
 

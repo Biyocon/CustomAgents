@@ -1,10 +1,17 @@
-# Runbook: Saadan promoverer du projekt-harnesset til global profil
+# Runbook: Saadan promoverer du projekt-harnesset til global skabelon
+
+> **UDFOERT 2026-07-12 (Fase G)** — se `.agents/brain/decisions/ADR-0004-2026-07-12-fase-g-global-promovering.md`.
+> Maalsti: `C:\Users\Biyocon\.agents\templates\customagents-harness\` (IKKE den gamle
+> `C:\Users\HMDR`-sti, som var en forældet maskine). VIGTIGT kollisionsforbehold:
+> `C:\Users\Biyocon\.agents\` er brugerens delte skills/plugin-hub med MasterBrain under
+> `brain/` — der maa ALDRIG kopieres direkte ind i dens rod. Promovér altid som
+> undermappe i `templates/` med eksistenstjek foer skrivning.
 
 ## Formaal
 
-Denne guide beskriver hvordan du kopierer det aktuelle projekts agent-harness til en global brugerprofil (`C:\Users\HMDR`), saa det kan genbruges paa tvaers af projekter.
-
-> **Advarsel**: Dette er en fremtidig operation. Laes hele guiden igennem foer du udfoerer den.
+Denne guide beskriver hvordan du kopierer det aktuelle projekts agent-harness til en global
+skabelon, saa det kan genbruges paa tvaers af projekter. Gentag processen for at opdatere
+skabelonen (envejs: kilde-repoet er sandheden).
 
 ## Forudsaeetninger
 

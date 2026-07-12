@@ -18,7 +18,7 @@ frontmatter (`deps`/`blocks`). Nuværende åbne arbejdsstrømme og deres afhæng
 |---|---|---|---|
 | Domænemodning (K-tabel-verifikation, planned_skills, DRAFT→verified) | _(ingen — FB-PDF'er + pdftotext tilgængelige)_ | Operationel/sikkerhedskritisk brug af rolleagenterne | Se primer "Næste skridt" |
 | Adapter-aktivering #2+ (claude-code, kimi, gemini, …) | _(ingen — generator + skemaer findes)_ | Fuld model-agnostisk vision | codex er referenceimplementering |
-| Fase G — global promovering | A–F ✅ (OPFYLDT 2026-07-11) + scope-beslutning + kollisionsfri målsti (MasterBrain optager `C:\Users\Biyocon\.agents\`) | _(slutmål)_ | Runbook: `brain/runbooks/how-to-promote-project-harness-to-global.md` |
+| ~~Fase G — global promovering~~ | **UDFØRT 2026-07-12** (ADR-0004): skabelon i `~\.agents\templates\customagents-harness\`, kun generiske komponenter, kollisionsfri | _(slutmålet er nået)_ | Opdateres envejs ved gentaget promovering |
 | `.codex`-rodflytning | Ekstern verifikation af Codex-værktøjets søgesti | _(ingen)_ | Besluttet udskudt — se repo-map.md |
 | Vendor-strategi (track vs gitignore) | Licensklassifikation + ejer-beslutning | _(ingen)_ | Separat vendor-PR |
 
@@ -26,12 +26,10 @@ frontmatter (`deps`/`blocks`). Nuværende åbne arbejdsstrømme og deres afhæng
 
 ## Kritisk sti
 
-**Historisk kritisk sti FULDFØRT 2026-07-11:** `#1 → #2 → #11 → #3 → #6 → #10` er lukket
-via ADR-roadmappen PR A–F (aktivering + gate GODKENDT). Tilbage af den oprindelige sti:
-
-```
-Domænemodning → Fase G (global promovering)
-```
+**HELE den oprindelige kritiske sti er FULDFØRT** (2026-07-11→12): `#1 → #2 → #11 → #3 → #6
+→ #10` lukket via ADR-roadmap PR A–F; Fase G (global promovering) udført 2026-07-12
+(ADR-0004). Domænemodning (K-tabel-verifikation + planned_skills-oprettelse) blev igangsat
+2026-07-12 — se profilernes kildelinjer og skills-laget for aktuel status.
 
 ---
 
@@ -39,9 +37,8 @@ Domænemodning → Fase G (global promovering)
 
 | Afhængighed | Afventer | Frist |
 |---|---|---|
-| Fase G (global promovering) | Scope-beslutning (hvad promoveres) + kollisionsfri målsti | Ikke fastsat |
-| Domænemodning (K-tabeller) | Krydstjek mod FB-PDF'er (værktøj OK: pdftotext) | Ikke fastsat |
-| planned_skills (30 refs) | Konkret domænebehov pr. skill (bevidst on-demand) | Løbende |
+| Yderligere adapter-aktivering (kimi/gemini/ollama/…) | Behov + generator-rendering pr. runtime | Løbende |
+| Resterende domæneverifikation (skills markeret FORELØBIG) | Krydstjek mod Banedanmarks officielle kilder | Løbende |
 
 ---
 
