@@ -2,7 +2,9 @@
 
 **Tilpasset version af MULTI_AGENT_AUDIT_TEMPLATE.md v4.0 specifikt til dette repo/projekt.**
 
-**Dato for tilpasning:** 2026-06-07 (baseret på systematisk scan af hele kodebasen).
+**Dato for tilpasning:** 2026-06-07; **re-baselinet 2026-07-12** efter fuldført ADR-roadmap A–F +
+Fase G (audit: `docs/audit/AUDIT-2026-07-12-multi-agent-audit-post-roadmap.md`). Den oprindelige
+2026-06-07-YAML beskrev dual-runtime-tilstanden og er erstattet nedenfor; git-historik bevarer den.
 
 ---
 
@@ -12,80 +14,70 @@
 projekt:
   navn: "Agent Harness — Kvalifikationsordning Entreprenør (Banedanmark)"
   sti: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
-  version: "hybrid-dual-runtime (2026-06-07 snapshot på commit 7626c697...)"
-  beskrivelse: "Model-agnostisk (men primært Codex/Kimi) agent-harness til Banedanmark-entreprenør-kvalifikationsordning. Indeholder specialiserede subagents for jernbanesikkerhedsroller, genbrugelige skills (BBTR/BBE/BKP + generelle engineering), persistent Brain, Avatar-system og registry-drevet orkestrering. Aktiv runtime: .vscode/.codex/. Fremtidig model-agnostisk lag: .agents/ (under validering, ikke aktiv)."
+  version: "canonical-genereret (re-baselinet 2026-07-12 efter ADR-roadmap A–F + Fase G)"
+  beskrivelse: "Model-agnostisk agent-harness til Banedanmark-entreprenør-kvalifikationsordning. CANONICAL lag: .agents/ (47 agenter = 28 personaer + 19 rolleagenter; 107 skills; 7 adaptere; brain). Runtime-lag GENERERES af .agents/scripts/generate-runtime.py: .vscode/.codex/agents/ + Brain-pointer (codex-adapter) og .claude/agents/ 47 subagenter (claude-code-adapter). Gating: pre-commit + CI kører skema- og sync-vagt. Fase G: generisk skabelon promoveret til ~\\.agents\\templates\\customagents-harness."
 
 stack:
-  sprog: "Ingen enkelt app — primært Markdown/Prompts/YAML + PowerShell + Python (validering/scripts) + JSON (rosters/registry)"
-  framework: "Agent-harness (skills + agents + brain) med dual runtime (.vscode/.codex aktiv + .agents fremtidig)"
-  runtime: "VS Code + Codex/Kimi (primær); kompatibel med Qwen Code + Gemini Code via adapters"
-  database: "Ingen — filbaseret (Markdown, YAML, JSON, PDF-kilder). Brain = struktureret filsystem-hukommelse."
-  test_framework: "PowerShell validation scripts + Python verify scripts + manuel frontmatter + struktur-checks (ingen unit tests i klassisk forstand)"
-  build: "PowerShell scripts (validate-harness.ps1, audit-harness.ps1, generate-agent-index.ps1) + uv run Python + manuel kuratering"
+  sprog: "Markdown/Prompts/YAML + Python (generator/validering) + PowerShell (harness-audit) + JSON (roster)"
+  framework: "Agent-harness: canonical .agents/ -> genererede runtime-lag pr. adapter (codex + claude-code aktive; kimi/ollama/gemini/cursor/qwen-code planned)"
+  runtime: "VS Code + Codex (primær), Claude Code (aktiveret 2026-07-12); Kimi/Qwen/Gemini via AGENTS.md"
+  database: "Ingen — filbaseret. Memory-klasser: CANONICAL (.agents/brain/) / RUNTIME-LOKAL (genereret pointer) / SNAPSHOT (memory/diary/reports), jf. docs/architecture/memory-governance.md"
+  test_framework: "validate-schemas.py (JSON Schema, gating) + generate-runtime.py --check (sync-vagt, gating) + Validate-Harness-Unified.ps1 (Sektion A–H). Adfærds-testsuite er fortsat åbent spørgsmål (brain/open-questions #5–6)"
+  build: "uv run python .agents/scripts/generate-runtime.py (--apply/--check); .githooks/pre-commit + .github/workflows/validate.yml"
 
 dokumenter:
-  primaer_status: "AGENTS.md (rod) + .vscode/.codex/AGENTS.md + README_AGENT_HARNESS.md + reports/validation_report.md"
-  sessionshistorik: "reports/ (fase-rapporter, audits, inventories) + .agents/brain/memory/ + Task/ + temp/ (delvist)"
-  arbejdsregler: "AGENTS.md (alle varianter) + .agents/brain/AGENTS.md + .vscode/.codex/AGENTS.md + DESIGN.md + PROMPT.md"
-  styrende_kontekst: "AGENTS.md (uppercase, model-agnostisk) + .agents/brain/context.md + .vscode/.codex/Brain/context.md"
+  primaer_status: "primer.md (sessionsstart-kondensat) + systemkort.md (autoritativ arkitektur) + AGENTS.md (rod)"
+  sessionshistorik: ".agents/brain/memory/ (append-only snapshots) + docs/audit/ + docs/done/ (13 lukkede tickets)"
+  arbejdsregler: "AGENTS.md (rod) + .agents/brain/ + docs/architecture/memory-governance.md"
+  styrende_kontekst: "primer.md + .agents/brain/context.md + docs/architecture/ADR-multi-runtime-agent-system.md (Accepted, roadmap A–F ✅)"
   plan_filer:
-    - "reports/final_harness_report.md"
-    - "reports/migration-plan/ (hvis findes)"
-    - "Task/harness-roadmap.md"
-    - "DESIGN.md (arkitekturplan)"
+    - "PROJEKT_PLAN.md (idébank) + DEPS.md (afhængigheder)"
+    - "docs/plans/arkiv/ (KØREPLAN, FORBEDRINGSNOTAT, runtime-konsolidering — historik)"
   sekundaer_produktinfo: "README.md + README_AGENT_HARNESS.md"
 
 arkitektur:
   lagmodel: |
-    Tre-lags model (vendor / kurateret / domæne) + dual runtime:
+    Tre-lags model (vendor / kurateret / domæne) + canonical->genereret:
 
-    - Vendor (read-only upstream):
-      .agents/vendor/mattpocock-skills/
-      .agents/vendor/andrej-karpathy-skills/
+    - Vendor (read-only upstream, pinnet): .agents/vendor/{mattpocock,andrej-karpathy}-skills/
+    - Kurateret: .agents/skills/ (107; eneste skill-lag; runtime har kun bevidst banebyg-leftover)
+    - Domæne: .agents/agents/ (28 personaer + banedanmark/ 19 rolleagenter) + .agents/brain/
+      + Funktions- og stillingsbeskrivelser/FB/ (213+ PDF'er — primær kilde; K-verifikation
+      udført for 5 rolleprofiler 2026-07-12 via pdftotext)
 
-    - Kurateret (model-agnostiske skills):
-      .agents/skills/ (29+ : tdd, diagnose, karpathy-guidelines, grill-*, to-prd, to-issues, banebyg m.fl.)
-      .vscode/.codex/skills/ (større samling BBTR/BBDK-domæne + kuraterede)
-
-    - Domæne (Banedanmark-specifikt):
-      .agents/agents/ + .agents/brain/
-      .vscode/.codex/agents/ (Avatar/IQRA + Banedanmark-roller) + .vscode/.codex/Brain/
-      Funktions- og stillingsbeskrivelser/FB/ (213+ PDF'er — primær kilde til roller)
-
-    - Aktiv runtime (ADR-0001): .vscode/.codex/ (prompts, skills, agents, Brain)
-    - Fremtidig reference (under validering): .agents/ (struktur komplet, indhold delvist tomt/mirrored)
-    - Kilder/reference: Avatar/, Kombi/ (Iqra m.fl.), temp/ (build-artefakter + gamle scripts), reports/
+    - CANONICAL: .agents/ (ADR Accepted 2026-07-09; aktiveret PR F 2026-07-11, gate GODKENDT)
+    - GENERERET: .vscode/.codex/agents/ + Brain-pointer + .claude/agents/ (--check = drift-vagt)
+    - Haandvedligeholdt runtime-eget (bevidst, udenfor --check): .vscode/.codex/prompts/,
+      config.toml, agent-roster.json (vagtes af harness Sektion G)
 
     Vigtigste graenser:
-    - Vendor må ALDRIG redigeres direkte.
-    - .vscode/.codex/ er single source of truth indtil eksplicit aktiveringsbeslutning for .agents/.
-    - Domæne-skills der er FORELØBIG må ikke præsenteres som verificerede.
+    - Vendor maa ALDRIG redigeres direkte.
+    - Genererede filer haandredigeres ALDRIG; rediger canonical -> --apply -> --check exit 0.
+    - FORELØBIG/draft maa ikke praesenteres som verificeret (28 nye skills baerer
+      Verifikationsstatus-sektion; 3 rolleagenter er draft med dokumenterede forbehold).
 
 kendte_problemer:
-  - "Dual runtime drift: .agents/ er scaffoldet men tom/mirrored; .vscode/.codex/ er autoritativ (valideringsrapport 2026-05-06)"
-  - "Mange FORELØBIG/placeholder skills og agenter (banebyg, bdk-*, 4 Banedanmark-roller) — afventer kildeindlæsning fra PDF'er og Funktionsbeskrivelser"
-  - "23+ avatar-systemprompts mangler eller er delvist opdateret (dokumenteret i reports/inventory/)"
-  - "temp/ indeholder gamle rosters, build-scripts og dubletter — skal ryddes eller flyttes til reports/ som audit-artefakter"
-  - "Ingen aktiv git i nogle views — øget risiko ved strukturelle ændringer"
-  - "Rod-skills/ og Task/ indeholder ældre/parallelle kopier af skills og audit-logs"
-  - "Funktions- og stillingsbeskrivelser/FB/ (213+ PDF'er) er primær domænekilde men ikke fuldt struktureret ind i skills/brain"
+  - "31 aeldre skill-descriptions mangler eksplicit trigger (batch-PR anbefalet, audit 2026-07-12)"
+  - "28 nye domæneskills er FORELØBIG indtil krydstjek mod Banedanmarks officielle kilder"
+  - "Global ~/.claude/skills-kopi er tredje ustyret kopi med encoding-korruption (uden for repo; beslutning udestaar)"
+  - "Skabelonen mangler examples/ + parametrisering af ROLE_CONTAINER (naeste promoveringsrunde)"
+  - "Logopakken bor i temp/ men er load-bearing for 3 brand-skills (flyt anbefalet)"
+  - ".codex-rodflytning besluttet udskudt (kraever ekstern verifikation af Codex-soegesti)"
 
 nylige_aendringer:
-  - "Phase 1-15 build af .agents/ struktur (komplet scaffold, delvist tomt)"
-  - "ADR-0001: .vscode/.codex/ erklæret autoritativ indtil validering + eksplicit aktivering"
-  - "Valideringsrapport 2026-05-06: dokumenterer dual-struktur problem og anbefaler oprydning/migration"
-  - "Avatar inventory + Iqra-integration (11/11 prompts verificeret)"
-  - "Registry.yaml i flere placeringer (rod, .vscode/.codex/agents/, .agents/) — risiko for drift"
+  - "2026-07-11: ADR-roadmap A–F FULDFØRT — generator, memory-governance, AKTIVERING (gate GODKENDT, ticket #1 lukket); post-oprydning (Brain-pointer, registry 4->2)"
+  - "2026-07-12: steps 1–10 — sandhedsoprydning, gating (hook+CI), persona-lag paa target-kontrakt (fence/fold-in/dedup-vagt), claude-code aktiveret (47 subagenter), domænemodning (K-verifikation 5 profiler + 28 skills), Fase G-promovering (ADR-0004)"
+  - "2026-07-12: multi-agent audit (denne skabelon re-baselinet; rapport i docs/audit/)"
 
 checks:
-  typecheck: "N/A (ingen kompileret app); brug i stedet struktur-checks"
-  test: "powershell ./.agents/scripts/validate-harness.ps1 (eller .vscode/.codex/scripts); uv run python temp/verify_agent_harness.py; python .vscode/.codex/scripts/invoke-agent.py -l"
-  lint: "Grep-baseret: navn/dir match på SKILL.md (grep '^name:' + directory name); PowerShell script-kvalitet; manuel <500 linjer check på SKILL.md"
-  migration_verifikation: "Tæl filer i .agents/ vs .vscode/.codex/; sammenlign registry.yaml indhold; tjek FORELØBIG markeringer i skills"
-  route_scan: "N/A (intet web framework); scan i stedet: .agents/skills/**/SKILL.md, .vscode/.codex/skills/**/SKILL.md, .agents/agents/**/profile.md + skills.yaml, Funktions- og stillingsbeskrivelser/FB/*.pdf"
-  structure_audit: "powershell ./.agents/scripts/audit-harness.ps1 eller tilsvarende; tjek for dubletter mellem .vscode/.codex/ og .agents/"
-  frontmatter_compliance: "For hver SKILL.md: navn == parent dir (lowercase, hyphen), description 1-1024 chars med trigger, ingen -- i navn"
-  source_ingestion_status: "Gennemgå alle skills med 'FORELØBIG' eller 'placeholder' mod Funktions- og stillingsbeskrivelser/FB/ og Kombi/"
+  typecheck: "N/A; strukturchecks via validate-schemas.py (gating)"
+  test: "uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py; uv run --with pyyaml python .agents/scripts/generate-runtime.py --check; powershell scripts/Validate-Harness-Unified.ps1; python .vscode/.codex/scripts/invoke-agent.py -l"
+  lint: "validate-schemas.py haandhaever name==dir + description 1-1024; <500 linjer paa SKILL.md er manuel stikproeve (kendt undtagelse: bbtr-webdesign)"
+  migration_verifikation: "generate-runtime.py --check (semantisk registry-diff + profil-diff + Brain-pointer + avatar-dedup + skills-leftover + dangling-ref-vagt), exit 0 = i sync"
+  route_scan: "scan: .agents/skills/**/SKILL.md, .agents/agents/**/profile.md, .agents/model-adapters/*.md, FB/*.pdf"
+  structure_audit: "powershell .agents/scripts/audit-harness.ps1 (koeres via Validate-Harness-Unified Sektion E)"
+  frontmatter_compliance: "haandhaeves af validate-schemas.py (gating siden 2026-07-12)"
+  source_ingestion_status: "Gennemgaa skills/profiler med FORELØBIG/Verifikationsstatus mod FB/*.pdf (pdftotext virker; Kombi/ findes ikke i repoet)"
 ```
 
 ---

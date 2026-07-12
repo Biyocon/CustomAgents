@@ -53,20 +53,23 @@ Alle modeller skal pege mod samme `AGENTS.md`, skills og agentroster via adapter
 
 ## Kom i gang
 
-1. Læs `.vscode/.codex/Brain/context.md` for domæneforståelse
+1. Læs `primer.md` + `.agents/brain/context.md` for domæneforståelse
 2. Læs `.vscode/.codex/prompts/master-system.md` for fælles adfærd
-3. Vælg agent efter fagrolle i `.vscode/.codex/agents/agent-roster.json`
+3. Vælg agent (loader: `invoke-agent.py -l`; canonical: `.agents/registry.yaml`)
 4. Indlæs agentens profil og listede skills før leverance
 
-## Validering
+## Validering (gating siden 2026-07-12)
 
 ```bash
-python temp/verify_agent_harness.py
+uv run --with jsonschema --with pyyaml python .agents/scripts/validate-schemas.py
+uv run --with pyyaml python .agents/scripts/generate-runtime.py --check
 ```
+
+(Pre-commit-hook + CI kører samme to vagter. Det gamle `temp/verify_agent_harness.py` er legacy.)
 
 ## Regler
 
-- Behandl `.vscode/.codex/` som eneste lokale kilde til sandhed
-- Brug ikke `.vscode/archive/` eller `Kombi/` som aktiv runtime uden bevidst reaktivering
+- Behandl `.agents/` som canonical kilde til sandhed; genererede runtime-filer håndredigeres aldrig
+- Brug ikke `.vscode/archive/` som aktiv runtime uden bevidst reaktivering (`Kombi/` findes ikke i repoet)
 - Slet aldrig filer du ikke selv har oprettet
-- Opdater `source-map.md` ved nye kilder
+- Opdater `.agents/brain/source-map.md` ved nye kilder

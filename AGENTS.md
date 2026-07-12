@@ -121,9 +121,9 @@ Brain (".agents/brain/") er projektets persistente hukommelse:
 |-----------|--------|----------|
 | Brain | ✅ Komplet | 9 filer — kontekst, glossary, antagelser, spørgsmål, ADR, kort, runbooks |
 | Registry | ✅ Komplet | `registry.yaml` v1 — agenter, skills, model adapters, scripts |
-| Agenter | ✅ Komplet | Banedanmark-rolleagenter i to formater (kendt dobbeltformat, afklares ved PR D/F): 15 flade filer (13 `bd-*` = active; `bd-bro-og-anlaeg` + `interface-manager-banebyg` = draft) + 14 undermappe-profiler (alle draft; de 4 tidligere FORELØBIG komplettéret fra FB-PDF'er 2026-07-10, ticket #5). Se `banedanmark/README.md` for detaljer |
+| Agenter | ✅ Komplet | 47 canonical agenter (28 personaer + 19 Banedanmark-rolleagenter i `.agents/agents/banedanmark/`); dobbeltformatet blev afviklet ved PR F — runtime-visningen genereres. K-verifikation mod FB-PDF'er udført for 5 profiler 2026-07-12 |
 | Skills | ✅ Komplet | Kør `scripts/Validate-Harness-Unified.ps1` for aktuelt antal (metrik-linjen "Aktive skills"); alle skills ligger nu i `.agents/skills/` efter flytning 2026-07-09 |
-| Model adapters | ✅ Komplet | Codex, Kimi, Qwen Code, Gemini Code |
+| Model adapters | ✅ Komplet | 7 skema-konforme: codex + claude-code (**active**), kimi/ollama/gemini/cursor/qwen-code (planned) |
 | Scripts | ✅ Komplet | 4 PowerShell-scripts — audit, install, generate-index, validate |
 | Rapporter | ✅ Komplet | 8 analyse-rapporter + 2 valideringsrapporter |
 | Vendor | ✅ Afklaret | andrej-karpathy-skills og mattpocock-skills er tracked vendored/referenceindhold |

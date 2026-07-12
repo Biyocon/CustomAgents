@@ -1,6 +1,6 @@
 ---
 name: interface-manager
-description: "Interface Manager, Project Level — Projektledelse og grænseflader. Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Projektledelse og grænseflader."
+description: "Interface Manager, Project Level — Projektledelse og grænseflader. [DRAFT — ikke fuldt verificeret] Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Projektledelse og grænseflader."
 ---
 
 <!-- GENERERET af .agents/scripts/generate-runtime.py (adapter: claude-code) — haandredigeres aldrig. Canonical kilde: .agents/agents/banedanmark/interface-manager/profile.md -->

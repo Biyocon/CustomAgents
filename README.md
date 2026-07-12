@@ -207,24 +207,19 @@ Brug kun `.\.agents\scripts\validate-harness.ps1` ved arbejde med den fremtidige
 
 ## Agent-roster
 
-### Banedanmark-subagents (14 profiler)
+### Banedanmark-rolleagenter (19 canonical profiler i `.agents/agents/banedanmark/`)
 
-| Agent | Rolle | Status |
-|-------|-------|--------|
-| Interface Manager | Integration, grænseflader, BaneByg | FORELØBIG |
-| Udbudskonsulent | Udbud, tilbud, kontrakt | FORELØBIG |
-| Projektleder | Overordnet projektstyring | FORELØBIG |
-| Projekteringsleder | Projektering og design | DRAFT |
-| Dokumentcontroller | Dokumentstyring og kontrol | DRAFT |
-| Kvalitetsspecialist | Kvalitetssikring og -kontrol | DRAFT |
-| Byggeleder/Tilsyn | Udførelse og tilsyn | FORELØBIG |
-| Kontraktmanager | Kontraktadministration | DRAFT |
-| Planlægningskoordinator | Tids- og ressourceplanlægning | DRAFT |
-| Sikkerhedskoordinator | Arbejdsmiljø og sikkerhed | DRAFT |
-| Fagansvarlig Spor | Spor og anlæg | DRAFT |
-| Miljøkoordinator | Miljø og bæredygtighed | DRAFT |
-| Ibrugtagning | Commissioning og idriftsættelse | DRAFT |
-| Økonomi/Controller | Økonomi, budget, controlling | DRAFT |
+> Kanonisk status/liste: `.agents/registry.yaml` (agent_model: role-sektionen) — hardkod ikke
+> status her (volatile tal rådner). Pr. 2026-07-12: 16 active / 3 draft; 5 profiler er
+> K-verificeret direkte mod FB-PDF'erne (bd-bro-og-anlaeg, byggeleder-tilsyn, interface-manager,
+> projektleder, udbudskonsulent — de tidligere FORELØBIG-markeringer er afløst af
+> kildelinjer med PDF-revisioner og dokumenterede forbehold).
+
+Rollerne dækker bl.a.: Projektleder, Byggeleder/Tilsyn, Interface Manager, Udbudskonsulent,
+Projekteringsleder, Dokumentcontroller, Kvalitetsspecialist, Kontraktmanager,
+Planlægningskoordinator, Sikkerhedskoordinator, Fagansvarlig Spor, Miljøkoordinator,
+Ibrugtagning, Økonomi/Controller, Trafikleder, Materielkoordinator, Systemadministrator,
+Bro- og Anlægsspecialist, Interface Manager (BaneByg-variant).
 
 ### IQRA-agentfamilie (26+ avatarer)
 
@@ -267,14 +262,12 @@ Se `Avatar/` for alle billeder og `.agents/brain/maps/agent-map.md` for relation
 
 ### Domænespecifikke skills (Banedanmark)
 
-| Skill | Domæne | Status |
-|-------|--------|--------|
-| `banebyg` | BBTR, BBE, BKP | FORELØBIG (placeholder) |
-| `bdk-brand-governance` | Logo, farver, typografi | FORELØBIG |
-| `bdk-gdpr-praksis` | GDPR i jernbaneprojekter | FORELØBIG |
-| `bdk-legal-mapping` | Lov- og regelkrav | FORELØBIG |
-| `shared-docx` | Word-dokumenter | FORELØBIG |
-| `shared-quality` | Kvalitetssikring | FORELØBIG |
+> De tidligere FORELØBIG-markeringer for banebyg/bdk-brand-governance/bdk-gdpr-praksis/
+> bdk-legal-mapping/shared-docx/shared-quality blev løst 2026-07-10 (ticket #7). Pr. 2026-07-12
+> er der 77 domæneskills (38 bbtr- + 37 bdk- + banebyg + bbe-dokumenter-platform), heraf 28 nye
+> fra domænemodningen 2026-07-12 (markeret FORELØBIG med eksplicit Verifikationsstatus-sektion
+> indtil krydstjek mod officielle kilder). Kanonisk liste: `.agents/registry.yaml` /
+> harness-validatorens metrik-linje.
 
 ---
 

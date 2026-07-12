@@ -260,7 +260,11 @@ def render_claude_agent(aid, prof):
     kind = "rolleagent" if prof["is_role"] else "persona"
     role = str(fm.get("role", "")).replace('"', "'")
     cat = str(fm.get("category", "")).replace('"', "'")
-    desc = (f"{role} — {cat}. Banedanmark-harness {kind}, genereret fra canonical "
+    # Status-propagering (audit-fund 2026-07-12): draft/FORELOEBIG maa ikke fremstaa
+    # som active i den genererede runtime-visning.
+    status = str(fm.get("status") or "active")
+    tag = "" if status == "active" else f" [{status.upper()} — ikke fuldt verificeret]"
+    desc = (f"{role} — {cat}.{tag} Banedanmark-harness {kind}, genereret fra canonical "
             f".agents/. Brug ved opgaver inden for {cat}.")
     prompt = extract_prompt(read_text(prof["path"]))
     rel = os.path.relpath(prof["path"]).replace(os.sep, "/")
@@ -527,10 +531,10 @@ def main():
             print("DRIFT: live runtime matcher IKKE canonical. Efter PR F-aktivering (2026-07-11)")
             print("skal --check altid give exit 0. Drift betyder enten at genereret runtime er")
             print("blevet haandredigeret (forbudt), eller at canonical er aendret uden efterfoelgende")
-            print("'--apply'. Ret ved: redigér kun .agents/ -> koer --apply -> verificér --check exit 0.")
+            print("'--apply'. Ret ved: rediger kun .agents/ -> koer --apply -> verificer --check exit 0.")
         else:
             print("Runtime er i sync med canonical (PR F aktiveret 2026-07-11, gate GODKENDT).")
-            print("Dette er den loebende drift-vagt: redigér kun .agents/, koer --apply, og")
+            print("Dette er den loebende drift-vagt: rediger kun .agents/, koer --apply, og")
             print("bekraeft at --check fortsat giver exit 0. Genererede runtime-filer haandredigeres aldrig.")
     return exit_code
 

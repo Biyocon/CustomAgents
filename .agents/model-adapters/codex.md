@@ -22,14 +22,24 @@ notes: "config.toml i .vscode/.codex/ sætter model/reasoning-effort. Primær m�
 # Codex Adapter (`id: codex`, status: **active**)
 
 ## Hvad det er
-OpenAI Codex CLI / VS Code-integration. Dette er den **eneste aktive runtime** i dag: den backer
-`.vscode/.codex/`-laget. Alle andre adaptere er `planned`, indtil generatorer (PR D/F) findes.
+OpenAI Codex CLI / VS Code-integration — **referenceimplementeringen** blandt de aktive adaptere
+(claude-code blev aktiveret som adapter #2 2026-07-12; de øvrige 5 er `planned`). Backer
+`.vscode/.codex/`-laget, som siden PR F (2026-07-11) GENERERES fra canonical.
 
 ## Sådan mapper canonical → codex
 - **Entrypoint:** `AGENTS.md` (projektrod) læses som styrende kontekst.
 - **Prompts:** agentens system prompt (text-blok i `profile.md`) injiceres som system-instruktion.
 - **Skills:** læses canonical fra `.agents/skills/<id>/SKILL.md`.
-- **Registry:** `.vscode/.codex/agents/registry.yaml` (aktiv, håndholdt) — genereres fra canonical senere.
+- **Registry:** `.vscode/.codex/agents/registry.yaml` — **GENERERET** af `generate-runtime.py`
+  (PR F); håndredigeres aldrig; sync vagtes af `--check`.
+
+## Artefakt-dækning (præcisering efter audit 2026-07-12)
+Genereret + `--check`-dækket: `agents/registry.yaml`, `agents/banedanmark/<id>/profile.md` (19),
+`Brain/AGENTS.md`-pointer, samt vagter for skills-leftover og avatar-prompt-dedup.
+**Håndvedligeholdt (bevidst, udenfor --check):** `prompts/` (runtime-egne prompts),
+`config.toml` (runtime-konfiguration), `.vscode/.codex/AGENTS.md` (runtime-doc) og
+`agents/agent-roster.json` (Avatar-roster; krydstjekkes af Validate-Harness-Unified Sektion G).
+At tage roster+prompts ind under generatoren er et kendt muligt næste skridt.
 
 ## Settings-template (eksempel, ikke normativ)
 Faktisk konfiguration ligger i `.vscode/.codex/config.toml`:

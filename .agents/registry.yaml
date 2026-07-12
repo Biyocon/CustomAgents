@@ -24,6 +24,9 @@ secondary_models:
   - qwen-code
   - gemini-code
 
+# Status-semantik (afklaret ved audit 2026-07-12): personaer baerer status i deres
+# profile.md-frontmatter (alle 28 = active); manglende status-felt paa en persona-entry
+# her betyder ACTIVE. Rolleagenter baerer eksplicit status baade her og i profilen.
 agents:
   - id: yunus-udbudskonsulent
     name: Yunus

@@ -1,19 +1,22 @@
 # AGENTS.md
 
+> Opdateret 2026-07-12 (post-PR F): `.agents/` er CANONICAL; agents-laget og Brain-pointeren
+> i denne mappe GENERERES af `.agents/scripts/generate-runtime.py`. Redigér aldrig genererede
+> filer — redigér canonical og kør `--apply`. Se root `AGENTS.md` for de fulde arbejdsregler.
+
 ## Projektets AI-struktur
 
-- Aktiv runtime-kerne er denne mappe: `.vscode/.codex/`
-- Aktive projektskills ligger i `.vscode/.codex/skills/`
-- Aktive prompts ligger i `.vscode/.codex/prompts/`
-- Aktive subagents ligger i `.vscode/.codex/agents/`
-- Projektets Brain ligger i `.vscode/.codex/Brain/`
+- CANONICAL kilde: `.agents/` (agents, skills, registry, brain)
+- Denne mappe er genereret/runtime-visning: `.vscode/.codex/agents/` (genereret), `Brain/AGENTS.md` (genereret pointer)
+- Aktive projektskills ligger i `.agents/skills/` (canonical; flyttet 2026-07-09)
+- Aktive prompts ligger i `.vscode/.codex/prompts/` (runtime-egne, håndvedligeholdte)
 - Delte hooks ligger i `.vscode/hooks/`
 - `.vscode/archive/` er kun reference- og historikomraade
 
 ## Agent-invokation
 
 ```powershell
-# List alle 50+ agenter (Avatar + Banedanmark)
+# List alle agenter (Avatar-personaer + Banedanmark-rolleagenter; kør for aktuelt antal)
 .vscode/.codex/scripts/invoke-agent.ps1 -l
 
 # Aktiver en specifik agent — viser profil + system prompt
@@ -33,8 +36,9 @@ python .vscode/.codex/scripts/invoke-agent.py "Udbudskonsulent" -p
 ```
 
 ### Agenter dækker
-- **37 Avatar-agenter**: Professionelle profiler (Ahmad El-Wali, Hassan, Mehtap, m.fl.)
-- **13 Banedanmark-rolleagenter**: Byggeleder, Dokumentcontroller, Kontraktmanager, Udbudskonsulent, osv.
+- **27 Avatar-personaer** (Ahmad El-Wali, Hassan, Mehtap, m.fl.) + council-chairman (meta-agent)
+- **19 Banedanmark-rolleagenter** (Byggeleder, Dokumentcontroller, Kontraktmanager, Trafikleder, osv.)
+- Kanonisk tal: kør `invoke-agent.py -l` eller læs `.agents/registry.yaml` — hardkod ikke antallet her
 
 ## Master prompt
 
@@ -45,10 +49,11 @@ python .vscode/.codex/scripts/invoke-agent.py "Udbudskonsulent" -p
 
 ## Skills
 
-- Matt Pocock-skills er installeret projektlokalt i `.vscode/.codex/skills/`
-- `karpathy-guidelines` er installeret som faelles adfaerds-skill
-- BDK-/BBTR-/BBE-/BKP-skills prioriteres ved Banedanmark-opgaver
-- `Kombi/` og `.vscode/archive/` er referencekilder, ikke aktiv runtime
+- Alle skills ligger canonical i `.agents/skills/` (107; `.vscode/.codex/skills/` har kun det
+  bevidste `banebyg`-leftover, vagtes af `generate-runtime.py --check`)
+- `karpathy-guidelines` er faelles adfaerds-skill; BDK-/BBTR-/BBE-/BKP-skills prioriteres ved
+  Banedanmark-opgaver
+- `.vscode/archive/` er referencekilde, ikke aktiv runtime (`Kombi/` findes ikke i repoet)
 
 ## Projekt-erfaringer (persistent memory)
 
@@ -67,10 +72,11 @@ python .vscode/.codex/scripts/invoke-agent.py "Udbudskonsulent" -p
 - `Path(__file__).resolve().parent.parent.parent` = projektrod
 - `Path.cwd()` er ikke pålidelig (afhænger af hvor brugeren kalder fra)
 
-### Agent-kilder og prioritering
-- **Master**: `.vscode/.codex/agents/` (aktiv runtime)
-- **Mirror**: `.agents/agents/` (backup, fases ud senere)
-- Ved deduplikering: prioriter `.vscode/.codex/` over `.agents/`
+### Agent-kilder og prioritering (opdateret post-PR F)
+- **CANONICAL/master**: `.agents/agents/` — eneste redigeringssted
+- **Genereret visning**: `.vscode/.codex/agents/` (produceres af generate-runtime.py --apply)
+- invoke-agent.py's dedup foretrækker runtime-visningen ved id-sammenfald — indholdet er identisk
+  fordi laget genereres fra canonical (--check håndhæver det)
 - Avatar-agenter: `Avatar/agents/` → `Avatar/2_Avatar_Agent_*` billeder + `System_Prompt_Agent_*.md` tekst
 - Banedanmark-agenter: `.vscode/.codex/agents/banedanmark/` → YAML-frontmatter `.md` filer
 

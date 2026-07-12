@@ -1,6 +1,6 @@
 ---
 name: interface-manager-banebyg
-description: "Interface Manager — Banedanmark / BaneByg. Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Banedanmark / BaneByg."
+description: "Interface Manager — Banedanmark / BaneByg. [DRAFT — ikke fuldt verificeret] Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Banedanmark / BaneByg."
 ---
 
 <!-- GENERERET af .agents/scripts/generate-runtime.py (adapter: claude-code) — haandredigeres aldrig. Canonical kilde: .agents/agents/banedanmark/interface-manager-banebyg/profile.md -->

@@ -1,6 +1,6 @@
 ---
 name: udbudskonsulent
-description: "Udbudskonsulent — Udbud og kontrakt. Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Udbud og kontrakt."
+description: "Udbudskonsulent — Udbud og kontrakt. [DRAFT — ikke fuldt verificeret] Banedanmark-harness rolleagent, genereret fra canonical .agents/. Brug ved opgaver inden for Udbud og kontrakt."
 ---
 
 <!-- GENERERET af .agents/scripts/generate-runtime.py (adapter: claude-code) — haandredigeres aldrig. Canonical kilde: .agents/agents/banedanmark/udbudskonsulent/profile.md -->
