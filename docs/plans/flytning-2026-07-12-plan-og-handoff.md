@@ -98,7 +98,7 @@ uv run --with pyyaml python .agents/scripts/generate-runtime.py --check         
 Alle tre skal være grønne **uden** at du har rettet noget — det beviser at ingen automatik afhang
 af den gamle sti. Er de ikke grønne: **stop og rapportér** (så holder analysen i tabellen øverst ikke).
 
-### B1 · Opdatér de 5 levende sti-referencer
+### B1 · Opdatér de 4 levende sti-referencer
 
 | Fil | Linje | Nuværende | Skal være |
 |---|---|---|---|
@@ -106,9 +106,12 @@ af den gamle sti. Er de ikke grønne: **stop og rapportér** (så holder analyse
 | `primer.md` | ~20 | `- **Rod:** \`C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom\`` | `- **Rod:** \`C:\Users\Biyocon\CustomAgents\`` |
 | `MULTI_AGENT_AUDIT_ADAPTED_FOR_THIS_HARNESS.md` | 16 | `sti: "C:\\...\\Desktop\\Custom"` | `sti: "C:\\Users\\Biyocon\\CustomAgents"` |
 | `PROMPT_MULTI_AGENT_LOGIC_AUDIT_48_V4.md` | 26 | `sti: "C:\\...\\Desktop\\Custom"` | `sti: "C:\\Users\\Biyocon\\CustomAgents"` |
-| `.agents/brain/runbooks/how-to-promote-project-harness-to-global.md` | ~46 | `$source = "C:\...\Kvalifikationsordning Entreprenoer\.agents"` | `$source = "C:\Users\Biyocon\CustomAgents\.agents"` (bemærk: linjen var **dobbelt stale** — pegede på et mappenavn der ikke har eksisteret længe) |
 
 `promotion_target_global_path: "C:\\Users\\Biyocon"` i registry er **fortsat korrekt** — rør den ikke.
+
+> **Faldt fra 5 til 4 rækker (2026-07-12):** promoverings-runbooken er omskrevet og bruger nu
+> `$env:USERPROFILE` + `git rev-parse --show-toplevel` i stedet for hardkodede stier — den
+> rammes ikke af flytningen. Samme gælder `PROMPT.md` + `DESIGN.md` (se nederst).
 
 ### B2 · Ret Claude-permissions til den nye memory-nøgle
 `.claude/settings.json` linje 10–11 indeholder absolutte stier til den **gamle** nøgle:
@@ -194,7 +197,12 @@ Intet blokerer — resterende punkter er valgfrie (audit-rapportens §8).
 `~/.claude/skills`-globalkopi er korrupt/ustyret (uden for repoet) · logopakken i `temp/` er
 load-bearing for 3 brand-skills · `.codex`-rodflytning udskudt (kræver ekstern verifikation).
 
-> **Løst 2026-07-12 (efter denne plan blev skrevet):** `PROMPT.md` + `DESIGN.md` er omskrevet til
-> nutid og gjort **sti-agnostiske** (nul absolutte stier) — de skal derfor **ikke** røres i Del B.
-> PROMPT.md er nu et prompt-bibliotek pr. opgave; DESIGN.md ejer principper + beslutningsfilter
-> for nye feature-ønsker. Den døde sti i promoverings-runbooken (B1, række 5) står stadig.
+> **Løst 2026-07-12 (efter denne plan blev skrevet) — skal IKKE røres i Del B:**
+> `PROMPT.md` + `DESIGN.md` er omskrevet til nutid og gjort **sti-agnostiske** (nul absolutte
+> stier). PROMPT.md er nu et prompt-bibliotek pr. opgave; DESIGN.md ejer principper +
+> beslutningsfilter for nye feature-ønsker.
+> **Promoverings-runbooken** er ligeledes omskrevet: den brugte `C:\Users\HMDR` (maskine der ikke
+> findes) og instruerede — i modstrid med sit eget banner — kopiering til og sletning af
+> `.agents/`-**roden**, hvor MasterBrain bor. Nu: `$env:USERPROFILE` + `git rev-parse
+> --show-toplevel`, korrekt `templates/`-målsti, eksistenstjek og et tilbagefald der kun rører
+> skabelon-undermappen.
