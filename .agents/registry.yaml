@@ -13,7 +13,7 @@
 # ============================================================================
 
 version: 1
-project_root: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
+project_root: "C:\\Users\\Biyocon\\CustomAgents"
 promotion_target_global_path: "C:\\Users\\Biyocon"
 
 primary_models:

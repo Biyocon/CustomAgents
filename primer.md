@@ -1,10 +1,5 @@
 # Primer
 
-> ⚠️ **FLYTNING PLANLAGT (2026-07-12): repoet skal ud af OneDrive** →
-> `C:\Users\Biyocon\CustomAgents`. **Hvis "Rod:" nedenfor ikke matcher din faktiske
-> arbejdsmappe, er flytningen sket:** læs `docs/plans/flytning-2026-07-12-plan-og-handoff.md`
-> og kør **Del B** (efterbehandling) FØR andet arbejde. Dette banner slettes som del af Del B.
-
 Omskriv denne fil helt ved slutningen af hver session. Læs den først ved
 sessionsstart. Dette er kondensatet — hold det kort, konkret og aktuelt. En
 forældet primer lyver, og en lyvende primer er værre end ingen.
@@ -22,7 +17,7 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 - **Navn:** AgentSkills — Custom AI Agent Harness — model-agnostisk, genbrugelig
   AI-agent-infrastruktur til projektstyring, udviklet med Banedanmark som domæne.
-- **Rod:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom`
+- **Rod:** `C:\Users\Biyocon\CustomAgents`
 - **Stack:** Markdown-baserede agent-profiler/skills + YAML-registries + Python-generator/
   validering + PowerShell-harness-audit. Ingen traditionel applikationskode.
 - **Git:** GitHub Biyocon/CustomAgents, arbejder direkte på `main` (verificér aktuel HEAD/sync

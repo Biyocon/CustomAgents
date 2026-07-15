@@ -13,7 +13,7 @@ Fase G (audit: `docs/audit/AUDIT-2026-07-12-multi-agent-audit-post-roadmap.md`).
 ```yaml
 projekt:
   navn: "Agent Harness — Kvalifikationsordning Entreprenør (Banedanmark)"
-  sti: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
+  sti: "C:\\Users\\Biyocon\\CustomAgents"
   version: "canonical-genereret (re-baselinet 2026-07-12 efter ADR-roadmap A–F + Fase G)"
   beskrivelse: "Model-agnostisk agent-harness til Banedanmark-entreprenør-kvalifikationsordning. CANONICAL lag: .agents/ (47 agenter = 28 personaer + 19 rolleagenter; 107 skills; 7 adaptere; brain). Runtime-lag GENERERES af .agents/scripts/generate-runtime.py: .vscode/.codex/agents/ + Brain-pointer (codex-adapter) og .claude/agents/ 47 subagenter (claude-code-adapter). Gating: pre-commit + CI kører skema- og sync-vagt. Fase G: generisk skabelon promoveret til ~\\.agents\\templates\\customagents-harness."
 

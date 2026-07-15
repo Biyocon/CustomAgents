@@ -23,7 +23,7 @@ Du skal løse opgaven som et reelt audit-team, ikke som en generisk opsummering.
 ```yaml
 projekt:
   navn: "AgentSkills — Custom AI Agent Harness (GitHub: Biyocon/CustomAgents)"
-  sti: "C:\\Users\\Biyocon\\OneDrive - Biyocon\\Desktop\\Custom"
+  sti: "C:\\Users\\Biyocon\\CustomAgents"
   version: "git HEAD pr. audit-start (verificér selv med git log -1; ca. 100 commits, 2026-05-06 → d.d.)"
   levetid: "6–8 måneders aktiv udvikling (git-sporet fra 2026-05-06; ældre historik lever i docs/)"
   beskrivelse: "Model-agnostisk, genbrugelig AI-agent-harness til projektstyring (udviklet med Banedanmark som domæne): canonical .agents/-lag → genereret per-runtime output"

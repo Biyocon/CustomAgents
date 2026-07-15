@@ -3,11 +3,31 @@
 **Oprettet:** 2026-07-12 (af sessionen der afsluttede steps 1–10 + MULTI_AGENT_AUDIT)
 **Fra:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Custom`
 **Til:** `C:\Users\Biyocon\CustomAgents`
-**Status:** ⬜ IKKE UDFØRT — når §B er kvitteret, arkivér denne fil til `docs/plans/arkiv/`.
+**Status:** ✅ **UDFØRT 2026-07-12** — Del A og Del B er begge gennemført og verificeret.
+Arkiveret som historik.
 
-> **Nye session: læs DENNE fil før du gør noget andet.** Derefter `primer.md`.
-> Del A er brugerens manuelle trin (allerede udført når du læser dette).
-> **Din opgave er Del B.** Del C er din kontekst.
+> ## Sådan blev det faktisk gjort: **git clone**, ikke `Move-Item`
+>
+> **Del A's flytte-script blev ikke brugt.** Move-Item fejlede — som denne plan selv forudsagde:
+> en agent-session kan ikke flytte sin egen arbejdsmappe. Harnesset **nulstiller shell-cwd tilbage
+> til projektmappen efter hvert kald**, så processen holder permanent et directory-handle på
+> præcis den mappe der skulle flyttes. Fejlen var ren (rename på samme volumen er atomar):
+> gammel sti intakt, ny sti ikke oprettet, intet halvt gennemført.
+>
+> **I stedet: `git clone` fra GitHub til den nye sti** — brugerens forslag, og det bedre valg:
+> det omgår låsen helt, kan køres fra hvor som helst, efterlader den gamle mappe som sikkerhedsnet,
+> og giver en **clean-room-kopi hash-verificeret af git i begge ender** (værd noget i et repo med
+> dokumenteret OneDrive-korruptionshistorik).
+>
+> **Verificeret efter clone:** HEAD `be0b4bbc` = GitHub = gammel mappe · trackede filer **6717 =
+> 6717** · LFS-objekter er ægte filer (ikke pointer-stubbe) · `git fsck` ren · 0 skema-overtrædelser
+> · `--check` exit 0.
+>
+> **Clone-fælden (vigtig lære):** lokal git-config følger IKKE med en clone.
+> `core.hooksPath=.githooks` måtte sættes igen — ellers ville pre-commit-gaten være **tavst slået
+> fra**. Desuden blev 3 gitignorerede config-filer kopieret manuelt
+> (`.vscode/settings/{claude,gemini}.json`, `.claude/settings.local.json`). Ingen untrackede filer
+> gik tabt (der var ingen); `.bak`-filer og `.agents/build/` er bevidst udeladt (regenerérbare).
 
 ## Hvorfor flytte
 
