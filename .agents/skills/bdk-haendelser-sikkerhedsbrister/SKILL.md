@@ -1,6 +1,6 @@
 ---
 name: bdk-haendelser-sikkerhedsbrister
-description: Støt korrekt klassifikation og håndtering af sikkerhedsmæssige hændelser og administrative sikkerhedsbrister.
+description: Støt korrekt klassifikation og håndtering af sikkerhedsmæssige hændelser og administrative sikkerhedsbrister. Brug når en hændelse eller sikkerhedsbrist skal klassificeres, eller når spørgsmålet angår indmelding, undersøgelse eller opfølgning.
 ---
 
 # BDK Hændelser og Sikkerhedsbrister

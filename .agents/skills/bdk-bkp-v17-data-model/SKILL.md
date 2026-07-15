@@ -1,6 +1,6 @@
 ---
 name: bdk-bkp-v17-data-model
-description: Ekspert-skill til forståelse, anvendelse og videreudvikling af BKP v17-datamodellen. Dækker felter, værdilister, hierarki, KPID-opbygning, roller, kontroltyper, statusser og sporbarhed mellem TKP, KP og BKP.
+description: Ekspert-skill til forståelse, anvendelse og videreudvikling af BKP v17-datamodellen. Dækker felter, værdilister, hierarki, KPID-opbygning, roller, kontroltyper, statusser og sporbarhed mellem TKP, KP og BKP. Brug når BKP-datamodellen designes eller ændres, når SharePoint-lister eller Excel-skabeloner oprettes, ved implementering i PowerApps eller Power Automate, ved tvivl om gyldige feltværdier, forskel på felter eller KPID-opbygning, eller når datakvalitet og konsistens valideres.
 ---
 
 # BDK BKP v17 Datamodel

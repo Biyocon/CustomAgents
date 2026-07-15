@@ -1,6 +1,6 @@
 ---
 name: bdk-trace-processer
-description: Navigér og anvend Tracé-processer for udvikling, ændring og udfasning af jernbanesikkerhedsbærende processer og dokumenter.
+description: Navigér og anvend Tracé-processer for udvikling, ændring og udfasning af jernbanesikkerhedsbærende processer og dokumenter. Brug når en proces i Tracé skal oprettes, ændres eller udgå, eller ved procesvalg mellem ST-2.1.x og relaterede processer.
 ---
 
 # BDK Tracé-processer

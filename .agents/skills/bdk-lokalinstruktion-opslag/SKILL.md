@@ -1,6 +1,6 @@
 ---
 name: bdk-lokalinstruktion-opslag
-description: Find og afgræns relevante lokale instruktioner for strækning/station og kobling til ORS/ORF-regler.
+description: Find og afgræns relevante lokale instruktioner for strækning/station og kobling til ORS/ORF-regler. Brug når lokal instruktion for en station eller strækning skal findes, eller når det skal afklares om instruktionen læses i ORS- eller ORF-kontekst.
 ---
 
 # BDK Lokalinstruktion Opslag

@@ -1,6 +1,6 @@
 ---
 name: bdk-projektrapportering-frister
-description: Planlæg projektets rapportering og frister til porteføljekontor, direktion og eventuelle eksterne fora.
+description: Planlæg projektets rapportering og frister til porteføljekontor, direktion og eventuelle eksterne fora. Brug når rapporteringsrytmen skal planlægges, eller når ansøgnings- og behandlingsfrister skal overholdes.
 ---
 
 # BDK Projektrapportering og Frister

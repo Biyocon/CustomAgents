@@ -1,6 +1,6 @@
 ---
 name: bdk-trafikale-regelinfo-aendringer
-description: Sammenlign trafikal regelinformation på tværs af udgaver og identificér ændringer med betydning for drift og opfølgning.
+description: Sammenlign trafikal regelinformation på tværs af udgaver og identificér ændringer med betydning for drift og opfølgning. Brug når det skal afklares hvad der er ændret mellem to regelinformationsudgaver, eller når der ønskes et ændringsresumé til intern kommunikation eller planlægning.
 ---
 
 # BDK Trafikal Regelinformation Ændringer

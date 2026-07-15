@@ -1,6 +1,6 @@
 ---
 name: bdk-trafikcirkulaere-udkast
-description: Udarbejd udkast til trafikcirkulærer (TC) med korrekt brug af ORS/ORF-skabeloner og tilhørende vejledning.
+description: Udarbejd udkast til trafikcirkulærer (TC) med korrekt brug af ORS/ORF-skabeloner og tilhørende vejledning. Brug når et TC-udkast skal udarbejdes, når korrekt TC-skabelon skal vælges, eller når indholdsstrukturen skal kvalitetssikres før godkendelse.
 ---
 
 # BDK Trafikcirkulære Udkast

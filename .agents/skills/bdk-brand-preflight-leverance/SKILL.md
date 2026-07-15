@@ -1,7 +1,7 @@
 ---
 name: bdk-brand-preflight-leverance
 version: "1.0"
-description: Gennemfør preflight af brand-assets før levering, inkl. farverum, filvalg, navngivning og oprydning af støjfiler.
+description: Gennemfør preflight af brand-assets før levering, inkl. farverum, filvalg, navngivning og oprydning af støjfiler. Brug når et brandmateriale er klar til eksport eller overdragelse, når leverancepakken skal sikres teknisk korrekt, eller når logo-filer skal indgå i en leverance.
 metadata:
   owner: Biyocon
   created: 2026-02-25

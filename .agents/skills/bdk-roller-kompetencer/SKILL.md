@@ -1,6 +1,6 @@
 ---
 name: bdk-roller-kompetencer
-description: Uddrag og sammenfat ansvar, beføjelser og kompetencekrav fra funktions- og stillingsbeskrivelser i jernbanesikkerhedsorganisationen.
+description: Uddrag og sammenfat ansvar, beføjelser og kompetencekrav fra funktions- og stillingsbeskrivelser i jernbanesikkerhedsorganisationen. Brug når ansvar og krav for en specifik funktion skal forstås, når roller skal sammenlignes eller kompetencekrav afklares, eller ved oprettelse, ændring og nedlæggelse af funktions- eller stillingsbeskrivelser.
 ---
 
 # BDK Roller og Kompetencer

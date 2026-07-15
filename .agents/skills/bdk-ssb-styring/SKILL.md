@@ -1,6 +1,6 @@
 ---
 name: bdk-ssb-styring
-description: Identificér, sammenfat og strukturér arbejde med supplerende sikkerhedsbestemmelser (SSB) på tværs af SR/ORS/ORF.
+description: Identificér, sammenfat og strukturér arbejde med supplerende sikkerhedsbestemmelser (SSB) på tværs af SR/ORS/ORF. Brug når spørgsmålet angår en konkret SSB, når der ønskes overblik over gældende SSB'er i ORS/ORF, eller når overlap mellem SSB'er og flere regelsæt skal kortlægges.
 ---
 
 # BDK SSB Styring

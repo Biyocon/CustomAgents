@@ -1,6 +1,6 @@
 ---
 name: bdk-statens-it-projektmodel-compliance
-description: Vurder krav efter Statens it-projektmodel, herunder tærskler, It-råd, baseline og rapporteringsforpligtelser.
+description: Vurder krav efter Statens it-projektmodel, herunder tærskler, It-råd, baseline og rapporteringsforpligtelser. Brug når det skal afklares om et projekt er omfattet af Statens it-projektmodel, eller når der ønskes overblik over It-rådskrav og rapporteringskrav.
 ---
 
 # BDK Statens IT-projektmodel Compliance

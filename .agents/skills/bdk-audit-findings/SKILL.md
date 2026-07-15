@@ -1,6 +1,6 @@
 ---
 name: bdk-audit-findings
-description: Planlæg og vurder Banedanmarks auditaktiviteter samt håndtering af findings i interne, leverandør- og 3.-parts audits.
+description: Planlæg og vurder Banedanmarks auditaktiviteter samt håndtering af findings i interne, leverandør- og 3.-parts audits. Brug når audit skal planlægges, auditinput forberedes eller findings håndteres, eller når spørgsmålet angår afvigelser, observationer, forbedringsområder eller opfølgningsfrister.
 ---
 
 # BDK Audit Findings

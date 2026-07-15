@@ -1,6 +1,6 @@
 ---
 name: bdk-ansoegning-om-midler-end-to-end
-description: Gennemfør en komplet ansøgning om midler til Porteføljekontoret fra projektidé til indstillingspakke, gate-parathed og indsendelsesplan.
+description: Gennemfør en komplet ansøgning om midler til Porteføljekontoret fra projektidé til indstillingspakke, gate-parathed og indsendelsesplan. Brug når målet er at ansøge om midler hos Porteføljekontoret, når der ønskes en samlet arbejdsgang fra idé til indsendelsesklar pakke, eller når formalia, gate-parathed og realistisk behandlingsforløb skal sikres.
 ---
 
 # BDK Ansøgning om Midler End-to-End

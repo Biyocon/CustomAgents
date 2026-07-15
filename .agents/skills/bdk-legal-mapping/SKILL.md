@@ -1,6 +1,6 @@
 ---
 name: bdk-legal-mapping
-description: Kortlæg Banedanmarks lov- og regelkrav til intern implementering og proceskontekst i jernbanesikkerhed.
+description: Kortlæg Banedanmarks lov- og regelkrav til intern implementering og proceskontekst i jernbanesikkerhed. Brug når det skal afklares hvilke love og regler der gælder for et sikkerhedsemne, når lovkrav skal mappes til procesimplementering, eller når der ønskes compliance-overblik med sporbare kilder.
 ---
 
 # BDK Lovkravskortlægning

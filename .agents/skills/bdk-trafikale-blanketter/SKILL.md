@@ -1,6 +1,6 @@
 ---
 name: bdk-trafikale-blanketter
-description: Identificér og vejled i brug af korrekte ORS/ORF-blanketter til drifts- og sikkerhedsrelaterede situationer.
+description: Identificér og vejled i brug af korrekte ORS/ORF-blanketter til drifts- og sikkerhedsrelaterede situationer. Brug når korrekt blankettype skal vælges i en konkret situation, når forskellen mellem ORS- og ORF-blanketter skal forstås, eller når der ønskes udfyldningsorienteret vejledning.
 ---
 
 # BDK Trafikale Blanketter

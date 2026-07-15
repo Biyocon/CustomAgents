@@ -1,7 +1,7 @@
 ---
 name: bdk-brand-governance
 version: "1.0"
-description: Styr korrekt anvendelse af Banedanmarks brand-assets på tværs af kanaler, med valg af logo, regler og preflight.
+description: Styr korrekt anvendelse af Banedanmarks brand-assets på tværs af kanaler, med valg af logo, regler og preflight. Brug når BDK-logo skal anvendes korrekt i materiale, når der ønskes én samlet brand-vurdering før publicering, eller ved tvivl om korrekt logo-variant, farve eller typografi.
 metadata:
   owner: Biyocon
   created: 2026-02-25

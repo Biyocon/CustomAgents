@@ -1,7 +1,7 @@
 ---
 name: bdk-powerpoint-praesentationsskills
 version: "2.1"
-description: Skab kreative, BDK-brandede PowerPoint-præsentationer og projektværktøjer, baseret på BDK Designguide 2021 og analyse af 15 Banedanmark-decks (338 slides).
+description: Skab kreative, BDK-brandede PowerPoint-præsentationer og projektværktøjer, baseret på BDK Designguide 2021 og analyse af 15 Banedanmark-decks (338 slides). Brug når en ny præsentation med Banedanmark-branding skal genereres, når projektstyringsværktøjer som interessentmatrix, gevinstdiagram eller kommunikationsplan skal oprettes, når råt indhold skal omskrives til et præsentationsnarrativ eller en instruktiv vejledning, eller når konsistent design og font-/temahygiejne skal sikres.
 metadata:
   owner: Biyocon
   created: 2026-02-25

@@ -1,6 +1,6 @@
 ---
 name: bdk-gdpr-praksis
-description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus på korrekt systembrug, dataminimering og håndtering af personoplysninger.
+description: Vejled i praktisk GDPR-efterlevelse i Banedanmark med fokus på korrekt systembrug, dataminimering og håndtering af personoplysninger. Brug når spørgsmålet angår håndtering af persondata i daglig drift, eller hvor data må opbevares og journaliseres.
 ---
 
 # BDK GDPR-praksis

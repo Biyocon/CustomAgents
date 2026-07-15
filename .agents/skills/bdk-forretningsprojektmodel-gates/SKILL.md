@@ -1,6 +1,6 @@
 ---
 name: bdk-forretningsprojektmodel-gates
-description: Anvend Banedanmarks forretningsprojektmodel med korrekt gateforståelse, faseskift og dokumentkrav.
+description: Anvend Banedanmarks forretningsprojektmodel med korrekt gateforståelse, faseskift og dokumentkrav. Brug når spørgsmålet angår faser, gates eller faseskift, eller når det skal afklares hvilke dokumenter en gate kræver.
 ---
 
 # BDK Forretningsprojektmodel GATES

@@ -1,7 +1,7 @@
 ---
 name: bdk-brand-regler-anvendelse
 version: "1.0"
-description: Anvend og kvalitetssikr brandregler fra BDK designguiden ved brug af logo i kommunikationsmateriale.
+description: Anvend og kvalitetssikr brandregler fra BDK designguiden ved brug af logo i kommunikationsmateriale. Brug når brand-compliance i et layout skal valideres, ved tvivl om korrekt eller ukorrekt logobrug, eller når et materiale skal godkendes mod BDK-brandregler før publicering.
 metadata:
   owner: Biyocon
   created: 2026-02-25

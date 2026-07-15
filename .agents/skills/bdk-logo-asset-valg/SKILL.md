@@ -1,7 +1,7 @@
 ---
 name: bdk-logo-asset-valg
 version: "1.0"
-description: Vælg korrekt Banedanmark-logo-asset ud fra kanal, farverum, baggrund og layoutbehov.
+description: Vælg korrekt Banedanmark-logo-asset ud fra kanal, farverum, baggrund og layoutbehov. Brug når en konkret logo-fil skal vælges til et materiale, ved tvivl om RGB/CMYK, dark/light eller logovariant, eller når den præcise filsti til det rette logo-asset skal findes.
 metadata:
   owner: Biyocon
   created: 2026-02-25

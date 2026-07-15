@@ -1,6 +1,6 @@
 ---
 name: bdk-portefoljekontor-governance
-description: Vejled i porteføljestyring af forretningsprojekter, herunder roller, behandling, grænseflader og beslutningsforløb.
+description: Vejled i porteføljestyring af forretningsprojekter, herunder roller, behandling, grænseflader og beslutningsforløb. Brug når spørgsmålet angår porteføljekontorets rolle, ansvar og beslutningsflow, eller når behandling af forretningsprojekter skal afklares.
 ---
 
 # BDK Porteføljekontor Governance

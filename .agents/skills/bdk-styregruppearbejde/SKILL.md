@@ -1,6 +1,6 @@
 ---
 name: bdk-styregruppearbejde
-description: Understøt etablering og drift af styregruppearbejdet med fokus på aftaler, beslutningsgrundlag og ledelsesstøtte.
+description: Understøt etablering og drift af styregruppearbejdet med fokus på aftaler, beslutningsgrundlag og ledelsesstøtte. Brug når en styregruppeaftale skal etableres eller justeres, eller når styregruppens beslutningsgrundlag skal struktureres.
 ---
 
 # BDK Styregruppearbejde

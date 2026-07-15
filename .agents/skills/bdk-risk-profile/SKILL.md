@@ -1,6 +1,6 @@
 ---
 name: bdk-risk-profile
-description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer, risikoejeransvar og sammenhæng til SRAC.
+description: Analyser Banedanmarks risikoprofil for jernbanesikkerhed, barrierer, risikoejeransvar og sammenhæng til SRAC. Brug når spørgsmålet angår risikoprofil, risikoejer, barrierer eller SRAC-effekt i drift, eller når ændringer til sikkerhedsbarrierer eller overvågning skal vurderes struktureret.
 ---
 
 # BDK Risikoprofil

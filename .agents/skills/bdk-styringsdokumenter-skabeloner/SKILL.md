@@ -1,6 +1,6 @@
 ---
 name: bdk-styringsdokumenter-skabeloner
-description: Vælg og anvend relevante styringsdokumentskabeloner til forretningsprojekter.
+description: Vælg og anvend relevante styringsdokumentskabeloner til forretningsprojekter. Brug når korrekt skabelon skal vælges, eller når projektets styringsgrundlag skal opbygges.
 ---
 
 # BDK Styringsdokumenter og Skabeloner

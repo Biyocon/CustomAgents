@@ -1,6 +1,6 @@
 ---
 name: bdk-bkp-v17-overview
-description: Ekspert-skill til sammenskrivning, kvalitetssikring og videreudvikling af BKP v17 (Brutto Kontrolplan), baseret på TKP og KP efter Banedanmarks BaneByg-standarder.
+description: Ekspert-skill til sammenskrivning, kvalitetssikring og videreudvikling af BKP v17 (Brutto Kontrolplan), baseret på TKP og KP efter Banedanmarks BaneByg-standarder. Brug når TKP og KP sammenskrives til BKP v17, når BKP-indhold opdateres eller kvalitetssikres, når nye fagposter, hovedposter eller kontrolpunkter oprettes, når struktur, nummerering og sprog harmoniseres, eller når BKP forberedes til digital anvendelse i Excel, SharePoint eller PowerApps.
 ---
 
 # BDK BKP v17 Overview

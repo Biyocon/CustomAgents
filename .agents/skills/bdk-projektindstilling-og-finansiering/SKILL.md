@@ -1,6 +1,6 @@
 ---
 name: bdk-projektindstilling-og-finansiering
-description: Støt korrekt udarbejdelse af projektindstilling og afklaring af finansierings- og behandlingsspor i porteføljekontoret.
+description: Støt korrekt udarbejdelse af projektindstilling og afklaring af finansierings- og behandlingsspor i porteføljekontoret. Brug når et nyt projekt skal indstilles, eller når finansieringsspor, IT-spor og behandlingstid skal afklares.
 ---
 
 # BDK Projektindstilling og Finansiering

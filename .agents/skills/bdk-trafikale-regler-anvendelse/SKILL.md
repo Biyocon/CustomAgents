@@ -1,6 +1,6 @@
 ---
 name: bdk-trafikale-regler-anvendelse
-description: Vurder hvilket trafikal regelsæt (SR, ORS, ORF) der gælder i en konkret driftssituation, og peg på relevante dokumenttyper.
+description: Vurder hvilket trafikal regelsæt (SR, ORS, ORF) der gælder i en konkret driftssituation, og peg på relevante dokumenttyper. Brug når det skal afklares hvilket regelsæt der gælder i en konkret situation, når SR, ORS og ORF skal afgrænses mod hinanden, eller når relevante regler, instrukser og supplerende bestemmelser skal findes.
 ---
 
 # BDK Trafikale Regler Anvendelse

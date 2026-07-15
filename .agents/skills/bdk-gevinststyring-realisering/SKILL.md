@@ -1,6 +1,6 @@
 ---
 name: bdk-gevinststyring-realisering
-description: Strukturér gevinststyring og opfølgning på realisering i forretningsprojekter.
+description: Strukturér gevinststyring og opfølgning på realisering i forretningsprojekter. Brug når gevinster skal planlægges eller følges op, eller når leverancer, forankring og gevinstrealisering skal kobles.
 ---
 
 # BDK Gevinststyring og Realisering

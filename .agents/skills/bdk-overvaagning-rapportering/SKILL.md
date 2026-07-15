@@ -1,6 +1,6 @@
 ---
 name: bdk-overvaagning-rapportering
-description: Analyser overvågningsdata for jernbanesikkerhed og udarbejd struktureret kvartals-/årsrapportering med kobling til risikoprofil og sikkerhedsindikatorer.
+description: Analyser overvågningsdata for jernbanesikkerhed og udarbejd struktureret kvartals-/årsrapportering med kobling til risikoprofil og sikkerhedsindikatorer. Brug når spørgsmålet angår overvågning af jernbanesikkerheden, ved arbejde med sikkerhedsindikatorer, trends eller kvartals-/årsrapportering, eller når overvågningsfund skal kobles til risikoejer og risikoprofil.
 ---
 
 # BDK Overvågning og Rapportering
