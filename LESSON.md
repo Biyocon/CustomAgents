@@ -178,3 +178,67 @@ fundet og lukket samme session. 3 commits: `1ea48fba`, `2be73f02`, `c6a68cce`.
 ### Næste lesson skrives ved
 
 Afslutning af Fase A, ELLER hvis "kun én skrivende session"-beslutningen træffes (se `#13`)
+
+---
+
+## Hændelse — to uafhængige lag skjuler filer med æ/ø/å for ad-hoc-scanning — Fundet 2026-07-16
+
+**Varighed:** Ingen data tabt; opdaget under en lille oprydningsopgave (to stale
+OneDrive-påstande efter flytningen 2026-07-12), ikke en selvstændig session.
+**Status ved start → slut:** To uafhængige sessioner fik hver sin forkerte filoptælling
+samme dag (18 vs. 3, og 33 vs. 36) uden fejlbesked → årsagen isoleret til TO uafhængige
+lag, ikke ét. Den første note her foreskrev kun det ene lag som fix og blev selv
+verificeret forkert (2×2-matrix, se nedenfor) før commit.
+
+### Hvad gik skidt
+
+- **Lag 1 — `core.quotepath`** (git-default `true`): `git ls-files`/`git grep -l`
+  udskriver stier med æ/ø/å oktal-escaped (`St\303\246rkstr\303\270m...png`), ikke som
+  en åbnbar sti.
+- **Lag 2 — Windows-lokalkodning ved `subprocess(..., text=True)`:** selv med `-z`
+  (quoting fikset) dekoder Python stdout med `cp1252` på Windows, ikke UTF-8, så
+  strengen stadig ikke matcher den rigtige fil.
+- Kun kombinationen af **begge** fix (quoting-fix + eksplicit UTF-8-decode) giver 0
+  skips. Verificeret 2×2 på samme datasæt — de tre brudte kombinationer giver
+  identisk resultat (148 uåbnelige af 6717), umulige at skelne fra hinanden uden testen:
+
+  | quoting | decode | uåbnelige |
+  |---|---|---|
+  | brudt | brudt (`text=True`) | 148 |
+  | FIX (`-z`) | brudt (`text=True`) | 148 |
+  | brudt | FIX (eksplicit utf-8) | 148 |
+  | **FIX (`-z`)** | **FIX (eksplicit utf-8)** | **0** |
+
+- Ramte to uafhængige forsøg samme dag: en PowerShell-løkke der brugte `Test-Path` på
+  git's output (fejlede synligt med "Ugyldige tegn i stien" — det held reddede den),
+  og en Python-scanner der brugte git's escaped output direkte og bare talte 3 filer
+  for lidt uden nogen fejl.
+- 148 af 6717 trackede filer (2,2%) har ikke-ASCII i stien — forventeligt permanent i
+  et dansk-domæne-repo, ikke en engangsforekomst.
+- **Denne notes egen første version gik i samme fælde:** foreskrev `-z` ELLER
+  `core.quotepath=false` som fix — begge alene er virkningsløse på Windows. En læser
+  der fulgte originalen ville have fået 0 fejl, stadig 148 skips, og troet problemet
+  var løst. Rettet efter uafhængig verificering, før commit.
+
+### Hvad vi ændrer fremover
+
+- Enhver scanning af trackede filstier via git kræver **begge** fix sammen, ikke ét:
+  ```python
+  raw = subprocess.run(['git','ls-files','-z'], capture_output=True).stdout   # ingen text=True
+  files = [f for f in raw.decode('utf-8').split('\0') if f]                   # eksplicit UTF-8
+  ```
+  Aldrig `git ls-files`/`git grep -l` med default quoting, og aldrig
+  `subprocess(text=True)` for git-output på Windows uden at kontrollere encoding.
+- En scanner skal **aldrig** have en tavs `except: continue` omkring fil-åbning eller
+  -parsing — det var netop det mønster der lod alle 148 skips passere uden en lyd i
+  begge de oprindelige scanninger. Tæl skips eksplicit og rapportér antallet.
+- Repoets egne gates (`validate-schemas.py`, `generate-runtime.py`, `audit-harness.ps1`)
+  er IKKE ramt — de enumererer filsystemet direkte (`glob`/`Get-ChildItem`), ikke via
+  git-output. Fælden rammer kun ad-hoc scanning/audit-agenter, ikke portene.
+- En filtælling der er "lidt for lav" uden fejlbesked er nu et kendt symptom på denne
+  fælde — mistænk sti-encoding og quoting samlet (begge lag — se 2×2) før man mistænker
+  volatile tal eller forkert regex.
+
+### Næste lesson skrives ved
+
+Afslutning af Fase A, ELLER hvis "kun én skrivende session"-beslutningen træffes (se `#13`)
