@@ -1,216 +1,147 @@
 # Design & arkitektur — Agent Harness
 
-> Denne fil dokumenterer den overordnede arkitektur, designbeslutninger og bedste praksis for agent-harnesset i projektet.
-> **Sti:** `C:\Users\Biyocon\OneDrive - Biyocon\Desktop\Kvalifikationsordning Entreprenør`
+> **Hvad denne fil ejer:** designbeslutninger, deres *rationale*, og **filteret** som nye
+> feature-ønsker skal igennem. Læs den før du designer noget nyt.
+>
+> **Hvad den IKKE ejer** (én kanonisk kilde pr. emne — dupliker dem ikke herind):
+> aktuel arkitektur-**status** → `systemkort.md` · **ønskeliste/idébank** → `PROJEKT_PLAN.md` ·
+> **operationelle prompts** → `PROMPT.md` · **arbejdsregler** → `AGENTS.md` ·
+> **procedurer** → `.agents/brain/runbooks/` · **tunge beslutninger** → `docs/architecture/ADR-*.md`
+> + `.agents/brain/decisions/ADR-*.md`.
+>
+> Alle stier er repo-relative. Filen indeholder bevidst **ingen absolutte stier** — de rådner
+> (fx ved flytning af repoet) og er dokumenteret som en tilbagevendende fejlkilde i `LESSON.md`.
 
 ---
 
-## Kritisk beslutning: `AGENTS.md` som fælles instruktionsfil
+## 1. Bærende designbeslutninger (og hvorfor)
 
-OpenAI beskriver `AGENTS.md` som repo-filen, hvor en agent læser instruktioner om navigation, testkommandoer og projektpraksis. Filen kan ligge i repoet eller mere globalt, og dybere `AGENTS.md`-filer kan have snævrere scope. ([OpenAI][1])
+### 1.1 `AGENTS.md` som eneste fælles instruktionsfil
+OpenAI beskriver `AGENTS.md` som repo-filen hvor en agent læser instruktioner om navigation,
+testkommandoer og projektpraksis; filen kan ligge i repoet eller globalt, og dybere `AGENTS.md`-filer
+kan have snævrere scope ([OpenAI][1]).
 
-Vi bruger derfor **kun** `AGENTS.md` i uppercase. Windows-filsystemet er case-insensitive, så det opfylder praksis for både "Agents.md" og Codex-konventionen.
+**Valg:** kun `AGENTS.md` i uppercase. **Opret aldrig** model-specifikke *hovedfiler*
+(`CLAUDE.md`, `GEMINI.md`, `CODEX.md`, `KIMI.md`) — model-specifikke noter hører i
+`.agents/model-adapters/`. *Undtagelse:* en `CLAUDE.md` der **kun** er en pointer til `AGENTS.md`
+er tilladt (Claude Code auto-læser den); den må ikke bære selvstændige instruktioner.
+**Rationale:** én kilde til adfærd på tværs af runtimes; adapterlaget er ventilen for det
+model-specifikke. Formelt: ADR-0001.
 
-**Opret ikke** model-specifikke hovedinstruktionsfiler som `CLAUDE.md`, `GEMINI.md`, `CODEX.md` eller `KIMI.md`. Model-specifikke noter hører kun hjemme under `.agents/model-adapters/`.
+### 1.2 Canonical → genereret (den centrale beslutning)
+`.agents/` er **canonical** og eneste redigeringssted. Runtime-lagene **genereres** af
+`.agents/scripts/generate-runtime.py` og håndredigeres aldrig.
 
----
+**Rationale:** projektet havde to konkurrerende "aktive" lag i ~3 uger (P0-modsigelse, ticket #1).
+Dobbeltvedligehold skalerer ikke og lyver stille. Med generering kan drift *ikke* opstå ubemærket:
+`--check` giver exit 1. Formelt: ADR-multi-runtime (Accepted) + ADR-0003; status: `systemkort.md`.
 
-## Anbefalet projektarkitektur
+**Konsekvens for alt nyt:** hvis en feature kræver at man redigerer et genereret lag, er designet forkert.
 
-```text
-Kvalifikationsordning Entreprenør\
-│
-├─ AGENTS.md
-├─ PROMPT.md
-├─ DESIGN.md
-├─ README_AGENT_HARNESS.md
-├─ README.md
-│
-├─ .agents\
-│  ├─ registry.yaml
-│  ├─ model-adapters\
-│  │  ├─ codex.md
-│  │  ├─ kimi.md
-│  │  ├─ qwen-code.md
-│  │  └─ gemini-code.md
-│  │
-│  ├─ agents\
-│  │  ├─ interface-manager\
-│  │  │  ├─ AGENTS.md
-│  │  │  ├─ profile.md
-│  │  │  ├─ avatar.md
-│  │  │  └─ skills.yaml
-│  │  ├─ udbudskonsulent\
-│  │  ├─ projektleder\
-│  │  ├─ dokumentcontroller\
-│  │  ├─ kvalitetsspecialist\
-│  │  ├─ byggeleder\
-│  │  └─ ...
-│  │
-│  ├─ skills\
-│  │  ├─ banebyg\
-│  │  │  ├─ SKILL.md
-│  │  │  └─ references\
-│  │  │     ├─ bbtr.md
-│  │  │     ├─ bbe.md
-│  │  │     └─ bkp.md
-│  │  ├─ karpathy-guidelines\
-│  │  ├─ tdd\
-│  │  ├─ to-prd\
-│  │  ├─ to-issues\
-│  │  ├─ grill-me\
-│  │  └─ improve-codebase-architecture\
-│  │
-│  ├─ brain\
-│  │  ├─ README.md
-│  │  ├─ context.md
-│  │  ├─ glossary.md
-│  │  ├─ assumptions.md
-│  │  ├─ open-questions.md
-│  │  ├─ decisions\
-│  │  │  └─ ADR-0001-agent-harness.md
-│  │  ├─ maps\
-│  │  ├─ memory\
-│  │  └─ runbooks\
-│  │
-│  ├─ vendor\
-│  │  ├─ mattpocock-skills\
-│  │  └─ andrej-karpathy-skills\
-│  │
-│  ├─ scripts\
-│  │  ├─ audit-harness.ps1
-│  │  ├─ install-skills.ps1
-│  │  ├─ generate-agent-index.ps1
-│  │  └─ validate-harness.ps1
-│  │
-│  └─ reports\
-│     ├─ inventory\
-│     ├─ analysis\
-│     └─ migration-plan\
-│
-├─ .vscode\
-│  └─ .codex\
-│     ├─ prompts\
-│     ├─ skills\
-│     ├─ agents\
-│     └─ Brain\
-│
-├─ Kombi\
-└─ Avatar\
-```
+### 1.3 Tre-lags-adskillelse: Vendor / Kurateret / Domæne
+
+| Lag | Sti | Retningslinje |
+|-----|-----|---------------|
+| **Vendor** | `.agents/vendor/` | Rå open source. **Læs-only** — redigér aldrig direkte. Opdateres via upstream-pull i egen vendor-PR. |
+| **Kurateret** | `.agents/skills/` | Udvalgte/tilpassede skills. Små, model-agnostiske. Kildehenvisning bevares. |
+| **Domæne** | `.agents/agents/` + `.agents/brain/` | Banedanmark-specifik viden. Bygget på evidens. Uverificeret markeres. |
+
+**Rationale:** uden adskillelsen blandes tredjepartskode, egne regler og domæneviden sammen — og så
+kan harnesset hverken opdateres fra upstream eller genbruges på et andet domæne. Det er også
+forudsætningen for Fase G-promoveringen (kun de generiske lag blev promoveret; se ADR-0004).
+
+### 1.4 Persona **og** rolle er begge canonical
+Personaer (navngivne fagpersoner) i `.agents/agents/<id>/`; Banedanmark-**rolleagenter**
+(`agent_model: role`, roster-undtagne) i `.agents/agents/banedanmark/<id>/`.
+**Rationale:** de modellerer forskellige ting — et Banedanmark-harness har brug for begge. Falsk
+modsætning at vælge. Afgjort 2026-07-11.
+
+### 1.5 Memory-klasser
+CANONICAL (`.agents/brain/`, levende) / RUNTIME-LOKAL (genereret pointer) / SNAPSHOT
+(`memory/`, `diary/`, `reports/` — append-only, omskrives aldrig).
+Detaljer: `docs/architecture/memory-governance.md`.
 
 ---
 
-## De tre lag — hvorfor adskillelse er vigtig
+## 2. Designprincipper
 
-Den vigtigste arkitekturbeslutning er at holde eksterne repoer under `.agents/vendor/` og **aldrig** ændre dem direkte. Din egen kuraterede, projektspecifikke version skal ligge under `.agents/skills/`, `.agents/agents/` og `.agents/brain/`. Så kan du senere kopiere harnesset til `C:\Users\Biyocon` som global baseline uden at blande rå open-source-indhold, lokale projektregler og Banedanmark-specifik viden sammen.
+### Skills
+- Små, skarpe, **komponerbare** — én skill, ét formål.
+- **Klart trigger-scope**: `description` skal på engelsk sige *hvornår* skillen bruges
+  ("Use this skill when …"), max 1024 tegn. `name:` skal være identisk med mappenavnet.
+- Domænetunge regler i `references/`, ikke i `SKILL.md` (hold den under ~500 linjer).
+- Scripts kun hvor **deterministisk automatisering** slår promptinstruktion.
+- Uverificeret domæneindhold **skal** bære `## Verifikationsstatus` med FORELØBIG-markering.
+- Opfind aldrig regelparagraffer, grænseværdier eller procedurenumre uden kilde.
 
-| Lag | Sti | Formål | Retningslinje |
-|-----|-----|--------|---------------|
-| **Vendor** | `.agents/vendor/` | Rå open-source-kilder | Læs-only. Opdateres via `git pull`. Kopiér aldrig direkte ind i projektet. |
-| **Kurateret** | `.agents/skills/` | Udvalgte og tilpassede skills | Små, skarpe, model-agnostiske. Kildehenvisning bevares. |
-| **Domæne** | `.agents/agents/` + `.agents/brain/` | Banedanmark-specifik viden og roller | Bygget på evidens fra lokale filer. Placeholders markeres tydeligt. |
+### Agenter
+- Target-kontrakt: **alt i `profile.md`** — frontmatter (`id`/`name`/`role`/`category`/`status`/
+  `source` + `skills`/`capabilities`) og system-prompten som fenced ```text-blok under
+  `## System Prompt`. Ingen sidecar-filer (`skills.yaml` blev afviklet 2026-07-12).
+- `profile.md`'s promptblok er **canonical**; `Avatar/agents/System_Prompt_Agent_<id>.md` er afledt
+  visning og skal være identisk (vagtes af `--check`).
+- Intentioner uden implementering hører i `planned_skills:` — aldrig i `skills:`.
+- Domænepåstande skal være sporbare til kilde (FB-PDF'er m.fl.) med eksplicitte forbehold.
 
----
-
-## Principper for skills
-
-- Skills skal være **små, skarpe og komponerbare**.
-- Hver skill skal have **klart trigger-scope** — hvornår aktiveres den?
-- Domænetunge regler skal ligge i `references/`, ikke i selve `SKILL.md`.
-- Scripts må kun bruges, hvor deterministisk automatisering er bedre end promptinstruktion.
-- Banedanmark-specifikke skills skal adskilles fra generelle open-source-skills.
-- Vendor-indhold må ikke redigeres direkte; kopier og tilpas i `.agents/skills/`.
-
----
-
-## Brain-mappens formål
-
-Brain-mappen (`.agents/brain/`) er projektets levende hukommelse:
-
-| Fil | Formål |
-|-----|--------|
-| `context.md` | Stabil projektkontekst — læs ved opstart af komplekse opgaver |
-| `glossary.md` | Domænesprog og forkortelser — læs når du møder ukendte begreber |
-| `assumptions.md` | Ikke-verificerede antagelser — tjek før du træffer beslutninger |
-| `open-questions.md` | Uafklarede forhold — tilføj nye spørgsmål under arbejdet |
-| `decisions/` | Architecture Decision Records (ADR) — læs før arkitekturændringer |
-| `maps/` | Relationer mellem agenter, skills, roller og mapper |
-| `runbooks/` | Gentagelige arbejdsgange — følg ved vedligeholdelse |
-| `memory/` | Øvrig persistent kontekst |
+### Dokumentation
+- **Én kanonisk kilde pr. emne.** Henvis frem for at duplikere.
+- **Ingen volatile værdier** i vedvarende dokumenter (antal, HEAD-hashes, statustabeller der
+  rådner) — henvis til den kommando/fil der producerer tallet.
+- Historik omskrives ikke; superseded planer arkiveres til `docs/plans/arkiv/` med banner.
 
 ---
 
-## Vurdering af open-source kilder
+## 3. Beslutningsfilter for nye ønsker
 
-### `mattpocock/skills`
+> Kør denne før du bygger noget nyt. Falder ønsket på ét af punkterne, skal designet ændres —
+> ikke reglen. Ønsket selv hører i `PROJEKT_PLAN.md`'s ønskeliste, indtil det er filtreret.
 
-Relevant, fordi repoet selv beskriver skills som små, tilpasningsvenlige og komponerbare. README'en angiver installation via `npx skills@latest add mattpocock/skills`. Repoet understreger, at skills er lavet til at virke med flere modeller — ikke kun Claude. ([GitHub][2])
-
-**Anbefaling:** Brug repoet som referencekilde. Vurder følgende skills/workflows til kuratering:
-- `tdd` — test-driven development
-- `diagnose` — systematisk debugging
-- `to-prd` — opret Product Requirement Document
-- `to-issues` — opret issues fra plan
-- `grill-me` / `grill-with-docs` — stresstest planer
-- `improve-codebase-architecture` — arkitekturforbedring
-- `zoom-out` — bred kontekstforståelse
-- `ubiquitous-language` — DDD-glossary
-- `write-a-skill` — skill-forfatteri
-- `setup-pre-commit` — commit-hooks
-- `git-guardrails` — git-sikkerhed
-
-Kopiér/tilpas **kun** de skills, der giver mening for et projekt-harness. Fjern Claude-specifikke antagelser hvor muligt.
-
-### `forrestchang/andrej-karpathy-skills`
-
-Relevant som adfærds-harness: antagelser skal synliggøres, løsninger skal være simple, ændringer skal være kirurgiske, og opgaver skal have verificerbare succeskriterier. ([GitHub][3])
-
-**Anbefaling:** Omskriv `CLAUDE.md`-principperne til en lokal skill under `.agents/skills/karpathy-guidelines/SKILL.md` og integrér essensen i rodfilens `AGENTS.md`. På den måde bevares de stærke principper uden at låse projektet til Claude-navngivning.
+1. **Hvilken artefakttype er det?** agent (persona/rolle) · skill · adapter · script/vagt ·
+   brain-viden · dokumentation. Passer det i ingen af dem, er det formentlig ikke harness-arbejde.
+2. **Kan det bo i canonical (`.agents/`)?** Hvis det kræver håndredigering af et genereret lag →
+   **stop**, redesign (jf. 1.2).
+3. **Duplikerer det en eksisterende kanonisk kilde?** I så fald: udvid kilden, opret ikke en ny.
+4. **Er det model-agnostisk?** Model-specifikt hører i `.agents/model-adapters/`, ikke i kernen.
+5. **Kan det verificeres?** Ny struktur skal kunne fanges af `validate-schemas.py` og/eller
+   `generate-runtime.py --check`. Kan intet checke det, er det ikke færdigdesignet —
+   overvej en ny vagt (mønster: se de eksisterende check-funktioner).
+6. **Domæneindhold: er der kildeevidens?** Uden kilde → FORELØBIG-markering, aldrig præsenteret
+   som verificeret.
+7. **Rører det vendor?** Så er svaret nej — kopiér og tilpas i det kuraterede lag.
+8. **Skaber det volatil gæld?** Hardkodede tal/stier/statuslister i prosa = nej.
 
 ---
 
-## Faseplan (overblik)
+## 4. Anti-mønstre (lært i dette repo — gentag dem ikke)
 
-| Fase | Navn | Output |
-|------|------|--------|
-| 0 | Sikker opstart | `.agents/reports/00_startup_check.md` |
-| 1 | Scanning af Kombi | `.agents/reports/analysis/kombi_analysis.md` + `kombi_inventory.json` |
-| 2 | Scanning af Avatar | `.agents/reports/analysis/avatar_analysis.md` + `avatar_inventory.json` |
-| 3 | Scan eksterne inspirationsmapper | `open_source_analysis.md` + `tooling_analysis.md` |
-| 4 | Målarkitektur | `AGENTS.md`, `README_AGENT_HARNESS.md`, mappestruktur |
-| 5 | Installer/klon vendor-repoer | `.agents/vendor/mattpocock-skills`, `.agents/vendor/andrej-karpathy-skills` |
-| 6 | Kuratér generelle skills | `.agents/skills/<skill>/SKILL.md` |
-| 7 | Integrér Karpathy-regler | `.agents/skills/karpathy-guidelines/SKILL.md` |
-| 8 | Opret Brain-mappe | `.agents/brain/*.md`, ADR, maps, runbooks |
-| 9 | Opret subagents | `.agents/agents/<agent-id>/` |
-| 10 | Opret BaneByg skills | `.agents/skills/banebyg/` med placeholders |
-| 11 | Opdatér Avatar prompts | `System_Prompt_Agent_<Navn>_<Rolle>.txt` |
-| 12 | Opret registry | `.agents/registry.yaml` |
-| 13 | Opret scripts | `.agents/scripts/*.ps1` |
-| 14 | Validering | `.agents/reports/validation_report.md` |
-| 15 | Slutrapport | `.agents/reports/migration-plan/final_harness_report.md` |
+| Anti-mønster | Hvad det kostede |
+|---|---|
+| To lag der begge kalder sig "aktiv sandhed" | 3 ugers P0-modsigelse; løst med canonical→genereret |
+| Håndvedligeholdt kopi af genereret data | Registry-landskabet voksede til 4 filer; nu 2 (1 canonical + 1 genereret) |
+| Volatile tal i prosa | Skill-antal blev rapporteret som 29/73/188 i 3 filer samtidig; nu ét script som kilde |
+| HEAD-hash i `primer.md` | Rådnede ved næste commit; jagten var uendelig regres |
+| Advarsler man vænner sig til | En brækket regex camouflerede 12 ægte fund som "kendt støj" |
+| Domæneindhold uden kilde | K-tabeller/beføjelser der ikke stod i funktionsbeskrivelserne (24 rettelser ved verifikation) |
+| `git add -A` i et delt arbejdstræ | Fejede en anden sessions ufærdige fil ind i fremmede commits |
+| Uncommitteret arbejde i OneDrive | Filkorruption 2026-07-02 (5 filer trunkeret) |
 
 ---
 
-## Definition of Done
+## 5. Kvalitetsporte (design skal kunne passere dem)
 
-- [ ] Projektet har en rodfil `AGENTS.md`.
-- [ ] Projektet har en `.agents/`-struktur med `agents/`, `skills/`, `brain/`, `vendor/`, `scripts/` og `reports/`.
-- [ ] `Kombi/` og `Avatar/` er scannet og dokumenteret.
-- [ ] Der findes en inventory over alle relevante filer.
-- [ ] Relevante open-source-skills er installeret/klonet isoleret under `vendor/`.
-- [ ] Matt Pocock skills og Karpathy guidelines er vurderet og kurateret.
-- [ ] Der findes en første version af Banedanmark-subagents.
-- [ ] Hver avatar/agent har egen systempromptfil.
-- [ ] Interface Manager har mindst en foreløbig `skills.yaml` med BaneByg-relaterede skills, herunder BBTR, BBE og BKP som placeholders, hvis konkret kildeindhold endnu ikke er verificeret.
-- [ ] Brain-mappen er oprettet og indeholder `context.md`, `glossary.md`, `assumptions.md`, `open-questions.md` og mindst én ADR.
-- [ ] Der findes en valideringsrapport, en migrationsrapport og en anbefaling til senere globalisering under `C:\Users\Biyocon`.
+- `validate-schemas.py` → **0 overtrædelser** (skema-kontrakt for registry/profiler/skills/adaptere)
+- `generate-runtime.py --check` → **exit 0** (canonical ≡ genereret; dækker desuden dangling
+  skill-refs, dublet-genopstand, avatar-prompt-dedup, Brain-pointer)
+- `scripts/Validate-Harness-Unified.ps1` → 0 fejl (Sektion A–H)
+- **Gating:** `.githooks/pre-commit` + `.github/workflows/validate.yml` kører de to første
+  automatisk. Nødudgang `SKIP_HARNESS_GATE=1` er til nødsituationer, ikke til vane.
+- **Verificér før completion-claims:** kør kommandoen og citér output. Kode på disk er ikke bevis.
 
 ---
 
 ## Referencer
 
 - [1] OpenAI — *Introducing Codex*: https://openai.com/index/introducing-codex/
-- [2] GitHub — `mattpocock/skills`: https://github.com/mattpocock/skills
+- [2] GitHub — `mattpocock/skills`: https://github.com/mattpocock/skills (vendor; kurateret kopi i `.agents/skills/`)
 - [3] GitHub — `forrestchang/andrej-karpathy-skills`: https://github.com/forrestchang/andrej-karpathy-skills
+  (adfærdsprincipperne er integreret i `AGENTS.md` + `.agents/skills/karpathy-guidelines/`)

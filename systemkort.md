@@ -64,8 +64,9 @@ ADR-0003); aktiveringen er gennemført og gated (`docs/qa/RELEASE-runtime-activa
 | Komponent | Hvad den gør | Runtime-status |
 |---|---|---|
 | `AGENTS.md` | Eneste fælles instruktionsfil for alle LLM'er (Codex, Kimi, Qwen, Gemini, Claude) | ✅ |
-| `PROMPT.md` | Operationelle prompts til Codex/Kimi i VS Code | ✅ |
-| `.agents/model-adapters/*.md` | 7 skema-konforme adaptere: codex (**active**), claude-code, kimi, ollama, gemini, cursor, qwen-code (planned) | ✅ plan-lag; 1/7 aktiv |
+| `PROMPT.md` | Operationelle prompts pr. tilbagevendende opgave (systemprompt, nyt feature-ønske, ny agent/skill, adapter-aktivering, verifikation, audit, handoff) — til alle runtimes | ✅ omskrevet 2026-07-12 |
+| `DESIGN.md` | Designbeslutninger + rationale + **beslutningsfilter for nye ønsker** + anti-mønstre. Ejer *hvorfor*; denne fil (systemkort) ejer *status* | ✅ omskrevet 2026-07-12 |
+| `.agents/model-adapters/*.md` | 7 skema-konforme adaptere: codex + claude-code (**active**), kimi, ollama, gemini, cursor, qwen-code (planned) | ✅ 2/7 aktive |
 
 ---
 

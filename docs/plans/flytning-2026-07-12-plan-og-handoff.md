@@ -192,6 +192,9 @@ Intet blokerer — resterende punkter er valgfrie (audit-rapportens §8).
 **Kendte åbne (valgfrit, intet haster):** 31 ældre skill-descriptions mangler trigger ·
 28 nye domæneskills er FORELØBIG indtil kildeverifikation · `bbtr-webdesign` >500 linjer ·
 `~/.claude/skills`-globalkopi er korrupt/ustyret (uden for repoet) · logopakken i `temp/` er
-load-bearing for 3 brand-skills · `.codex`-rodflytning udskudt (kræver ekstern verifikation) ·
-`PROMPT.md` + `DESIGN.md` peger på en død sti (`Desktop\Kvalifikationsordning Entreprenør`) og
-refererer `Kombi/` som ikke findes — **selvstændig oprydning, ikke en del af flytningen.**
+load-bearing for 3 brand-skills · `.codex`-rodflytning udskudt (kræver ekstern verifikation).
+
+> **Løst 2026-07-12 (efter denne plan blev skrevet):** `PROMPT.md` + `DESIGN.md` er omskrevet til
+> nutid og gjort **sti-agnostiske** (nul absolutte stier) — de skal derfor **ikke** røres i Del B.
+> PROMPT.md er nu et prompt-bibliotek pr. opgave; DESIGN.md ejer principper + beslutningsfilter
+> for nye feature-ønsker. Den døde sti i promoverings-runbooken (B1, række 5) står stadig.

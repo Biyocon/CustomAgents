@@ -99,8 +99,8 @@ En komplet runtime til AI-assisteret projektstyring med:
 Kvalifikationsordning Entreprenør\
 │
 ├─ AGENTS.md                    # Fælles instruktionsfil for ALLE LLM'er
-├─ PROMPT.md                    # Operationelle prompts til Codex/Kimi i VS Code
-├─ DESIGN.md                    # Arkitektur, designbeslutninger og bedste praksis
+├─ PROMPT.md                    # Operationelle prompts pr. opgave (kopiér ind i agenten)
+├─ DESIGN.md                    # Designprincipper, rationale + beslutningsfilter for nye ønsker
 ├─ README.md                    # Denne fil
 ├─ README_AGENT_HARNESS.md      # Harness-specifik dokumentation
 │
