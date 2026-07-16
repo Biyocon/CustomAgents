@@ -59,10 +59,18 @@ forældet primer lyver, og en lyvende primer er værre end ingen.
 
 - 28 nye domæneskills er FORELØBIG indtil krydstjek mod Banedanmarks officielle kilder;
   interface-manager + udbudskonsulent + interface-manager-banebyg er draft (dokumenterede forbehold).
-- 31 ældre skill-descriptions mangler trigger-sætning (batch-PR anbefalet, audit §8).
+- 8 bbtr-skill-descriptions mangler en når-betingelse: 7 har en formålssætning (`Use this skill to/for`),
+  1 har ingen (`bbtr-webdesign`). Ingen af de 8 har en `## Hvornår`-sektion i body'en at løfte fra, så
+  deres triggers skal UDLEDES — egen ændring, ikke mekanisk løft. (De 30 bdk-skills er gjort i `b97b9b24`;
+  auditens "31" var en heuristik, målt tal er 30 + 8.)
 - `~/.claude/skills`-globalkopien er tredje ustyret kopi med encoding-korruption (UDEN for repo;
   beslutning udestår: generér fra canonical eller afinstallér).
-- Logopakken bor i `temp/` men er load-bearing for 3 brand-skills (flyt anbefalet, egen ændring).
+- Logopakken bor i `temp/` (flyt anbefalet, egen ændring). **Ingen skill hardcoder `temp/`-stien** —
+  6 skill-filer bruger pakke-relative stier (`Banedanmark logopakke 2021/…`) der overlever en flytning
+  uændret; 0 filer brækker. Det der skal opdateres er doc-linjer om placeringen (denne, `repo-map.md`,
+  `PROJEKT_PLAN.md`, `registry-reconciliation.md`). Reel rest: de relative stier er **uankrede** — de
+  siger ikke hvor man starter. (Tidligere stod her "load-bearing for 3 brand-skills"; både tallet og
+  mekanismen var forkerte, og auditen citerede denne linje frem for at måle.)
 - `.codex`-rodflytning udskudt (kræver ekstern verifikation af Codex-søgesti; repo-map.md).
 - Skabelonen mangler examples/ + ROLE_CONTAINER-parametrisering (næste promoveringsrunde).
 - bbtr-webdesign er 684 linjer (>500-grænsen; split anbefalet).
